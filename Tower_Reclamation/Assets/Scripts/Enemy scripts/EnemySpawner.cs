@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -17,16 +18,24 @@ public class EnemySpawner : MonoBehaviour
     public int level = 0;
     int monstersSpawned = 0;
 
+    float timeBetweenWaves = 12f;
+    float waveTimer;
+    [SerializeField] Slider slider;
+
     // Use this for initialization
     void Start()
     {
         StartCoroutine(WaitBetweenWaves());
+        slider.maxValue = timeBetweenWaves;
         //StartCoroutine(ContinualSpawnEnemies());
     }
 
     IEnumerator ContinualSpawnEnemies()
     {
-        while (monstersSpawned < 5 && stillAlive)
+        // resets the timer when a wave is spawned.
+        waveTimer = 0;
+
+        while (monstersSpawned < 6 && stillAlive)
         {
             currentlySpawning = true;
             var enemySpawnLoc = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
@@ -45,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator WaitBetweenWaves()
     {
-        yield return new WaitForSeconds(15);
+        yield return new WaitForSeconds(timeBetweenWaves);
         if (!currentlySpawning)
         {
             yield return StartCoroutine(ContinualSpawnEnemies());
@@ -55,8 +64,16 @@ public class EnemySpawner : MonoBehaviour
     
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && !currentlySpawning)
+        if (stillAlive && !currentlySpawning)
         {
+            waveTimer += 1 * Time.deltaTime;
+        }
+        slider.value = waveTimer;
+
+
+        if (Input.GetKeyDown(KeyCode.Space) && !currentlySpawning)
+        {
+            waveTimer = 0;
             StartCoroutine(ContinualSpawnEnemies());
         }
     }

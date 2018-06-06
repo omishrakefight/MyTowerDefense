@@ -12,10 +12,11 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] EnemyMovement enemyPrefab;
     [SerializeField] Transform enemiesLocation;
     [SerializeField] AudioClip enemySpawnAudio;
+    [SerializeField] Text win;
 
     public bool stillAlive = true;
     bool currentlySpawning = false;
-    public int level = 0;
+    public int level = 1;
     int monstersSpawned = 0;
 
     float timeBetweenWaves = 12f;
@@ -27,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
     {
         StartCoroutine(WaitBetweenWaves());
         slider.maxValue = timeBetweenWaves;
-        //StartCoroutine(ContinualSpawnEnemies());
+        win.enabled = false;
     }
 
     IEnumerator ContinualSpawnEnemies()
@@ -35,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
         // resets the timer when a wave is spawned.
         waveTimer = 0;
 
-        while (monstersSpawned < 6 && stillAlive)
+        while (monstersSpawned < 6 && stillAlive && level < 5)
         {
             currentlySpawning = true;
             var enemySpawnLoc = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
@@ -49,6 +50,16 @@ public class EnemySpawner : MonoBehaviour
         currentlySpawning = false;
         ++level;
         monstersSpawned = 0;
+        if (level == 5)
+        {
+            while(FindObjectsOfType<EnemyMovement>().Length > 0)
+            {
+                yield return new WaitForSeconds(1);
+            }
+            if(stillAlive)
+                win.enabled = true;
+        }
+        
         yield return StartCoroutine(WaitBetweenWaves());
     }
 

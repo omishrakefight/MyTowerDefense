@@ -11,10 +11,16 @@ public class MyHealth : MonoBehaviour {
     [SerializeField] Image HPbar;
     [SerializeField] AudioClip baseHurtAudio;
 
+    [SerializeField] Text defeat;
+    [SerializeField] Text worldFalls;
     // Use this for initialization
     void Start () {
         myHealth.text = "Base HP : ";// + myNumericalHealth.ToString() + " / 10";
         myHealthNumber.text = myNumericalHealth.ToString() + " / 10";
+
+        // Setting text to invisible until triggered.
+        defeat.enabled = false;
+        defeat.enabled = false;
     }
 	
 	// Update is called once per frame
@@ -31,6 +37,8 @@ public class MyHealth : MonoBehaviour {
         if (myNumericalHealth <= 0)
         {
             FindObjectOfType<EnemySpawner>().stillAlive = false;
+            defeat.enabled = true;
+            worldFalls.enabled = true;
         }
     }
 }

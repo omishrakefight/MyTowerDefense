@@ -15,8 +15,13 @@ public class PathFinder : MonoBehaviour {
     Waypoint searchCenter;
     bool isSearching;
     bool makeNewPath = true;
-   
-    
+
+    // So we have the path upon start, as well as the enemy path lights.
+    private void Start()
+    {
+        GivePath();
+    }
+
     [SerializeField] Waypoint startWaypoint, endWaypoint;
     Vector2Int[] directions =
     {

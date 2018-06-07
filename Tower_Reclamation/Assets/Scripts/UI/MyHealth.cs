@@ -21,6 +21,8 @@ public class MyHealth : MonoBehaviour {
         // Setting text to invisible until triggered.
         defeat.enabled = false;
         defeat.enabled = false;
+        
+
     }
 	
 	// Update is called once per frame

@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
         slider.maxValue = timeBetweenWaves;
         win.enabled = false;
     }
-
+    //Get path on start so that you cant build towers wrongly
     IEnumerator ContinualSpawnEnemies()
     {
         // resets the timer when a wave is spawned.

@@ -366,6 +366,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3c0d4e07b25ff48a67765aaca803e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonOne: {fileID: 2106830261}
+  buttonTwo: {fileID: 566358124}
+  buttonThree: {fileID: 1497158194}
+  buttonFour: {fileID: 0}
   rifledTowerPrefab: {fileID: 114298003256897080, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
     type: 2}
   assaultTowerPrefab: {fileID: 114298003256897080, guid: 1836db111551ce448b548d20199ce23c,

@@ -1,8 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TowerFactory : MonoBehaviour {
+
+    [SerializeField] Button buttonOne;
+    [SerializeField] Button buttonTwo;
+    [SerializeField] Button buttonThree;
+    [SerializeField] Button buttonFour;
 
     [SerializeField] Towers rifledTowerPrefab;
     [SerializeField] Towers assaultTowerPrefab;
@@ -15,6 +21,17 @@ public class TowerFactory : MonoBehaviour {
     Light currentWaypointLight;
     Light oldWaypointLight;
     bool madeLight = false;
+
+    private void Start()
+    {
+        // this is how I will change the tower summons.
+        buttonOne.onClick.AddListener(Buttontester); 
+    }
+
+    public void Buttontester()
+    {
+        print("Potatoe");
+    }
 
     public void AddRifledTower()
     {

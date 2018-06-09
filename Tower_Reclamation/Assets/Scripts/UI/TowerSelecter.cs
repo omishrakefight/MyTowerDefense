@@ -14,6 +14,8 @@ public class TowerSelecter : MonoBehaviour {
     [SerializeField] Towers rifledTowerPrefab;
 
     Vector3 towerPosition;
+    Bounds bound;
+    BoxCollider collider;
 
     // Use this for initialization
     void Start () {
@@ -22,6 +24,8 @@ public class TowerSelecter : MonoBehaviour {
         towerTurret.value = 0;
         towerBarrel.value = 0;
 
+        
+
 		if (towerBarrel.value == 0 && towerTurret.value == 0 && towerBase.value == 0)
         {
             print("reading dropdown");
@@ -29,18 +33,24 @@ public class TowerSelecter : MonoBehaviour {
             newTower.transform.localScale = new Vector3(.3f, .3f, .3f);
 
         }
-	}
+        collider = newTower.GetComponent<BoxCollider>();
+        bound = collider.bounds;
+
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
         if (Input.GetMouseButton(1))
         {
-            newTower.transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0) * Time.deltaTime * speed, Space.World);
+            //newTower.transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0) * Time.deltaTime * speed);
+            var dtx = Input.GetAxis("Mouse X") * speed;
+           // var dty = Input.GetAxis("Mouse Y") * speed;
+            var pivot = bound.center;
 
-
-
-
-            print("right button down!");
+            newTower.transform.RotateAround(pivot, Vector3.up, dtx);
+           // newTower.transform.RotateAround(pivot, Vector3.right, dty);
+            
         }
         
 	}

@@ -449,7 +449,7 @@ MonoBehaviour:
   towerBarrel: {fileID: 440024726}
   towerTurret: {fileID: 1357487304}
   towerBase: {fileID: 643748048}
-  speed: 70
+  speed: 6
   rifledTowerPrefab: {fileID: 114298003256897080, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
     type: 2}
 --- !u!1 &84758191

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -58,6 +59,8 @@ public class EnemySpawner : MonoBehaviour
             }
             if(stillAlive)
                 win.enabled = true;
+            new WaitForSeconds(2);
+            SceneManager.LoadSceneAsync(2);
         }
         
         yield return StartCoroutine(WaitBetweenWaves());

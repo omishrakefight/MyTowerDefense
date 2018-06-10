@@ -10,8 +10,8 @@ public class TowerFactory : MonoBehaviour {
     [SerializeField] Button buttonThree;
     [SerializeField] Button buttonFour;
 
-    [SerializeField] Towers rifledTowerPrefab;
-    [SerializeField] Towers assaultTowerPrefab;
+    [SerializeField] RifledTower rifledTowerPrefab;
+    [SerializeField] RifledTower assaultTowerPrefab;
     [SerializeField] Tower_Flame flameTowerPrefab;
     [SerializeField] Transform towerParentTransform;
 

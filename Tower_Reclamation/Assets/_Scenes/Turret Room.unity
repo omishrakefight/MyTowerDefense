@@ -449,8 +449,12 @@ MonoBehaviour:
   towerBarrel: {fileID: 440024726}
   towerTurret: {fileID: 1357487304}
   towerBase: {fileID: 643748048}
-  speed: 6
-  rifledTowerPrefab: {fileID: 114298003256897080, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
+  turnSpeed: 6
+  rifledTowerPrefab: {fileID: 114119245751072872, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
+    type: 2}
+  flameTowerPrefab: {fileID: 114582363562050618, guid: 9b88788f1af26d945a3ec20203b67002,
+    type: 2}
+  lightTowerPrefab: {fileID: 114358188498118118, guid: a1c22a29f73f70444806c15d320ffb5a,
     type: 2}
 --- !u!1 &84758191
 GameObject:
@@ -2590,7 +2594,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -358.29, y: 423.6}
+  m_AnchoredPosition: {x: -597, y: 423.6}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1357487304
@@ -2637,15 +2641,30 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Basic Rifled Turret
+    - m_Text: Rifled Turret
       m_Image: {fileID: 0}
-    - m_Text: Option B
+    - m_Text: Flame Turret
+      m_Image: {fileID: 0}
+    - m_Text: Lightening Turret
+      m_Image: {fileID: 0}
+    - m_Text: Option C
       m_Image: {fileID: 0}
     - m_Text: Option C
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 72088844}
+        m_MethodName: ResetTowerPicture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1357487305
@@ -3197,7 +3216,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Basic Rifled Turret
+  m_Text: Rifled Turret
 --- !u!222 &1564279424
 CanvasRenderer:
   m_ObjectHideFlags: 0

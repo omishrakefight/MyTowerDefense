@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Towers : MonoBehaviour {
+public class RifledTower : MonoBehaviour {
 
     // paramteres of each tower
     [SerializeField] Transform objectToPan;

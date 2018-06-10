@@ -16,10 +16,10 @@ public class Tower_Dmg : MonoBehaviour {
 	
     public float towerDMG()
     {
-        if (GetComponent<Towers>())
+        if (GetComponent<RifledTower>())
         {
             rifledTower = true;
-            dmg = GetComponent<Towers>().Damage();
+            dmg = GetComponent<RifledTower>().Damage();
         }
 
         if (GetComponent<Tower_Flame>())

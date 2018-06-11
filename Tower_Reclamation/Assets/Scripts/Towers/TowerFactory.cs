@@ -17,10 +17,7 @@ public class TowerFactory : MonoBehaviour {
 
     // For Lights and last waypoint
     [SerializeField] Waypoint lastWaypoint;
-    [SerializeField] Light waypointSpotLight;
-    Light currentWaypointLight;
-    Light oldWaypointLight;
-    bool madeLight = false;
+
 
     private void Start()
     {
@@ -96,22 +93,7 @@ public class TowerFactory : MonoBehaviour {
 
     public void LastWaypointClicked(Waypoint waypoint)
     {
-        //Destroy(oldWaypointLight);
         lastWaypoint = waypoint;
-        Vector3 lightHeightAdjustment = new Vector3(0f, 16f, 0);
-        if (!madeLight)
-        {
-            currentWaypointLight = Instantiate(waypointSpotLight, waypoint.transform.position + lightHeightAdjustment, Quaternion.Euler(90, 0, 0));
-            madeLight = true;
-        }
-        else
-        {
-            currentWaypointLight.transform.position = waypoint.transform.position + lightHeightAdjustment;
-        }
-
-
-        
-        //oldWaypointLight = currentWaypointLight;
 
     }
 

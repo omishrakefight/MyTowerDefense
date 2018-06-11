@@ -29,5 +29,9 @@ public class LoadNextArea : MonoBehaviour {
     {
         SceneManager.LoadSceneAsync(2);
     }
+    public IEnumerator LoadTowerSelector()
+    {
+        yield return SceneManager.LoadSceneAsync(2);
 
+    }
 }

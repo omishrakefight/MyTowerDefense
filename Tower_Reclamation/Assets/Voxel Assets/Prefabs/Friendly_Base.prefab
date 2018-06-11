@@ -246,3 +246,5 @@ MonoBehaviour:
   myHealthNumber: {fileID: 0}
   HPbar: {fileID: 0}
   baseHurtAudio: {fileID: 8300000, guid: 93ac45ea8331dff4391221eb09000fc2, type: 3}
+  defeat: {fileID: 0}
+  worldFalls: {fileID: 0}

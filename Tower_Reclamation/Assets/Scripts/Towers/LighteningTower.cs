@@ -1,17 +1,20 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RifledTower : MonoBehaviour {
+public class LighteningTower : MonoBehaviour {
 
     // paramteres of each tower
-    [SerializeField] Transform objectToPan;
-    [SerializeField] float attackRange = 32f;
+    [SerializeField] SphereCollider attackAOE;
+    [SerializeField] float attackRange = 8f;
     [SerializeField] float baseAttackRange;
+    [SerializeField] float chargeTime = 4f;
+    [SerializeField] float currentChargeTime = 0;
+    bool isCharged = false;
+
     [SerializeField] ParticleSystem projectileParticle;
-    [SerializeField] float towerDmg = 12;
-    [SerializeField] private float currentTowerDmg = 12;
+    [SerializeField] float towerDmg = 30;
+    [SerializeField] private float currentTowerDmg = 30;
 
     // State of tower
     [SerializeField] Transform targetEnemy;
@@ -19,12 +22,13 @@ public class RifledTower : MonoBehaviour {
     // Buff info
     bool keepBuffed = false;
 
-    void Start () {
+    void Start()
+    {
         if (!keepBuffed)
         {
             baseAttackRange = attackRange;
         }
-	}
+    }
 
     public float Damage()
     {
@@ -42,28 +46,54 @@ public class RifledTower : MonoBehaviour {
     }
 
 
-  
-     public void TowerUpgrade()
-     {
-         // Upgrade before multiplying
-         baseAttackRange += 10;
-         attackRange = baseAttackRange;
 
-         if (keepBuffed)
-         {
-             TowerBuff();
-         }
-     }
-     
+    public void TowerUpgrade()
+    {
+        // Upgrade before multiplying
+        baseAttackRange += 10;
+        attackRange = baseAttackRange;
+
+        if (keepBuffed)
+        {
+            TowerBuff();
+        }
+    }
+
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
+        if (currentChargeTime < chargeTime)
+        {
+            currentChargeTime += Time.deltaTime;
+        }
+        else
+        {
+            isCharged = true;
+        }
+
+        float distanceToEnemy = Vector3.Distance(targetEnemy.transform.position, gameObject.transform.position);
+        if (isCharged && distanceToEnemy <= attackRange)
+        {
+            var sceneEnemies = FindObjectsOfType<EnemyMovement>();
+            if (sceneEnemies.Length == 0) { return; }
+            foreach(EnemyMovement enemy in sceneEnemies)
+            {
+                // check for range and add to a list of targets for explosion.
+            }
+
+           // foreach (EnemyMovement enemy in attackRange)
+        }
+        else
+        {
+            SetTargetEnemy();
+        }
 
 
 
+        /*
         if (targetEnemy)
         {
-            objectToPan.LookAt(targetEnemy);
             FireAtEnemy();
         }
         else
@@ -71,7 +101,8 @@ public class RifledTower : MonoBehaviour {
             Shoot(false);
             SetTargetEnemy();
         }
-	}
+        */
+    }
 
     private void SetTargetEnemy()
     {
@@ -102,7 +133,7 @@ public class RifledTower : MonoBehaviour {
             return transformB;
         }
     }
-
+/*
     private void FireAtEnemy()
     {
         float distanceToEnemy = Vector3.Distance(targetEnemy.transform.position, gameObject.transform.position);
@@ -122,4 +153,5 @@ public class RifledTower : MonoBehaviour {
         var emissionModule = projectileParticle.emission;
         emissionModule.enabled = isActive;
     }
+    */
 }

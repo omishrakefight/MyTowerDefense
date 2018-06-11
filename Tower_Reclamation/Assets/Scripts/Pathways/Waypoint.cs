@@ -12,6 +12,13 @@ public class Waypoint : MonoBehaviour {
     Vector2Int gridPos;
     const int gridSize = 10;
 
+    //  For Lights
+    [SerializeField] Waypoint lastWaypoint;
+    [SerializeField] Light waypointSpotLight;
+    static Light currentWaypointLight;
+    static float lightIntensity;
+    static bool madeLight = false;
+
     // tower placer
     public bool isPlaceable = true;
     public bool isAvailable = true;
@@ -28,15 +35,35 @@ public class Waypoint : MonoBehaviour {
             Mathf.RoundToInt(transform.position.z / gridSize)
             );
     }
-	
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if(madeLight)
+            currentWaypointLight.GetComponent<Light>().intensity = 0;
+        }
+    }
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0))
         {
             if (isPlaceable)
             {
                 FindObjectOfType<TowerFactory>().LastWaypointClicked(this);
+
+                Vector3 lightHeightAdjustment = new Vector3(0f, 16f, 0);
+                if (!madeLight)
+                {
+                    currentWaypointLight = Instantiate(waypointSpotLight, this.transform.position + lightHeightAdjustment, Quaternion.Euler(90, 0, 0));
+                    madeLight = true;
+                    lightIntensity = currentWaypointLight.GetComponent<Light>().intensity;
+                }
+                else
+                {
+                    currentWaypointLight.transform.position = this.transform.position + lightHeightAdjustment;
+                    currentWaypointLight.GetComponent<Light>().intensity = lightIntensity;
+                }
             }
         }  
     }

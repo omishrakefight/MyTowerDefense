@@ -102,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1848402065847604}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.535732, y: 44.135612, z: -73.64796}
+  m_LocalPosition: {x: 48.535732, y: 44.135612, z: -63.647957}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4119752082941550}
@@ -285,7 +285,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1504753073279570}
-  m_Text: 1, -2
+  m_Text: 5, -1
   m_OffsetZ: 0
   m_CharacterSize: 0.06
   m_LineSpacing: 1
@@ -312,9 +312,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isnotExplored: 1
   ExploredFrom: {fileID: 0}
+  lastWaypoint: {fileID: 0}
   waypointSpotLight: {fileID: 108049695387213666, guid: 57e9fe02177ae644ebf3ec9c920606ab,
     type: 2}
   isPlaceable: 1
+  isAvailable: 1
 --- !u!114 &114185379311630902
 MonoBehaviour:
   m_ObjectHideFlags: 1

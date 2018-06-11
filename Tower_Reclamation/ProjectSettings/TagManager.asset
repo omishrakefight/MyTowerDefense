@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WalkPath
   - Buff Tile
+  - Selected Tile Light
   layers:
   - Default
   - TransparentFX

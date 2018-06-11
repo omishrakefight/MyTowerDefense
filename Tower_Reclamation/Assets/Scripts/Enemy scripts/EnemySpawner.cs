@@ -59,8 +59,8 @@ public class EnemySpawner : MonoBehaviour
             }
             if(stillAlive)
                 win.enabled = true;
-            new WaitForSeconds(2);
-            SceneManager.LoadSceneAsync(2);
+            yield return new WaitForSeconds(4);
+            FindObjectOfType<LoadNextArea>().LoadTowerRoom();
         }
         
         yield return StartCoroutine(WaitBetweenWaves());

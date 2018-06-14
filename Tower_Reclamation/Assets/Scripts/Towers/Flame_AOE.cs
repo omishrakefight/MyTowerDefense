@@ -36,7 +36,6 @@ public class Flame_AOE : MonoBehaviour {
         currentAttackWidth = currentAttackWidth * 1.5f;
         flameAOE.height = currentAttackWidth;
         flameAOE.radius = currentAttackRange;
-        print("I am buffed!");
 
         keepBuffed = true;
     }
@@ -51,10 +50,8 @@ public class Flame_AOE : MonoBehaviour {
 
     private void OnTriggerStay(Collider other)
     {
-        print("Something is burning");
         if (other.gameObject.GetComponentInParent<EnemyHealth>())
         {
-            print("Workin");
             other.GetComponentInParent<EnemyHealth>().CaughtFire(currentTowerDmg);
         }
     }

@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4519409238211602}
   - component: {fileID: 198511639874854404}
   - component: {fileID: 199738285001954010}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4774012340045536}
   - component: {fileID: 33197596272714470}
   - component: {fileID: 23986822399657692}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tower_A_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,7 +55,8 @@ GameObject:
   - component: {fileID: 4204778626261306}
   - component: {fileID: 114298003256897080}
   - component: {fileID: 114246891154863348}
-  m_Layer: 0
+  - component: {fileID: 65815880961812618}
+  m_Layer: 8
   m_Name: Assault Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +73,7 @@ GameObject:
   - component: {fileID: 4613106442342080}
   - component: {fileID: 33349769999966382}
   - component: {fileID: 23536891526009388}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tower_A_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1466523237876820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 48.721107, y: 0, z: 3.1048203}
+  m_LocalPosition: {x: 477.85507, y: 655.76227, z: -819.063}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4774012340045536}
@@ -216,6 +217,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1568905355939266}
   m_Mesh: {fileID: 4300000, guid: 2b9fa85ac3400f34086a67af0c3979ee, type: 3}
+--- !u!65 &65815880961812618
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1466523237876820}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 7.37, y: 12.19, z: 7.97}
+  m_Center: {x: 0, y: 4.31, z: 0}
 --- !u!114 &114246891154863348
 MonoBehaviour:
   m_ObjectHideFlags: 1

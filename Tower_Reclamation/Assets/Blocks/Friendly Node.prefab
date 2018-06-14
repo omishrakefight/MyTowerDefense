@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114718810230190270}
   - component: {fileID: 114218278920352956}
   - component: {fileID: 65373315907830402}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Friendly Node
   m_TagString: WalkPath
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1607958814308082}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.353469, y: 84.58597, z: -111.21145}
+  m_LocalPosition: {x: 0.6465311, y: 84.58597, z: -101.21145}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4890970626094722}
@@ -285,7 +285,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1639449420655202}
-  m_Text: 0, -1
+  m_Text: 1, 0
   m_OffsetZ: 0
   m_CharacterSize: 0.06
   m_LineSpacing: 1

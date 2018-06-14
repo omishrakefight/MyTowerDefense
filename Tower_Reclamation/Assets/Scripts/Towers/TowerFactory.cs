@@ -13,6 +13,7 @@ public class TowerFactory : MonoBehaviour {
     [SerializeField] RifledTower rifledTowerPrefab;
     [SerializeField] RifledTower assaultTowerPrefab;
     [SerializeField] Tower_Flame flameTowerPrefab;
+    [SerializeField] LighteningTower lighteningTowerPrefab;
     [SerializeField] Transform towerParentTransform;
 
     // For Lights and last waypoint
@@ -56,6 +57,26 @@ public class TowerFactory : MonoBehaviour {
         if (lastWaypoint.isAvailable && currentGold >= 60)
         {
             var newTower = Instantiate(assaultTowerPrefab, lastWaypoint.transform.position, Quaternion.identity);
+            newTower.transform.parent = towerParentTransform;
+            lastWaypoint.isAvailable = false;
+            FindObjectOfType<GoldManagement>().TowerCost();
+            if (lastWaypoint.CompareTag("Buff Tile"))
+            {
+                newTower.TowerBuff();
+            }
+        }
+        else
+        {
+            print("Unable to build here.");
+        }
+    }
+
+    public void AddLighteningTower()
+    {
+        int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();
+        if (lastWaypoint.isAvailable && currentGold >= 60)
+        {
+            var newTower = Instantiate(lighteningTowerPrefab, lastWaypoint.transform.position, Quaternion.identity);
             newTower.transform.parent = towerParentTransform;
             lastWaypoint.isAvailable = false;
             FindObjectOfType<GoldManagement>().TowerCost();

@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 114185379311630902}
   - component: {fileID: 114034371900934920}
   - component: {fileID: 65452405350602794}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Tower Node
   m_TagString: Buff Tile
   m_Icon: {fileID: 0}

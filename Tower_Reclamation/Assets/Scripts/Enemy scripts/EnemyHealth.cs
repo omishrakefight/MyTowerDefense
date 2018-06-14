@@ -76,7 +76,7 @@ public class EnemyHealth : MonoBehaviour {
         }
     }
 
-    private void KillsEnemyandAddsGold()
+    public void KillsEnemyandAddsGold()
     {
         FindObjectOfType<GoldManagement>().AddGold();
 

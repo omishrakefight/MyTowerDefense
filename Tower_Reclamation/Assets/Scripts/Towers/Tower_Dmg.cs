@@ -28,6 +28,11 @@ public class Tower_Dmg : MonoBehaviour {
             dmg = GetComponent<Flame_AOE>().Damage();
         }
 
+        if (GetComponent<LighteningTower>())
+        {
+            flameTower = true;
+            dmg = GetComponent<LighteningTower>().Damage();
+        }
         return dmg;
     }
 	// Update is called once per frame

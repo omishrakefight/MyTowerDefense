@@ -21,7 +21,10 @@ GameObject:
   - component: {fileID: 4066230776274318}
   - component: {fileID: 114358188498118118}
   - component: {fileID: 65394785270816944}
-  m_Layer: 0
+  - component: {fileID: 114078197882030082}
+  - component: {fileID: 114832670974894306}
+  - component: {fileID: 135991062907235084}
+  m_Layer: 8
   m_Name: Lightning_Standard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,8 +41,24 @@ GameObject:
   - component: {fileID: 4275277754809944}
   - component: {fileID: 33919225729078676}
   - component: {fileID: 23238961360269364}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lightning_Standard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1695855917575498
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4485597431013818}
+  - component: {fileID: 108406019157774086}
+  m_Layer: 0
+  m_Name: Charge Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,10 +71,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1087647114204398}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.729324, y: 20.183056, z: -46.557087}
+  m_LocalPosition: {x: 9.786745, y: 0, z: 9.440697}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4275277754809944}
+  - {fileID: 4485597431013818}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -66,11 +86,24 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1304937300918440}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.26, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4066230776274318}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4485597431013818
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1695855917575498}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 9.41, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4066230776274318}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23238961360269364
 MeshRenderer:
@@ -123,8 +156,65 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5.94, y: 4.97, z: 2.96}
-  m_Center: {x: -0.25, y: 2.33, z: 0}
+  m_Size: {x: 5.94, y: 6.27, z: 5.47}
+  m_Center: {x: -0.25, y: 3, z: 0}
+--- !u!108 &108406019157774086
+Light:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1695855917575498}
+  m_Enabled: 1
+  serializedVersion: 8
+  m_Type: 2
+  m_Color: {r: 1, g: 0.9724138, b: 0, a: 1}
+  m_Intensity: 0
+  m_Range: 6.1
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 1
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 2
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!114 &114078197882030082
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087647114204398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc219a6d6c3e9d04ea636718b7e1ab65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackAOE: {fileID: 135991062907235084}
+  attackRange: 10
+  baseAttackRange: 0
+  chargeTime: 4
+  currentChargeTime: 0
+  charge: {fileID: 108406019157774086}
+  projectileParticle: {fileID: 0}
+  towerDmg: 30
+  currentTowerDmg: 30
+  targetEnemy: {fileID: 0}
 --- !u!114 &114358188498118118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -137,3 +227,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dmg: 0
+--- !u!114 &114832670974894306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087647114204398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5319e7436162f744ea33463a396fc1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 0
+--- !u!135 &135991062907235084
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1087647114204398}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 9.98
+  m_Center: {x: 0, y: 0, z: 0}

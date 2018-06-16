@@ -27,12 +27,12 @@ public class EnemySpawner : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        StartCoroutine(WaitBetweenWaves());
+        //StartCoroutine(WaitBetweenWaves());
         slider.maxValue = timeBetweenWaves;
         win.enabled = false;
     }
     //Get path on start so that you cant build towers wrongly
-    IEnumerator ContinualSpawnEnemies()
+    public IEnumerator ContinualSpawnEnemies()
     {
         // resets the timer when a wave is spawned.
         waveTimer = 0;

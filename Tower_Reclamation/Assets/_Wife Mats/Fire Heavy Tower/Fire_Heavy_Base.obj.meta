@@ -1,18 +1,18 @@
 fileFormatVersion: 2
-guid: 1ff7c6741d592fb4b95e0a17f69b3dde
-timeCreated: 1527569523
+guid: 0b797914689aa314980a63de1565fb58
+timeCreated: 1529301387
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
-    100000: Flame_Standard_Attack
+    100000: Fire_Heavy_Base
     100002: //RootNode
-    400000: Flame_Standard_Attack
+    400000: Fire_Heavy_Base
     400002: //RootNode
-    2100000: Flame_Standard_AttackMat
-    2300000: Flame_Standard_Attack
-    3300000: Flame_Standard_Attack
-    4300000: Flame_Standard_Attack
+    2100000: palette
+    2300000: Fire_Heavy_Base
+    3300000: Fire_Heavy_Base
+    4300000: Fire_Heavy_Base
   externalObjects: {}
   materials:
     importMaterials: 1

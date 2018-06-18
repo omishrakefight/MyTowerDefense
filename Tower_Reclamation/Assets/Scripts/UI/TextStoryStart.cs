@@ -10,6 +10,8 @@ public class TextStoryStart : MonoBehaviour {
     List<string> conversations;
     int conversationTracker = 0;
 
+    public bool timeToRun = false;
+    private bool spawnEnemies = true;
     [SerializeField] Texture mainCharacter;
     [SerializeField] Texture leader;
 
@@ -82,6 +84,9 @@ public class TextStoryStart : MonoBehaviour {
         }
         if (conversationTracker == 4)
         {
+            // To make the character run in scene
+            timeToRun = true;
+
             personTalking.texture = mainCharacter;
             talking = conversations[conversationTracker];
         }
@@ -93,6 +98,7 @@ public class TextStoryStart : MonoBehaviour {
     {
         StartCoroutine(ConversationPicker());
         text.text = "";
+        SpawnTheEnemiesAtScreem();
         // Loop the converstation 1 char at a time.
         for (int i = 0; i < talking.Length; i++)
         {
@@ -103,13 +109,22 @@ public class TextStoryStart : MonoBehaviour {
         yield return new WaitForSeconds(3);
         if (conversationTracker < conversations.Count)
         {
-            print(conversationTracker);
+            //print(conversationTracker);
             yield return StartCoroutine(SlowMessageTyping());
         }
-        print("spawn enemies?");
-        StartCoroutine(FindObjectOfType<EnemySpawner>().ContinualSpawnEnemies());
+
+
 
         StartCoroutine(DisableText());
+    }
+
+    private void SpawnTheEnemiesAtScreem()
+    {
+        if (conversationTracker == conversations.Count && spawnEnemies)
+        {
+            StartCoroutine(FindObjectOfType<EnemySpawner>().ContinualSpawnEnemies());
+            spawnEnemies = false;
+        }
     }
 
     private IEnumerator DisableText()

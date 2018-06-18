@@ -31,16 +31,16 @@ public class MainCharacterPathfinder : MonoBehaviour {
     private void CreatePath()
     {
         path.Add(endWaypoint);
-        endWaypoint.isPlaceable = false;
-        endWaypoint.isAvailable = false;
+        endWaypoint.c_isPlaceable = false;
+        endWaypoint.c_isAvailable = false;
 
-        Waypoint previous = endWaypoint.ExploredFrom;
+        Waypoint previous = endWaypoint.c_ExploredFrom;
         while (previous != startWaypoint)
         {
             path.Add(previous);
-            previous.isPlaceable = false;
-            previous.isAvailable = false;
-            previous = previous.ExploredFrom;
+            previous.c_isPlaceable = false;
+            previous.c_isAvailable = false;
+            previous = previous.c_ExploredFrom;
         }
         path.Add(startWaypoint);
         path.Reverse();
@@ -68,7 +68,7 @@ public class MainCharacterPathfinder : MonoBehaviour {
         while (queue.Count > 0 && isSearching == true)
         {
             searchCenter = queue.Dequeue();
-            searchCenter.isnotExplored = false;
+            searchCenter.c_isnotExplored = false;
             StopIfEnd();
             ExploreAdjacent();
         }
@@ -113,7 +113,7 @@ public class MainCharacterPathfinder : MonoBehaviour {
                 if (adjacent.isnotExplored && !queue.Contains(adjacent) && adjacent.gameObject.CompareTag("WalkPath"))
                 {
                     queue.Enqueue(adjacent);
-                    adjacent.ExploredFrom = searchCenter;
+                    adjacent.c_ExploredFrom = searchCenter;
                 }
 
             }

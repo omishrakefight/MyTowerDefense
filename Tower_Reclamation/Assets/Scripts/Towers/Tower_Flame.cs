@@ -8,7 +8,6 @@ public class Tower_Flame : MonoBehaviour {
     // paramteres of each tower
     [SerializeField] Transform objectToPan;
     [SerializeField] float attackRange = 15f;
-    [SerializeField] float baseAttackRange;
     [SerializeField] ParticleSystem projectileParticle;
     [SerializeField] ParticleSystem projectileParticleTwo;
     [SerializeField] ParticleSystem projectileParticleThree;
@@ -22,10 +21,7 @@ public class Tower_Flame : MonoBehaviour {
     bool keepBuffed = false;
 
     void Start () {
-        if (!keepBuffed)
-        {
-            baseAttackRange = attackRange;
-        }
+
 	}
 
     //  The actual Dmg applier is on the head of the turret with the capsul collider.
@@ -47,7 +43,6 @@ public class Tower_Flame : MonoBehaviour {
         //  currentParticleLifetime = particleLifetime;
         // projectileParticle.main.startLifetimeMultiplier = currentParticleLifetime;
 
-        baseAttackRange = attackRange;
         attackRange = attackRange * 1.4f;
         GetComponentInChildren<Flame_AOE>().TowerBuff();
 

@@ -7,7 +7,6 @@ public class LighteningTower : MonoBehaviour {
     // paramteres of each tower
     [SerializeField] SphereCollider attackAOE;
     [SerializeField] float attackRange = 10f;
-    [SerializeField] float baseAttackRange;
     [SerializeField] float chargeTime = 4f;
     [SerializeField] float currentChargeTime = 0;
     bool isCharged = false;
@@ -28,11 +27,9 @@ public class LighteningTower : MonoBehaviour {
     {
         if (!keepBuffed)
         {
-            baseAttackRange = attackRange;
         }
         if (keepBuffed)
         {
-            baseAttackRange = attackRange;
             attackRange = attackRange * 1.4f;
             currentTowerDmg = currentTowerDmg * 1.2f;
             attackAOE.radius = attackAOE.radius * 1.4f;
@@ -54,9 +51,9 @@ public class LighteningTower : MonoBehaviour {
 
     public void TowerUpgrade()
     {
-        // Upgrade before multiplying
-        baseAttackRange += 10;
-        attackRange = baseAttackRange;
+        // attackRange = attackRange * (1.0 + .2 * timesBuffed)
+
+        attackRange = attackRange * 1.2f;
 
         if (keepBuffed)
         {

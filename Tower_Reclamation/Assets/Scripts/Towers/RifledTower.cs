@@ -8,7 +8,7 @@ public class RifledTower : MonoBehaviour {
     // paramteres of each tower
     [SerializeField] Transform objectToPan;
     [SerializeField] float attackRange = 32f;
-    [SerializeField] float baseAttackRange;
+
     [SerializeField] ParticleSystem projectileParticle;
     [SerializeField] float towerDmg = 12;
     [SerializeField] private float currentTowerDmg = 12;
@@ -22,7 +22,7 @@ public class RifledTower : MonoBehaviour {
     void Start () {
         if (!keepBuffed)
         {
-            baseAttackRange = attackRange;
+
         }
 	}
 
@@ -34,7 +34,6 @@ public class RifledTower : MonoBehaviour {
     //Waypoint baseWaypoint    For if i pass it here
     public void TowerBuff()
     {
-        baseAttackRange = attackRange;
         attackRange = attackRange * 1.4f;
         currentTowerDmg = currentTowerDmg * 1.2f;
 
@@ -45,9 +44,9 @@ public class RifledTower : MonoBehaviour {
   
      public void TowerUpgrade()
      {
-         // Upgrade before multiplying
-         baseAttackRange += 10;
-         attackRange = baseAttackRange;
+        // attackRange = attackRange * (1.0 + .2 * timesBuffed)
+
+        attackRange = attackRange * 1.2f;
 
          if (keepBuffed)
          {

@@ -34,6 +34,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4447662435878618}
+  - component: {fileID: 114643644034937566}
+  - component: {fileID: 114614152484446026}
   m_Layer: 0
   m_Name: Fire Tall Tower
   m_TagString: Untagged
@@ -241,3 +243,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1955318282485156}
   m_Mesh: {fileID: 4300000, guid: 8932efc7e189f6c478318c383e9bf9ed, type: 3}
+--- !u!114 &114614152484446026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1462251488893236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 026cc90123f8f39458f151e8e0b93cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectToPan: {fileID: 0}
+  attackRange: 15
+  baseAttackRange: 0
+  projectileParticle: {fileID: 0}
+  projectileParticleTwo: {fileID: 0}
+  projectileParticleThree: {fileID: 0}
+  targetEnemy: {fileID: 0}
+--- !u!114 &114643644034937566
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1462251488893236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5319e7436162f744ea33463a396fc1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 0

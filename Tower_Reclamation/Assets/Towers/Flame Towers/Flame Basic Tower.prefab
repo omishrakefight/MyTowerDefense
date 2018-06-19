@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114582363562050618}
   - component: {fileID: 65325930087217838}
   m_Layer: 8
-  m_Name: Flame Normal Tower
+  m_Name: Flame Basic Tower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

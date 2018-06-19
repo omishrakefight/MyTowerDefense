@@ -7,9 +7,8 @@ public class Flame_AOE : MonoBehaviour {
 
     [SerializeField] float towerDmg = 5;
     [SerializeField] private float currentTowerDmg = 5;
-    [SerializeField] float baseAttackRange;
+
     [SerializeField] float currentAttackRange;
-    [SerializeField] float baseAttackWidth;
     [SerializeField] float currentAttackWidth;
     [SerializeField] CapsuleCollider flameAOE;
 
@@ -20,15 +19,13 @@ public class Flame_AOE : MonoBehaviour {
         if (!keepBuffed)
         {
             currentAttackRange = flameAOE.radius;
-            baseAttackRange = flameAOE.radius ;
+
         }
     }
 
     public void TowerBuff()
     {
-        baseAttackRange = flameAOE.radius;
         currentAttackRange = flameAOE.radius;
-        baseAttackWidth = flameAOE.height;
         currentAttackWidth = flameAOE.height;
 
         currentTowerDmg = currentTowerDmg * 1.2f;

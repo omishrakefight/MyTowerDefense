@@ -450,12 +450,19 @@ MonoBehaviour:
   towerBarrel: {fileID: 440024726}
   towerTurret: {fileID: 1357487304}
   towerBase: {fileID: 643748048}
-  turnSpeed: 6
-  rifledTowerPrefab: {fileID: 114119245751072872, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
+  basicRifledTower: {fileID: 114119245751072872, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
     type: 2}
-  flameTowerPrefab: {fileID: 114582363562050618, guid: 9b88788f1af26d945a3ec20203b67002,
+  basicFlameTower: {fileID: 114582363562050618, guid: 9b88788f1af26d945a3ec20203b67002,
     type: 2}
-  lightTowerPrefab: {fileID: 114358188498118118, guid: a1c22a29f73f70444806c15d320ffb5a,
+  tallFlameTower: {fileID: 114643644034937566, guid: a17a50a6a9d7c9741942fea8d8b2823f,
+    type: 2}
+  heavyFlameTower: {fileID: 114323405521019060, guid: fa33b4e1e2493c14192179f4abe139bb,
+    type: 2}
+  lightFlameTower: {fileID: 114126797473281034, guid: 3103c9075bdcfb846b4440461a93514a,
+    type: 2}
+  alienFlameTower: {fileID: 114727172302712596, guid: bfc12d4c65dda314da028c5f8d9075b2,
+    type: 2}
+  basicLightTower: {fileID: 114358188498118118, guid: a1c22a29f73f70444806c15d320ffb5a,
     type: 2}
 --- !u!1 &84758191
 GameObject:
@@ -1230,10 +1237,6 @@ MonoBehaviour:
     m_Options:
     - m_Text: Standard Barrel
       m_Image: {fileID: 0}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-    - m_Text: Option C
-      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1511,7 +1514,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 72088844}
+        m_MethodName: ResetTowerPicture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &643748049
@@ -2657,6 +2671,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 72088844}
         m_MethodName: ResetTowerPicture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 72088844}
+        m_MethodName: ResetNumbersOnBaseChange
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

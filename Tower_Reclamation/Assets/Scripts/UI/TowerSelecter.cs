@@ -1,21 +1,37 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TowerSelecter : MonoBehaviour
 {
-
+    [Header("Tower Blueprint")]
     [SerializeField] Dropdown towerBarrel;
     [SerializeField] Dropdown towerTurret;
     [SerializeField] Dropdown towerBase;
 
     Tower_Dmg newTower;
     Tower_Dmg decidedTower;
-    [SerializeField] float turnSpeed = 6f;
-    [SerializeField] Tower_Dmg rifledTowerPrefab;
-    [SerializeField] Tower_Dmg flameTowerPrefab;
-    [SerializeField] Tower_Dmg lightTowerPrefab;
+
+    [Header("Rifle Towers")]
+    [SerializeField] Tower_Dmg basicRifledTower;
+
+
+    [Header("Flame Towers")]
+    [SerializeField] Tower_Dmg basicFlameTower;
+    [SerializeField] Tower_Dmg tallFlameTower;
+    [SerializeField] Tower_Dmg heavyFlameTower;
+    [SerializeField] Tower_Dmg lightFlameTower;
+    [SerializeField] Tower_Dmg alienFlameTower;
+
+
+    [Header("Lightening Towers")]
+    [SerializeField] Tower_Dmg basicLightTower;
+
+
+
+    float turnSpeed = 6f;
 
     Vector3 towerPosition;
     Bounds bound;
@@ -33,14 +49,12 @@ public class TowerSelecter : MonoBehaviour
         if (towerBarrel.value == 0 && towerTurret.value == 0 && towerBase.value == 0)
         {
             print("reading dropdown");
-            newTower = Instantiate(rifledTowerPrefab, towerPosition, Quaternion.identity);
+            newTower = Instantiate(basicRifledTower, towerPosition, Quaternion.identity);
             newTower.transform.localScale = new Vector3(.3f, .3f, .3f);
 
         }
         collider = newTower.GetComponent<BoxCollider>();
         bound = collider.bounds;
-
-
     }
 
     // Update is called once per frame
@@ -60,6 +74,13 @@ public class TowerSelecter : MonoBehaviour
         }
     }
 
+    public void ResetNumbersOnBaseChange()
+    {
+        towerBase.value = 0;
+        towerBarrel.value = 0;
+    }
+
+
     public void ResetTowerPicture()
     {
         DestroyObject(newTower.gameObject);
@@ -75,23 +96,73 @@ public class TowerSelecter : MonoBehaviour
         if (towerTurret.value == 0)
         {
             print("Rifled Tower selected");
-            decidedTower = rifledTowerPrefab;
+            FocusRifledTowers();
+            decidedTower = basicRifledTower;
         }
 
         if (towerTurret.value == 1)
         {
             print("Flame Turret selected");
-            decidedTower = flameTowerPrefab;            
+            FocusFireTowers();
+            PickFireTower();        
         }
 
         if (towerTurret.value == 2)
         {
             print("Light Turret selected");
-            decidedTower = lightTowerPrefab;
+            FocusLighteningTowers();
+            decidedTower = basicLightTower;
         }
 
 
         return decidedTower;
     }
+
+    private void PickFireTower()
+    {
+        if (towerTurret.value == 1 && towerBase.value == 0)
+        {
+            decidedTower = basicFlameTower;
+        }
+        if (towerTurret.value == 1 && towerBase.value == 1)
+        {
+            decidedTower = tallFlameTower;
+        }
+        if (towerTurret.value == 1 && towerBase.value == 2)
+        {
+            decidedTower = heavyFlameTower;
+        }
+        if (towerTurret.value == 1 && towerBase.value == 3)
+        {
+            decidedTower = lightFlameTower;
+        }
+        if (towerTurret.value == 1 && towerBase.value == 4)
+        {
+            decidedTower = alienFlameTower;
+        }
+    }
+
+    private void FocusFireTowers()
+    {
+        towerBase.ClearOptions();
+        List<string> fireBases = new List<string> { "Basic Base", "Tall Base", "Heavy Base", "Light Base", "Alien Base" };
+        towerBase.AddOptions(fireBases);
+    }
+
+    private void FocusRifledTowers()
+    {
+        towerBase.ClearOptions();
+        List<string> rifledBases = new List<string> { "Basic Base" };
+        towerBase.AddOptions(rifledBases);
+    }
+
+    private void FocusLighteningTowers()
+    {
+        towerBase.ClearOptions();
+        List<string> lighteningBases = new List<string> { "Basic Base" };
+        towerBase.AddOptions(lighteningBases);
+    }
+
+
 }
 //towerBarrel.options.Clear();

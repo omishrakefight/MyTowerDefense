@@ -7,16 +7,13 @@ public class Waypoint : MonoBehaviour {
 
     //  Public because it is a data structure.
     public bool isnotExplored = true;
-    public bool c_isnotExplored = true;
     public Waypoint ExploredFrom;
-    public Waypoint c_ExploredFrom;
 
     Vector2Int gridPos;
     const int gridSize = 10;
 
     //  For Lights
     [SerializeField] Waypoint lastWaypoint;
-    [SerializeField] Waypoint c_lastWaypoint;
     [SerializeField] Light waypointSpotLight;
     static Light currentWaypointLight;
     static float lightIntensity;
@@ -25,9 +22,6 @@ public class Waypoint : MonoBehaviour {
     // tower placer
     public bool isPlaceable = true;
     public bool isAvailable = true;
-
-    public bool c_isPlaceable = true;
-    public bool c_isAvailable = true;
 
 
     public int GetGridSize()

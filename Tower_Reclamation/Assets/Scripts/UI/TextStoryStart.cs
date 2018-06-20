@@ -10,14 +10,22 @@ public class TextStoryStart : MonoBehaviour {
     List<string> conversations;
     int conversationTracker = 0;
 
+    [SerializeField] Canvas talkingCanvas;
+
     public bool timeToRun = false;
     private bool spawnEnemies = true;
-    [SerializeField] Texture mainCharacter;
-    [SerializeField] Texture leader;
 
     [SerializeField] RawImage personTalking;
 
-    [SerializeField] Canvas talkingCanvas;
+    [Header("Soldier")]
+    [SerializeField] Texture soldierNeutral;
+    [SerializeField] Texture soldierScared;
+
+    [Header("General")]
+    [SerializeField] Texture general;
+    [SerializeField] Texture generalShouting;
+
+
 
     string string0;
     string string1;
@@ -29,12 +37,12 @@ public class TextStoryStart : MonoBehaviour {
     // Use this for initialization
     void Start () {
         // initializing strings
-        string0 = "Ok gents, we need to get out there and scavenge some metal.  That last wandering group of bugs damaged " +
+        string0 = "Ok people, we need to get out there and scavenge some metal.  That last wandering group of bugs damaged " +
             "the gate a bit.  Let's bring some back and repair before more arrive.";
         string1 = " Yes sir.  I’ll head out now.";
         string2 = "Sir!!!  There's almost nothing left! I can only find one good piece, we’ve already scavenged most of the metal here.";
         string3 = "SHUT UP! THE BUGS ARE BACK, GET BACK HERE NOW!!";
-        string4 = "?!?!?!?? AGHHHHH";
+        string4 = "?!?!?!?? HNNGGG";
         conversations = new List<string>();
         conversations.AddRange  (new string[] { string0, string1, string2, string3, string4 });
         conversationTracker = 0;
@@ -64,22 +72,22 @@ public class TextStoryStart : MonoBehaviour {
     {
         if (conversationTracker == 0)
         {
-            personTalking.texture = leader;
+            personTalking.texture = general;
             talking = conversations[conversationTracker];
         }
         if (conversationTracker == 1)
         {
-            personTalking.texture = mainCharacter;
+            personTalking.texture = soldierNeutral;
             talking = conversations[conversationTracker];
         }
         if (conversationTracker == 2)
         {
-            personTalking.texture = mainCharacter;
+            personTalking.texture = soldierNeutral;
             talking = conversations[conversationTracker];
         }
         if (conversationTracker == 3)
         {
-            personTalking.texture = leader;
+            personTalking.texture = generalShouting;
             talking = conversations[conversationTracker];
         }
         if (conversationTracker == 4)
@@ -87,7 +95,7 @@ public class TextStoryStart : MonoBehaviour {
             // To make the character run in scene
             timeToRun = true;
 
-            personTalking.texture = mainCharacter;
+            personTalking.texture = soldierScared;
             talking = conversations[conversationTracker];
         }
 

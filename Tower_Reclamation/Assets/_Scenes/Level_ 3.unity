@@ -2079,8 +2079,8 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.75
+  m_Color: {r: 0.5955882, g: 0.94979715, b: 1, a: 1}
+  m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -2112,13 +2112,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 606971876}
-  m_LocalRotation: {x: 0.6623934, y: -0.18837565, z: 0.17748778, w: 0.70302755}
+  m_LocalRotation: {x: 0.037214592, y: -0.025333961, z: 0.2575763, w: 0.96520865}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 86.591, y: -30.000002, z: 0}
+  m_LocalEulerAnglesHint: {x: 4.8700004, y: -1.71, z: 29.811}
 --- !u!1001 &619573281
 Prefab:
   m_ObjectHideFlags: 0
@@ -3300,7 +3300,8 @@ MonoBehaviour:
   personTalking: {fileID: 1029562687}
   soldierNeutral: {fileID: 0}
   soldierScared: {fileID: 0}
-  leader: {fileID: 2800000, guid: a469f920b21fc7c4fb5b950917ce2fb2, type: 3}
+  general: {fileID: 0}
+  generalShouting: {fileID: 0}
 --- !u!1 &994764433
 GameObject:
   m_ObjectHideFlags: 0

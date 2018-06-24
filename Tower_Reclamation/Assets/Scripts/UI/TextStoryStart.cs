@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System;
 
 public class TextStoryStart : MonoBehaviour {
-
     [SerializeField] Text text;
     [SerializeField] string talking;
     List<string> conversations;
@@ -18,11 +19,13 @@ public class TextStoryStart : MonoBehaviour {
     [SerializeField] RawImage personTalking;
 
     [Header("Soldier")]
-    [SerializeField] Texture soldierNeutral;
+    [SerializeField]
+    Texture soldierNeutral;
     [SerializeField] Texture soldierScared;
 
     [Header("General")]
-    [SerializeField] Texture general;
+    [SerializeField]
+    Texture general;
     [SerializeField] Texture generalShouting;
 
 
@@ -35,7 +38,8 @@ public class TextStoryStart : MonoBehaviour {
     string string5;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         // initializing strings
         string0 = "Ok people, we need to get out there and scavenge some metal.  That last wandering group of bugs damaged " +
             "the gate a bit.  Let's bring some back and repair before more arrive.";
@@ -44,7 +48,7 @@ public class TextStoryStart : MonoBehaviour {
         string3 = "SHUT UP! THE BUGS ARE BACK, GET BACK HERE NOW!!";
         string4 = "?!?!?!?? HNNGGG";
         conversations = new List<string>();
-        conversations.AddRange  (new string[] { string0, string1, string2, string3, string4 });
+        conversations.AddRange(new string[] { string0, string1, string2, string3, string4 });
         conversationTracker = 0;
 
 
@@ -54,9 +58,9 @@ public class TextStoryStart : MonoBehaviour {
     IEnumerator TextTyper()
     {
 
-            text.text = "";
-            talking = "Welcome, Commander.  It is great to see that you have yet lived you awesome son of a bitch!!";
-            StartCoroutine(SlowMessageTyping());
+        text.text = "";
+        talking = "Welcome, Commander.  It is great to see that you have yet lived you awesome son of a bitch!!";
+        StartCoroutine(SlowMessageTyping());
 
         yield break;
     }
@@ -143,7 +147,8 @@ public class TextStoryStart : MonoBehaviour {
 
 
     // Update is called once per frame
-    void Update () {
-		
-	}
+    void Update()
+    {
+
+    } 
 }

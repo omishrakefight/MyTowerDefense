@@ -18,7 +18,7 @@ public class TitleScene : MonoBehaviour {
     public void GameStart()
     {
         print("function called");
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadSceneAsync("_Scenes/Base Exit Doorway");
 
     }
 }

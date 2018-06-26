@@ -12,11 +12,12 @@ public class TextStoryStart : MonoBehaviour {
     int conversationTracker = 0;
 
     [SerializeField] Canvas talkingCanvas;
+    [SerializeField] RawImage personTalking;
 
     public bool timeToRun = false;
     private bool spawnEnemies = true;
 
-    [SerializeField] RawImage personTalking;
+    [SerializeField] float typingSpeed = .02f;
 
     [Header("Soldier")]
     [SerializeField]
@@ -41,9 +42,10 @@ public class TextStoryStart : MonoBehaviour {
     void Start()
     {
         // initializing strings
-        string0 = "Ok people, we need to get out there and scavenge some metal.  That last wandering group of bugs damaged " +
-            "the gate a bit.  Let's bring some back and repair before more arrive.";
-        string1 = " Yes sir.  I’ll head out now.";
+        text.text = "";
+
+        string0 = ". . . ";
+        string1 = "It shouldn't take this long to find scraps.";
         string2 = "Sir!!!  There's almost nothing left! I can only find one good piece, we’ve already scavenged most of the metal here.";
         string3 = "SHUT UP! THE BUGS ARE BACK, GET BACK HERE NOW!!";
         string4 = "?!?!?!?? HNNGGG";
@@ -52,35 +54,21 @@ public class TextStoryStart : MonoBehaviour {
         conversationTracker = 0;
 
 
-        StartCoroutine(TextTyper());
-    }
-
-    IEnumerator TextTyper()
-    {
-
-        text.text = "";
-        talking = "Welcome, Commander.  It is great to see that you have yet lived you awesome son of a bitch!!";
         StartCoroutine(SlowMessageTyping());
-
-        yield break;
     }
 
-    private void TutorialSpeech()
-    {
-        text.text = "";
-        SlowMessageTyping();
-
-    }
 
     IEnumerator ConversationPicker()
     {
         if (conversationTracker == 0)
         {
-            personTalking.texture = general;
+            typingSpeed = .5f;
+            personTalking.texture = soldierNeutral;
             talking = conversations[conversationTracker];
         }
         if (conversationTracker == 1)
         {
+            typingSpeed = .02f;
             personTalking.texture = soldierNeutral;
             talking = conversations[conversationTracker];
         }
@@ -116,9 +104,10 @@ public class TextStoryStart : MonoBehaviour {
         {
             var letter = talking.ToCharArray(i, 1);
             text.text += new string(letter);
-            yield return new WaitForSeconds(.02f);
+            yield return new WaitForSeconds(typingSpeed);
         }
-        yield return new WaitForSeconds(3);
+
+        yield return new WaitForSeconds(2);
         if (conversationTracker < conversations.Count)
         {
             //print(conversationTracker);

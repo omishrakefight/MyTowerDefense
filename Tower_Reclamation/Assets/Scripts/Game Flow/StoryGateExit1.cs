@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class StoryGateExit1 : MonoBehaviour {
-    /*
+
+
     [SerializeField] Text text;
-    [SerializeField] string talking;
+    string talking;
     List<string> conversations;
     int conversationTracker = 0;
+    int conversationLimit = 0;
 
     [SerializeField] Canvas talkingCanvas;
 
@@ -16,13 +19,20 @@ public class StoryGateExit1 : MonoBehaviour {
     private bool spawnEnemies = true;
 
     [SerializeField] RawImage personTalking;
+    [SerializeField] GameObject fadeCube;
+
+    Scene t1_currentScene;
+    Scene t1_nextScene;
+    bool t1_sceneSwapTime = false;
 
     [Header("Soldier")]
-    [SerializeField] Texture soldierNeutral;
+    [SerializeField]
+    Texture soldierNeutral;
     [SerializeField] Texture soldierScared;
 
     [Header("General")]
-    [SerializeField] Texture general;
+    [SerializeField]
+    Texture general;
     [SerializeField] Texture generalShouting;
 
 
@@ -35,31 +45,43 @@ public class StoryGateExit1 : MonoBehaviour {
     string string5;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
+        t1_currentScene = SceneManager.GetActiveScene();
+        StartCoroutine(DetermineConversations_AndNextArea());
+
+
         // initializing strings
+        text.text = "";
         string0 = "Ok people, we need to get out there and scavenge some metal.  That last wandering group of bugs damaged " +
             "the gate a bit.  Let's bring some back and repair before more arrive.";
         string1 = " Yes sir.  I’ll head out now.";
-        string2 = "Sir!!!  There's almost nothing left! I can only find one good piece, we’ve already scavenged most of the metal here.";
-        string3 = "SHUT UP! THE BUGS ARE BACK, GET BACK HERE NOW!!";
-        string4 = "?!?!?!?? HNNGGG";
+        string2 = "2";
+        string3 = "3";
+        string4 = "4";
         conversations = new List<string>();
-        conversations.AddRange  (new string[] { string0, string1, string2, string3, string4 });
+        conversations.AddRange(new string[] { string0, string1, string2, string3, string4 });
         conversationTracker = 0;
 
 
-        StartCoroutine(TextTyper());
+        StartCoroutine(SlowMessageTyping());
     }
 
-    IEnumerator TextTyper()
+    IEnumerator DetermineConversations_AndNextArea()
     {
-
-            text.text = "";
-            talking = "Welcome, Commander.  It is great to see that you have yet lived you awesome son of a bitch!!";
-            StartCoroutine(SlowMessageTyping());
-
+        if (t1_currentScene.name == "Base Exit Doorway")
+        {
+            conversationTracker = 0;
+            conversationLimit = 2;
+            if (t1_sceneSwapTime)
+            {
+                SceneManager.LoadSceneAsync("_Scenes/Level_ 1");  
+            }
+            t1_sceneSwapTime = true;
+        }
         yield break;
     }
+
 
     private void TutorialSpeech()
     {
@@ -114,18 +136,24 @@ public class StoryGateExit1 : MonoBehaviour {
             text.text += new string(letter);
             yield return new WaitForSeconds(.02f);
         }
-        yield return new WaitForSeconds(3);
-        if (conversationTracker < conversations.Count)
+        yield return new WaitForSeconds(2);
+        if (conversationTracker < conversationLimit)
         {
             //print(conversationTracker);
             yield return StartCoroutine(SlowMessageTyping());
         }
 
 
-
-        StartCoroutine(DisableText());
+        StartCoroutine(FadeToBlack());
     }
 
+    IEnumerator FadeToBlack()
+    {
+        // fadeCube.SetActive(true);
+        FindObjectOfType<FadeScript>().FadeIn();
+        yield return new WaitForSeconds(FindObjectOfType<FadeScript>().fadeTime);
+        yield return StartCoroutine(DetermineConversations_AndNextArea());
+    }
     private void SpawnTheEnemiesAtScreem()
     {
         if (conversationTracker == conversations.Count && spawnEnemies)
@@ -135,18 +163,10 @@ public class StoryGateExit1 : MonoBehaviour {
         }
     }
 
-    private IEnumerator DisableText()
-    {
-        yield return new WaitForSeconds(4);
-        talkingCanvas.enabled = false;
-    }
 
 
-    // Update is called once per frame
-    void Update () {
-		
-	} */
-}      ////////////////////////// Divisor /////////////////////////////////////
+}
+      ////////////////////////// Divisor /////////////////////////////////////
 /*
 {
 

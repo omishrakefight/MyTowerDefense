@@ -7,6 +7,9 @@ public class CameraMover : MonoBehaviour {
 
     [SerializeField] Camera camera;
     Vector3 cameraLocation;
+    Vector3 newCameraLocation;
+
+    float delay;
 
     private void Start()
     {
@@ -16,23 +19,37 @@ public class CameraMover : MonoBehaviour {
 
     public void MoveCameraToComputer()
     {
-        camera.transform.position = cameraLocation;
+        newCameraLocation = cameraLocation;
+        StartCoroutine(CameraDelay());
     }
     public void MoveCameraToTurrets()
     {
-        camera.transform.position = cameraLocation + new Vector3(40, 0, 0);
+        newCameraLocation = cameraLocation + new Vector3(40, 0, 0);
+        StartCoroutine(CameraDelay());
     }
     public void MoveCameraToEngineerer()
     {
-        camera.transform.position = cameraLocation + new Vector3(80, 0, 0);
+        newCameraLocation = cameraLocation - new Vector3(40, 0, 0);
+        StartCoroutine(CameraDelay());
     }
     public void MoveCameraToMeeting()
     {
-        camera.transform.position = cameraLocation - new Vector3(40, 0, 0);
+        newCameraLocation = cameraLocation + new Vector3(80, 0, 0);
+        StartCoroutine(CameraDelay());
     }
     public void MoveCameraToTinker()
     {
-        camera.transform.position = cameraLocation - new Vector3(80, 0, 0);
+        newCameraLocation =  cameraLocation - new Vector3(80, 0, 0); //camera.transform.position =
+        StartCoroutine(CameraDelay());
+    }
+
+    IEnumerator CameraDelay()
+    {
+        //  Get the time of fades for camera switching
+        delay = FindObjectOfType<CanvasManager>().currentScreenFader.GetComponent<FadeScript>().fadeTime;
+        yield return new WaitForSeconds(delay);
+        camera.transform.position = newCameraLocation;
+
     }
 
 }

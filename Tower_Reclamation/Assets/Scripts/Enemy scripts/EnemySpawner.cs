@@ -17,7 +17,8 @@ public class EnemySpawner : MonoBehaviour
 
     public bool stillAlive = true;
     bool currentlySpawning = false;
-    public int level = 1;
+    MyScore level;
+    //public int level = 1;
     int monstersSpawned = 0;
 
     float timeBetweenWaves = 12f;
@@ -27,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        //StartCoroutine(WaitBetweenWaves());
+        level = FindObjectOfType<MyScore>();
         slider.maxValue = timeBetweenWaves;
         win.enabled = false;
     }
@@ -37,21 +38,23 @@ public class EnemySpawner : MonoBehaviour
         // resets the timer when a wave is spawned.
         waveTimer = 0;
 
-        while (monstersSpawned < 6 && stillAlive && level < 5)
+        while (monstersSpawned < 6 && stillAlive && level.waveCount < 5)
         {
             currentlySpawning = true;
             var enemySpawnLoc = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             enemySpawnLoc.transform.parent = enemiesLocation;
             monstersSpawned++;
-            FindObjectOfType<MyScore>().ScoreUpOne();
+            //FindObjectOfType<MyScore>().ScoreUpOne();
             GetComponent<AudioSource>().PlayOneShot(enemySpawnAudio);
             yield return new WaitForSeconds(secondsBetweenSpawns);
 
         }
+        FindObjectOfType<MyScore>().WaveUpOne();
         currentlySpawning = false;
-        ++level;
+        ////????
+        //++level.waveCount;
         monstersSpawned = 0;
-        if (level == 5)
+        if (level.waveCount == 5)
         {
             while(FindObjectsOfType<EnemyMovement>().Length > 0)
             {

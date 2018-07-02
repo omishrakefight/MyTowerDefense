@@ -296,7 +296,7 @@ MonoBehaviour:
   buttonOne: {fileID: 2106830261}
   buttonTwo: {fileID: 566358124}
   buttonThree: {fileID: 1497158194}
-  buttonFour: {fileID: 0}
+  buttonFour: {fileID: 307715480}
   rifledTowerPrefab: {fileID: 114298003256897080, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
     type: 2}
   assaultTowerPrefab: {fileID: 114298003256897080, guid: 1836db111551ce448b548d20199ce23c,
@@ -3400,8 +3400,9 @@ MonoBehaviour:
   text: {fileID: 1619743969}
   talking: 
   talkingCanvas: {fileID: 972044339}
-  timeToRun: 0
   personTalking: {fileID: 1029562687}
+  timeToRun: 0
+  typingSpeed: 0.02
   soldierNeutral: {fileID: 2800000, guid: 36dca68519a26d045b54df457e4f260c, type: 3}
   soldierScared: {fileID: 2800000, guid: cc6b806cbce74f8408fe1e3a5e95e675, type: 3}
   general: {fileID: 2800000, guid: ae193ef052fd2c3468ce836a684c1b18, type: 3}
@@ -3667,12 +3668,12 @@ GameObject:
   - component: {fileID: 1054017935}
   - component: {fileID: 1054017934}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Screen Fader
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1054017934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4474,7 +4475,6 @@ MonoBehaviour:
   enemySpawnAudio: {fileID: 8300000, guid: a8c6def41b8aafd4881fc5641c0d921b, type: 3}
   win: {fileID: 1254165538}
   stillAlive: 1
-  level: 0
   slider: {fileID: 1193706440}
 --- !u!82 &1292924666
 AudioSource:
@@ -5428,7 +5428,7 @@ GameObject:
   - component: {fileID: 1599625870}
   - component: {fileID: 1599625869}
   m_Layer: 5
-  m_Name: My Score
+  m_Name: Current Wave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5484,7 +5484,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Score : '
+  m_Text: 'Wave : '
 --- !u!222 &1599625870
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6000,6 +6000,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 434cc722d8e43294fbfe5f345d5500d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  regularCursor: {fileID: 2800000, guid: bc6736bb43aae2f48a0f45fd83e9a970, type: 3}
+  enemyCursor: {fileID: 2800000, guid: d45de9d5a1cd17347bb71c9e5f737cef, type: 3}
+  towerCursor: {fileID: 2800000, guid: a442c5579ed842f4e828356f322c2fbd, type: 3}
+  waypointCursor: {fileID: 2800000, guid: c8070cdc326c5a2438c6a41ad603e0e6, type: 3}
+  cursorHotspot: {x: 96, y: 96}
 --- !u!114 &1781535419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6395,6 +6400,11 @@ Prefab:
     - target: {fileID: 114901376297547574, guid: 37ecf30468607124aafd21227190c343,
         type: 2}
       propertyPath: score
+      value: 
+      objectReference: {fileID: 1599625869}
+    - target: {fileID: 114901376297547574, guid: 37ecf30468607124aafd21227190c343,
+        type: 2}
+      propertyPath: wave
       value: 
       objectReference: {fileID: 1599625869}
     m_RemovedComponents: []

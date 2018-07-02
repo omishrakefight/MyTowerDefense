@@ -6,18 +6,19 @@ using UnityEngine.UI;
 
 public class MyScore : MonoBehaviour {
 
-    [SerializeField] public Text score;
+    [SerializeField] public Text wave;
     [SerializeField] public int scoreCount = 0;
+    public int waveCount = 1;
 
 	// Use this for initialization
 	void Start () {
-        score.text = "Score : " + scoreCount.ToString();
+        wave.text = "Wave : " + waveCount.ToString();
 	}
 	
 
-    public void ScoreUpOne()
+    public void WaveUpOne()
     {
-        ++scoreCount;
-        score.text = "Score : " + scoreCount.ToString();
+        ++waveCount;
+        wave.text = "Score : " + waveCount.ToString();
     }
 }

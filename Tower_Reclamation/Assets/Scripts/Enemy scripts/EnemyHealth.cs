@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        float healthModifier = FindObjectOfType<EnemySpawner>().level * 15;
+        float healthModifier = FindObjectOfType<MyScore>().waveCount * 15;
         hitPoints += healthModifier;
     }
 

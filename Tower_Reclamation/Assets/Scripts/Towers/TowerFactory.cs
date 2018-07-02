@@ -23,12 +23,6 @@ public class TowerFactory : MonoBehaviour {
     private void Start()
     {
         // this is how I will change the tower summons.
-        buttonOne.onClick.AddListener(Buttontester); 
-    }
-
-    public void Buttontester()
-    {
-        print("Potatoe");
     }
 
     public void AddRifledTower()

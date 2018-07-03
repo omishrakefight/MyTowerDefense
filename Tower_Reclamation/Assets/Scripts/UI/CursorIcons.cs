@@ -21,8 +21,7 @@ public class CursorIcons : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        print("delegate for cursor change..");
-        switch (raycasting.LayerHit)
+        switch (raycasting.currentLayerHit)
         {
             case Layer.Enemy:
                 Cursor.SetCursor(enemyCursor, cursorHotspot, CursorMode.Auto);
@@ -44,13 +43,13 @@ public class CursorIcons : MonoBehaviour {
 
     public void PrintLayerHit()
     {
-        print(raycasting.LayerHit);
+        print(raycasting.currentLayerHit);
     }
 
     // Delegate listener
     void SetCursorOnLayerChange()
     {
-        
+        /*
         print("delegate for cursor change..");
         switch (raycasting.LayerHit)
         {
@@ -69,6 +68,6 @@ public class CursorIcons : MonoBehaviour {
             default:
                 Debug.LogError("Error in cursorIcons script targetting");
                 break;
-        }
+        } */
     }
 }

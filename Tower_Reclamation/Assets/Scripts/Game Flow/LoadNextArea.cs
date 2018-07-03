@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LoadNextArea : MonoBehaviour {
@@ -8,11 +6,11 @@ public class LoadNextArea : MonoBehaviour {
     bool loadNextArea;
     EnemySpawner enemySpawner;
 
+    int currentLevel;
+
 	// Use this for initialization
 	void Start () {
         enemySpawner = FindObjectOfType<EnemySpawner>();
-        
-
     }
 	
 	// Update is called once per frame
@@ -21,17 +19,17 @@ public class LoadNextArea : MonoBehaviour {
        // {
 
         //}
-
-
 	}
     
-    public void LoadTowerRoom()
+    public void LoadBase()
     {
-        SceneManager.LoadSceneAsync(2);
+        SceneManager.LoadSceneAsync("_Scenes/_Base");
     }
-    public IEnumerator LoadTowerSelector()
-    {
-        yield return SceneManager.LoadSceneAsync(2);
 
+    public void LoadNextLevel()
+    {
+        FindObjectOfType<LevelTracker>().IncreaseLevel();
+        currentLevel = FindObjectOfType<LevelTracker>().currentLevel;      
+        SceneManager.LoadSceneAsync("_Scenes/Level_ " + currentLevel.ToString());
     }
 }

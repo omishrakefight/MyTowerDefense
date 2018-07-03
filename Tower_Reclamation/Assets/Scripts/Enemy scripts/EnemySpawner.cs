@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour
 
     public bool stillAlive = true;
     bool currentlySpawning = false;
-    MyScore level;
+    CurrentWave level;
     //public int level = 1;
     int monstersSpawned = 0;
 
@@ -28,7 +28,7 @@ public class EnemySpawner : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        level = FindObjectOfType<MyScore>();
+        level = FindObjectOfType<CurrentWave>();
         slider.maxValue = timeBetweenWaves;
         win.enabled = false;
     }
@@ -49,10 +49,8 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(secondsBetweenSpawns);
 
         }
-        FindObjectOfType<MyScore>().WaveUpOne();
+        FindObjectOfType<CurrentWave>().WaveUpOne();
         currentlySpawning = false;
-        ////????
-        //++level.waveCount;
         monstersSpawned = 0;
         if (level.waveCount == 5)
         {
@@ -63,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
             if(stillAlive)
                 win.enabled = true;
             yield return new WaitForSeconds(4);
-            FindObjectOfType<LoadNextArea>().LoadTowerRoom();
+            FindObjectOfType<LoadNextArea>().LoadBase();
         }
         
         yield return StartCoroutine(WaitBetweenWaves());

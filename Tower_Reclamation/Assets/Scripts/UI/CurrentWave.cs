@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class MyScore : MonoBehaviour {
+public class CurrentWave : MonoBehaviour {
 
     [SerializeField] public Text wave;
     [SerializeField] public int scoreCount = 0;

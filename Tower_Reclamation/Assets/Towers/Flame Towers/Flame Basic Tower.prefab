@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4429458804916582}
   - component: {fileID: 198849436724297864}
   - component: {fileID: 199063248951735752}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Bullets (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 4014855182570452}
   - component: {fileID: 198292466415716428}
   - component: {fileID: 199629127406143338}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Bullets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 23160665957011274}
   - component: {fileID: 136568488708309660}
   - component: {fileID: 114417965939613588}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Fire_Standard_Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4396331611661804}
   - component: {fileID: 198527551074869486}
   - component: {fileID: 199568630919556664}
-  m_Layer: 8
+  m_Layer: 2
   m_Name: Bullets (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToPan: {fileID: 4695589155867020}
   attackRange: 20
-  baseAttackRange: 0
   projectileParticle: {fileID: 198292466415716428}
   projectileParticleTwo: {fileID: 198849436724297864}
   projectileParticleThree: {fileID: 198527551074869486}
@@ -324,9 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerDmg: 5
   currentTowerDmg: 5
-  baseAttackRange: 0
   currentAttackRange: 0
-  baseAttackWidth: 0
   currentAttackWidth: 0
   flameAOE: {fileID: 136568488708309660}
 --- !u!114 &114582363562050618

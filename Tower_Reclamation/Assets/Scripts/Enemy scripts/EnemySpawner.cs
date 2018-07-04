@@ -44,14 +44,14 @@ public class EnemySpawner : MonoBehaviour
             var enemySpawnLoc = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
             enemySpawnLoc.transform.parent = enemiesLocation;
             monstersSpawned++;
-            //FindObjectOfType<MyScore>().ScoreUpOne();
             GetComponent<AudioSource>().PlayOneShot(enemySpawnAudio);
             yield return new WaitForSeconds(secondsBetweenSpawns);
-
         }
         FindObjectOfType<CurrentWave>().WaveUpOne();
         currentlySpawning = false;
         monstersSpawned = 0;
+
+        // If on Last wave, check enemy number for win.
         if (level.waveCount == 5)
         {
             while(FindObjectsOfType<EnemyMovement>().Length > 0)

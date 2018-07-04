@@ -5,13 +5,11 @@ using UnityEngine.UI;
 
 public class LevelTracker : MonoBehaviour {
 
-    static bool createLevelCanvas = true;
     [SerializeField] Text level;
     public int currentLevel;
 
 	// Use this for initialization
 	void Start () {
-        createLevelCanvas = false;
         currentLevel = 1;
         level.text = "Level : " + currentLevel.ToString();
 	}

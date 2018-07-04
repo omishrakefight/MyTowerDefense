@@ -5,11 +5,6 @@ using UnityEngine.UI;
 
 public class TowerFactory : MonoBehaviour {
 
-    [SerializeField] Button buttonOne;
-    [SerializeField] Button buttonTwo;
-    [SerializeField] Button buttonThree;
-    [SerializeField] Button buttonFour;
-
     [SerializeField] RifledTower rifledTowerPrefab;
     [SerializeField] RifledTower assaultTowerPrefab;
     [SerializeField] Tower_Flame flameTowerPrefab;

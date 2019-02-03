@@ -36,8 +36,8 @@ public class CanvasManager : MonoBehaviour {
         turretFader.SetActive(true);
         meetingRoomFader.SetActive(true);
 
-        currentActiveCanvas = computerBase;
-        currentScreenFader = computerFader;
+        currentActiveCanvas = meetingRoom;
+        currentScreenFader = meetingRoomFader;
 	}
 	
     void FadeIn_DisableOldCanvas()
@@ -46,6 +46,7 @@ public class CanvasManager : MonoBehaviour {
         currentActiveCanvas.gameObject.SetActive(false);
     }
 
+    // room buttons, first checks if the active room is the one clicked.
     public void ChooseComputerRoom()
     {
         if (currentActiveCanvas != computerBase)

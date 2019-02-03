@@ -19,27 +19,31 @@ public class CameraMover : MonoBehaviour {
 
     public void MoveCameraToComputer()
     {
-        newCameraLocation = cameraLocation;
+        newCameraLocation = cameraLocation - new Vector3(80, 0, 0);
         StartCoroutine(CameraDelay());
+        //newCameraLocation = cameraLocation;
+        //StartCoroutine(CameraDelay());
     }
     public void MoveCameraToTurrets()
-    {
-        newCameraLocation = cameraLocation + new Vector3(40, 0, 0);
-        StartCoroutine(CameraDelay());
-    }
-    public void MoveCameraToEngineerer()
     {
         newCameraLocation = cameraLocation - new Vector3(40, 0, 0);
         StartCoroutine(CameraDelay());
     }
+    public void MoveCameraToEngineerer()
+    {
+        newCameraLocation = cameraLocation - new Vector3(120, 0, 0);
+        StartCoroutine(CameraDelay());
+    }
     public void MoveCameraToMeeting()
     {
-        newCameraLocation = cameraLocation + new Vector3(80, 0, 0);
+        newCameraLocation = cameraLocation;
         StartCoroutine(CameraDelay());
+        //newCameraLocation = cameraLocation + new Vector3(80, 0, 0);
+        //StartCoroutine(CameraDelay());
     }
     public void MoveCameraToTinker()
     {
-        newCameraLocation =  cameraLocation - new Vector3(80, 0, 0); //camera.transform.position =
+        newCameraLocation =  cameraLocation - new Vector3(160, 0, 0); //camera.transform.position =
         StartCoroutine(CameraDelay());
     }
 

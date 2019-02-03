@@ -40,7 +40,12 @@ public class TowerSelecter : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        towerPosition = new Vector3(5.2f, -1f, -2.70f);
+        // this value is for the turret room only sandbox.
+        //towerPosition = new Vector3(5.2f, -1f, -2.70f);
+
+        //this value is for the base turret room.
+        towerPosition = new Vector3(50.0f, 76f, -123.0f);
+
         towerBase.value = 0;
         towerTurret.value = 0;
         towerBarrel.value = 0;

@@ -20,6 +20,26 @@ public class TowerFactory : MonoBehaviour {
         // this is how I will change the tower summons.
     }
 
+    public void AddTower()
+    {
+        int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();
+        if (lastWaypoint.isAvailable && currentGold >= 60)
+        {
+            var newTower = Instantiate(lighteningTowerPrefab, lastWaypoint.transform.position, Quaternion.identity);
+            newTower.transform.parent = towerParentTransform;
+            lastWaypoint.isAvailable = false;
+            FindObjectOfType<GoldManagement>().TowerCost();
+            if (lastWaypoint.CompareTag("Buff Tile"))
+            {
+                newTower.TowerBuff();
+            }
+        }
+        else
+        {
+            print("Unable to build here.");
+        }
+    }
+
     public void AddRifledTower()
     {
         int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();

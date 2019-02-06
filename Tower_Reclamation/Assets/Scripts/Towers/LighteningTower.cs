@@ -2,64 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LighteningTower : MonoBehaviour {
+public class LighteningTower : Tower {
 
-    // paramteres of each tower
-    [SerializeField] SphereCollider attackAOE;
-    [SerializeField] float attackRange = 10f;
-    [SerializeField] float chargeTime = 4f;
-    [SerializeField] float currentChargeTime = 0;
-    bool isCharged = false;
+    //paramteres of each tower
+    //SphereCollider attackAOE;
+    //float attackRange;
+    //float chargeTime;
+    //float currentChargeTime;
+    //bool isCharged = false;
 
-    [SerializeField] Light charge;
-    [SerializeField] ParticleSystem projectileParticle;
-    [SerializeField] float towerDmg = 30;
-    [SerializeField] private float currentTowerDmg = 30;
-    List<EnemyMovement> targets;
+    //Light charge;
+    //ParticleSystem projectileParticle;
+    //float towerDmg;
+    //private float currentTowerDmg;
+    //List<EnemyMovement> targets;
+
 
     // State of tower
     [SerializeField] Transform targetEnemy;
 
-    // Buff info
-    bool keepBuffed = false;
 
-    void Start()
-    {
-        if (!keepBuffed)
-        {
-        }
-        if (keepBuffed)
-        {
-            attackRange = attackRange * 1.4f;
-            currentTowerDmg = currentTowerDmg * 1.2f;
-            attackAOE.radius = attackAOE.radius * 1.4f;
-        }
-    }
 
     public float Damage()
     {
+
         return currentTowerDmg;
     }
 
     //Waypoint baseWaypoint    For if i pass it here
-    public void TowerBuff()
-    {
-        keepBuffed = true;
-    }
 
-
-
-    public void TowerUpgrade()
-    {
-        // attackRange = attackRange * (1.0 + .2 * timesBuffed)
-
-        attackRange = attackRange * 1.2f;
-
-        if (keepBuffed)
-        {
-            TowerBuff();
-        }
-    }
 
     private void CheckEnemyRange(List<EnemyMovement> targets)
     {

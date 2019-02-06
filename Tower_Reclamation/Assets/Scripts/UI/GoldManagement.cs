@@ -34,6 +34,7 @@ public class GoldManagement : MonoBehaviour {
     {
         return goldCount;
     }
+    // change this to take in an int and minus tower cost (input int)
     public void TowerCost()
     {
         goldCount -= 60;

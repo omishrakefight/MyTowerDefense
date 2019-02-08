@@ -20,6 +20,10 @@ public class TowerFactory : MonoBehaviour {
         // this is how I will change the tower summons.
     }
 
+
+    /// <summary>
+    ///  Gold cost === how do I find a variable on an object not yet instantiated?  for finding tower gold cost.
+    /// </summary>
     public void AddTower()
     {
         int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();
@@ -28,7 +32,7 @@ public class TowerFactory : MonoBehaviour {
             var newTower = Instantiate(lighteningTowerPrefab, lastWaypoint.transform.position, Quaternion.identity);
             newTower.transform.parent = towerParentTransform;
             lastWaypoint.isAvailable = false;
-            FindObjectOfType<GoldManagement>().TowerCost();
+            FindObjectOfType<GoldManagement>().TowerCost(lighteningTowerPrefab.goldCost);
             if (lastWaypoint.CompareTag("Buff Tile"))
             {
                 newTower.TowerBuff();
@@ -43,12 +47,12 @@ public class TowerFactory : MonoBehaviour {
     public void AddRifledTower()
     {
         int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();
-        if (lastWaypoint.isAvailable && currentGold >= 60)
+        if (lastWaypoint.isAvailable && currentGold >= rifledTowerPrefab.goldCost)
         {
             var newTower = Instantiate(rifledTowerPrefab, lastWaypoint.transform.position, Quaternion.identity);
             newTower.transform.parent = towerParentTransform;
             lastWaypoint.isAvailable = false;
-            FindObjectOfType<GoldManagement>().TowerCost();
+            FindObjectOfType<GoldManagement>().TowerCost(rifledTowerPrefab.goldCost);
             if (lastWaypoint.CompareTag("Buff Tile"))
             {
                 newTower.TowerBuff();
@@ -63,12 +67,13 @@ public class TowerFactory : MonoBehaviour {
     public void AddAssaultTower()
     {
         int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();
-        if (lastWaypoint.isAvailable && currentGold >= 60)
+        if (lastWaypoint.isAvailable && currentGold >= assaultTowerPrefab.goldCost)
         {
             var newTower = Instantiate(assaultTowerPrefab, lastWaypoint.transform.position, Quaternion.identity);
             newTower.transform.parent = towerParentTransform;
             lastWaypoint.isAvailable = false;
-            FindObjectOfType<GoldManagement>().TowerCost();
+            print("hi" + assaultTowerPrefab.goldCost);
+            FindObjectOfType<GoldManagement>().TowerCost(assaultTowerPrefab.goldCost);
             if (lastWaypoint.CompareTag("Buff Tile"))
             {
                 newTower.TowerBuff();
@@ -83,12 +88,12 @@ public class TowerFactory : MonoBehaviour {
     public void AddLighteningTower()
     {
         int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();
-        if (lastWaypoint.isAvailable && currentGold >= 60)
+        if (lastWaypoint.isAvailable && currentGold >= lighteningTowerPrefab.goldCost)
         {
             var newTower = Instantiate(lighteningTowerPrefab, lastWaypoint.transform.position, Quaternion.identity);
             newTower.transform.parent = towerParentTransform;
             lastWaypoint.isAvailable = false;
-            FindObjectOfType<GoldManagement>().TowerCost();
+            FindObjectOfType<GoldManagement>().TowerCost(lighteningTowerPrefab.goldCost);
             if (lastWaypoint.CompareTag("Buff Tile"))
             {
                 newTower.TowerBuff();
@@ -103,12 +108,12 @@ public class TowerFactory : MonoBehaviour {
     public void AddFlameTower()
     {
         int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();
-        if (lastWaypoint.isAvailable && currentGold >= 60)
+        if (lastWaypoint.isAvailable && currentGold >= flameTowerPrefab.goldCost)
         {
             var newTower = Instantiate(flameTowerPrefab, lastWaypoint.transform.position, Quaternion.identity);
             newTower.transform.parent = towerParentTransform;
             lastWaypoint.isAvailable = false;
-            FindObjectOfType<GoldManagement>().TowerCost();
+            FindObjectOfType<GoldManagement>().TowerCost(flameTowerPrefab.goldCost);
             if (lastWaypoint.CompareTag("Buff Tile"))
             {
                  newTower.TowerBuff();

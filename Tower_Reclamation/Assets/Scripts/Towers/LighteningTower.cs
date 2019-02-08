@@ -8,6 +8,7 @@ public class LighteningTower : Tower {
     [SerializeField] public float chargeTime = 4f;
     [SerializeField] public float currentChargeTime = 0;
     public bool isCharged = false;
+    public int goldCost = 60;
 
     [SerializeField] protected Light charge;
     [SerializeField] protected ParticleSystem projectileParticle;
@@ -25,7 +26,7 @@ public class LighteningTower : Tower {
     //List<EnemyMovement> targets;
 
     // State of tower
-    [SerializeField] Transform targetEnemy;
+    //[SerializeField] Transform targetEnemy;
 
     protected override void Start()
     {
@@ -100,35 +101,6 @@ public class LighteningTower : Tower {
 
     }
 
-    private void SetTargetEnemy()
-    {
-        var sceneEnemies = FindObjectsOfType<EnemyMovement>();
-        if (sceneEnemies.Length == 0) { return; }
-
-        Transform closestEnemy = sceneEnemies[0].transform;
-
-        foreach (EnemyMovement testEnemy in sceneEnemies)
-        {
-            closestEnemy = GetClosest(closestEnemy, testEnemy.transform);
-        }
-
-        targetEnemy = closestEnemy;
-    }
-
-    private Transform GetClosest(Transform transformA, Transform transformB)
-    {
-        var distanceToA = Vector3.Distance(transform.position, transformA.position);
-        var distanceToB = Vector3.Distance(transform.position, transformB.position);
-
-        if (distanceToA <= distanceToB)
-        {
-            return transformA;
-        }
-        else
-        {
-            return transformB;
-        }
-    }
 
     /*
         private void FireAtEnemy()

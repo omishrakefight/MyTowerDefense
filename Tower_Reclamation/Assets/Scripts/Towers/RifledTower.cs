@@ -6,8 +6,9 @@ using UnityEngine;
 public class RifledTower : Tower {
 
     // paramteres of each tower
-    [SerializeField] Transform objectToPan;
+
     //[SerializeField] float attackRange = 32f;
+    public int goldCost = 60;
 
     [SerializeField] ParticleSystem projectileParticle;
     //[SerializeField] float towerDmg = 12;
@@ -21,6 +22,7 @@ public class RifledTower : Tower {
 
     override protected void Start () {
         base.Start();
+        goldCost = 50;
 	}
 
     //todo  check towerBuffs - is it in start? does it need a method? sync light tower, Tower.cs and others so its consistent.

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour {
 
-    public int goldCost;
+    //public int goldCost = 60;
 
     // paramteres of each tower
     [SerializeField] public float attackRange = 10f;
@@ -16,6 +16,7 @@ public class Tower : MonoBehaviour {
 
     List<EnemyMovement> targets;
     [SerializeField] protected Transform targetEnemy;
+    [SerializeField] protected Transform objectToPan;
 
     // Use this for initialization
     // Buff info
@@ -23,10 +24,9 @@ public class Tower : MonoBehaviour {
 
     protected virtual void Start()
     {
-        if (!keepBuffed)
-        {
-        }
-        if (keepBuffed)
+        // nothing if it is unbuffed 
+        if (!keepBuffed)   {   }
+        else
         {
             attackRange = attackRange * 1.4f;
             currentTowerDmg = currentTowerDmg * 1.2f;

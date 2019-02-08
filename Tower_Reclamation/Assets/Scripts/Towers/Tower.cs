@@ -7,23 +7,21 @@ public class Tower : MonoBehaviour {
     public int goldCost;
 
     // paramteres of each tower
-    [SerializeField] public SphereCollider attackAOE;
     [SerializeField] public float attackRange = 10f;
-    [SerializeField] public float chargeTime = 4f;
-    [SerializeField] public float currentChargeTime = 0;
-    public bool isCharged = false;
+    
 
-    [SerializeField] protected Light charge;
-    [SerializeField] protected ParticleSystem projectileParticle;
+
     [SerializeField] public float towerDmg = 30;
     [SerializeField] protected float currentTowerDmg = 30;
+
     List<EnemyMovement> targets;
+    [SerializeField] protected Transform targetEnemy;
 
     // Use this for initialization
     // Buff info
-    bool keepBuffed = false;
+    public bool keepBuffed = false;
 
-    void Start()
+    protected virtual void Start()
     {
         if (!keepBuffed)
         {
@@ -32,7 +30,6 @@ public class Tower : MonoBehaviour {
         {
             attackRange = attackRange * 1.4f;
             currentTowerDmg = currentTowerDmg * 1.2f;
-            attackAOE.radius = attackAOE.radius * 1.4f;
         }
     }
 
@@ -52,6 +49,43 @@ public class Tower : MonoBehaviour {
         if (keepBuffed)
         {
             TowerBuff();
+        }
+    }
+
+    // returns how much dmg this tower does.
+    public float Damage()
+    {
+        return currentTowerDmg;
+    }
+
+
+    protected void SetTargetEnemy()
+    {
+        var sceneEnemies = FindObjectsOfType<EnemyMovement>();
+        if (sceneEnemies.Length == 0) { return; }
+
+        Transform closestEnemy = sceneEnemies[0].transform;
+
+        foreach (EnemyMovement testEnemy in sceneEnemies)
+        {
+            closestEnemy = GetClosest(closestEnemy, testEnemy.transform);
+        }
+
+        targetEnemy = closestEnemy;
+    }
+
+    protected Transform GetClosest(Transform transformA, Transform transformB)
+    {
+        var distanceToA = Vector3.Distance(transform.position, transformA.position);
+        var distanceToB = Vector3.Distance(transform.position, transformB.position);
+
+        if (distanceToA <= distanceToB)
+        {
+            return transformA;
+        }
+        else
+        {
+            return transformB;
         }
     }
 

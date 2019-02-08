@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class LighteningTower : Tower {
 
+    [SerializeField] public SphereCollider attackAOE;
+    [SerializeField] public float chargeTime = 4f;
+    [SerializeField] public float currentChargeTime = 0;
+    public bool isCharged = false;
+
+    [SerializeField] protected Light charge;
+    [SerializeField] protected ParticleSystem projectileParticle;
     //paramteres of each tower
     //SphereCollider attackAOE;
     //float attackRange;
@@ -17,17 +24,23 @@ public class LighteningTower : Tower {
     //private float currentTowerDmg;
     //List<EnemyMovement> targets;
 
-
     // State of tower
     [SerializeField] Transform targetEnemy;
 
-
-
-    public float Damage()
+    protected override void Start()
     {
+        goldCost = 60;
 
-        return currentTowerDmg;
+        if (!keepBuffed)   {    }
+        if (keepBuffed)
+        {
+            attackRange = attackRange * 1.4f;
+            currentTowerDmg = currentTowerDmg * 1.2f;
+            attackAOE.radius = attackAOE.radius * 1.4f;
+        }
     }
+
+
 
     //Waypoint baseWaypoint    For if i pass it here
 

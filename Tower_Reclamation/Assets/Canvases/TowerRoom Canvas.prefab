@@ -1864,7 +1864,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114092050215186368}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: FindTower
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114404546492420424
@@ -2326,19 +2337,19 @@ MonoBehaviour:
   towerBarrel: {fileID: 114336131870631448}
   towerTurret: {fileID: 114389285663288508}
   towerBase: {fileID: 114014292850026776}
-  basicRifledTower: {fileID: 114119245751072872, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
+  basicRifledTower: {fileID: 114298003256897080, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
     type: 2}
-  basicFlameTower: {fileID: 114582363562050618, guid: 9b88788f1af26d945a3ec20203b67002,
+  basicFlameTower: {fileID: 114262617888070472, guid: 9b88788f1af26d945a3ec20203b67002,
     type: 2}
-  tallFlameTower: {fileID: 114643644034937566, guid: a17a50a6a9d7c9741942fea8d8b2823f,
+  tallFlameTower: {fileID: 114614152484446026, guid: a17a50a6a9d7c9741942fea8d8b2823f,
     type: 2}
-  heavyFlameTower: {fileID: 114323405521019060, guid: fa33b4e1e2493c14192179f4abe139bb,
+  heavyFlameTower: {fileID: 114320043448249360, guid: fa33b4e1e2493c14192179f4abe139bb,
     type: 2}
-  lightFlameTower: {fileID: 114126797473281034, guid: 3103c9075bdcfb846b4440461a93514a,
+  lightFlameTower: {fileID: 114413574549176448, guid: 3103c9075bdcfb846b4440461a93514a,
     type: 2}
-  alienFlameTower: {fileID: 114727172302712596, guid: bfc12d4c65dda314da028c5f8d9075b2,
+  alienFlameTower: {fileID: 114618929801475390, guid: bfc12d4c65dda314da028c5f8d9075b2,
     type: 2}
-  basicLightTower: {fileID: 114358188498118118, guid: a1c22a29f73f70444806c15d320ffb5a,
+  basicLightTower: {fileID: 114078197882030082, guid: a1c22a29f73f70444806c15d320ffb5a,
     type: 2}
 --- !u!114 &114726297846820894
 MonoBehaviour:

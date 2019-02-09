@@ -8,10 +8,13 @@ public sealed class Singleton : MonoBehaviour {
     TowerFactory towerFactory = new TowerFactory();
 
     // this holds the set tower choices
+    public Tower tempTower;
     public Tower towerOne;
     public Tower towerTwo;
     public Tower towerThree;
     [SerializeField] Dropdown dropdown;
+
+    TowerSelecter towerSelector;
 
     int towerButton = 0;
     public static Singleton Instance { get; private set; }
@@ -20,13 +23,6 @@ public sealed class Singleton : MonoBehaviour {
 
     public void TowerOne()
     {
-        switch (dropdown.value)
-        {
-            case 1:
-                towerOne =
-                break;
-        }
-
         towerFactory.AddTower(towerOne);
     }
 
@@ -41,6 +37,25 @@ public sealed class Singleton : MonoBehaviour {
         {
             Destroy(gameObject);
         }
+    }
+
+    public void FindTower()
+    {
+        towerSelector = FindObjectOfType<TowerSelecter>();
+        tempTower = towerSelector.PickTower();
+        //temp tower holds the new tower, swtich determines what button it takes over.need to convert to Tower instetad of towerDmG
+        switch (dropdown.value)
+        {
+            case 1:
+                towerOne = tempTower;
+                print(towerOne.name);
+                FindObjectOfType<TowerButtons>().UpdateName();
+                break;
+            default:
+                break;
+        }
+
+
     }
 
     // Use this for initialization

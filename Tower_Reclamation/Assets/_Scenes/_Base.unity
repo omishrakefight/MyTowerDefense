@@ -2085,10 +2085,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1721287286145386, guid: 0dda80d1a3480b246ae2a6121eb27390, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0dda80d1a3480b246ae2a6121eb27390, type: 2}
   m_IsPrefabParent: 0
@@ -2491,6 +2487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea8924db822837547918bfb77fa2d9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerOne: {fileID: 0}
+  towerTwo: {fileID: 0}
+  towerThree: {fileID: 0}
   scenesChanged: 0
 --- !u!4 &1712266345
 Transform:

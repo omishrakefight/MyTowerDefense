@@ -24,15 +24,15 @@ public class TowerFactory : MonoBehaviour {
     /// <summary>
     ///  Gold cost === how do I find a variable on an object not yet instantiated?  for finding tower gold cost.
     /// </summary>
-    public void AddTower()
+    public void AddTower(Tower tower)
     {
         int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();
-        if (lastWaypoint.isAvailable && currentGold >= 60)
+        if (lastWaypoint.isAvailable && currentGold >= tower.goldCost)
         {
-            var newTower = Instantiate(lighteningTowerPrefab, lastWaypoint.transform.position, Quaternion.identity);
+            var newTower = Instantiate(tower, lastWaypoint.transform.position, Quaternion.identity);
             newTower.transform.parent = towerParentTransform;
             lastWaypoint.isAvailable = false;
-            FindObjectOfType<GoldManagement>().TowerCost(lighteningTowerPrefab.goldCost);
+            FindObjectOfType<GoldManagement>().TowerCost(tower.goldCost);
             if (lastWaypoint.CompareTag("Buff Tile"))
             {
                 newTower.TowerBuff();

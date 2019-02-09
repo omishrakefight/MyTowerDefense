@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour {
 
-    //public int goldCost = 60;
+    public int goldCost = 60;
 
     // paramteres of each tower
     [SerializeField] public float attackRange = 10f;

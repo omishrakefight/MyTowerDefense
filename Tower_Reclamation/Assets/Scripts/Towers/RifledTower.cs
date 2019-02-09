@@ -8,7 +8,7 @@ public class RifledTower : Tower {
     // paramteres of each tower
 
     //[SerializeField] float attackRange = 32f;
-    public int goldCost = 50;
+    public new int goldCost = 50;
 
     [SerializeField] ParticleSystem projectileParticle;
     //[SerializeField] float towerDmg = 12;
@@ -22,7 +22,7 @@ public class RifledTower : Tower {
 
     override protected void Start () {
         base.Start();
-        goldCost = 50;
+        goldCost = 100;
 	}
 
     //todo  check towerBuffs - is it in start? does it need a method? sync light tower, Tower.cs and others so its consistent.

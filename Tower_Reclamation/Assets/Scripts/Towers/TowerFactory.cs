@@ -47,6 +47,10 @@ public class TowerFactory : MonoBehaviour {
     public void AddRifledTower()
     {
         int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();
+
+        // this was used to get access to inactive game objects, but upon load it was working correctly anyways.... w/e
+        //rifledTowerPrefab.GetComponentsInChildren<>(true)
+        //GetComponentInChildren<RifledTower>(true).goldCost
         if (lastWaypoint.isAvailable && currentGold >= rifledTowerPrefab.goldCost)
         {
             var newTower = Instantiate(rifledTowerPrefab, lastWaypoint.transform.position, Quaternion.identity);
@@ -72,7 +76,7 @@ public class TowerFactory : MonoBehaviour {
             var newTower = Instantiate(assaultTowerPrefab, lastWaypoint.transform.position, Quaternion.identity);
             newTower.transform.parent = towerParentTransform;
             lastWaypoint.isAvailable = false;
-            print("hi" + assaultTowerPrefab.goldCost);
+            print("hi" + GetComponentInChildren<RifledTower>(true).goldCost);
             FindObjectOfType<GoldManagement>().TowerCost(assaultTowerPrefab.goldCost);
             if (lastWaypoint.CompareTag("Buff Tile"))
             {

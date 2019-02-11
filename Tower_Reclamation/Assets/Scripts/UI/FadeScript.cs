@@ -115,9 +115,6 @@ public class FadeScript : MonoBehaviour {
             }
         }
 
-
-        Debug.Log("fade sequence end : " + fadingOut);
-
     }
 
 

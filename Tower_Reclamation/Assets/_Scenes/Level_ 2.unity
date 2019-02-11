@@ -303,10 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3c0d4e07b25ff48a67765aaca803e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonOne: {fileID: 0}
-  buttonTwo: {fileID: 0}
-  buttonThree: {fileID: 0}
-  buttonFour: {fileID: 0}
   rifledTowerPrefab: {fileID: 114298003256897080, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
     type: 2}
   assaultTowerPrefab: {fileID: 114298003256897080, guid: 1836db111551ce448b548d20199ce23c,
@@ -1797,52 +1793,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4210261340242674, guid: 04c61b8c3888257449aa403977e67680,
     type: 2}
   m_PrefabInternal: {fileID: 187760732}
---- !u!1001 &699938418
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 42.12336
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 40.526394
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -35.348503
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
-      propertyPath: m_RootOrder
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751253469719790, guid: c75d683a57da05b46abfab717912e227, type: 2}
-      propertyPath: m_Name
-      value: Canvas Container (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: c75d683a57da05b46abfab717912e227, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1001 &702755202
 Prefab:
   m_ObjectHideFlags: 0
@@ -2387,6 +2337,52 @@ Transform:
   m_PrefabParentObject: {fileID: 4803110345335862, guid: 9755912896f51c84482190fe7f28a6c0,
     type: 2}
   m_PrefabInternal: {fileID: 918005366}
+--- !u!1001 &995614441
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 42.12336
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 40.526394
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -35.348503
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4579214057069962, guid: c75d683a57da05b46abfab717912e227, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1751253469719790, guid: c75d683a57da05b46abfab717912e227, type: 2}
+      propertyPath: m_Name
+      value: Canvas Container (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c75d683a57da05b46abfab717912e227, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &1006199363
 Prefab:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ public sealed class Singleton : MonoBehaviour {
 
     TowerFactory towerFactory = new TowerFactory();
 
+    // do not put a singleton in first map, it has static base turret for level one.
+
     // this holds the set tower choices
     public Tower tempTower;
     public Tower towerOne;
@@ -43,13 +45,22 @@ public sealed class Singleton : MonoBehaviour {
     {
         towerSelector = FindObjectOfType<TowerSelecter>();
         tempTower = towerSelector.PickTower();
+        print(dropdown.value + " " + tempTower);
         //temp tower holds the new tower, swtich determines what button it takes over.need to convert to Tower instetad of towerDmG
         switch (dropdown.value)
         {
             case 1:
                 towerOne = tempTower;
                 print(towerOne.name);
-                FindObjectOfType<TowerButtons>().UpdateName();
+                //FindObjectOfType<TowerButton1>().UpdateName();
+                break;
+            case 2:
+                towerTwo = tempTower;
+                //FindObjectOfType<TowerButton2>().UpdateName();
+                break;
+            case 3:
+                towerThree = tempTower;
+                //FindObjectOfType<TowerButton3>().UpdateName();
                 break;
             default:
                 break;
@@ -61,7 +72,7 @@ public sealed class Singleton : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        scenesChanged = 0;
+        
     }
 
     // Update is called once per frame

@@ -2189,9 +2189,11 @@ MonoBehaviour:
     m_Options:
     - m_Text: Select a Tower slot
       m_Image: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-    - m_Text: Option B
+    - m_Text: Tower Slot 1
       m_Image: {fileID: 0}
-    - m_Text: Option C
+    - m_Text: Tower Slot 2
+      m_Image: {fileID: 0}
+    - m_Text: Tower Slot 3
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:

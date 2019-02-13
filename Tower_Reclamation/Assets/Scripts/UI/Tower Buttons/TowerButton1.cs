@@ -18,7 +18,10 @@ public class TowerButton1 : MonoBehaviour {
     {
         towerFactory = FindObjectOfType<TowerFactory>();
         singleton = FindObjectOfType<Singleton>();
-        buttonName1.text = singleton.towerOne.name;
+        if (singleton.towerOne != null)
+        {
+            buttonName1.text = singleton.towerOne.name;
+        }
     }
 
     public void BuildTower()

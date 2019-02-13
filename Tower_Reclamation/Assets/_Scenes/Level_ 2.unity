@@ -325,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goldCount: 120
-  gold: {fileID: 0}
+  gold: {fileID: 1076201025}
 --- !u!114 &47542414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,27 +491,27 @@ Prefab:
         type: 2}
       propertyPath: myHealth
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 995614444}
     - target: {fileID: 114379118460173414, guid: a467c20795e0fed40b0d21d2bebe3b04,
         type: 2}
       propertyPath: myHealthNumber
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 377249933}
     - target: {fileID: 114379118460173414, guid: a467c20795e0fed40b0d21d2bebe3b04,
         type: 2}
       propertyPath: HPbar
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1129028864}
     - target: {fileID: 114379118460173414, guid: a467c20795e0fed40b0d21d2bebe3b04,
         type: 2}
       propertyPath: defeat
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 995614443}
     - target: {fileID: 114379118460173414, guid: a467c20795e0fed40b0d21d2bebe3b04,
         type: 2}
       propertyPath: worldFalls
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 995614442}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a467c20795e0fed40b0d21d2bebe3b04, type: 2}
   m_IsPrefabParent: 0
@@ -1206,6 +1206,12 @@ Transform:
   m_Father: {fileID: 1055694890}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &377249933 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114341040362676026, guid: c75d683a57da05b46abfab717912e227,
+    type: 2}
+  m_PrefabInternal: {fileID: 995614441}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &390723136
 Prefab:
   m_ObjectHideFlags: 0
@@ -1610,6 +1616,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4556434879401558, guid: 71fcd0ef8a34f6b49bb238b02a963212,
     type: 2}
   m_PrefabInternal: {fileID: 519863929}
+--- !u!114 &521744123 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114596543552147340, guid: c75d683a57da05b46abfab717912e227,
+    type: 2}
+  m_PrefabInternal: {fileID: 995614441}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &606971876
 GameObject:
   m_ObjectHideFlags: 0
@@ -1741,6 +1753,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4556434879401558, guid: 71fcd0ef8a34f6b49bb238b02a963212,
     type: 2}
   m_PrefabInternal: {fileID: 619573281}
+--- !u!114 &669175186 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114880481792512674, guid: c75d683a57da05b46abfab717912e227,
+    type: 2}
+  m_PrefabInternal: {fileID: 995614441}
+  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!4 &682862296 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4821993878966740, guid: 95f7b35377729454a863f924f23cfcb9,
@@ -2383,6 +2401,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c75d683a57da05b46abfab717912e227, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &995614442 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114960252573431204, guid: c75d683a57da05b46abfab717912e227,
+    type: 2}
+  m_PrefabInternal: {fileID: 995614441}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &995614443 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114543845175103356, guid: c75d683a57da05b46abfab717912e227,
+    type: 2}
+  m_PrefabInternal: {fileID: 995614441}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &995614444 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114528662453730894, guid: c75d683a57da05b46abfab717912e227,
+    type: 2}
+  m_PrefabInternal: {fileID: 995614441}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1006199363
 Prefab:
   m_ObjectHideFlags: 0
@@ -2531,6 +2567,12 @@ Transform:
   m_Father: {fileID: 47542410}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1076201025 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114901852585953696, guid: c75d683a57da05b46abfab717912e227,
+    type: 2}
+  m_PrefabInternal: {fileID: 995614441}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1081940670
 Prefab:
   m_ObjectHideFlags: 0
@@ -2706,6 +2748,18 @@ Transform:
   m_PrefabParentObject: {fileID: 4569467521972290, guid: a6d299a9dc9635b439483248816a8df0,
     type: 2}
   m_PrefabInternal: {fileID: 1128604768}
+--- !u!114 &1129028864 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114222500709098266, guid: c75d683a57da05b46abfab717912e227,
+    type: 2}
+  m_PrefabInternal: {fileID: 995614441}
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!114 &1138811593 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114797878150395374, guid: c75d683a57da05b46abfab717912e227,
+    type: 2}
+  m_PrefabInternal: {fileID: 995614441}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1228576821
 GameObject:
   m_ObjectHideFlags: 0
@@ -2958,9 +3012,9 @@ MonoBehaviour:
     type: 2}
   enemiesLocation: {fileID: 1292924664}
   enemySpawnAudio: {fileID: 8300000, guid: a8c6def41b8aafd4881fc5641c0d921b, type: 3}
-  win: {fileID: 0}
+  win: {fileID: 1138811593}
   stillAlive: 1
-  slider: {fileID: 0}
+  slider: {fileID: 669175186}
 --- !u!82 &1292924666
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4204,6 +4258,11 @@ Prefab:
       propertyPath: score
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114901376297547574, guid: 37ecf30468607124aafd21227190c343,
+        type: 2}
+      propertyPath: wave
+      value: 
+      objectReference: {fileID: 521744123}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37ecf30468607124aafd21227190c343, type: 2}
   m_IsPrefabParent: 0

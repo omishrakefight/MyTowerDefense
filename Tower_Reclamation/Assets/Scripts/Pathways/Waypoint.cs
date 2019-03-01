@@ -23,6 +23,10 @@ public class Waypoint : MonoBehaviour {
     public bool isPlaceable = true;
     public bool isAvailable = true;
 
+    private void Start()
+    {
+        madeLight = false;
+    }
 
     public int GetGridSize()
     {

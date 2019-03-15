@@ -3,62 +3,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RifledTower : MonoBehaviour {
+public class RifledTower : Tower {
 
     // paramteres of each tower
-    [SerializeField] Transform objectToPan;
-    [SerializeField] float attackRange = 32f;
+
+    //[SerializeField] float attackRange = 32f;
+    public new int goldCost = 50;
 
     [SerializeField] ParticleSystem projectileParticle;
-    [SerializeField] float towerDmg = 12;
-    [SerializeField] private float currentTowerDmg = 12;
+    //[SerializeField] float towerDmg = 12;
+    //[SerializeField] private float currentTowerDmg = 12;
 
     // State of tower
-    [SerializeField] Transform targetEnemy;
+
 
     // Buff info
-    bool keepBuffed = false;
+    //bool keepBuffed = false;
 
-    void Start () {
-        if (!keepBuffed)
-        {
-
-        }
+    override protected void Start () {
+        base.Start();
+        goldCost = 100;
 	}
 
-    public float Damage()
-    {
-        return currentTowerDmg;
-    }
-
+    //todo  check towerBuffs - is it in start? does it need a method? sync light tower, Tower.cs and others so its consistent.
+     
     //Waypoint baseWaypoint    For if i pass it here
-    public void TowerBuff()
-    {
-        attackRange = attackRange * 1.4f;
-        currentTowerDmg = currentTowerDmg * 1.2f;
+    //public void TowerBuff()
+    //{
+    //    attackRange = attackRange * 1.4f;
+    //    currentTowerDmg = currentTowerDmg * 1.2f;
 
-        keepBuffed = true;
-    }
+    //    keepBuffed = true;
+    //}
 
 
   
-     public void TowerUpgrade()
-     {
-        // attackRange = attackRange * (1.0 + .2 * timesBuffed)
+     //public void TowerUpgrade()
+     //{
+     //   // attackRange = attackRange * (1.0 + .2 * timesBuffed)
 
-        attackRange = attackRange * 1.2f;
+     //   attackRange = attackRange * 1.2f;
 
-         if (keepBuffed)
-         {
-             TowerBuff();
-         }
-     }
+     //    if (keepBuffed)
+     //    {
+     //        TowerBuff();
+     //    }
+     //}
      
 
     // Update is called once per frame
     void Update () {
-
-
 
         if (targetEnemy)
         {
@@ -72,35 +66,6 @@ public class RifledTower : MonoBehaviour {
         }
 	}
 
-    private void SetTargetEnemy()
-    {
-        var sceneEnemies = FindObjectsOfType<EnemyMovement>();
-        if (sceneEnemies.Length == 0) { return; }
-
-        Transform closestEnemy = sceneEnemies[0].transform;
-
-        foreach (EnemyMovement testEnemy in sceneEnemies)
-        {
-            closestEnemy = GetClosest(closestEnemy, testEnemy.transform);
-        }
-
-        targetEnemy = closestEnemy;
-    }
-
-    private Transform GetClosest(Transform transformA, Transform transformB)
-    {
-        var distanceToA = Vector3.Distance(transform.position, transformA.position);
-        var distanceToB = Vector3.Distance(transform.position, transformB.position);
-
-        if (distanceToA <= distanceToB)
-        {
-            return transformA;
-        }
-        else
-        {
-            return transformB;
-        }
-    }
 
     private void FireAtEnemy()
     {

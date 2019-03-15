@@ -19,21 +19,23 @@ public class Flame_AOE : MonoBehaviour {
         if (!keepBuffed)
         {
             currentAttackRange = flameAOE.radius;
+        }
+        else
+        {
+            currentAttackRange = flameAOE.radius;
+            currentAttackWidth = flameAOE.height;
 
+            currentTowerDmg = currentTowerDmg * 1.2f;
+            currentAttackRange = currentAttackRange * 1.5f;
+            currentAttackWidth = currentAttackWidth * 1.5f;
+            flameAOE.height = currentAttackWidth;
+            flameAOE.radius = currentAttackRange;
         }
     }
 
     public void TowerBuff()
     {
-        currentAttackRange = flameAOE.radius;
-        currentAttackWidth = flameAOE.height;
-
-        currentTowerDmg = currentTowerDmg * 1.2f;
-        currentAttackRange = currentAttackRange * 1.5f;
-        currentAttackWidth = currentAttackWidth * 1.5f;
-        flameAOE.height = currentAttackWidth;
-        flameAOE.radius = currentAttackRange;
-
+        // called by Tower_Flame.
         keepBuffed = true;
     }
 

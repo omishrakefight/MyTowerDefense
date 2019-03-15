@@ -31,5 +31,8 @@ public class LoadNextArea : MonoBehaviour {
         FindObjectOfType<LevelTracker>().IncreaseLevel();
         currentLevel = FindObjectOfType<LevelTracker>().currentLevel;      
         SceneManager.LoadSceneAsync("_Scenes/Level_ " + currentLevel.ToString());
+        //testing purposes
+         Singleton.Instance.scenesChanged++;
+
     }
 }

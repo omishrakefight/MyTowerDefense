@@ -11,23 +11,24 @@ public class TowerSelecter : MonoBehaviour
     [SerializeField] Dropdown towerTurret;
     [SerializeField] Dropdown towerBase;
 
-    Tower_Dmg newTower;
-    Tower_Dmg decidedTower;
+    Tower newTower;
+    Tower decidedTower;
 
     [Header("Rifle Towers")]
-    [SerializeField] Tower_Dmg basicRifledTower;
+    [SerializeField]
+    Tower basicRifledTower;
 
 
     [Header("Flame Towers")]
-    [SerializeField] Tower_Dmg basicFlameTower;
-    [SerializeField] Tower_Dmg tallFlameTower;
-    [SerializeField] Tower_Dmg heavyFlameTower;
-    [SerializeField] Tower_Dmg lightFlameTower;
-    [SerializeField] Tower_Dmg alienFlameTower;
+    [SerializeField] Tower basicFlameTower;
+    [SerializeField] Tower tallFlameTower;
+    [SerializeField] Tower heavyFlameTower;
+    [SerializeField] Tower lightFlameTower;
+    [SerializeField] Tower alienFlameTower;
 
 
     [Header("Lightening Towers")]
-    [SerializeField] Tower_Dmg basicLightTower;
+    [SerializeField] Tower basicLightTower;
 
 
 
@@ -67,7 +68,7 @@ public class TowerSelecter : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            newTower = FindObjectOfType<Tower_Dmg>();
+            newTower = FindObjectOfType<Tower>();
 
             //newTower.transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0) * Time.deltaTime * speed);
             var dtx = Input.GetAxis("Mouse X") * turnSpeed;
@@ -96,7 +97,8 @@ public class TowerSelecter : MonoBehaviour
         print("summoned");
     }
 
-    private Tower_Dmg PickTower()
+    // change to tower type
+    public Tower PickTower()
     {
         if (towerTurret.value == 0)
         {

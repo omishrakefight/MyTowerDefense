@@ -2,32 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LighteningTower : MonoBehaviour {
+public class LighteningTower : Tower {
 
-    // paramteres of each tower
-    [SerializeField] SphereCollider attackAOE;
-    [SerializeField] float attackRange = 10f;
-    [SerializeField] float chargeTime = 4f;
-    [SerializeField] float currentChargeTime = 0;
-    bool isCharged = false;
+    [SerializeField] public SphereCollider attackAOE;
+    [SerializeField] public float chargeTime = 4f;
+    [SerializeField] public float currentChargeTime = 0;
+    public bool isCharged = false;
+    public new int goldCost = 80;
 
-    [SerializeField] Light charge;
-    [SerializeField] ParticleSystem projectileParticle;
-    [SerializeField] float towerDmg = 30;
-    [SerializeField] private float currentTowerDmg = 30;
-    List<EnemyMovement> targets;
+    [SerializeField] protected Light charge;
+    [SerializeField] protected ParticleSystem projectileParticle;
+    //paramteres of each tower
+    //SphereCollider attackAOE;
+    //float attackRange;
+    //float chargeTime;
+    //float currentChargeTime;
+    //bool isCharged = false;
+
+    //Light charge;
+    //ParticleSystem projectileParticle;
+    //float towerDmg;
+    //private float currentTowerDmg;
+    //List<EnemyMovement> targets;
 
     // State of tower
-    [SerializeField] Transform targetEnemy;
+    //[SerializeField] Transform targetEnemy;
 
-    // Buff info
-    bool keepBuffed = false;
-
-    void Start()
+    protected override void Start()
     {
-        if (!keepBuffed)
-        {
-        }
+        goldCost = 60;
+
+        if (!keepBuffed)   {    }
         if (keepBuffed)
         {
             attackRange = attackRange * 1.4f;
@@ -36,30 +41,10 @@ public class LighteningTower : MonoBehaviour {
         }
     }
 
-    public float Damage()
-    {
-        return currentTowerDmg;
-    }
+
 
     //Waypoint baseWaypoint    For if i pass it here
-    public void TowerBuff()
-    {
-        keepBuffed = true;
-    }
 
-
-
-    public void TowerUpgrade()
-    {
-        // attackRange = attackRange * (1.0 + .2 * timesBuffed)
-
-        attackRange = attackRange * 1.2f;
-
-        if (keepBuffed)
-        {
-            TowerBuff();
-        }
-    }
 
     private void CheckEnemyRange(List<EnemyMovement> targets)
     {
@@ -116,35 +101,6 @@ public class LighteningTower : MonoBehaviour {
 
     }
 
-    private void SetTargetEnemy()
-    {
-        var sceneEnemies = FindObjectsOfType<EnemyMovement>();
-        if (sceneEnemies.Length == 0) { return; }
-
-        Transform closestEnemy = sceneEnemies[0].transform;
-
-        foreach (EnemyMovement testEnemy in sceneEnemies)
-        {
-            closestEnemy = GetClosest(closestEnemy, testEnemy.transform);
-        }
-
-        targetEnemy = closestEnemy;
-    }
-
-    private Transform GetClosest(Transform transformA, Transform transformB)
-    {
-        var distanceToA = Vector3.Distance(transform.position, transformA.position);
-        var distanceToB = Vector3.Distance(transform.position, transformB.position);
-
-        if (distanceToA <= distanceToB)
-        {
-            return transformA;
-        }
-        else
-        {
-            return transformB;
-        }
-    }
 
     /*
         private void FireAtEnemy()

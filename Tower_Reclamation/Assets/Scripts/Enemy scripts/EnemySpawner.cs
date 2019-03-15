@@ -26,6 +26,14 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Slider slider;
 
     // Use this for initialization
+    /*
+     * I Need THESE FOR INJECTION
+     *  int maxWave;
+     *  timeBetweenWaves -- watch for slider breaking--Maybe have the enemy instantiation come from a reference that is updated each iteration
+     *  number of enemy prefabs for an iteration?
+     *  enemy prefabs
+     * 
+    */
     void Start()
     {
         level = FindObjectOfType<CurrentWave>();

@@ -34,6 +34,7 @@ public class TowerSelecter : MonoBehaviour
 
     float turnSpeed = 6f;
 
+    [SerializeField] GameObject towerPlaceholder;
     Vector3 towerPosition;
     Bounds bound;
     BoxCollider collider;
@@ -45,7 +46,8 @@ public class TowerSelecter : MonoBehaviour
         //towerPosition = new Vector3(5.2f, -1f, -2.70f);
 
         //this value is for the base turret room.
-        towerPosition = new Vector3(50.0f, 76f, -123.0f);
+        towerPosition = towerPlaceholder.transform.position;
+        //towerPosition = new Vector3(50.0f, 76f, -123.0f);
 
         towerBase.value = 0;
         towerTurret.value = 0;

@@ -82,7 +82,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1120753502457682
 GameObject:
   m_ObjectHideFlags: 0
@@ -630,6 +630,7 @@ GameObject:
   - component: {fileID: 114572296563133950}
   - component: {fileID: 114617490869796802}
   - component: {fileID: 114661219318851130}
+  - component: {fileID: 114866457314412120}
   m_Layer: 0
   m_Name: Canvas Container
   m_TagString: Untagged
@@ -2564,6 +2565,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 1487896646368940}
+--- !u!114 &114866457314412120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1751253469719790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9995e96371fcf84eb5e18c8974402e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasToEnable: {fileID: 223262395881422822}
 --- !u!114 &114868578299560132
 MonoBehaviour:
   m_ObjectHideFlags: 1

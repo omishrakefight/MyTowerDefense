@@ -6,7 +6,7 @@ public class EnableScriptsOnStart : MonoBehaviour {
 
     [SerializeField] Canvas canvasToEnable;
 
-	void Start () {
+	void Awake () {
         canvasToEnable.gameObject.SetActive(true);
 	}
 	

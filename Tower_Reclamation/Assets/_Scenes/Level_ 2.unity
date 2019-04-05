@@ -2399,10 +2399,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 1751253469719790, guid: c75d683a57da05b46abfab717912e227, type: 2}
-      propertyPath: m_Name
-      value: Canvas Container (1)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c75d683a57da05b46abfab717912e227, type: 2}
   m_IsPrefabParent: 0

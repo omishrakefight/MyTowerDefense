@@ -10,6 +10,8 @@ public class CursorIcons : MonoBehaviour {
     [SerializeField] Texture2D waypointCursor = null;
 
     [SerializeField] Vector2 cursorHotspot = new Vector2(96, 96);
+    Vector2 cursorOutOfBoundsHotspot = new Vector2(48, 48);
+
 
     Raycasting raycasting;
 	// Use this for initialization
@@ -33,7 +35,7 @@ public class CursorIcons : MonoBehaviour {
                 Cursor.SetCursor(waypointCursor, cursorHotspot, CursorMode.Auto);
                 break;
             case Layer.RaycastEndStop:
-                Cursor.SetCursor(regularCursor, cursorHotspot, CursorMode.Auto);
+                Cursor.SetCursor(regularCursor, cursorOutOfBoundsHotspot, CursorMode.Auto);
                 break;
             default:
                 Debug.LogError("Error in cursorIcons script targetting");

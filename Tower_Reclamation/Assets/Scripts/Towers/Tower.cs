@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour {
+public abstract class Tower : MonoBehaviour {
 
     public int goldCost = 60;
 

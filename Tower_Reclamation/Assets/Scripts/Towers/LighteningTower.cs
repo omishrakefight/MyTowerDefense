@@ -8,7 +8,7 @@ public class LighteningTower : Tower {
     [SerializeField] public float chargeTime = 4f;
     [SerializeField] public float currentChargeTime = 0;
     public bool isCharged = false;
-    public new int goldCost = 80;
+    //public new int goldCost = 80;
 
     [SerializeField] protected Light charge;
     [SerializeField] protected ParticleSystem projectileParticle;

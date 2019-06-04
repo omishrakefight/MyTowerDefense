@@ -483,6 +483,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 5.75
+  enemyBaseSpeed: 5.75
+  chilled: 0
+  chillTimer: 1
+  timer: 0
+  chilledMultiplier: 0
 --- !u!114 &114941686308246830
 MonoBehaviour:
   m_ObjectHideFlags: 1

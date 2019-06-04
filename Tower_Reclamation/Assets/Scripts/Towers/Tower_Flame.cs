@@ -13,7 +13,7 @@ public class Tower_Flame : Tower {
     [SerializeField] ParticleSystem projectileParticleThree;
     // float particleLifetime;
     // float currentParticleLifetime;
-    public new int goldCost = 60;
+    //public new int goldCost = 60;
 
     // State of tower
     //[SerializeField] Transform targetEnemy;
@@ -23,6 +23,7 @@ public class Tower_Flame : Tower {
 
     override protected void Start()
     {
+        goldCost = 60;
         // nothing if it is unbuffed 
         if (!keepBuffed) { }
         else

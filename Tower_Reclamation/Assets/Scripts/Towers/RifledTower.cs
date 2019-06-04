@@ -8,7 +8,7 @@ public class RifledTower : Tower {
     // paramteres of each tower
 
     //[SerializeField] float attackRange = 32f;
-    public new int goldCost = 50;
+    //public new int goldCost = 50;
 
     [SerializeField] ParticleSystem projectileParticle;
     //[SerializeField] float towerDmg = 12;

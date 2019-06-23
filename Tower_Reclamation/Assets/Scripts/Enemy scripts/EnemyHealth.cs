@@ -15,17 +15,24 @@ public class EnemyHealth : MonoBehaviour {
     [SerializeField] AudioClip enemyDiedAudio;
 
     [SerializeField] public float hitPoints = 60;
+    [SerializeField] public float hitPointsMax;
 
     float burnTime = 3f;
     [SerializeField] bool onFire = false;
     [SerializeField] float time = 0;
     float burnDmg;
 
+    bool healing = false;
+    float healTimer = 1f;
+    float healTime = 0f;
+    float healPercent;
+
     // Use this for initialization
-    void Start ()
+    void Start()
     {
         float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 15;
         hitPoints += healthModifier;
+        hitPointsMax = hitPoints;
     }
 
     private void Update()
@@ -33,6 +40,10 @@ public class EnemyHealth : MonoBehaviour {
         if (onFire)
         {
             StartCoroutine(Burning(burnDmg));
+        }
+        if (healing)
+        {
+            StartCoroutine(Healing(healPercent));
         }
     }
 
@@ -99,6 +110,60 @@ public class EnemyHealth : MonoBehaviour {
         //    print("Current hit points are : " + hitPoints);
     }
 
+    public void HitByNonProjectile(float damage)
+    {
+        float dmg = damage;
+        hitPoints = hitPoints - dmg;
+        hitparticleprefab.Play();
+
+        if (hitPoints <= 0)
+        {
+            //Adds gold upon death, then deletes the enemy.
+            KillsEnemyandAddsGold();
+        }
+        else
+        {
+            GetComponent<AudioSource>().PlayOneShot(enemyHitAudio);
+        }
+    }
+
+    public void HealingBuffed(float healPercent)
+    {
+        this.healPercent = healPercent;
+        healTime = 0f;
+        healing = true;
+        //float healPerTick = (healPercent * hitPoints);
+
+    }
+
+    public IEnumerator Healing(float healPercent)
+    {
+        float healPerTick = (healPercent * hitPointsMax);
+        //print("HPT: " + healPerTick + " HPerc: " + healPercent + " HPM: " + hitPointsMax);
+
+        print("trying to heal...");
+        if (healing && healTime < healTimer)
+        {
+            time += 1 * Time.deltaTime;
+            // if he is full or more its hald effective as armor, otherwise full heal.
+            if (hitPoints >= hitPointsMax)
+            {
+                hitPoints += (healPerTick * Time.deltaTime) / 2;
+            }
+            else
+            {
+                hitPoints += (healPerTick * Time.deltaTime);
+            }
+
+            //print("I healed " + healPerTick + " HP!" + "   | healPercent: " + healPercent);
+        }
+        else
+        {
+            healing = false;
+        }
+        yield return new WaitForSeconds(1f);
+    }
+
     public void GotToEnd()
     {
         Instantiate(deathPrefab, transform.position, Quaternion.identity);
@@ -106,6 +171,7 @@ public class EnemyHealth : MonoBehaviour {
         KillEnemy();
     }
 
-    
+
+
 
 }

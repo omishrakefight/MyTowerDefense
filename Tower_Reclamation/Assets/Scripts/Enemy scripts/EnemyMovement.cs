@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using PicaVoxel;
+
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -9,25 +11,33 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] float enemySpeed = 5.75f;
 
     [SerializeField] float enemyBaseSpeed = 5.75f;
+    float enemySpeedMultiplier; // equal to chilledMultiplier, frenzy, and slimeMultiplier.
 
     public bool chilled = false;
     public float chillTimer = 1f;
     public float timer = 0f;
-    public float chilledMultiplier;
+    public float chilledMultiplier = 1f;
+
+    public float frenzyMultiplier = 1f;
+    public float slimeMultiplier = 1f;
+
+    List<Waypoint> path;
 
     int currentPathNode = 0;
+
+    Vector3 heightOffset = new Vector3(0f, 0f, 0f);
 
 
     void Start()
     {
         PathFinder pathFinder = FindObjectOfType<PathFinder>();
-        var path = pathFinder.GivePath();
+        path = pathFinder.GivePath();
         transform.position = path[0].transform.position;
 
-
+        // this is hard coded for the worms, need to det up dynamically if i can find the height from volume.  That or add rando field to enemy that contains the numbers.
+        //heightOffset = new Vector3(0f, 1f, 0f);
+        heightOffset = new Vector3(0f, gameObject.GetComponent<Volume>().Pivot.y, 0f);
         // StartCoroutine(FollowWaypoints(path));
-
-
     }
 
 
@@ -39,36 +49,52 @@ public class EnemyMovement : MonoBehaviour
             StartCoroutine(Chilled(chilledMultiplier));
         }
 
-        List<Waypoint> path = FindNextNode();
         float enemySpeedASecond = enemySpeed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, path[currentPathNode + 1].transform.position, enemySpeedASecond);
+        transform.position = Vector3.MoveTowards(transform.position, (path[currentPathNode + 1].transform.position + heightOffset), enemySpeedASecond);
 
-        if (transform.position == path[currentPathNode + 1].transform.position)
+        if (transform.position == path[currentPathNode + 1].transform.position + heightOffset)
         {
-            if (transform.position == path[path.Count - 1].transform.position)
+            if (transform.position == path[path.Count - 1].transform.position + heightOffset)
             {
                 GetComponent<EnemyHealth>().GotToEnd();
                 FindObjectOfType<MyHealth>().AnEnemyFinishedThePath();
             }
             else
             {
+                // increments the path node (go to next one) and turns them if need be.
                 ++currentPathNode;
+                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x > 1f)
+                {
+                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+                }
+                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x < -1f)
+                {
+                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+                }
+                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).z > 1f)
+                {
+                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 270f, 0f));
+                }
+                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).z < -1f)
+                {
+                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 90f, 0f));
+                }
             }
         }
 
 
     }
 
-    private List<Waypoint> FindNextNode()
-    {
-        PathFinder pathFinder = FindObjectOfType<PathFinder>();
-        var path = pathFinder.GivePath();
-        return path;
-    }
+    //private List<Waypoint> FindNextNode()
+    //{
+    //    PathFinder pathFinder = FindObjectOfType<PathFinder>();
+    //    var path = pathFinder.GivePath();
+    //    return path;
+    //}
 
     public IEnumerator Chilled(float chilledMultiplier)
     {
-
+        // change this math for enemy speed = basespeed times multiplier.   
         if (chilled && timer < chillTimer)
         {
             timer += 1 * Time.deltaTime;
@@ -77,7 +103,8 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             chilled = false;
-            enemySpeed = enemyBaseSpeed;
+            chilledMultiplier = 1f;
+            enemySpeed = enemyBaseSpeed * chilledMultiplier * frenzyMultiplier * slimeMultiplier;
         }
 
         yield return new WaitForSeconds(1f);

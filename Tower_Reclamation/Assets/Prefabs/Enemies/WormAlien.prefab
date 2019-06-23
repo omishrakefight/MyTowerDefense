@@ -166,6 +166,7 @@ GameObject:
   - component: {fileID: 114871466069070542}
   - component: {fileID: 54400026582339416}
   - component: {fileID: 65286833106004610}
+  - component: {fileID: 82581689105575720}
   m_Layer: 0
   m_Name: WormAlien
   m_TagString: PicaVoxelVolume
@@ -1458,7 +1459,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -1472,7 +1473,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9, y: 5, z: 8}
+  m_Size: {x: 9, y: 4, z: 8}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65847919097124672
 BoxCollider:
@@ -1486,6 +1487,86 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 9.6, y: 4, z: 8}
   m_Center: {x: 4.8, y: 2, z: 4}
+--- !u!82 &82581689105575720
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1246558243540080}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114026295104800912
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1696,6 +1777,7 @@ MonoBehaviour:
   enemyHitAudio: {fileID: 8300000, guid: f488ee320c5d5264bb661a4fea76ccfc, type: 3}
   enemyDiedAudio: {fileID: 8300000, guid: 5c8980e6da5408944872a958d864c1fb, type: 3}
   hitPoints: 100
+  hitPointsMax: 0
   onFire: 0
   time: 0
 --- !u!114 &114674212720665196
@@ -1787,6 +1869,8 @@ MonoBehaviour:
   chillTimer: 1
   timer: 0
   chilledMultiplier: 0
+  frenzyMultiplier: 1
+  slimeMultiplier: 1
 --- !u!114 &114899908522339036
 MonoBehaviour:
   m_ObjectHideFlags: 1

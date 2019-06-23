@@ -325,16 +325,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114667929893754478, guid: 0dda80d1a3480b246ae2a6121eb27390,
-        type: 2}
-      propertyPath: towerPlaceholder
-      value: 
-      objectReference: {fileID: 223473339}
     - target: {fileID: 114393848420998872, guid: 0dda80d1a3480b246ae2a6121eb27390,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1712266344}
+    - target: {fileID: 114667929893754478, guid: 0dda80d1a3480b246ae2a6121eb27390,
+        type: 2}
+      propertyPath: towerPlaceholder
+      value: 
+      objectReference: {fileID: 223473339}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0dda80d1a3480b246ae2a6121eb27390, type: 2}
   m_IsPrefabParent: 0
@@ -8240,7 +8240,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 27781328}
   m_HandleRect: {fileID: 27781327}
   m_Direction: 0
-  m_Value: 0.5
+  m_Value: 0.49999997
   m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:

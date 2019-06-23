@@ -30,7 +30,11 @@ public class TowerSelecter : MonoBehaviour
     [Header("Lightening Towers")]
     [SerializeField] Tower basicLightTower;
 
+    [Header("Plasma Towers")]
+    [SerializeField] Tower basicPlasmaTower;
 
+    [Header("Ice Towers")]
+    [SerializeField] Tower basicIceTower;
 
     float turnSpeed = 6f;
 

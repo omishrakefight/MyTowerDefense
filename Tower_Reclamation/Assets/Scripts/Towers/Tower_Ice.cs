@@ -10,7 +10,7 @@ public class Tower_Ice : Tower {
     void Start()
     {
         test = blueLight.range;
-        goldCost = 0;
+        goldCost = 50;
     }
 
     // Update is called once per frame

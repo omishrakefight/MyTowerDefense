@@ -19,7 +19,7 @@ public class Tower_Plasma : Tower {
     // Use this for initialization
     void Start () {
         base.Start();
-        goldCost = 0;
+        goldCost = 50;
         attackRange = 20;
         towerDmg = 20;
         //laser = transform.GetComponentInChildren<CapsuleCollider>();

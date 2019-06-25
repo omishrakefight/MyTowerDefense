@@ -18695,12 +18695,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsBetweenSpawns: 2
-  enemyPrefab: {fileID: 114078703179129330, guid: 04f81ff9814844ccfa08226f8d46a3f4,
+  enemyPrefab1: {fileID: 114871466069070542, guid: ee77b196df931cc46bd84a186e6fe26d,
+    type: 2}
+  enemyPrefab2: {fileID: 114078703179129330, guid: 04f81ff9814844ccfa08226f8d46a3f4,
+    type: 2}
+  enemyPrefab3: {fileID: 114678874228705708, guid: 6a73a9a938edbc24cad92b6bb19a89b6,
     type: 2}
   enemiesLocation: {fileID: 1292924664}
   enemySpawnAudio: {fileID: 8300000, guid: a8c6def41b8aafd4881fc5641c0d921b, type: 3}
   win: {fileID: 1254165538}
   stillAlive: 1
+  enemyList: 
   slider: {fileID: 1193706440}
 --- !u!82 &1292924666
 AudioSource:

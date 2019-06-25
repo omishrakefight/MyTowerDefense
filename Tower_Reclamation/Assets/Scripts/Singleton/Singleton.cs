@@ -8,7 +8,7 @@ public sealed class Singleton : MonoBehaviour {
     TowerFactory towerFactory = new TowerFactory();
 
     // do not put a singleton in first map, it has static base turret for level one.
-
+    private List<int> enemyList = new List<int>();
     // this holds the set tower choices
     public Tower tempTower;
     public Tower towerOne;
@@ -82,7 +82,24 @@ public sealed class Singleton : MonoBehaviour {
     }
 
 
-
+    public List<int> GetEnemyList()
+    {
+        for (int x = 0; x < 5; x++)
+        {
+            for (int y = 0; y < 6; y++)
+            {
+                if(y % 2 == 0)
+                {
+                    enemyList.Add(2);
+                }
+                else
+                enemyList.Add(1);
+            }
+            enemyList.Add(-1);
+        }
+        //enemyList = new List<int> { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+        return enemyList;
+    }
     //private static Singleton instance = null;
     //private static readonly object padlock = new object();
 

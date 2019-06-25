@@ -38,7 +38,7 @@ public class CursorIcons : MonoBehaviour {
                 Cursor.SetCursor(regularCursor, cursorOutOfBoundsHotspot, CursorMode.Auto);
                 break;
             default:
-                Debug.LogError("Error in cursorIcons script targetting");
+                //Debug.LogError("Error in cursorIcons script targetting");
                 break;
         }
     }

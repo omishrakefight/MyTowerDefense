@@ -88,12 +88,12 @@ public sealed class Singleton : MonoBehaviour {
         {
             for (int y = 0; y < 6; y++)
             {
-                if(y % 2 == 0)
+                if(y > 3) /// temporary, it adds 1-3 for variation.
                 {
-                    enemyList.Add(2);
+                    enemyList.Add(y - 3);
                 }
                 else
-                enemyList.Add(1);
+                enemyList.Add(y);
             }
             enemyList.Add(-1);
         }

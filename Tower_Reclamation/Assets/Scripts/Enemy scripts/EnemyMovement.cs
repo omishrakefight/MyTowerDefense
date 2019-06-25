@@ -35,8 +35,8 @@ public class EnemyMovement : MonoBehaviour
         transform.position = path[0].transform.position;
 
         // this is hard coded for the worms, need to det up dynamically if i can find the height from volume.  That or add rando field to enemy that contains the numbers.
-        //heightOffset = new Vector3(0f, 1f, 0f);
-        heightOffset = new Vector3(0f, gameObject.GetComponent<Volume>().Pivot.y, 0f);
+        heightOffset = new Vector3(0f, 1f, 0f);
+        //heightOffset = new Vector3(0f, gameObject.GetComponent<Volume>().Pivot.y, 0f);
         // StartCoroutine(FollowWaypoints(path));
     }
 

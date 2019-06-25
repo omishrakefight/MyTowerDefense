@@ -123,7 +123,8 @@ public class TextStoryStart : MonoBehaviour {
     {
         if (conversationTracker == conversations.Count && spawnEnemies)
         {
-            StartCoroutine(FindObjectOfType<EnemySpawner>().ContinualSpawnEnemies());
+            //StartCoroutine(FindObjectOfType<EnemySpawner>().ContinualSpawnEnemies());
+            FindObjectOfType<EnemySpawner>().StartBattle();
             spawnEnemies = false;
         }
     }

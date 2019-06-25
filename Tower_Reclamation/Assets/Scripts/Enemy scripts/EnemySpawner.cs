@@ -55,10 +55,10 @@ public class EnemySpawner : MonoBehaviour
         foreach (int x in enemyList)
         {
             print("Here comes a specific enemy!");
+            CheckArray(x);
             if (x > 0)
             {
                 currentlySpawning = true;
-                CheckArray(x);
                 var enemySpawnLoc = Instantiate(currentEnemy, transform.position, Quaternion.identity);
                 enemySpawnLoc.transform.parent = enemiesLocation;
 
@@ -70,6 +70,7 @@ public class EnemySpawner : MonoBehaviour
                 // make < 0 switch?
                 if (betweenWaves)
                 {
+                    currentlySpawning = false;
                     betweenWaves = false;
                     yield return StartCoroutine(WaitBetweenWaves());
                 }
@@ -121,48 +122,54 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartBattle()
     {
-        StartCoroutine(SpawnSpecificEnemies());
+        print("talks over time to fight!");
+        if (!currentlySpawning)
+        {
+            waveTimer = 0;
+            StartCoroutine(SpawnSpecificEnemies());
+        }
     }
     //Get path on start so that you cant build towers wrongly
-    public IEnumerator ContinualSpawnEnemies()
-    {
-        // resets the timer when a wave is spawned.
-        waveTimer = 0;
+    //public IEnumerator ContinualSpawnEnemies()
+    //{
+    //    // resets the timer when a wave is spawned.
+    //    waveTimer = 0;
 
-        while (monstersSpawned < 6 && stillAlive && level.waveCount < 5)
-        {
-            currentlySpawning = true;
-            var enemySpawnLoc = Instantiate(enemyPrefab1, transform.position, Quaternion.identity);
-            enemySpawnLoc.transform.parent = enemiesLocation;
-            monstersSpawned++;
-            GetComponent<AudioSource>().PlayOneShot(enemySpawnAudio);
-            yield return new WaitForSeconds(secondsBetweenSpawns);
-        }
-        FindObjectOfType<CurrentWave>().WaveUpOne();
-        currentlySpawning = false;
-        monstersSpawned = 0;
+    //    while (monstersSpawned < 6 && stillAlive && level.waveCount < 5)
+    //    {
+    //        currentlySpawning = true;
+    //        var enemySpawnLoc = Instantiate(enemyPrefab1, transform.position, Quaternion.identity);
+    //        enemySpawnLoc.transform.parent = enemiesLocation;
+    //        monstersSpawned++;
+    //        GetComponent<AudioSource>().PlayOneShot(enemySpawnAudio);
+    //        yield return new WaitForSeconds(secondsBetweenSpawns);
+    //    }
+    //    FindObjectOfType<CurrentWave>().WaveUpOne();
+    //    currentlySpawning = false;
+    //    monstersSpawned = 0;
 
-        // If on Last wave, check enemy number for win.
-        if (level.waveCount == 5)
-        {
-            while(FindObjectsOfType<EnemyMovement>().Length > 0)
-            {
-                yield return new WaitForSeconds(1);
-            }
-            if(stillAlive)
-                win.enabled = true;
-            yield return new WaitForSeconds(4);
-            FindObjectOfType<LoadNextArea>().LoadBase();
-        }
+    //    // If on Last wave, check enemy number for win.
+    //    if (level.waveCount == 5)
+    //    {
+    //        while(FindObjectsOfType<EnemyMovement>().Length > 0)
+    //        {
+    //            yield return new WaitForSeconds(1);
+    //        }
+    //        if(stillAlive)
+    //            win.enabled = true;
+    //        yield return new WaitForSeconds(4);
+    //        FindObjectOfType<LoadNextArea>().LoadBase();
+    //    }
         
-        yield return StartCoroutine(WaitBetweenWaves());
-    }
+    //    yield return StartCoroutine(WaitBetweenWaves());
+    //}
 
     IEnumerator WaitBetweenWaves()
     {
         yield return new WaitForSeconds(timeBetweenWaves);
         if (!currentlySpawning)
         {
+            waveTimer = 0;
             //yield return StartCoroutine(ContinualSpawnEnemies());
             yield return StartCoroutine(SpawnSpecificEnemies());
         }
@@ -181,8 +188,10 @@ public class EnemySpawner : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !currentlySpawning)
         {
             waveTimer = 0;
+            currentlySpawning = true;
             betweenWaves = false;
-            StartCoroutine(ContinualSpawnEnemies());
+            //StartCoroutine(ContinualSpawnEnemies());
+            StartCoroutine(SpawnSpecificEnemies());
         }
     }
 

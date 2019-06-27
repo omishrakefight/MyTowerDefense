@@ -21,7 +21,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
 
     public void PickTowers()
     {
-        print(Random.Range(0, 3));
+        print(Random.Range(0, amountOfUndiscoveredTowers));
     }
 
 }

@@ -4,10 +4,12 @@ using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+
+[Serializable]
 public class SaveAndLoad : MonoBehaviour {
 
-    // .dat = .data, not needed could be anything
-    const string filePath = "TowerInformation.dat";
+     bool[] towerList;
+
     // Use this for initialization
     void Start()
     {
@@ -19,15 +21,25 @@ public class SaveAndLoad : MonoBehaviour {
     {
 
     }
+
+    private void GetReferences()
+    {
+        PlayerTowerLog towerListObj = FindObjectOfType<PlayerTowerLog>();
+
+        towerList = towerListObj.SaveTowers();
+
+    }
     public void Save()
     {
+        GetReferences();
+
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + filePath);
+        FileStream file = File.Create(Application.persistentDataPath + "/TowerInformation.dat");
 
         PlayerTowerLog towersAvailable = new PlayerTowerLog();
         // initialize or w/e i want to do be4 sving
 
-        bf.Serialize(file, towersAvailable);
+        bf.Serialize(file, this); // this is whats serialized.
         file.Close();
 
     }
@@ -36,10 +48,14 @@ public class SaveAndLoad : MonoBehaviour {
     {
         BinaryFormatter bf = new BinaryFormatter();
         // ?????????????????????????????? openWrite?
-        FileStream file = File.OpenWrite(Application.persistentDataPath + filePath + FileMode.Open);
-        PlayerTowerLog towerLog = (PlayerTowerLog)bf.Deserialize(file);
+        FileStream file = File.OpenWrite(Application.persistentDataPath + "/TowerInformation.dat" + FileMode.Open);
+        SaveAndLoad towerLog = (SaveAndLoad)bf.Deserialize(file);
         file.Close();
-
+        towerList = towerLog.towerList; // initializing off of new object.
+        foreach(bool tower in towerList)
+        {
+            print(tower);
+        }
         // initialize or create whatever wiht information now.
     }
 }

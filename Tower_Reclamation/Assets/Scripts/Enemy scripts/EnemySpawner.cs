@@ -54,7 +54,7 @@ public class EnemySpawner : MonoBehaviour
         // get on stsart the neemy list from singleton.
         foreach (int x in enemyList)
         {
-            print("Here comes a specific enemy!");
+            //print("Here comes a specific enemy!");
             CheckArray(x);
             if (x > 0)
             {
@@ -64,6 +64,7 @@ public class EnemySpawner : MonoBehaviour
 
                 GetComponent<AudioSource>().PlayOneShot(enemySpawnAudio);
 
+                yield return new WaitForSeconds(secondsBetweenSpawns);
             }
             else /// not an enemy
             {
@@ -76,7 +77,6 @@ public class EnemySpawner : MonoBehaviour
                 }
                 
             }
-            yield return new WaitForSeconds(secondsBetweenSpawns);
         }
 
         // check for win
@@ -99,7 +99,7 @@ public class EnemySpawner : MonoBehaviour
         // maybe use global variables 'current enemy' and 'wait time' to set delays or w/e
         // example wait time = timeBetweenWaves
         // maybe case 0 is last wave? or endwave
-        print("checking which guy to spawn.....");
+        //print("checking which guy to spawn.....");
         switch (Enemy)
         {
             case 1:
@@ -122,7 +122,7 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartBattle()
     {
-        print("talks over time to fight!");
+        //print("talks over time to fight!");
         if (!currentlySpawning)
         {
             waveTimer = 0;

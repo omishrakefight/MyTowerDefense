@@ -8,8 +8,10 @@ using System.IO;
 [Serializable]
 public class SaveAndLoad : MonoBehaviour {
 
-     bool[] towerList;
+     public bool[] towerList;
 
+    SaveSerializedObject saver;
+    // create a new serializable object and then just import / export into it THEN serialize it here.
     // Use this for initialization
     void Start()
     {
@@ -28,6 +30,10 @@ public class SaveAndLoad : MonoBehaviour {
 
         towerList = towerListObj.SaveTowers();
 
+        //saver = SaveSerializedObject(towerListObj.SaveTowers());
+        saver = GetComponent<SaveSerializedObject>();
+        saver.towerList = towerListObj.SaveTowers();
+
     }
     public void Save()
     {
@@ -36,10 +42,10 @@ public class SaveAndLoad : MonoBehaviour {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/TowerInformation.dat");
 
-        PlayerTowerLog towersAvailable = new PlayerTowerLog();
+        //PlayerTowerLog towersAvailable = new PlayerTowerLog();
         // initialize or w/e i want to do be4 sving
 
-        bf.Serialize(file, this); // this is whats serialized.
+        bf.Serialize(file, saver.towerList); // this is whats serialized.
         file.Close();
 
     }
@@ -48,11 +54,13 @@ public class SaveAndLoad : MonoBehaviour {
     {
         BinaryFormatter bf = new BinaryFormatter();
         // ?????????????????????????????? openWrite?
-        FileStream file = File.OpenWrite(Application.persistentDataPath + "/TowerInformation.dat" + FileMode.Open);
-        SaveAndLoad towerLog = (SaveAndLoad)bf.Deserialize(file);
+        FileStream file = File.Open(Application.persistentDataPath + "/TowerInformation.dat", FileMode.Open);
+        //SaveAndLoad towerLog = (SaveAndLoad)bf.Deserialize(file);
+        //SaveSerializedObject towerLog = (SaveSerializedObject)bf.Deserialize(file);
+        bool[] bools = (bool[])bf.Deserialize(file);
         file.Close();
-        towerList = towerLog.towerList; // initializing off of new object.
-        foreach(bool tower in towerList)
+        //towerList = towerLog.towerList; // initializing off of new object.
+        foreach(bool tower in bools)
         {
             print(tower);
         }

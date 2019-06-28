@@ -30,8 +30,9 @@ public class SaveAndLoad : MonoBehaviour {
 
         towerList = towerListObj.SaveTowers();
 
-        //saver = SaveSerializedObject(towerListObj.SaveTowers());
-        saver = GetComponent<SaveSerializedObject>();
+        saver = new SaveSerializedObject(towerListObj.SaveTowers());
+        //saver = GetComponent<SaveSerializedObject>();
+
         saver.towerList = towerListObj.SaveTowers();
 
     }
@@ -45,7 +46,7 @@ public class SaveAndLoad : MonoBehaviour {
         //PlayerTowerLog towersAvailable = new PlayerTowerLog();
         // initialize or w/e i want to do be4 sving
 
-        bf.Serialize(file, saver.towerList); // this is whats serialized.
+        bf.Serialize(file, saver); // this is whats serialized.
         file.Close();
 
     }
@@ -57,10 +58,12 @@ public class SaveAndLoad : MonoBehaviour {
         FileStream file = File.Open(Application.persistentDataPath + "/TowerInformation.dat", FileMode.Open);
         //SaveAndLoad towerLog = (SaveAndLoad)bf.Deserialize(file);
         //SaveSerializedObject towerLog = (SaveSerializedObject)bf.Deserialize(file);
-        bool[] bools = (bool[])bf.Deserialize(file);
+        //bool[] bools = (bool[])bf.Deserialize(file);
+        SaveSerializedObject f = (SaveSerializedObject)bf.Deserialize(file);
+
         file.Close();
         //towerList = towerLog.towerList; // initializing off of new object.
-        foreach(bool tower in bools)
+        foreach (bool tower in f.towerList)
         {
             print(tower);
         }

@@ -9,7 +9,7 @@ public class PlayerTowerLog : MonoBehaviour {
     /// MAKES IT EASIER TO ADD AND REMOVE.
     /// </summary>
     //Dictionary<string, bool> towers;
-    bool[] towers1;
+    public bool[] towers1;
 
     //int numberOfTowers = 6;
 
@@ -74,7 +74,7 @@ public class PlayerTowerLog : MonoBehaviour {
 
 }
 
-enum Towers
+public enum Towers
 {
     RifledTower = 0,
     AssaultTower = 1,

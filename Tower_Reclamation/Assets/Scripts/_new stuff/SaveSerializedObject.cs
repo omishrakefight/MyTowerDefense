@@ -14,6 +14,10 @@ public class SaveSerializedObject  {
     {
         towerList = towerListSaves;
     }
+    public void x ()
+    {
+        
+    }
 
     //public void UpdateTowerList(bool[] newTowerList)
     //{

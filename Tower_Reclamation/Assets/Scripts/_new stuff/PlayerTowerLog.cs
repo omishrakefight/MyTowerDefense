@@ -35,6 +35,8 @@ public class PlayerTowerLog : MonoBehaviour {
             false, // Plasma Tower
             false  // Slow Tower
         };
+        print("loaded " + towers1.Length + " towers");
+        GetComponent<RandomTowerBlueprints>().ManualStart();
         //gana pull this from saved file hopefully.
         //towers.Add("hasRifled", true);
         //towers.Add("hasFlameTower", false);
@@ -53,6 +55,7 @@ public class PlayerTowerLog : MonoBehaviour {
     public void LoadTowers(bool[] loadedTowers)
     {
         this.towers1 = loadedTowers;
+        GetComponent<RandomTowerBlueprints>().ManualStart();
     }
 
     //public Dictionary<string, bool> SaveTowers()

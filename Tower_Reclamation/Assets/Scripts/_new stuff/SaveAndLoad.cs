@@ -11,11 +11,12 @@ public class SaveAndLoad : MonoBehaviour {
      public bool[] towerList;
 
     SaveSerializedObject saver;
+    PlayerTowerLog towerListObj;
     // create a new serializable object and then just import / export into it THEN serialize it here.
     // Use this for initialization
     void Start()
     {
-
+        towerListObj = FindObjectOfType<PlayerTowerLog>();
     }
 
     // Update is called once per frame
@@ -26,7 +27,6 @@ public class SaveAndLoad : MonoBehaviour {
 
     private void GetReferences()
     {
-        PlayerTowerLog towerListObj = FindObjectOfType<PlayerTowerLog>();
 
         towerList = towerListObj.SaveTowers();
 
@@ -60,6 +60,7 @@ public class SaveAndLoad : MonoBehaviour {
         //SaveSerializedObject towerLog = (SaveSerializedObject)bf.Deserialize(file);
         //bool[] bools = (bool[])bf.Deserialize(file);
         SaveSerializedObject f = (SaveSerializedObject)bf.Deserialize(file);
+        towerListObj.LoadTowers(f.towerList);
 
         file.Close();
         //towerList = towerLog.towerList; // initializing off of new object.

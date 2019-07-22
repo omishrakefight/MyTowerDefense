@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public sealed class Singleton : MonoBehaviour {
 
     TowerFactory towerFactory = new TowerFactory();
-
+    [SerializeField] Text levelText;
     // do not put a singleton in first map, it has static base turret for level one.
     private List<int> enemyList = new List<int>();
     // this holds the set tower choices
@@ -22,6 +22,7 @@ public sealed class Singleton : MonoBehaviour {
     public static Singleton Instance { get; private set; }
 
     [SerializeField] public int scenesChanged;
+    public int level = 1;
 
     public void TowerOne()
     {
@@ -69,6 +70,25 @@ public sealed class Singleton : MonoBehaviour {
 
     }
 
+ //           __   Slant font           __           ____            ____                                      __     _                
+ //          / /   ___  _   __  ___    / /          /  _/   ____    / __/  ____    _____   ____ ___   ____ _  / /_   (_)  ____    ____ 
+ //         / /   / _ \| | / / / _ \  / /           / /    / __ \  / /_   / __ \  / ___/  / __ `__ \ / __ `/ / __/  / /  / __ \  / __ \
+ //        / /___/  __/| |/ / /  __/ / /          _/ /    / / / / / __/  / /_/ / / /     / / / / / // /_/ / / /_   / /  / /_/ / / / / /
+ //       /_____/\___/ |___/  \___/ /_/          /___/   /_/ /_/ /_/     \____/ /_/     /_/ /_/ /_/ \__,_/  \__/  /_/   \____/ /_/ /_/ 
+                                                                                                                             
+                                
+     public void LevelCleared()
+     {
+        level++;
+        levelText.text = "Level : " + level.ToString();
+    }
+
+    public void LoadLevel(int loadedLevel)
+    {
+        level = loadedLevel;
+        levelText.text = "Level : " + level.ToString();
+    }
+
     // Use this for initialization
     void Start()
     {
@@ -81,7 +101,7 @@ public sealed class Singleton : MonoBehaviour {
 
     }
 
-
+    // Maybe move this out of here and to a script inside of base room control / meeting room?
     public List<int> GetEnemyList()
     {
         for (int x = 0; x < 5; x++)

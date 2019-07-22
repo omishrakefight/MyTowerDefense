@@ -9,12 +9,13 @@ using System.IO;
 public class SaveSerializedObject  {
 
     public bool[] towerList;
+    public int currentLevel = 1;
 
     public SaveSerializedObject(bool[] towerListSaves)
     {
         towerList = towerListSaves;
     }
-    public void x ()
+    public void UpdateCurrentLevel()
     {
         
     }

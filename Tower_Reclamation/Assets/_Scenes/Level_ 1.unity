@@ -1742,6 +1742,7 @@ GameObject:
   - component: {fileID: 409704925}
   - component: {fileID: 409704924}
   - component: {fileID: 409704923}
+  - component: {fileID: 409704929}
   m_Layer: 10
   m_Name: Enemy_Speedy
   m_TagString: Untagged
@@ -1917,6 +1918,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d2b7b803fb0ad24fa4ec0c9fcc8a3ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &409704929
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 409704922}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 16, y: 15, z: 15}
+  m_Center: {x: 0, y: 7, z: 0}
 --- !u!1001 &425506075
 Prefab:
   m_ObjectHideFlags: 0
@@ -9768,6 +9781,28 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 771021931}
+--- !u!1 &787622999 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1334769697939268, guid: b415da16db46191489644c54efc0abe8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2135277619}
+--- !u!114 &787623001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 787622999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23d8359c1a7186448c7229eaf011ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laser: {fileID: 787623004}
+--- !u!136 &787623004 stripped
+CapsuleCollider:
+  m_PrefabParentObject: {fileID: 136885891201317604, guid: b415da16db46191489644c54efc0abe8,
+    type: 2}
+  m_PrefabInternal: {fileID: 2135277619}
 --- !u!1001 &803830509
 Prefab:
   m_ObjectHideFlags: 0
@@ -9932,8 +9967,8 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 874330344}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
+  m_IsTrigger: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 16, y: 15, z: 15}
   m_Center: {x: 0, y: 7, z: 0}
@@ -26682,6 +26717,26 @@ Prefab:
       propertyPath: thisInstanceId
       value: -83932
       objectReference: {fileID: 0}
+    - target: {fileID: 114430127650386502, guid: ee77b196df931cc46bd84a186e6fe26d,
+        type: 2}
+      propertyPath: Undone
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65286833106004610, guid: ee77b196df931cc46bd84a186e6fe26d,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65847919097124672, guid: ee77b196df931cc46bd84a186e6fe26d,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 65847919097124672, guid: ee77b196df931cc46bd84a186e6fe26d,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee77b196df931cc46bd84a186e6fe26d, type: 2}
   m_IsPrefabParent: 0
@@ -34868,6 +34923,22 @@ Prefab:
       propertyPath: HasDeserialized
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 65777505679448786, guid: b415da16db46191489644c54efc0abe8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 65777505679448786, guid: b415da16db46191489644c54efc0abe8,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114007170974421930, guid: b415da16db46191489644c54efc0abe8,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114007170974421930, guid: b415da16db46191489644c54efc0abe8, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b415da16db46191489644c54efc0abe8, type: 2}
   m_IsPrefabParent: 0

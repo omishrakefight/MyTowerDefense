@@ -1,12 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower_Plasma : Tower {
+public class Tower_Plasma : Tower
+{
 
     public float distanceToEnemyTest;
     public CapsuleCollider laser;
     [SerializeField] ParticleSystem spray;
+    List<EnemyHealth> targets = new List<EnemyHealth>();
+    Tower_PlasmaHead plasmaTargeter;
 
     float chargeTime = 0f;
     bool canFire = false;
@@ -17,14 +21,14 @@ public class Tower_Plasma : Tower {
     bool laserIsOn = false;
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         base.Start();
-        goldCost = 50;
-        attackRange = 20;
+        goldCost = 0;
+        attackRange = 30;
         towerDmg = 20;
         //laser = transform.GetComponentInChildren<CapsuleCollider>();
-
-	}
+    }
 
     // Update is called once per frame
     void Update()
@@ -45,11 +49,21 @@ public class Tower_Plasma : Tower {
             laserCurrentTime += 1 * Time.deltaTime;
             if (laserCurrentTime > laserOnTime)
             {
-                laserIsOn = false;
+                //get list first, before turning off object.
+                GetListOfEnemies();
+
                 laserCurrentTime = 0f;
                 canFire = false;
-                laser.gameObject.SetActive(false);
+                laserIsOn = false;
+
+
                 spray.Emit(10);
+
+                HitEnemies();
+                // hit then clear them
+                targets.Clear();
+                plasmaTargeter.ClearEnemies();
+                laser.gameObject.SetActive(false);
             }
         }
 
@@ -65,13 +79,21 @@ public class Tower_Plasma : Tower {
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void HitEnemies()
     {
-        if (other.gameObject.GetComponentInParent<EnemyHealth>())
+        print(targets.Count + " enemies in list");
+        foreach (EnemyHealth enemy in targets)
         {
-            //deal dmg instead.
-            //other.GetComponentInParent<EnemyHealth>().CaughtFire(currentTowerDmg);
+            enemy.HitByNonProjectile(towerDmg);
         }
+    }
+
+    public void GetListOfEnemies()
+    {
+        plasmaTargeter = GetComponentInChildren<Tower_PlasmaHead>();
+
+        targets = plasmaTargeter.getEnemies();
+        print("targets " + targets.Count);
     }
 
 
@@ -92,7 +114,7 @@ public class Tower_Plasma : Tower {
 
     private void Shoot(bool isActive)
     {
-        if (canFire)
+        if (canFire && isActive)
         {
             laser.gameObject.SetActive(true);
             laserIsOn = true;

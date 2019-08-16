@@ -13,17 +13,28 @@ public class RandomTowerBlueprints : MonoBehaviour {
     List<string> undiscoveredTowers = new List<string>();
 
     //buttons
+    [Header("Button One")]
     [SerializeField] Button towerButtonOne;
     [SerializeField] Text buttonOneText;
     [SerializeField] Image buttonOneImage;
 
+    [Header("Button Two")]
     [SerializeField] Button towerButtonTwo;
     [SerializeField] Text buttonTwoText;
     [SerializeField] Image buttonTwoImage;
 
+    [Header("Button Three")]
     [SerializeField] Button towerButtonThree;
     [SerializeField] Text buttonThreeText;
     [SerializeField] Image buttonThreeImage;
+
+    [Header("Images")]
+    [SerializeField] Sprite FlameTowerPic;
+    [SerializeField] Sprite PlasmaTowerPic;
+    [SerializeField] Sprite SlowTowerPic;
+    [SerializeField] Sprite AssaultTowerPic;
+    [SerializeField] Sprite LightningTowerPic;
+    [SerializeField] Sprite AlreadyKnown;
 
 
 
@@ -209,36 +220,36 @@ public class RandomTowerBlueprints : MonoBehaviour {
         else if (towerTextDescription.Equals("AssaultTower"))
         {
             towerDescription = AssaultTower;
-            //image = ;
+            image.sprite = AssaultTowerPic;
 
         }
         else if (towerTextDescription.Equals("FlameTower"))
         {
             towerDescription = FlameTower;
-            //image = ;
-
+            image.sprite = FlameTowerPic;
         }
         else if (towerTextDescription.Equals("LighteningTower"))
         {
             towerDescription = LightningTower;
-            //image = ;
+            image.sprite = LightningTowerPic;
 
         }
         else if (towerTextDescription.Equals("PlasmaTower"))
         {
             towerDescription = PlasmaTower;
-            //image = ;
+            image.sprite = PlasmaTowerPic;
 
         }
         else if (towerTextDescription.Equals("SlowTower"))
         {
             towerDescription = SlowTower;
-            //image = ;
+            image.sprite = SlowTowerPic;
 
         }
         else
         {
             towerDescription = "Already known.";
+            image.sprite = AlreadyKnown;
         }
 
         return towerDescription;
@@ -268,8 +279,10 @@ public class RandomTowerBlueprints : MonoBehaviour {
                 if (amountOfUndiscoveredTowers == 0)
                 {
                     towerButtonOne.GetComponentInChildren<Text>().text = "LOCKED";
+                    buttonOneText.text = SetupNewButton("no new towers", ref buttonOneImage);
 
-                } else
+                }
+                else
                 {
                     towerButtonOne.GetComponentInChildren<Text>().text = undiscoveredTowers[rando];
                     buttonOneText.text = SetupNewButton(undiscoveredTowers[rando], ref buttonOneImage);
@@ -286,6 +299,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
                 if (amountOfUndiscoveredTowers == 0)
                 {
                     towerButtonTwo.GetComponentInChildren<Text>().text = "LOCKED";
+                    buttonTwoText.text = SetupNewButton("no new towers", ref buttonTwoImage);
                 }
                 else
                 {
@@ -304,6 +318,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
                 if (amountOfUndiscoveredTowers == 0)
                 {
                     towerButtonThree.GetComponentInChildren<Text>().text = "LOCKED";
+                    buttonThreeText.text = SetupNewButton("no new towers", ref buttonThreeImage);
                 }
                 else
                 {

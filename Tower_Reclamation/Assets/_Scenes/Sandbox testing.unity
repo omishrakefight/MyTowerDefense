@@ -261,7 +261,7 @@ MonoBehaviour:
   ImportedFrom: 0
   ImportedFile: 
   ImportedCutoutColor: {r: 0, g: 0, b: 0, a: 0}
-  thisInstanceId: 13090
+  thisInstanceId: 13110
   Undone: 0
 --- !u!4 &103084918
 Transform:
@@ -344,7 +344,7 @@ Prefab:
     - target: {fileID: 224887268992930074, guid: b436114ee7467c744bd8f829f81e0518,
         type: 2}
       propertyPath: m_AnchorMin.x
-      value: 0.00000011920929
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224887268992930074, guid: b436114ee7467c744bd8f829f81e0518,
         type: 2}
@@ -355,6 +355,51 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224969952759065436, guid: b436114ee7467c744bd8f829f81e0518,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000026267398
+      objectReference: {fileID: 0}
+    - target: {fileID: 224076363956853530, guid: b436114ee7467c744bd8f829f81e0518,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224076363956853530, guid: b436114ee7467c744bd8f829f81e0518,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224076363956853530, guid: b436114ee7467c744bd8f829f81e0518,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 224076363956853530, guid: b436114ee7467c744bd8f829f81e0518,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 224461845622618914, guid: b436114ee7467c744bd8f829f81e0518,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224461845622618914, guid: b436114ee7467c744bd8f829f81e0518,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: -9
+      objectReference: {fileID: 0}
+    - target: {fileID: 224256019468041666, guid: b436114ee7467c744bd8f829f81e0518,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224256019468041666, guid: b436114ee7467c744bd8f829f81e0518,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b436114ee7467c744bd8f829f81e0518, type: 2}
@@ -1885,6 +1930,12 @@ MonoBehaviour:
   towerButtonThree: {fileID: 130822818}
   buttonThreeText: {fileID: 441231149}
   buttonThreeImage: {fileID: 486231622}
+  FlameTowerPic: {fileID: 21300000, guid: a97ed2001eeb5154c9e8434b53c76a9b, type: 3}
+  PlasmaTowerPic: {fileID: 21300000, guid: c055bcc02fb56234d8461576f00f96e9, type: 3}
+  SlowTowerPic: {fileID: 21300000, guid: 32ebd829b74253540987852503122569, type: 3}
+  AssaultTowerPic: {fileID: 21300000, guid: a6ad91a4b07419e4ca7cb3fa27614e51, type: 3}
+  LightningTowerPic: {fileID: 21300000, guid: 95b3e5bc0abbaa141bf6ed106f1c6669, type: 3}
+  AlreadyKnown: {fileID: 21300000, guid: 0928e7157824551488d2c4a2251eb812, type: 3}
 --- !u!114 &924067875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5111,6 +5162,16 @@ Prefab:
         type: 2}
       propertyPath: m_SizeDelta.y
       value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 224948014761387312, guid: 0ce88dd35e2a43b4081bcf98dd790fb0,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000002392317
+      objectReference: {fileID: 0}
+    - target: {fileID: 224254082088371094, guid: 0ce88dd35e2a43b4081bcf98dd790fb0,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0ce88dd35e2a43b4081bcf98dd790fb0, type: 2}

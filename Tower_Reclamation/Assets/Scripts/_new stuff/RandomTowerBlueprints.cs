@@ -14,11 +14,37 @@ public class RandomTowerBlueprints : MonoBehaviour {
 
     //buttons
     [SerializeField] Button towerButtonOne;
+    [SerializeField] Text buttonOneText;
+    [SerializeField] Image buttonOneImage;
+
     [SerializeField] Button towerButtonTwo;
+    [SerializeField] Text buttonTwoText;
+    [SerializeField] Image buttonTwoImage;
+
     [SerializeField] Button towerButtonThree;
+    [SerializeField] Text buttonThreeText;
+    [SerializeField] Image buttonThreeImage;
+
+
+
     bool towerOneInUse = false;
     bool towerTwoInUse = false;
     bool towerThreeInUse = false;
+
+    private const string AssaultTower = "Its mechanically like the Rifled Tower, except the focus is on attack speed rather than accuracy.  " +
+        "The shorter barrel and fire time lends to more of a spray and pray tactic better against big enemies than the smaller ones.";
+    private const string FlameTower = "It’s a flamethrower attached to a tower.  " +
+        "This tower has a short range area of effect attack that puts a DOT on enemies.  " +
+        "Unfortunately, enemies are either burning or not so stacking is less effective.";
+    private const string LightningTower = "Charges up ions that when released causes a centered lightning strike.  " +
+        "This tower has a short range and slow fire time, having to charge up between each hit.  " +
+        "When it does fire, it hits every enemy in a small circle around the tower.";
+    private const string PlasmaTower = "This is a rail gun in functionality.  " +
+        "It fires a shot that has very good pierce and is able to hit multiple enemies if lined up properly.  " +
+        "The tower has a slow fire rate, having to charge each shot; however, the shots deal good damage and can hit multiple enemies.";
+    private const string SlowTower = "A simpler tower idea founded on the discovery that these aliens are cold blooded.  " +
+        "This tower sprays a slush mix into the air and spreads it out with giant spinning fan-blades.  " +
+        "The purpose of this is to slow the aliens down as their blood temperature drops.";
 
     // Use this for initialization
     void Start()
@@ -170,6 +196,54 @@ public class RandomTowerBlueprints : MonoBehaviour {
         }
     }
 
+    // is passed in towerButtonOne.GetComponentInChildren<Text>().text
+    public string SetupNewButton(string towerTextDescription, ref Image image)
+    {
+        // since it is a pain to pass a reference to button.text, im just going to return the string i want.
+        string towerDescription = "";
+        if (towerTextDescription.Equals("RifledTower"))
+        {
+            towerLog.towers1[(int)Towers.RifledTower] = true;
+            print("tower[ " + (int)Towers.RifledTower + "] should be true");
+        }
+        else if (towerTextDescription.Equals("AssaultTower"))
+        {
+            towerDescription = AssaultTower;
+            //image = ;
+
+        }
+        else if (towerTextDescription.Equals("FlameTower"))
+        {
+            towerDescription = FlameTower;
+            //image = ;
+
+        }
+        else if (towerTextDescription.Equals("LighteningTower"))
+        {
+            towerDescription = LightningTower;
+            //image = ;
+
+        }
+        else if (towerTextDescription.Equals("PlasmaTower"))
+        {
+            towerDescription = PlasmaTower;
+            //image = ;
+
+        }
+        else if (towerTextDescription.Equals("SlowTower"))
+        {
+            towerDescription = SlowTower;
+            //image = ;
+
+        }
+        else
+        {
+            towerDescription = "Already known.";
+        }
+
+        return towerDescription;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -198,6 +272,9 @@ public class RandomTowerBlueprints : MonoBehaviour {
                 } else
                 {
                     towerButtonOne.GetComponentInChildren<Text>().text = undiscoveredTowers[rando];
+                    buttonOneText.text = SetupNewButton(undiscoveredTowers[rando], ref buttonOneImage);
+                    //SetupNewButton(buttonOneText.text, ref buttonOneImage);
+
                     undiscoveredTowers.RemoveAt(rando);
                     amountOfUndiscoveredTowers--;
                     towerOneInUse = true;
@@ -213,6 +290,9 @@ public class RandomTowerBlueprints : MonoBehaviour {
                 else
                 {
                     towerButtonTwo.GetComponentInChildren<Text>().text = undiscoveredTowers[rando];
+                    buttonTwoText.text = SetupNewButton(undiscoveredTowers[rando], ref buttonTwoImage);
+                    //SetupNewButton(buttonTwoText.text, ref buttonTwoImage);
+
                     undiscoveredTowers.RemoveAt(rando);
                     amountOfUndiscoveredTowers--;
                     towerTwoInUse = true;
@@ -228,6 +308,9 @@ public class RandomTowerBlueprints : MonoBehaviour {
                 else
                 {
                     towerButtonThree.GetComponentInChildren<Text>().text = undiscoveredTowers[rando];
+                    buttonThreeText.text = SetupNewButton(undiscoveredTowers[rando], ref buttonThreeImage);
+                    //SetupNewButton(buttonThreeText.text, ref buttonThreeImage);
+
                     undiscoveredTowers.RemoveAt(rando);
                     amountOfUndiscoveredTowers--;
                     towerThreeInUse = true;

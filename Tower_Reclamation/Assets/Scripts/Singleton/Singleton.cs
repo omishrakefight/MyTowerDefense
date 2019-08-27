@@ -122,8 +122,7 @@ public sealed class Singleton : MonoBehaviour {
             //    enemyList.Add(y);
             //}
             enemyList.Add(-1);
-        }
-        //enemyList = new List<int> { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+        }   
         return enemyList;
     }
 
@@ -140,7 +139,6 @@ public sealed class Singleton : MonoBehaviour {
             enemy = Random.Range(20, 22);
             waveEnemyDifficultyChecker -= 2;
         }
-
 
         return enemy;
     }

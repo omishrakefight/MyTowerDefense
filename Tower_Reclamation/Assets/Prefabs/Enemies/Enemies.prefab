@@ -141,6 +141,10 @@ MonoBehaviour:
     type: 2}
   enemyDoubles: {fileID: 114650725721347020, guid: 88f64d91bea821c48a72f1c36bba5d6b,
     type: 2}
+  enemySlimer: {fileID: 114404078418964818, guid: d63f06c6d460954419e689d32b324195,
+    type: 2}
+  enemyHealer: {fileID: 114912196927915788, guid: 8c60480ce40db1045906cc5eca59545e,
+    type: 2}
   enemiesLocation: {fileID: 4625390901940072}
   enemySpawnAudio: {fileID: 8300000, guid: a8c6def41b8aafd4881fc5641c0d921b, type: 3}
   win: {fileID: 0}

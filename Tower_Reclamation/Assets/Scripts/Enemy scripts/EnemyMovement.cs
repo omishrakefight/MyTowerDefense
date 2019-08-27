@@ -7,6 +7,7 @@ using PicaVoxel;
 
 public class EnemyMovement : MonoBehaviour
 {
+    public bool willSlime = false;
 
     [SerializeField] float enemySpeed = 5.75f;
 
@@ -34,6 +35,9 @@ public class EnemyMovement : MonoBehaviour
         path = pathFinder.GivePath();
         transform.position = path[0].transform.position;
 
+        chilledMultiplier = 1f;
+        frenzyMultiplier = 1f;
+        slimeMultiplier = 1f;
         // this is hard coded for the worms, need to det up dynamically if i can find the height from volume.  That or add rando field to enemy that contains the numbers.
         heightOffset = new Vector3(0f, 1f, 0f);
         //heightOffset = new Vector3(0f, gameObject.GetComponent<Volume>().Pivot.y, 0f);
@@ -61,6 +65,13 @@ public class EnemyMovement : MonoBehaviour
             }
             else
             {
+                if (willSlime)
+                {
+                    // todo change movement to a abstract and so this will be in start specific to monster. (not every time)
+                    GetComponent<SlimeBug>().SpawnSlime(path[currentPathNode].transform.position, path[currentPathNode + 1].transform.position);
+                    path[currentPathNode].isSlimed = true;
+                }
+
                 // increments the path node (go to next one) and turns them if need be.
                 ++currentPathNode;
                 if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x > 1f)
@@ -79,6 +90,19 @@ public class EnemyMovement : MonoBehaviour
                 {
                     gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 90f, 0f));
                 }
+
+                if(path[currentPathNode + 1].isSlimed)
+                {
+                    slimeMultiplier = 1.4f;
+                } else
+                {
+                    slimeMultiplier = 1.0f;
+                }
+
+                // chilled is 0?
+                enemySpeed = enemyBaseSpeed * chilledMultiplier * frenzyMultiplier * slimeMultiplier;
+                print(enemySpeed + "is speed   " + chilledMultiplier + frenzyMultiplier + slimeMultiplier);
+
             }
         }
 
@@ -98,7 +122,7 @@ public class EnemyMovement : MonoBehaviour
         if (chilled && timer < chillTimer)
         {
             timer += 1 * Time.deltaTime;
-            enemySpeed = enemyBaseSpeed * chilledMultiplier;
+            enemySpeed = enemyBaseSpeed * chilledMultiplier * frenzyMultiplier * slimeMultiplier;
         }
         else
         {

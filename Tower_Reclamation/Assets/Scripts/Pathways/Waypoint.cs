@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Waypoint : MonoBehaviour {
 
+    public bool isSlimed = false;
+
     //  Public because it is a data structure.
     public bool isnotExplored = true;
     public Waypoint ExploredFrom;

@@ -137,7 +137,9 @@ MonoBehaviour:
     type: 2}
   enemyPrefab2: {fileID: 114078703179129330, guid: 04f81ff9814844ccfa08226f8d46a3f4,
     type: 2}
-  enemyPrefab3: {fileID: 114678874228705708, guid: 6a73a9a938edbc24cad92b6bb19a89b6,
+  enemyPrefab3: {fileID: 114320913910353142, guid: ee31e288441edde4695b6bc5b226e169,
+    type: 2}
+  enemyDoubles: {fileID: 114650725721347020, guid: 88f64d91bea821c48a72f1c36bba5d6b,
     type: 2}
   enemiesLocation: {fileID: 4625390901940072}
   enemySpawnAudio: {fileID: 8300000, guid: a8c6def41b8aafd4881fc5641c0d921b, type: 3}

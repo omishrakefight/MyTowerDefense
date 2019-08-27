@@ -23,6 +23,7 @@ public sealed class Singleton : MonoBehaviour {
 
     [SerializeField] public int scenesChanged;
     public int level = 1;
+    private int waveEnemyDifficultyChecker = 0;
 
     public void TowerOne()
     {
@@ -106,19 +107,42 @@ public sealed class Singleton : MonoBehaviour {
     {
         for (int x = 0; x < 5; x++)
         {
-            for (int y = 0; y < 6; y++)
+            waveEnemyDifficultyChecker = 8;
+            while(waveEnemyDifficultyChecker > 0)
             {
-                if(y > 3) /// temporary, it adds 1-3 for variation.
-                {
-                    enemyList.Add(y - 3);
-                }
-                else
-                enemyList.Add(y);
+                enemyList.Add(PickARandoEnemy());
             }
+            //for (int y = 0; y < 6; y++)
+            //{
+            //    if(y > 4) /// temporary, it adds 1-3 for variation.
+            //    {
+            //        enemyList.Add(y - 3);
+            //    }
+            //    else
+            //    enemyList.Add(y);
+            //}
             enemyList.Add(-1);
         }
         //enemyList = new List<int> { 1, 1, 1, 1, 1, 1, 1, 1, 1 };
         return enemyList;
+    }
+
+    public int PickARandoEnemy()
+    {
+        int enemy = 0;
+        int rng = Random.Range(0, 100);
+        if(rng < 75)
+        { // change to max reg enemy.
+            enemy = Random.Range(1, 4);
+            waveEnemyDifficultyChecker -= 1;
+        } else
+        {
+            enemy = Random.Range(20, 22);
+            waveEnemyDifficultyChecker -= 2;
+        }
+
+
+        return enemy;
     }
     //private static Singleton instance = null;
     //private static readonly object padlock = new object();

@@ -9,10 +9,16 @@ public class EnemySpawner : MonoBehaviour
     [Range(0.1f, 120f)]
     [SerializeField]
     float secondsBetweenSpawns = 2.00f;
+    const float originalSecondsBetweenSpawns = 2.00f;
     private EnemyMovement currentEnemy;
     [SerializeField] EnemyMovement enemyPrefab1;
     [SerializeField] EnemyMovement enemyPrefab2;
     [SerializeField] EnemyMovement enemyPrefab3;
+    [SerializeField] EnemyMovement enemyDoubles;
+
+    [SerializeField] EnemyMovement enemySlimer;
+    [SerializeField] EnemyMovement enemyHealer;
+
 
     [SerializeField] Transform enemiesLocation;
     [SerializeField] AudioClip enemySpawnAudio;
@@ -59,10 +65,41 @@ public class EnemySpawner : MonoBehaviour
             if (x > 0)
             {
                 currentlySpawning = true;
-                var enemySpawnLoc = Instantiate(currentEnemy, transform.position, Quaternion.identity);
-                enemySpawnLoc.transform.parent = enemiesLocation;
+                //var enemySpawnLoc = Instantiate(currentEnemy, transform.position, Quaternion.identity);
+                //enemySpawnLoc.transform.parent = enemiesLocation;
 
-                GetComponent<AudioSource>().PlayOneShot(enemySpawnAudio);
+                switch (x)
+                {
+                    case 1:
+                        currentEnemy = enemyPrefab1;
+                        SpawnGenericEnemy();
+                        break;
+                    case 2:
+                        currentEnemy = enemyPrefab2;
+                        SpawnGenericEnemy();
+                        break;
+                    case 3:
+                        currentEnemy = enemyPrefab3;
+                        SpawnGenericEnemy();
+                        break;
+                    case 4:
+                        currentEnemy = enemyDoubles;
+                        SpawnGenericEnemy();
+                        yield return new WaitForSeconds(.75f);
+                        SpawnGenericEnemy();
+                        break;
+
+
+                    case 20:
+                        currentEnemy = enemySlimer;
+                        SpawnGenericEnemy();
+                        break;
+                    case 21:
+                        currentEnemy = enemyHealer;
+                        SpawnGenericEnemy();
+                        break;
+                }
+                //GetComponent<AudioSource>().PlayOneShot(enemySpawnAudio);
 
                 yield return new WaitForSeconds(secondsBetweenSpawns);
             }
@@ -94,6 +131,30 @@ public class EnemySpawner : MonoBehaviour
 
         yield return StartCoroutine(WaitBetweenWaves());
     }
+
+
+    public void SpawnAppropriateEnemy(int enemy)
+    {
+        switch (enemy)
+        {
+            case 1:
+                currentEnemy = enemyPrefab1;
+                SpawnGenericEnemy();
+                break;
+            case 2:
+                currentEnemy = enemyPrefab2;
+                SpawnGenericEnemy();
+                break;
+            case 3:
+                currentEnemy = enemyPrefab3;
+                SpawnGenericEnemy();
+                break;
+            case 4:
+
+                break;
+        }
+    }
+
     public void CheckArray(int Enemy)
     {
         // maybe use global variables 'current enemy' and 'wait time' to set delays or w/e
@@ -118,6 +179,14 @@ public class EnemySpawner : MonoBehaviour
             case -2:
                 break;
         }
+    }
+
+    public void SpawnGenericEnemy()
+    {
+        var enemySpawnLoc = Instantiate(currentEnemy, transform.position, Quaternion.identity);
+        enemySpawnLoc.transform.parent = enemiesLocation;
+
+        GetComponent<AudioSource>().PlayOneShot(enemySpawnAudio);
     }
 
     public void StartBattle()

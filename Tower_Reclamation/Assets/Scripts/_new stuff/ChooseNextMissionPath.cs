@@ -16,7 +16,7 @@ public class ChooseNextMissionPath : MonoBehaviour {
     public List<int> secondEnemySet = new List<int>();
 
     private int mostCommonEnemy = 0;
-    private int mostCommonEnemyCount = 0;
+    private float mostCommonEnemyCount = 0f;
 
     private int percentOfEnemies = 0;
 
@@ -38,13 +38,13 @@ public class ChooseNextMissionPath : MonoBehaviour {
     {
         firstEnemySet = singleton.GetEnemyList();
         CalculateMostCommonEnemy(firstEnemySet);
-        choiceOneDescription.text = "We are seeing a lot of " + mostCommonEnemy
-            + ".  They comprise about " + percentOfEnemies + "% of the enemies.";
+        choiceOneDescription.text = "We are seeing a lot of " + mostCommonEnemy.ToString()
+            + ".  They comprise about " + percentOfEnemies.ToString() + "% of the enemies.";
 
         secondEnemySet = singleton.GetEnemyList();
         CalculateMostCommonEnemy(secondEnemySet);
-        choiceTwoDescription.text = "We are seeing a lot of " + mostCommonEnemy
-            + ".  They comprise about " + percentOfEnemies + "% of the enemies.";
+        choiceTwoDescription.text = "We are seeing a lot of " + mostCommonEnemy.ToString()
+            + ".  They comprise about " + percentOfEnemies.ToString() + "% of the enemies.";
     }
 
 
@@ -53,14 +53,15 @@ public class ChooseNextMissionPath : MonoBehaviour {
     {
         Dictionary<int, int> enemyCalc = new Dictionary<int, int>();
 
-        int enemyCount = 0;
+        float enemyCount = 0;
 
         // this adds all enemies in the list to a dictionary, compacting them into a dynamic summation of their count.
         foreach (int currentEnemy in enemySet)
         {
             if (enemyCalc.ContainsKey(currentEnemy))
             {
-                enemyCalc[currentEnemy] = enemyCalc[currentEnemy]++;
+                enemyCalc[currentEnemy] += 1;
+                print("im adding a repeat! enemy # is at " + enemyCalc[currentEnemy]);
             }
             else
             {
@@ -71,6 +72,7 @@ public class ChooseNextMissionPath : MonoBehaviour {
         //this adds total enemy count for %, as well as finds most common enemy.
         foreach(KeyValuePair<int, int> entry in enemyCalc)
         {
+            print("im inside the dictionary loop!");
             enemyCount += entry.Value;
             if(mostCommonEnemyCount < entry.Value)
             {
@@ -78,7 +80,9 @@ public class ChooseNextMissionPath : MonoBehaviour {
                 mostCommonEnemy = entry.Key;
             }
         }
-        percentOfEnemies = (mostCommonEnemyCount / enemyCount);
+        float floatPercent = ((mostCommonEnemyCount / enemyCount) * 100);
+        percentOfEnemies = Mathf.RoundToInt( floatPercent );
+        print("float % = " + floatPercent + " and enemy % =" + percentOfEnemies + "  -- common enemy count = " + mostCommonEnemyCount+ " and enemy count = " + enemyCount);
     }
 
 

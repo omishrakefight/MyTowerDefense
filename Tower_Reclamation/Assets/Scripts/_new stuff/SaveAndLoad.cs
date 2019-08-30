@@ -12,11 +12,15 @@ public class SaveAndLoad : MonoBehaviour {
 
     SaveSerializedObject saver;
     PlayerTowerLog towerListObj;
+    Singleton singleton;
+    [SerializeField] ChooseNextMissionPath missionChoice;
     // create a new serializable object and then just import / export into it THEN serialize it here.
     // Use this for initialization
     void Start()
     {
+        //missionChoice = FindObjectOfType<ChooseNextMissionPath>();
         towerListObj = FindObjectOfType<PlayerTowerLog>();
+        singleton = FindObjectOfType<Singleton>();
     }
 
     // Update is called once per frame
@@ -30,7 +34,20 @@ public class SaveAndLoad : MonoBehaviour {
 
         towerList = towerListObj.SaveTowers();
 
-        saver = new SaveSerializedObject(towerListObj.SaveTowers());
+        saver = new SaveSerializedObject();
+
+
+        saver.SaveTowers(towerListObj.SaveTowers());
+
+        // need to convert back to a list when reading in. ?
+        // ERROR IS BEACAUSE THE SCRIPT IS DISABLED IN SAVE WINDOW, THE CANVASSES ARE ALL DISABLED EXCEPT USED ONE.
+        saver.SaveEnemyOptions(missionChoice.firstEnemySet.ToArray(), missionChoice.secondEnemySet.ToArray());
+
+        if (missionChoice.isHasChosen)
+        {
+            saver.IsHasChosenEnemies(true);
+            saver.SaveEnemiesChosen(singleton.enemyList.ToArray());
+        }
         //saver = GetComponent<SaveSerializedObject>();
 
         saver.towerList = towerListObj.SaveTowers();
@@ -56,11 +73,19 @@ public class SaveAndLoad : MonoBehaviour {
         BinaryFormatter bf = new BinaryFormatter();
         // ?????????????????????????????? openWrite?
         FileStream file = File.Open(Application.persistentDataPath + "/TowerInformation.dat", FileMode.Open);
-        //SaveAndLoad towerLog = (SaveAndLoad)bf.Deserialize(file);
-        //SaveSerializedObject towerLog = (SaveSerializedObject)bf.Deserialize(file);
-        //bool[] bools = (bool[])bf.Deserialize(file);
+
         SaveSerializedObject f = (SaveSerializedObject)bf.Deserialize(file);
         towerListObj.LoadTowers(f.towerList);
+        missionChoice.LoadPathChoices(f.enemyOption1List, f.enemyOption2List);
+
+
+        // ---- they can choose new path each time for now.
+        //if (f.hasChosenEnemies)
+        //{
+        //    singleton.LoadEnemyList(f.enemyList);
+        //    //missionChoice.   set the has chosen a path variable
+        //    //-----------^^^^^^^^
+        //}
 
         file.Close();
         //towerList = towerLog.towerList; // initializing off of new object.

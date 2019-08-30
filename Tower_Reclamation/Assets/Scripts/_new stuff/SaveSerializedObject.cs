@@ -11,10 +11,38 @@ public class SaveSerializedObject  {
     public bool[] towerList;
     public int currentLevel = 1;
 
-    public SaveSerializedObject(bool[] towerListSaves)
+    public bool hasChosenEnemies = false;
+    public int[] enemyList;
+    public int[] enemyOption1List;
+    public int[] enemyOption2List;
+
+
+    public SaveSerializedObject()
+    {
+    }
+
+    public void SaveTowers(bool[] towerListSaves)
     {
         towerList = towerListSaves;
     }
+
+
+    public void IsHasChosenEnemies(bool hasChosen)
+    {
+        hasChosenEnemies = hasChosen;
+    }
+
+    public void SaveEnemiesChosen(int[] enemies)
+    {
+        enemyList = enemies;
+    }
+
+    public void SaveEnemyOptions(int[] option1, int[] option2)
+    {
+        enemyOption1List = option1;
+        enemyOption2List = option2;
+    }
+
     public void UpdateCurrentLevel()
     {
         

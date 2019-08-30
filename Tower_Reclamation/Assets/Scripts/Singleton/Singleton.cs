@@ -8,7 +8,7 @@ public sealed class Singleton : MonoBehaviour {
     TowerFactory towerFactory = new TowerFactory();
     [SerializeField] Text levelText;
     // do not put a singleton in first map, it has static base turret for level one.
-    private List<int> enemyList = new List<int>();
+    public List<int> enemyList = new List<int>();
     // this holds the set tower choices
     public Tower tempTower;
     public Tower towerOne;
@@ -102,28 +102,27 @@ public sealed class Singleton : MonoBehaviour {
 
     }
 
+
+
+    public void DecidedPath(List<int> chosenEnemies)
+    {
+        enemyList = chosenEnemies;
+    }
+
     // Maybe move this out of here and to a script inside of base room control / meeting room?
-    public List<int> GetEnemyList()
+    public List<int> GetEnemyList(List<int> newList)
     {
         for (int x = 0; x < 5; x++)
         {
             waveEnemyDifficultyChecker = 8;
             while(waveEnemyDifficultyChecker > 0)
             {
-                enemyList.Add(PickARandoEnemy());
+                newList.Add(PickARandoEnemy());
             }
-            //for (int y = 0; y < 6; y++)
-            //{
-            //    if(y > 4) /// temporary, it adds 1-3 for variation.
-            //    {
-            //        enemyList.Add(y - 3);
-            //    }
-            //    else
-            //    enemyList.Add(y);
-            //}
-            enemyList.Add(-1);
+
+            newList.Add(-1);
         }   
-        return enemyList;
+        return newList;
     }
 
     public int PickARandoEnemy()
@@ -141,6 +140,15 @@ public sealed class Singleton : MonoBehaviour {
         }
 
         return enemy;
+    }
+
+    public void LoadEnemyList(int[] enemies)
+    {
+        enemyList.Clear();
+        foreach(int enemy in enemies)
+        {
+            enemyList.Add(enemy);
+        }
     }
     //private static Singleton instance = null;
     //private static readonly object padlock = new object();

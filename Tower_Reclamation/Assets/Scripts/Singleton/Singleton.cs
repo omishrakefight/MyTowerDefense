@@ -109,8 +109,13 @@ public sealed class Singleton : MonoBehaviour {
         enemyList = chosenEnemies;
     }
 
+    public List<int> GetEnemyList()
+    {
+        return enemyList;
+    }
+
     // Maybe move this out of here and to a script inside of base room control / meeting room?
-    public List<int> GetEnemyList(List<int> newList)
+    public List<int> CreateEnemyList(List<int> newList)
     {
         for (int x = 0; x < 5; x++)
         {

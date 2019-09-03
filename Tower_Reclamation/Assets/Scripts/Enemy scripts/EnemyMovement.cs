@@ -5,13 +5,13 @@ using UnityEngine;
 using PicaVoxel;
 
 
-public class EnemyMovement : MonoBehaviour
+public abstract class EnemyMovement : MonoBehaviour
 {
     public bool willSlime = false;
 
-    [SerializeField] float enemySpeed = 5.75f;
+    [SerializeField] public float enemySpeed = 5.75f;
 
-    [SerializeField] float enemyBaseSpeed = 5.75f;
+    [SerializeField] protected float enemyBaseSpeed = 5.75f;
     float enemySpeedMultiplier; // equal to chilledMultiplier, frenzy, and slimeMultiplier.
 
     public bool chilled = false;
@@ -20,7 +20,11 @@ public class EnemyMovement : MonoBehaviour
     public float chilledMultiplier = 1f;
 
     public float frenzyMultiplier = 1f;
-    public float slimeMultiplier = 1f;
+    public float slimeMultiplier = 1f; /// <summary>
+    ///  The path is generated at enemy spawn.
+    ///  They only get speed buffs for each tile that  was slimed AT time of spawn.
+    ///  need to dynamically check?
+    /// </summary>
 
     List<Waypoint> path;
 
@@ -29,7 +33,7 @@ public class EnemyMovement : MonoBehaviour
     Vector3 heightOffset = new Vector3(0f, 0f, 0f);
 
 
-    void Start()
+    protected virtual void Start()
     {
         PathFinder pathFinder = FindObjectOfType<PathFinder>();
         path = pathFinder.GivePath();
@@ -46,7 +50,7 @@ public class EnemyMovement : MonoBehaviour
 
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         if (chilled)
         {

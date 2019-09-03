@@ -307,8 +307,8 @@ GameObject:
   - component: {fileID: 4447497429725112}
   - component: {fileID: 114571783154708684}
   - component: {fileID: 114660287301177822}
+  - component: {fileID: 114501412771417988}
   - component: {fileID: 82203691034601306}
-  - component: {fileID: 114912196927915788}
   m_Layer: 0
   m_Name: Aura Heal Enemy
   m_TagString: Untagged
@@ -2426,6 +2426,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsUpdated: 0
+--- !u!114 &114501412771417988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1443303271302662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c84abd06f7a63d9489f471904038c109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  willSlime: 0
+  enemySpeed: 5.75
+  enemyBaseSpeed: 5.75
+  chilled: 0
+  chillTimer: 1
+  timer: 0
+  chilledMultiplier: 1
+  frenzyMultiplier: 1
+  slimeMultiplier: 1
 --- !u!114 &114547408458963208
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2640,25 +2660,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsUpdated: 0
---- !u!114 &114912196927915788
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1443303271302662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6628a5cda9c8734789fd686bbaef238, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemySpeed: 5.75
-  enemyBaseSpeed: 5.75
-  chilled: 0
-  chillTimer: 1
-  timer: 0
-  chilledMultiplier: 0
-  frenzyMultiplier: 1
-  slimeMultiplier: 1
 --- !u!114 &114939863760885300
 MonoBehaviour:
   m_ObjectHideFlags: 1

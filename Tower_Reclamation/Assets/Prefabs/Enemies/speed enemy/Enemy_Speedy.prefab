@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 4708893001903690}
   - component: {fileID: 54966489504555522}
   - component: {fileID: 114774924343316192}
+  - component: {fileID: 114684893482561808}
   - component: {fileID: 114678874228705708}
   - component: {fileID: 82916979599404576}
   m_Layer: 10
@@ -483,6 +484,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemySpeed: 10
+--- !u!114 &114684893482561808
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1663492506696258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c95d9bd218cc364f8e53a3e53f2a385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  willSlime: 0
+  enemySpeed: 8
+  enemyBaseSpeed: 8
+  chilled: 0
+  chillTimer: 1
+  timer: 0
+  chilledMultiplier: 1
+  frenzyMultiplier: 1
+  slimeMultiplier: 1
 --- !u!114 &114774924343316192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -503,6 +524,7 @@ MonoBehaviour:
   enemyHitAudio: {fileID: 8300000, guid: f488ee320c5d5264bb661a4fea76ccfc, type: 3}
   enemyDiedAudio: {fileID: 8300000, guid: 5c8980e6da5408944872a958d864c1fb, type: 3}
   hitPoints: 100
+  hitPointsMax: 0
   onFire: 0
   time: 0
 --- !u!198 &198163289932295198

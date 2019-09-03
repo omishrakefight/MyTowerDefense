@@ -158,9 +158,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4107122620562176}
+  - component: {fileID: 114613971649881678}
   - component: {fileID: 114584210899759068}
   - component: {fileID: 114432300190817384}
-  - component: {fileID: 114404078418964818}
   - component: {fileID: 54179690411143812}
   - component: {fileID: 65951202664613136}
   - component: {fileID: 82801932538148164}
@@ -1707,26 +1707,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsUpdated: 0
---- !u!114 &114404078418964818
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1450649597192772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6628a5cda9c8734789fd686bbaef238, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  willSlime: 0
-  enemySpeed: 5.75
-  enemyBaseSpeed: 5.75
-  chilled: 0
-  chillTimer: 1
-  timer: 0
-  chilledMultiplier: 0
-  frenzyMultiplier: 1
-  slimeMultiplier: 1
 --- !u!114 &114428397147215342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1861,6 +1841,26 @@ MonoBehaviour:
   ImportedCutoutColor: {r: 0, g: 0, b: 0, a: 0}
   thisInstanceId: -270142
   Undone: 0
+--- !u!114 &114613971649881678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1450649597192772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abde3053ebc0a7641a3eaff1788a3156, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  willSlime: 0
+  enemySpeed: 5.75
+  enemyBaseSpeed: 5.75
+  chilled: 0
+  chillTimer: 1
+  timer: 0
+  chilledMultiplier: 1
+  frenzyMultiplier: 1
+  slimeMultiplier: 1
 --- !u!114 &114731396344397050
 MonoBehaviour:
   m_ObjectHideFlags: 1

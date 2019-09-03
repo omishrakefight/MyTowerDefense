@@ -83,12 +83,12 @@ public class ChooseNextMissionPath : MonoBehaviour {
     private void GetEnemyPathChoices()
     {
         // being set = to it permanent not at the snapshot
-        firstEnemySet = singleton.GetEnemyList(firstEnemySet);
+        firstEnemySet = singleton.CreateEnemyList(firstEnemySet);
         CalculateMostCommonEnemy(firstEnemySet);
         choiceOneDescription.text = "We are seeing a lot of " + DetermineEnemyType(mostCommonEnemy)
             + ".  They comprise about " + percentOfEnemies.ToString() + "% of the enemies.";
 
-        secondEnemySet = singleton.GetEnemyList(secondEnemySet);
+        secondEnemySet = singleton.CreateEnemyList(secondEnemySet);
         CalculateMostCommonEnemy(secondEnemySet);
         choiceTwoDescription.text = "We are seeing a lot of " + DetermineEnemyType(mostCommonEnemy)
             + ".  They comprise about " + percentOfEnemies.ToString() + "% of the enemies.";

@@ -567,7 +567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4655081386164438}
   - component: {fileID: 114961476130306826}
-  - component: {fileID: 114320913910353142}
+  - component: {fileID: 114726908905558888}
   - component: {fileID: 82854984048450032}
   m_Layer: 0
   m_Name: Rolling Enemy
@@ -2492,25 +2492,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsUpdated: 0
---- !u!114 &114320913910353142
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1841068369360852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6628a5cda9c8734789fd686bbaef238, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemySpeed: 10
-  enemyBaseSpeed: 5.75
-  chilled: 0
-  chillTimer: 1
-  timer: 0
-  chilledMultiplier: 1
-  frenzyMultiplier: 1
-  slimeMultiplier: 1
 --- !u!114 &114378423116535286
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2700,6 +2681,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsUpdated: 0
+--- !u!114 &114726908905558888
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1841068369360852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c95d9bd218cc364f8e53a3e53f2a385, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  willSlime: 0
+  enemySpeed: 8
+  enemyBaseSpeed: 8
+  chilled: 0
+  chillTimer: 1
+  timer: 0
+  chilledMultiplier: 1
+  frenzyMultiplier: 1
+  slimeMultiplier: 1
 --- !u!114 &114811788334089858
 MonoBehaviour:
   m_ObjectHideFlags: 1

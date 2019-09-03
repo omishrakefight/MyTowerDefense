@@ -52,7 +52,7 @@ public class EnemySpawner : MonoBehaviour
         slider.maxValue = timeBetweenWaves;
         win.enabled = false;
         
-        enemyList = FindObjectOfType<Singleton>().GetEnemyList(enemyList);  //GetComponent<Singleton>().GetEnemyList();
+        enemyList = FindObjectOfType<Singleton>().GetEnemyList();  //GetComponent<Singleton>().GetEnemyList();
     }
 
     public IEnumerator SpawnSpecificEnemies() //List<int> enemyList

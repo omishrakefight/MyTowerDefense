@@ -3886,40 +3886,14 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1479523190}
-    - target: {fileID: 114931238320422212, guid: 4236a7c92113bf841877c621f0181a0c,
-        type: 2}
-      propertyPath: m_Colors.m_DisabledColor.r
-      value: 0.5260597
-      objectReference: {fileID: 0}
-    - target: {fileID: 114931238320422212, guid: 4236a7c92113bf841877c621f0181a0c,
-        type: 2}
-      propertyPath: m_Colors.m_DisabledColor.g
-      value: 0.5147059
-      objectReference: {fileID: 0}
-    - target: {fileID: 114931238320422212, guid: 4236a7c92113bf841877c621f0181a0c,
-        type: 2}
-      propertyPath: m_Colors.m_DisabledColor.b
-      value: 0.5147059
-      objectReference: {fileID: 0}
-    - target: {fileID: 114567815634535324, guid: 4236a7c92113bf841877c621f0181a0c,
-        type: 2}
-      propertyPath: m_Colors.m_DisabledColor.r
-      value: 0.5254902
-      objectReference: {fileID: 0}
-    - target: {fileID: 114567815634535324, guid: 4236a7c92113bf841877c621f0181a0c,
-        type: 2}
-      propertyPath: m_Colors.m_DisabledColor.g
-      value: 0.5137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 114567815634535324, guid: 4236a7c92113bf841877c621f0181a0c,
-        type: 2}
-      propertyPath: m_Colors.m_DisabledColor.b
-      value: 0.5137255
-      objectReference: {fileID: 0}
-    - target: {fileID: 114567815634535324, guid: 4236a7c92113bf841877c621f0181a0c,
-        type: 2}
-      propertyPath: m_Colors.m_ColorMultiplier
+    - target: {fileID: 1569963073598826, guid: 4236a7c92113bf841877c621f0181a0c, type: 2}
+      propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114137806824307396, guid: 4236a7c92113bf841877c621f0181a0c,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1044929993877982, guid: 4236a7c92113bf841877c621f0181a0c, type: 2}
       propertyPath: m_IsActive
@@ -3928,6 +3902,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4236a7c92113bf841877c621f0181a0c, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &982308230 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114137806824307396, guid: 4236a7c92113bf841877c621f0181a0c,
+    type: 2}
+  m_PrefabInternal: {fileID: 982308229}
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &983238187
 GameObject:
   m_ObjectHideFlags: 0
@@ -6182,6 +6162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df77b2fc8a23f9e40ac9f8cede4ff4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickALane: {fileID: 982308230}
 --- !u!1 &1493123175
 GameObject:
   m_ObjectHideFlags: 0

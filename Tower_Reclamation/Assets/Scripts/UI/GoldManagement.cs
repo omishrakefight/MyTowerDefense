@@ -12,22 +12,23 @@ public class GoldManagement : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-
+        GoldCounter();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        GoldCounter();
+        //GoldCounter();
     }
 
     public void AddGold()
     {
         goldCount = goldCount + 10;
+        GoldCounter();
     }
 
     public void GoldCounter()
     {
-        gold.text = "Gold :  " + goldCount.ToString();
+        gold.text = "Gold :  " + goldCount;
     }
 
     public int CurrentGold()
@@ -38,5 +39,7 @@ public class GoldManagement : MonoBehaviour {
     public void TowerCost(int towerCost)
     {
         goldCount -= towerCost;
+        print("i just bough a tower i am now " + goldCount);
+        GoldCounter();
     }
 }

@@ -45,7 +45,7 @@ public class CursorIcons : MonoBehaviour {
 
     public void PrintLayerHit()
     {
-        print(raycasting.currentLayerHit);
+        //print(raycasting.currentLayerHit);
     }
 
     // Delegate listener

@@ -28,6 +28,7 @@ public class ChooseNextMissionPath : MonoBehaviour {
         singleton = FindObjectOfType<Singleton>();
 
         GetEnemyPathChoices();
+        isHasChosen = false;
     }
 	
 	// Update is called once per frame
@@ -130,7 +131,7 @@ public class ChooseNextMissionPath : MonoBehaviour {
                 mostCommonEnemyCount = entry.Value;
                 mostCommonEnemy = entry.Key;               
             }
-            print("enemy numbers " + entry.Value + " for enemy " + entry.Key);
+            //print("enemy numbers " + entry.Value + " for enemy " + entry.Key);
         }
         float floatPercent = ((mostCommonEnemyCount / enemyCount) * 100);
         percentOfEnemies = Mathf.RoundToInt( floatPercent );

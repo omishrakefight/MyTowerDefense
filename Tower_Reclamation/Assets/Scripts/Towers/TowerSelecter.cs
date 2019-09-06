@@ -26,8 +26,6 @@ public class TowerSelecter : MonoBehaviour
     [SerializeField] Tower lightFlameTower;
     [SerializeField] Tower alienFlameTower;
 
-    [SerializeField] Canvas canvasX;
-
 
     [Header("Lightening Towers")]
     [SerializeField] Tower basicLightTower;
@@ -117,9 +115,9 @@ public class TowerSelecter : MonoBehaviour
     }
 
     // change to tower type
-    public Tower PickTower()
+    public Tower PickTower2()
     {
-        if (towerTurret.value == 0)
+        if (towerTurret.value == 0)   //.itemText.Equals("RifledTower"))  //
         {
             print("Rifled Tower selected");
             FocusRifledTowers();
@@ -139,8 +137,52 @@ public class TowerSelecter : MonoBehaviour
             FocusLighteningTowers();
             decidedTower = basicLightTower;
         }
+        return decidedTower;
+    }
 
-
+    public Tower PickTower()
+    {
+        List<Dropdown.OptionData> list = towerTurret.options;
+        //for (int i = 0; i < list.Count; i++)
+        //{
+            string tower = list[towerTurret.value].text;//towerTurret.options(towerTurret.value).text;
+            if (tower.Equals("RifledTower"))
+            {
+                print("Rifled Tower selected");
+                FocusRifledTowers();
+                decidedTower = basicRifledTower;
+            }
+            if (tower.Equals("AssaultTower"))
+            {
+                print("AssaultTower Turret selected");
+                FocusAssaultTowers();
+                decidedTower = basicRifledTower;
+            }
+            if (tower.Equals("FlameTower"))
+            {
+                print("Flame Turret selected");
+                FocusFireTowers();
+                PickFireTower();
+            }
+            if (tower.Equals("LighteningTower"))
+            {
+                print("Light Turret selected");
+                FocusLighteningTowers();
+                decidedTower = basicLightTower;
+            }
+            if (tower.Equals("PlasmaTower"))
+            {
+                print("PlasmaTower Turret selected");
+                FocusPlasmaTowers();
+                decidedTower = basicPlasmaTower;
+            }
+            if (tower.Equals("SlowTower"))
+            {
+                print("SlowTower Turret selected");
+                FocusSlowTowers();
+                decidedTower = basicIceTower;
+            //}
+        }
         return decidedTower;
     }
 
@@ -182,11 +224,32 @@ public class TowerSelecter : MonoBehaviour
         towerBase.AddOptions(rifledBases);
     }
 
+    private void FocusAssaultTowers()
+    {
+        towerBase.ClearOptions();
+        List<string> assaultBases = new List<string> { "Basic Base" };
+        towerBase.AddOptions(assaultBases);
+    }
+
     private void FocusLighteningTowers()
     {
         towerBase.ClearOptions();
         List<string> lighteningBases = new List<string> { "Basic Base" };
         towerBase.AddOptions(lighteningBases);
+    }
+
+    private void FocusSlowTowers()
+    {
+        towerBase.ClearOptions();
+        List<string> slowBases = new List<string> { "Basic Base" };
+        towerBase.AddOptions(slowBases);
+    }
+
+    private void FocusPlasmaTowers()
+    {
+        towerBase.ClearOptions();
+        List<string> plasmaBases = new List<string> { "Basic Base" };
+        towerBase.AddOptions(plasmaBases);
     }
 
 

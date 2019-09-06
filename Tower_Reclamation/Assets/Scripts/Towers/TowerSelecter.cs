@@ -94,13 +94,11 @@ public class TowerSelecter : MonoBehaviour
         towerBarrel.value = 0;
     }
 
-
+    // Sent from RandomTowerBlueprints.  it calls this function.
     public void UpdateTowersAvailable(List<string> towersKnown)
     {
         towerTurret.ClearOptions();
-        //List<string> availableTowers = new List<string> { "Basic tower" };
         towerTurret.AddOptions(towersKnown);
-        //int x = canvasX.GetComponent<RandomTowerBlueprints>().amountOfUndiscoveredTowers;
         print("I worked and " + towersKnown.Count);
     }
 
@@ -115,30 +113,30 @@ public class TowerSelecter : MonoBehaviour
     }
 
     // change to tower type
-    public Tower PickTower2()
-    {
-        if (towerTurret.value == 0)   //.itemText.Equals("RifledTower"))  //
-        {
-            print("Rifled Tower selected");
-            FocusRifledTowers();
-            decidedTower = basicRifledTower;
-        }
+    //public Tower PickTower2()
+    //{
+    //    if (towerTurret.value == 0)   //.itemText.Equals("RifledTower"))  //
+    //    {
+    //        print("Rifled Tower selected");
+    //        FocusRifledTowers();
+    //        decidedTower = basicRifledTower;
+    //    }
 
-        if (towerTurret.value == 1)
-        {
-            print("Flame Turret selected");
-            FocusFireTowers();
-            PickFireTower();        
-        }
+    //    if (towerTurret.value == 1)
+    //    {
+    //        print("Flame Turret selected");
+    //        FocusFireTowers();
+    //        PickFireTower();        
+    //    }
 
-        if (towerTurret.value == 2)
-        {
-            print("Light Turret selected");
-            FocusLighteningTowers();
-            decidedTower = basicLightTower;
-        }
-        return decidedTower;
-    }
+    //    if (towerTurret.value == 2)
+    //    {
+    //        print("Light Turret selected");
+    //        FocusLighteningTowers();
+    //        decidedTower = basicLightTower;
+    //    }
+    //    return decidedTower;
+    //}
 
     public Tower PickTower()
     {

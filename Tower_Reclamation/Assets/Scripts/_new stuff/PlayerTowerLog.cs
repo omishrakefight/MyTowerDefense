@@ -47,6 +47,11 @@ public class PlayerTowerLog : MonoBehaviour {
 
     }
 
+    public void GetTowersFromGame()
+    {
+        // pull them in instead of just having the dumb bools above.
+    }
+
     public bool[] SaveTowers()
     {
         return towers1;

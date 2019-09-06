@@ -102,6 +102,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
         towerButtonThree.interactable = false;
         towerButtonTwo.interactable = false;
     }
+
     public void ButtonTwo()
     {
         // how to get the reference to a booleanspot by a string name
@@ -120,6 +121,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
         towerButtonOne.interactable = false;
         towerButtonThree.interactable = false;
     }
+
     public void ButtonThree()
     {
         // how to get the reference to a booleanspot by a string name

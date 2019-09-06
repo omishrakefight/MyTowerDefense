@@ -11,6 +11,62 @@ public class SlimerMovement : EnemyMovement {
 
     // Update is called once per frame
     override protected void Update () {
-        base.Update();
-	}
+
+        if (chilled)
+        {
+            StartCoroutine(Chilled(chilledMultiplier));
+        }
+
+        float enemySpeedASecond = enemySpeed * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, (path[currentPathNode + 1].transform.position + heightOffset), enemySpeedASecond);
+
+        if (transform.position == path[currentPathNode + 1].transform.position + heightOffset)
+        {
+            if (transform.position == path[path.Count - 1].transform.position + heightOffset)
+            {
+                GetComponent<EnemyHealth>().GotToEnd();
+                FindObjectOfType<MyHealth>().AnEnemyFinishedThePath();
+            }
+            else
+            {
+
+                if (path[currentPathNode].isSlimed == false) {
+                    GetComponent<SlimeBug>().SpawnSlime(path[currentPathNode].transform.position, path[currentPathNode + 1].transform.position);
+                    path[currentPathNode].isSlimed = true;
+                }
+                // increments the path node (go to next one) and turns them if need be.
+                ++currentPathNode;
+                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x > 1f)
+                {
+                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+                }
+                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x < -1f)
+                {
+                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+                }
+                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).z > 1f)
+                {
+                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 270f, 0f));
+                }
+                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).z < -1f)
+                {
+                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 90f, 0f));
+                }
+
+                if (path[currentPathNode + 1].isSlimed)
+                {
+                    slimeMultiplier = 1.8f;
+                }
+                else
+                {
+                    slimeMultiplier = 1.0f;
+                }
+
+                // chilled is 0?
+                enemySpeed = enemyBaseSpeed * chilledMultiplier * frenzyMultiplier * slimeMultiplier;
+                print(enemySpeed + "is speed   " + chilledMultiplier + frenzyMultiplier + slimeMultiplier);
+
+            }
+        }
+    }
 }

@@ -26,6 +26,8 @@ public class TowerSelecter : MonoBehaviour
     [SerializeField] Tower lightFlameTower;
     [SerializeField] Tower alienFlameTower;
 
+    [SerializeField] Canvas canvasX;
+
 
     [Header("Lightening Towers")]
     [SerializeField] Tower basicLightTower;
@@ -67,6 +69,8 @@ public class TowerSelecter : MonoBehaviour
         }
         collider = newTower.GetComponent<BoxCollider>();
         bound = collider.bounds;
+
+        //UpdateTowersAvailable();
     }
 
     // Update is called once per frame
@@ -92,6 +96,15 @@ public class TowerSelecter : MonoBehaviour
         towerBarrel.value = 0;
     }
 
+
+    public void UpdateTowersAvailable(List<string> towersKnown)
+    {
+        towerTurret.ClearOptions();
+        //List<string> availableTowers = new List<string> { "Basic tower" };
+        towerTurret.AddOptions(towersKnown);
+        //int x = canvasX.GetComponent<RandomTowerBlueprints>().amountOfUndiscoveredTowers;
+        print("I worked and " + towersKnown.Count);
+    }
 
     public void ResetTowerPicture()
     {

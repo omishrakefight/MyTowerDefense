@@ -335,6 +335,20 @@ Prefab:
       propertyPath: towerPlaceholder
       value: 
       objectReference: {fileID: 223473339}
+    - target: {fileID: 114667929893754478, guid: 0dda80d1a3480b246ae2a6121eb27390,
+        type: 2}
+      propertyPath: canvasX
+      value: 
+      objectReference: {fileID: 879555931}
+    - target: {fileID: 1721287286145386, guid: 0dda80d1a3480b246ae2a6121eb27390, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 223519719365728944, guid: 0dda80d1a3480b246ae2a6121eb27390,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0dda80d1a3480b246ae2a6121eb27390, type: 2}
   m_IsPrefabParent: 0
@@ -1220,6 +1234,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 142545752}
+--- !u!114 &153612051 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114667929893754478, guid: 0dda80d1a3480b246ae2a6121eb27390,
+    type: 2}
+  m_PrefabInternal: {fileID: 63623365}
+  m_Script: {fileID: 11500000, guid: 6ba36d6fab61b7b48a72750a071b69f8, type: 3}
 --- !u!1 &167850090
 GameObject:
   m_ObjectHideFlags: 0
@@ -3635,6 +3655,56 @@ Prefab:
       propertyPath: missionChoice
       value: 
       objectReference: {fileID: 307409075}
+    - target: {fileID: 114950230889284734, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3,
+        type: 2}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.5294118
+      objectReference: {fileID: 0}
+    - target: {fileID: 114950230889284734, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3,
+        type: 2}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.53719723
+      objectReference: {fileID: 0}
+    - target: {fileID: 114950230889284734, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3,
+        type: 2}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.53719723
+      objectReference: {fileID: 0}
+    - target: {fileID: 114433757358336236, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3,
+        type: 2}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.5588235
+      objectReference: {fileID: 0}
+    - target: {fileID: 114433757358336236, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3,
+        type: 2}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.57936853
+      objectReference: {fileID: 0}
+    - target: {fileID: 114433757358336236, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3,
+        type: 2}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.57936853
+      objectReference: {fileID: 0}
+    - target: {fileID: 114621864876090652, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3,
+        type: 2}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.47794116
+      objectReference: {fileID: 0}
+    - target: {fileID: 114621864876090652, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3,
+        type: 2}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.4849697
+      objectReference: {fileID: 0}
+    - target: {fileID: 114621864876090652, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3,
+        type: 2}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.4849697
+      objectReference: {fileID: 0}
+    - target: {fileID: 114583547187823110, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3,
+        type: 2}
+      propertyPath: turretTypes
+      value: 
+      objectReference: {fileID: 153612051}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3, type: 2}
   m_IsPrefabParent: 0

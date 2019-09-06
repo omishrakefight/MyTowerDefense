@@ -10,7 +10,9 @@ public class RandomTowerBlueprints : MonoBehaviour {
     public int amountOfUndiscoveredTowers;
     bool[] towers;
     PlayerTowerLog towerLog;
+    [SerializeField] TowerSelecter turretTypes;
     List<string> undiscoveredTowers = new List<string>();
+    List<string> discoveredTowers = new List<string>();
 
     //buttons
     [Header("Button One")]
@@ -78,6 +80,8 @@ public class RandomTowerBlueprints : MonoBehaviour {
         GetAmountOfUndiscoveredTowers();
         print(amountOfUndiscoveredTowers + " undiscovered");
         PickTowers();
+
+        turretTypes.UpdateTowersAvailable(GetDiscoveredTowers());
     }
 
     public void ButtonOne()
@@ -94,7 +98,9 @@ public class RandomTowerBlueprints : MonoBehaviour {
             undiscoveredTowers.Add(towerButtonThree.GetComponentInChildren<Text>().text);
             amountOfUndiscoveredTowers++;
         }
-        PickTowers();
+        //PickTowers();
+        towerButtonThree.interactable = false;
+        towerButtonTwo.interactable = false;
     }
     public void ButtonTwo()
     {
@@ -110,7 +116,9 @@ public class RandomTowerBlueprints : MonoBehaviour {
             undiscoveredTowers.Add(towerButtonThree.GetComponentInChildren<Text>().text);
             amountOfUndiscoveredTowers++;
         }
-        PickTowers();
+        //PickTowers();
+        towerButtonOne.interactable = false;
+        towerButtonThree.interactable = false;
     }
     public void ButtonThree()
     {
@@ -126,7 +134,41 @@ public class RandomTowerBlueprints : MonoBehaviour {
             undiscoveredTowers.Add(towerButtonOne.GetComponentInChildren<Text>().text);
             amountOfUndiscoveredTowers++;
         }
-        PickTowers();
+        //PickTowers();
+        towerButtonOne.interactable = false;
+        towerButtonTwo.interactable = false;
+    }
+
+    private List<string> GetDiscoveredTowers()
+    {
+       
+        discoveredTowers.Clear();
+        if (towers[(int)Towers.RifledTower] == true)
+        {
+            discoveredTowers.Add("RifledTower");
+        }
+        if (towers[(int)Towers.AssaultTower] == true)
+        {
+            discoveredTowers.Add("AssaultTower");
+        }
+        if (towers[(int)Towers.FlameTower] == true)
+        {
+            discoveredTowers.Add("FlameTower");
+        }
+        if (towers[(int)Towers.LighteningTower] == true)
+        {
+            discoveredTowers.Add("LighteningTower");
+        }
+        if (towers[(int)Towers.PlasmaTower] == true)
+        {
+            discoveredTowers.Add("PlasmaTower");
+        }
+        if (towers[(int)Towers.SlowTower] == true)
+        {
+            discoveredTowers.Add("SlowTower");
+        }
+        print(discoveredTowers+ "discovered towers");
+        return discoveredTowers;
     }
 
     private void GetAmountOfUndiscoveredTowers()
@@ -205,6 +247,8 @@ public class RandomTowerBlueprints : MonoBehaviour {
             print("tower[ " + (int)Towers.SlowTower + "] should be true");
 
         }
+
+        turretTypes.UpdateTowersAvailable(GetDiscoveredTowers());
     }
 
     // is passed in towerButtonOne.GetComponentInChildren<Text>().text

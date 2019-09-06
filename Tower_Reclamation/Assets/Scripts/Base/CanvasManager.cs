@@ -24,11 +24,18 @@ public class CanvasManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         // Only have 1 Canvas going at a time
-        turretFactory.gameObject.SetActive(false);
-        computerBase.gameObject.SetActive(false);
-        engineerer.gameObject.SetActive(false);
-        Tinker.gameObject.SetActive(false);
+        turretFactory.gameObject.SetActive(true);
+        computerBase.gameObject.SetActive(true);
+        engineerer.gameObject.SetActive(true);
+        Tinker.gameObject.SetActive(true);
         meetingRoom.gameObject.SetActive(true);
+
+        // UI being turned off but the object is on (just canvas part).
+        turretFactory.GetComponent<Canvas>().enabled = false;
+        computerBase.GetComponent<Canvas>().enabled = false;
+        engineerer.GetComponent<Canvas>().enabled = false;
+        Tinker.GetComponent<Canvas>().enabled = false;
+
 
         computerFader.SetActive(true);
         engineerFader.SetActive(true);
@@ -38,13 +45,20 @@ public class CanvasManager : MonoBehaviour {
 
         currentActiveCanvas = meetingRoom;
         currentScreenFader = meetingRoomFader;
+
+        //StartupLoad();
 	}
 	
     void FadeIn_DisableOldCanvas()
     {
         currentScreenFader.GetComponent<FadeScript>().FadeIn();
-        currentActiveCanvas.gameObject.SetActive(false);
+        currentActiveCanvas.GetComponent<Canvas>().enabled = false;
     }
+
+    //public void StartupLoad()
+    //{
+    //    meetingRoom.GetComponent<Canvas>().enabled = false;  //set unenabled and see if the scrips load
+    //}
 
     // room buttons, first checks if the active room is the one clicked.
     public void ChooseComputerRoom()
@@ -89,7 +103,8 @@ public class CanvasManager : MonoBehaviour {
         var delay = currentScreenFader.GetComponent<FadeScript>().fadeTime;
         yield return new WaitForSeconds(delay);
 
-        meetingRoom.gameObject.SetActive(true);
+        meetingRoom.GetComponent<Canvas>().enabled = true;
+        //meetingRoom.gameObject.SetActive(true);
         meetingRoomFader.gameObject.SetActive(true);
 
         currentActiveCanvas = meetingRoom;
@@ -103,7 +118,8 @@ public class CanvasManager : MonoBehaviour {
         var delay = currentScreenFader.GetComponent<FadeScript>().fadeTime;
         yield return new WaitForSeconds(delay);
 
-        Tinker.gameObject.SetActive(true);
+        Tinker.GetComponent<Canvas>().enabled = true;
+        //Tinker.gameObject.SetActive(true);
         tinkerFader.gameObject.SetActive(true);
 
         currentActiveCanvas = Tinker;
@@ -117,7 +133,8 @@ public class CanvasManager : MonoBehaviour {
         var delay = currentScreenFader.GetComponent<FadeScript>().fadeTime;
         yield return new WaitForSeconds(delay);
 
-        engineerer.gameObject.SetActive(true);
+        engineerer.GetComponent<Canvas>().enabled = true;
+        //engineerer.gameObject.SetActive(true);
         engineerFader.gameObject.SetActive(true);
 
         currentActiveCanvas = engineerer;
@@ -131,7 +148,8 @@ public class CanvasManager : MonoBehaviour {
         var delay = currentScreenFader.GetComponent<FadeScript>().fadeTime;
         yield return new WaitForSeconds(delay);
 
-        turretFactory.gameObject.SetActive(true);
+        turretFactory.GetComponent<Canvas>().enabled = true;
+        //turretFactory.gameObject.SetActive(true);
         turretFader.gameObject.SetActive(true);
 
         currentActiveCanvas = turretFactory;
@@ -145,7 +163,8 @@ public class CanvasManager : MonoBehaviour {
         var delay = currentScreenFader.GetComponent<FadeScript>().fadeTime;
         yield return new WaitForSeconds(delay);
 
-        computerBase.gameObject.SetActive(true);
+        computerBase.GetComponent<Canvas>().enabled = true;
+        //computerBase.gameObject.SetActive(true);
         computerFader.gameObject.SetActive(true);
 
         currentActiveCanvas = computerBase;

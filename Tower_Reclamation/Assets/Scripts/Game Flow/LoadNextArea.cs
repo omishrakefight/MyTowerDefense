@@ -32,6 +32,8 @@ public class LoadNextArea : MonoBehaviour {
     
     public void LoadBase()
     {
+        // add singleton reset here**
+
         SceneManager.LoadSceneAsync("_Scenes/_Base");
     }
 

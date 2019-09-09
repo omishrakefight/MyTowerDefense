@@ -33,6 +33,7 @@ public class LoadNextArea : MonoBehaviour {
     public void LoadBase()
     {
         // add singleton reset here**
+        Singleton.Instance.isHasLearnedATower = false;
 
         SceneManager.LoadSceneAsync("_Scenes/_Base");
     }
@@ -42,7 +43,7 @@ public class LoadNextArea : MonoBehaviour {
         nextPath = FindObjectOfType<ChooseNextMissionPath>();
         pickedPath = nextPath.isHasChosen;
 
-        if (pickedPath)
+        if (Singleton.Instance.isHasPickedAPath)
         {
             FindObjectOfType<LevelTracker>().IncreaseLevel();
             currentLevel = FindObjectOfType<LevelTracker>().currentLevel;

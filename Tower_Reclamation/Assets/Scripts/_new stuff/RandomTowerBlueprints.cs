@@ -11,6 +11,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
     bool[] towers;
     PlayerTowerLog towerLog;
     [SerializeField] TowerSelecter turretTypes;
+    Singleton singleton;
     List<string> undiscoveredTowers = new List<string>();
     List<string> discoveredTowers = new List<string>();
 
@@ -74,14 +75,30 @@ public class RandomTowerBlueprints : MonoBehaviour {
     public void ManualStart()
     {
         towerLog = GetComponent<PlayerTowerLog>();
-        print("got component!");
         towers = towerLog.towers1;
         amountOfTowers = towers.Length;
         GetAmountOfUndiscoveredTowers();
-        print(amountOfUndiscoveredTowers + " undiscovered");
-        PickTowers();
+        //this populates the buttons and checks if you can learn
+        CheckIfCanLearnMoreTowers();
 
         turretTypes.UpdateTowersAvailable(GetDiscoveredTowers());
+
+    }
+
+    public void CheckIfCanLearnMoreTowers()
+    {
+        //TODO change to a specific towers lost pic or something.
+        if (Singleton.Instance.isHasLearnedATower)
+        {
+            PickTowers();
+            towerButtonOne.interactable = false;
+            towerButtonTwo.interactable = false;
+            towerButtonThree.interactable = false;
+        }
+        else
+        {
+            PickTowers();
+        }
     }
 
     public void ButtonOne()
@@ -99,6 +116,8 @@ public class RandomTowerBlueprints : MonoBehaviour {
             amountOfUndiscoveredTowers++;
         }
         //PickTowers();
+        Singleton.Instance.isHasLearnedATower = true;
+
         towerButtonThree.interactable = false;
         towerButtonTwo.interactable = false;
     }
@@ -118,6 +137,8 @@ public class RandomTowerBlueprints : MonoBehaviour {
             amountOfUndiscoveredTowers++;
         }
         //PickTowers();
+        Singleton.Instance.isHasLearnedATower = true;
+
         towerButtonOne.interactable = false;
         towerButtonThree.interactable = false;
     }
@@ -137,6 +158,8 @@ public class RandomTowerBlueprints : MonoBehaviour {
             amountOfUndiscoveredTowers++;
         }
         //PickTowers();
+        Singleton.Instance.isHasLearnedATower = true;
+
         towerButtonOne.interactable = false;
         towerButtonTwo.interactable = false;
     }
@@ -175,14 +198,6 @@ public class RandomTowerBlueprints : MonoBehaviour {
 
     private void GetAmountOfUndiscoveredTowers()
     {
-        //amountOfUndiscoveredTowers = 0;
-        //for(int x = 0; x < amountOfTowers; x++)
-        //{
-        //    if(towers[x] == false)
-        //    {
-        //        amountOfUndiscoveredTowers++;
-        //    }
-        //}
         undiscoveredTowers.Clear();
         if (towers[(int)Towers.RifledTower] == false)
         {

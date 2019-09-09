@@ -38,7 +38,7 @@ public class SaveAndLoad : MonoBehaviour {
 
 
         saver.SaveTowers(towerListObj.SaveTowers());
-
+        saver.IsHasChosenATower(singleton.isHasLearnedATower);
         // need to convert back to a list when reading in. ?
         // ERROR IS BEACAUSE THE SCRIPT IS DISABLED IN SAVE WINDOW, THE CANVASSES ARE ALL DISABLED EXCEPT USED ONE.
         saver.SaveEnemyOptions(missionChoice.firstEnemySet.ToArray(), missionChoice.secondEnemySet.ToArray());
@@ -77,6 +77,7 @@ public class SaveAndLoad : MonoBehaviour {
         SaveSerializedObject f = (SaveSerializedObject)bf.Deserialize(file);
         towerListObj.LoadTowers(f.towerList);
         missionChoice.LoadPathChoices(f.enemyOption1List, f.enemyOption2List);
+        singleton.isHasLearnedATower = f.hasChosenATower;
 
 
         // ---- they can choose new path each time for now.

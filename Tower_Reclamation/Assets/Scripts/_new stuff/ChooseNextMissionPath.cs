@@ -68,6 +68,7 @@ public class ChooseNextMissionPath : MonoBehaviour {
 
         // set hasChose = true after waves complete? on laod of base or something.
         isHasChosen = true;
+        singleton.isHasPickedAPath = true;
     }
 
     public void ChooseSecondPath()
@@ -78,6 +79,7 @@ public class ChooseNextMissionPath : MonoBehaviour {
 
         // set hasChose = true after waves complete? on laod of base or something.
         isHasChosen = true;
+        singleton.isHasPickedAPath = true;
     }
 
 

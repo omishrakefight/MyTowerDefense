@@ -25,6 +25,9 @@ public sealed class Singleton : MonoBehaviour {
     public int level = 1;
     private int waveEnemyDifficultyChecker = 0;
 
+    public bool isHasPickedAPath = false;
+    public bool isHasLearnedATower = false;
+
     public void TowerOne()
     {
         towerFactory.AddTower(towerOne);

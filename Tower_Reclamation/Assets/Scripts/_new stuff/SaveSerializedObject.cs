@@ -16,9 +16,16 @@ public class SaveSerializedObject  {
     public int[] enemyOption1List;
     public int[] enemyOption2List;
 
+    public bool hasChosenATower = false;
+
 
     public SaveSerializedObject()
     {
+    }
+
+    public void IsHasChosenATower(bool chosen)
+    {
+        hasChosenATower = chosen;
     }
 
     public void SaveTowers(bool[] towerListSaves)

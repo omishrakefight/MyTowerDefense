@@ -306,7 +306,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4447497429725112}
   - component: {fileID: 114571783154708684}
-  - component: {fileID: 114660287301177822}
+  - component: {fileID: 114474528003119076}
   - component: {fileID: 114501412771417988}
   - component: {fileID: 82203691034601306}
   m_Layer: 0
@@ -2426,6 +2426,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsUpdated: 0
+--- !u!114 &114474528003119076
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1443303271302662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f89b867388fd30842a3220ef029e6ed6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMesh: {fileID: 0}
+  hitparticleprefab: {fileID: 198801791596541968, guid: dcf9cd10c07cf0c49863969befadb243,
+    type: 2}
+  deathPrefab: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0,
+    type: 2}
+  endPrefab: {fileID: 198537984209914932, guid: c580ba0da605f0440911c42e99f7ffa3,
+    type: 2}
+  enemyHitAudio: {fileID: 8300000, guid: 5c8980e6da5408944872a958d864c1fb, type: 3}
+  enemyDiedAudio: {fileID: 8300000, guid: 93ac45ea8331dff4391221eb09000fc2, type: 3}
+  hitPoints: 60
+  hitPointsMax: 0
+  onFire: 0
+  time: 0
 --- !u!114 &114501412771417988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2505,29 +2529,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsUpdated: 0
---- !u!114 &114660287301177822
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1443303271302662}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4932d5c3a8b91c4c972519a783d3f70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionMesh: {fileID: 0}
-  hitparticleprefab: {fileID: 0}
-  deathPrefab: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0,
-    type: 2}
-  endPrefab: {fileID: 198537984209914932, guid: c580ba0da605f0440911c42e99f7ffa3,
-    type: 2}
-  enemyHitAudio: {fileID: 8300000, guid: f488ee320c5d5264bb661a4fea76ccfc, type: 3}
-  enemyDiedAudio: {fileID: 8300000, guid: 5c8980e6da5408944872a958d864c1fb, type: 3}
-  hitPoints: 100
-  hitPointsMax: 0
-  onFire: 0
-  time: 0
 --- !u!114 &114663513389346154
 MonoBehaviour:
   m_ObjectHideFlags: 1

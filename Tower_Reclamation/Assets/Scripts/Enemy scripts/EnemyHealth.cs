@@ -4,38 +4,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyHealth : MonoBehaviour {
+public abstract class EnemyHealth : MonoBehaviour {
 
-    [SerializeField] Collider collisionMesh;
+    [SerializeField] protected Collider collisionMesh;
 
-    [SerializeField] ParticleSystem hitparticleprefab;
-    [SerializeField] ParticleSystem deathPrefab;
-    [SerializeField] ParticleSystem endPrefab;
-    [SerializeField] AudioClip enemyHitAudio;
-    [SerializeField] AudioClip enemyDiedAudio;
+    [SerializeField] protected ParticleSystem hitparticleprefab;
+    [SerializeField] protected ParticleSystem deathPrefab;
+    [SerializeField] protected ParticleSystem endPrefab;
+    [SerializeField] protected AudioClip enemyHitAudio;
+    [SerializeField] protected AudioClip enemyDiedAudio;
 
     [SerializeField] public float hitPoints = 60;
     [SerializeField] public float hitPointsMax;
 
-    float burnTime = 3f;
-    [SerializeField] bool onFire = false;
-    [SerializeField] float time = 0;
-    float burnDmg;
+    protected float burnTime = 3f;
+    [SerializeField] protected bool onFire = false;
+    [SerializeField] protected float time = 0;
+    protected float burnDmg;
 
-    bool healing = false;
-    float healTimer = 1f;
-    float healTime = 0f;
-    float healPercent;
+    protected bool healing = false;
+    protected float healTimer = 1f;
+    protected float healTime = 0f;
+    protected float healPercent;
 
     // Use this for initialization
-    void Start()
+    protected virtual void Start()
     {
         float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 15;
         hitPoints += healthModifier;
         hitPointsMax = hitPoints;
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (onFire)
         {
@@ -47,7 +47,7 @@ public class EnemyHealth : MonoBehaviour {
         }
     }
 
-    public IEnumerator Burning(float fireDmg)
+    public virtual IEnumerator Burning(float fireDmg)
     {
         if (hitPoints < 1)
         {
@@ -73,7 +73,7 @@ public class EnemyHealth : MonoBehaviour {
         burnDmg = fireDmg;
     }
 
-    private void OnParticleCollision(GameObject other)
+    protected virtual void OnParticleCollision(GameObject other)
     {
         ProcessHit(other);
         if (hitPoints <= 0)
@@ -101,7 +101,7 @@ public class EnemyHealth : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    void ProcessHit(GameObject other)
+    protected void ProcessHit(GameObject other)
     {
         float dmg = 0;
         dmg = other.GetComponentInParent<Tower_Dmg>().towerDMG();
@@ -110,7 +110,7 @@ public class EnemyHealth : MonoBehaviour {
         //    print("Current hit points are : " + hitPoints);
     }
 
-    public void HitByNonProjectile(float damage)
+    public virtual void HitByNonProjectile(float damage)
     {
         float dmg = damage;
         hitPoints = hitPoints - dmg;
@@ -136,7 +136,7 @@ public class EnemyHealth : MonoBehaviour {
 
     }
 
-    public IEnumerator Healing(float healPercent)
+        public IEnumerator Healing(float healPercent)
     {
         float healPerTick = (healPercent * hitPointsMax);
         //print("HPT: " + healPerTick + " HPerc: " + healPercent + " HPM: " + hitPointsMax);

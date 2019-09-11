@@ -54,8 +54,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4907987154143992}
   - component: {fileID: 54660159372924652}
-  - component: {fileID: 114941686308246830}
   - component: {fileID: 114277369253632548}
+  - component: {fileID: 114887766040956376}
   - component: {fileID: 82564215027017590}
   m_Layer: 10
   m_Name: Enemy_Generic
@@ -315,7 +315,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1289942997295908}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -18.898651, y: -1.03, z: -10.71636}
+  m_LocalPosition: {x: 35.96602, y: -0.000030517578, z: 5.6544456}
   m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
   m_Children:
   - {fileID: 4370127362219154}
@@ -491,7 +491,7 @@ MonoBehaviour:
   chilledMultiplier: 1
   frenzyMultiplier: 1
   slimeMultiplier: 1
---- !u!114 &114941686308246830
+--- !u!114 &114887766040956376
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -499,18 +499,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1289942997295908}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4932d5c3a8b91c4c972519a783d3f70, type: 3}
+  m_Script: {fileID: 11500000, guid: f89b867388fd30842a3220ef029e6ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionMesh: {fileID: 65598544800772234}
-  hitparticleprefab: {fileID: 198541214580773456}
+  collisionMesh: {fileID: 0}
+  hitparticleprefab: {fileID: 198801791596541968, guid: dcf9cd10c07cf0c49863969befadb243,
+    type: 2}
   deathPrefab: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0,
     type: 2}
   endPrefab: {fileID: 198537984209914932, guid: c580ba0da605f0440911c42e99f7ffa3,
     type: 2}
-  enemyHitAudio: {fileID: 8300000, guid: f488ee320c5d5264bb661a4fea76ccfc, type: 3}
-  enemyDiedAudio: {fileID: 8300000, guid: 5c8980e6da5408944872a958d864c1fb, type: 3}
-  hitPoints: 100
+  enemyHitAudio: {fileID: 8300000, guid: 5c8980e6da5408944872a958d864c1fb, type: 3}
+  enemyDiedAudio: {fileID: 8300000, guid: 93ac45ea8331dff4391221eb09000fc2, type: 3}
+  hitPoints: 60
   hitPointsMax: 0
   onFire: 0
   time: 0

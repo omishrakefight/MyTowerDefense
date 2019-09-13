@@ -164,9 +164,9 @@ GameObject:
   - component: {fileID: 65951202664613136}
   - component: {fileID: 82801932538148164}
   - component: {fileID: 114266368849620598}
-  - component: {fileID: 114834592942593360}
+  - component: {fileID: 114415798757362562}
   m_Layer: 0
-  m_Name: WormAlien (1)
+  m_Name: WormAlien
   m_TagString: PicaVoxelVolume
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1707,6 +1707,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsUpdated: 0
+--- !u!114 &114415798757362562
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1450649597192772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ecdbc4e406d074f8f3a379c817b087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionMesh: {fileID: 0}
+  hitparticleprefab: {fileID: 198801791596541968, guid: dcf9cd10c07cf0c49863969befadb243,
+    type: 2}
+  deathPrefab: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0,
+    type: 2}
+  endPrefab: {fileID: 198537984209914932, guid: c580ba0da605f0440911c42e99f7ffa3,
+    type: 2}
+  enemyHitAudio: {fileID: 8300000, guid: 5c8980e6da5408944872a958d864c1fb, type: 3}
+  enemyDiedAudio: {fileID: 8300000, guid: 93ac45ea8331dff4391221eb09000fc2, type: 3}
+  hitPoints: 60
+  hitPointsMax: 0
+  onFire: 0
+  time: 0
 --- !u!114 &114428397147215342
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1873,30 +1897,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsUpdated: 0
---- !u!114 &114834592942593360
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1450649597192772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f89b867388fd30842a3220ef029e6ed6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionMesh: {fileID: 0}
-  hitparticleprefab: {fileID: 198801791596541968, guid: dcf9cd10c07cf0c49863969befadb243,
-    type: 2}
-  deathPrefab: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0,
-    type: 2}
-  endPrefab: {fileID: 198537984209914932, guid: c580ba0da605f0440911c42e99f7ffa3,
-    type: 2}
-  enemyHitAudio: {fileID: 8300000, guid: 5c8980e6da5408944872a958d864c1fb, type: 3}
-  enemyDiedAudio: {fileID: 8300000, guid: 93ac45ea8331dff4391221eb09000fc2, type: 3}
-  hitPoints: 60
-  hitPointsMax: 0
-  onFire: 0
-  time: 0
 --- !u!114 &114853514194486604
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -10,6 +10,8 @@ public class BurrowerHealth : EnemyHealth {
     {
         base.Start();
         burrowerMove = GetComponent<BurrowerMovement>();
+        hitPoints = hitPoints * .5f;
+        hitPointsMax = hitPoints;
     }
 
     // Update is called once per frame

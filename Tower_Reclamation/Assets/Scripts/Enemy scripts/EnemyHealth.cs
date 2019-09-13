@@ -101,13 +101,13 @@ public abstract class EnemyHealth : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    protected void ProcessHit(GameObject other)
+    protected virtual void ProcessHit(GameObject other)
     {
         float dmg = 0;
         dmg = other.GetComponentInParent<Tower_Dmg>().towerDMG();
         hitPoints = hitPoints - dmg;
         hitparticleprefab.Play();
-        //    print("Current hit points are : " + hitPoints);
+            print("Current hit points are : " + hitPoints);
     }
 
     public virtual void HitByNonProjectile(float damage)

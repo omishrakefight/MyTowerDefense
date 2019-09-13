@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     const float originalSecondsBetweenSpawns = 2.00f;
     private EnemyMovement currentEnemy;
     [SerializeField] EnemyMovement enemyPrefab1;
-    [SerializeField] EnemyMovement enemyPrefab2;
+    [SerializeField] EnemyMovement enemyBurrower;
     [SerializeField] EnemyMovement enemyPrefab3;
     [SerializeField] EnemyMovement enemyDoubles;
 
@@ -75,7 +75,7 @@ public class EnemySpawner : MonoBehaviour
                         SpawnGenericEnemy();
                         break;
                     case 2:
-                        currentEnemy = enemyPrefab2;
+                        currentEnemy = enemyBurrower;
                         SpawnGenericEnemy();
                         break;
                     case 3:
@@ -142,7 +142,7 @@ public class EnemySpawner : MonoBehaviour
                 SpawnGenericEnemy();
                 break;
             case 2:
-                currentEnemy = enemyPrefab2;
+                currentEnemy = enemyBurrower;
                 SpawnGenericEnemy();
                 break;
             case 3:
@@ -167,7 +167,7 @@ public class EnemySpawner : MonoBehaviour
                 currentEnemy = enemyPrefab1;
                 break;
             case 2:
-                currentEnemy = enemyPrefab2;
+                currentEnemy = enemyBurrower;
                 break;
             case 3:
                 currentEnemy = enemyPrefab3;

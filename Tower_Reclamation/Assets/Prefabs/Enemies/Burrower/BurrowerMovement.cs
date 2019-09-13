@@ -19,10 +19,20 @@ public class BurrowerMovement : EnemyMovement {
 
     protected bool canBurrow = true;
     protected Vector3 currentDigSite;
-    // Use this for initialization
-    //void Start () {
 
-    //}
+    public bool canBeHit = true;
+    public float trialSpeedForDigging;
+
+    // Use this for initialization
+    override protected void Start()
+    {
+        base.Start();
+        canBeHit = true;
+        digTime = .35f;
+        burrowTime = 2f;
+        distanceToBurrow = 3f;
+        trialSpeedForDigging = (distanceToBurrow * ((1/digTime) * Time.deltaTime));
+    }
 
     // Update is called once per frame
     override protected void Update()
@@ -31,10 +41,10 @@ public class BurrowerMovement : EnemyMovement {
         {
             currentHitCountdown += 1 * Time.deltaTime; // Add this gets set to 0 bool is false, and start burrow *************
         }
-        //if (burrowed)
-        //{
-        //    currentBurrowTime += 1 * Time.deltaTime;
-        //}
+        if (burrowed)
+        {
+            currentBurrowTime += 1 * Time.deltaTime;
+        }
 
         if (chilled)
         {
@@ -45,22 +55,42 @@ public class BurrowerMovement : EnemyMovement {
 
         //Burrow if timed, otherwise move.
 
-        if (currentHitCountdown < 1.0f && currentDiggingTime < digTime)
+        if (currentHitCountdown > 1.0f && currentDiggingTime < digTime)
         {
             print("failing to dig?");
             //currentHitCountdown = 0f;
             // add the time to burrowed here, then subtrat in unburrow.  great way to manage it and withotu an extra if loop
             currentDiggingTime += 1 * Time.deltaTime;
-            Burrow();
-            transform.position = Vector3.MoveTowards(transform.position, (new Vector3(transform.position.x, (currentDigSite.y - distanceToBurrow), transform.position.z) + heightOffset), 200);
-
+            if (canBurrow)
+            {
+                Burrow();
+            }
+            if (currentDiggingTime >= digTime)
+            {
+                burrowed = true;
+                heightOffset.y -= distanceToBurrow;
+            }
+            
+            transform.position = Vector3.MoveTowards(transform.position, (new Vector3(transform.position.x, (currentDigSite.y - distanceToBurrow - distanceToBurrow), transform.position.z) + heightOffset), trialSpeedForDigging);
 
         }
         else if (currentBurrowTime > burrowTime && currentDiggingTime > 0)
         {
+            //print(currentBurrowTime + " > " + burrowTime + " && " + currentDiggingTime);
             currentDiggingTime -= 1 * Time.deltaTime;
-            Unburrow();   // <----- make better 
-            transform.position = Vector3.MoveTowards(transform.position, (new Vector3(transform.position.x, (currentDigSite.y + distanceToBurrow), transform.position.z) + heightOffset), 200);
+            if (burrowed)
+            {
+                Unburrow();
+            }
+            if (currentDiggingTime <= 0)
+            {
+                currentBurrowTime = 0;
+                canBurrow = true;
+                burrowed = false;
+                canBeHit = true;
+                heightOffset.y += distanceToBurrow;
+            }
+            transform.position = Vector3.MoveTowards(transform.position, (new Vector3(transform.position.x, (currentDigSite.y + distanceToBurrow + distanceToBurrow), transform.position.z) + heightOffset), trialSpeedForDigging);
 
         }
         else {
@@ -116,12 +146,16 @@ public class BurrowerMovement : EnemyMovement {
 
     public void IWasHit()
     {
-        recentlyHit = true;
-        print("burrower says ouch, I gots to go.");
+        if (canBeHit) {
+            recentlyHit = true;
+            print("burrower says ouch, I gots to go.");
+            canBeHit = false;
+        }
     }
 
     public void Unburrow()
     {
+        print("Unburrowing!");
         burrowed = false;
         currentHitCountdown = 0;
         currentDigSite = transform.position;
@@ -129,11 +163,12 @@ public class BurrowerMovement : EnemyMovement {
 
     public void Burrow()
     {
-        if (canBurrow)
-        {
-            burrowed = true;
-            recentlyHit = false;
-            currentDigSite = transform.position;
-        }
+        
+        print("burrowing");
+        //burrowed = true;
+        recentlyHit = false;
+        canBurrow = false;
+        currentDigSite = transform.position;
+        
     }
 }

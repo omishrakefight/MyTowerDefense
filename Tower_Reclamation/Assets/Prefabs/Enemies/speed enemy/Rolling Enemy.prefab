@@ -267,6 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4998006252142974}
   - component: {fileID: 114528106099422170}
+  - component: {fileID: 65453446012651370}
   m_Layer: 0
   m_Name: Enemy_fastRoller
   m_TagString: PicaVoxelVolume
@@ -569,6 +570,7 @@ GameObject:
   - component: {fileID: 114726908905558888}
   - component: {fileID: 82854984048450032}
   - component: {fileID: 114637199000446538}
+  - component: {fileID: 65763290971919538}
   m_Layer: 0
   m_Name: Rolling Enemy
   m_TagString: Untagged
@@ -952,8 +954,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1841068369360852}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000004371139}
+  m_LocalPosition: {x: 34.75796, y: -0.000030517578, z: 3.3825588}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4766134263310936}
@@ -2256,6 +2258,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1531587219801458}
   m_Mesh: {fileID: 4300000, guid: 0508759a84c97fa4a9fee5c90fc66380, type: 2}
+--- !u!65 &65453446012651370
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1356176470405082}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4, y: 4, z: 4}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &65634774579298036
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -2268,6 +2282,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 4, z: 4}
   m_Center: {x: 2, y: 2, z: 2}
+--- !u!65 &65763290971919538
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1841068369360852}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5, y: 5, z: 5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!82 &82854984048450032
 AudioSource:
   m_ObjectHideFlags: 1
@@ -2619,7 +2645,7 @@ MonoBehaviour:
   ImportedFrom: 1
   ImportedFile: C:/Users/omish/Desktop/MagicaVoxel/MagicaVoxel-0.99.3-alpha-win64/vox/Enemy_fastRoller.vox
   ImportedCutoutColor: {r: 0, g: 0, b: 0, a: 0}
-  thisInstanceId: -93048
+  thisInstanceId: -1261862
   Undone: 1
 --- !u!114 &114587318197592616
 MonoBehaviour:
@@ -2657,13 +2683,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionMesh: {fileID: 0}
-  hitparticleprefab: {fileID: 0}
-  deathPrefab: {fileID: 0}
-  endPrefab: {fileID: 0}
+  hitparticleprefab: {fileID: 198801791596541968, guid: dcf9cd10c07cf0c49863969befadb243,
+    type: 2}
+  deathPrefab: {fileID: 198537984209914932, guid: 1a51bfda454239a41afb7dee687c6ac0,
+    type: 2}
+  endPrefab: {fileID: 198537984209914932, guid: c580ba0da605f0440911c42e99f7ffa3,
+    type: 2}
   enemyHitAudio: {fileID: 8300000, guid: 5c8980e6da5408944872a958d864c1fb, type: 3}
   enemyDiedAudio: {fileID: 8300000, guid: 93ac45ea8331dff4391221eb09000fc2, type: 3}
-  hitPoints: 60
-  hitPointsMax: 0
+  hitPoints: 75
+  hitPointsMax: 75
   onFire: 0
   time: 0
 --- !u!114 &114650122763553458

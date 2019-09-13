@@ -61,12 +61,12 @@ public abstract class Tower : MonoBehaviour {
 
     protected void SetTargetEnemy()
     {
-        var sceneEnemies = FindObjectsOfType<EnemyMovement>();
+        var sceneEnemies = FindObjectsOfType<EnemyHealth>();
         if (sceneEnemies.Length == 0) { return; }
 
         Transform closestEnemy = sceneEnemies[0].transform;
 
-        foreach (EnemyMovement testEnemy in sceneEnemies)
+        foreach (EnemyHealth testEnemy in sceneEnemies)
         {
             closestEnemy = GetClosest(closestEnemy, testEnemy.transform);
         }

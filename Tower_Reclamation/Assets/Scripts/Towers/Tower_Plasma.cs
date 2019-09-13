@@ -21,7 +21,7 @@ public class Tower_Plasma : Tower
     bool laserIsOn = false;
 
     // Use this for initialization
-    void Start()
+    override protected void Start()
     {
         base.Start();
         goldCost = 0;

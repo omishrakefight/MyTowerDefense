@@ -145,10 +145,10 @@ public class ChooseNextMissionPath : MonoBehaviour {
         string enemyName = "";
         switch (enemy) {
             case 1:
-                enemyName = "Generic";
+                enemyName = "Generics";
                 break;
             case 2:
-                enemyName = "Generic";
+                enemyName = "Burrowers";
                 break;
             case 3:
                 enemyName = "Rollers";

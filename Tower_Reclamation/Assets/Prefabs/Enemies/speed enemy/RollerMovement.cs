@@ -7,7 +7,7 @@ public class RollerMovement : EnemyMovement {
     // Use this for initialization
     override protected void Start () {
         base.Start();
-        enemyBaseSpeed = 8f;
+        enemyBaseSpeed = enemyBaseSpeed * 1.4f;
 	}
 
     // Update is called once per frame

@@ -15,8 +15,9 @@ public abstract class Tower : MonoBehaviour {
     [SerializeField] protected float currentTowerDmg = 30;
 
     List<EnemyMovement> targets;
-    [SerializeField] protected Transform targetEnemy;
+    [SerializeField] public Transform targetEnemy;
     [SerializeField] protected Transform objectToPan;
+    public EnemyHealth targetEnemyBody;
 
     // Use this for initialization
     // Buff info
@@ -59,16 +60,33 @@ public abstract class Tower : MonoBehaviour {
     }
 
 
-    protected void SetTargetEnemy()
+    public void SetTargetEnemy()
     {
+        bool getNext = false;
+        print("searching for dudes to shoot");
         var sceneEnemies = FindObjectsOfType<EnemyHealth>();
         if (sceneEnemies.Length == 0) { return; }
 
-        Transform closestEnemy = sceneEnemies[0].transform;
+        Transform closestEnemy = sceneEnemies[0].transform; // change default?
+        // This meanas grab next in comparisons
+        if (!sceneEnemies[0].isTargetable)
+        {
+            print("Willing to shoot next thing behind the guy undergrounds");
+            getNext = true;
+        }
 
         foreach (EnemyHealth testEnemy in sceneEnemies)
         {
-            closestEnemy = GetClosest(closestEnemy, testEnemy.transform);
+            if (testEnemy.isTargetable) // checking for health script enabled
+            {
+                if (getNext)
+                {
+                    closestEnemy = testEnemy.transform;
+                }
+
+                closestEnemy = GetClosest(closestEnemy, testEnemy.transform);
+                targetEnemyBody = testEnemy;
+            }
         }
 
         targetEnemy = closestEnemy;

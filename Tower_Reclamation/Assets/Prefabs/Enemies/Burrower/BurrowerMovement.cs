@@ -23,6 +23,8 @@ public class BurrowerMovement : EnemyMovement {
     public bool canBeHit = true;
     public float trialSpeedForDigging;
 
+    protected BurrowerHealth myHealth;
+
     // Use this for initialization
     override protected void Start()
     {
@@ -32,6 +34,7 @@ public class BurrowerMovement : EnemyMovement {
         burrowTime = 2f;
         distanceToBurrow = 3f;
         trialSpeedForDigging = (distanceToBurrow * ((1/digTime) * Time.deltaTime));
+        myHealth = GetComponent<BurrowerHealth>();
     }
 
     // Update is called once per frame
@@ -69,6 +72,9 @@ public class BurrowerMovement : EnemyMovement {
             {
                 burrowed = true;
                 heightOffset.y -= distanceToBurrow;
+                myHealth.isTargetable = false;
+                myHealth.Burrowed();
+                UntargetMeFools();
             }
             
             transform.position = Vector3.MoveTowards(transform.position, (new Vector3(transform.position.x, (currentDigSite.y - distanceToBurrow - distanceToBurrow), transform.position.z) + heightOffset), trialSpeedForDigging);
@@ -89,6 +95,10 @@ public class BurrowerMovement : EnemyMovement {
                 burrowed = false;
                 canBeHit = true;
                 heightOffset.y += distanceToBurrow;
+                
+                myHealth.isTargetable = true;
+                myHealth.Unburrowed();
+
             }
             transform.position = Vector3.MoveTowards(transform.position, (new Vector3(transform.position.x, (currentDigSite.y + distanceToBurrow + distanceToBurrow), transform.position.z) + heightOffset), trialSpeedForDigging);
 
@@ -136,12 +146,25 @@ public class BurrowerMovement : EnemyMovement {
 
                 // chilled is 0?
                 enemySpeed = enemyBaseSpeed * chilledMultiplier * frenzyMultiplier * slimeMultiplier;
-                print(enemySpeed + "is speed   " + chilledMultiplier + frenzyMultiplier + slimeMultiplier);
+                //print(enemySpeed + "is speed   " + chilledMultiplier + frenzyMultiplier + slimeMultiplier);
 
             }
         }
+    }
 
-
+    public void UntargetMeFools()
+    {
+        var sceneTowers = FindObjectsOfType<Tower>();
+        //print("i command you to Untarget ME!, UntargetMeFools!");
+        foreach(Tower foundTower in sceneTowers)
+        {
+            //print("I am telling you, in my list, to stop!");
+            if (foundTower.targetEnemy == this.gameObject.transform)
+            {
+                //print("Im going to ask you to stop shooting me, please.");
+                foundTower.SetTargetEnemy();
+            }
+        }
     }
 
     public void IWasHit()

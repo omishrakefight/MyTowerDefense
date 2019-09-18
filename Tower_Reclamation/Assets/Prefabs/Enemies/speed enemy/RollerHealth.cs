@@ -10,6 +10,8 @@ public class RollerHealth : EnemyHealth {
 	override protected void Start () {
         base.Start();
         canDodge = true;
+        hitPointsMax = hitPointsMax * .6f;
+        hitPoints = hitPointsMax;
 	}
 	
 	// Update is called once per frame

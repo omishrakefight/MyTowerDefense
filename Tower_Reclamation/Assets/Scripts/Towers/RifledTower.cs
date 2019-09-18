@@ -70,7 +70,7 @@ public class RifledTower : Tower {
     private void FireAtEnemy()
     {
         float distanceToEnemy = Vector3.Distance(targetEnemy.transform.position, gameObject.transform.position);
-        if (distanceToEnemy <= attackRange)
+        if (distanceToEnemy <= attackRange && targetEnemyBody.isTargetable)
         {
             Shoot(true);
         }

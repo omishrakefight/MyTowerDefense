@@ -10438,6 +10438,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114528106099422170, guid: ee31e288441edde4695b6bc5b226e169,
+        type: 2}
+      propertyPath: thisInstanceId
+      value: -14178
+      objectReference: {fileID: 0}
+    - target: {fileID: 1841068369360852, guid: ee31e288441edde4695b6bc5b226e169, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee31e288441edde4695b6bc5b226e169, type: 2}
   m_IsPrefabParent: 0
@@ -11316,6 +11325,7 @@ MonoBehaviour:
   hitPointsMax: 0
   onFire: 0
   time: 0
+  isTargetable: 1
 --- !u!114 &966099070
 MonoBehaviour:
   m_ObjectHideFlags: 0

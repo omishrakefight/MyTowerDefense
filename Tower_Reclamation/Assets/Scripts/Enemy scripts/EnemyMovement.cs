@@ -105,7 +105,7 @@ public abstract class EnemyMovement : MonoBehaviour
 
                 // chilled is 0?
                 enemySpeed = enemyBaseSpeed * chilledMultiplier * frenzyMultiplier * slimeMultiplier;
-                print(enemySpeed + "is speed   " + chilledMultiplier + frenzyMultiplier + slimeMultiplier);
+                //print(enemySpeed + "is speed   " + chilledMultiplier + frenzyMultiplier + slimeMultiplier);
 
             }
         }

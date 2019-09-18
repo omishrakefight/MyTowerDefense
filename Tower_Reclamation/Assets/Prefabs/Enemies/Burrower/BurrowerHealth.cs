@@ -5,6 +5,7 @@ using UnityEngine;
 public class BurrowerHealth : EnemyHealth {
 
     protected BurrowerMovement burrowerMove;
+    protected bool burrowed = false;
     // Use this for initialization
     override protected void Start()
     {
@@ -20,6 +21,14 @@ public class BurrowerHealth : EnemyHealth {
         base.Update();
     }
 
+    public void Burrowed()
+    {
+        burrowed = true;
+    }
+    public void Unburrowed()
+    {
+        burrowed = false;
+    }
 
     public void TellMovementToStartBurrow()
     {
@@ -28,6 +37,11 @@ public class BurrowerHealth : EnemyHealth {
 
     override public void HitByNonProjectile(float damage)
     {
+        if (burrowed) // cant shoot me im underground bitch.
+        {
+            return;
+        }
+
         float dmg = damage;
         hitPoints = hitPoints - dmg;
         TellMovementToStartBurrow();
@@ -46,6 +60,11 @@ public class BurrowerHealth : EnemyHealth {
 
     override protected void OnParticleCollision(GameObject other)
     {
+        if (burrowed) // cant shoot me im underground bitch.
+        {
+            return;
+        }
+
         ProcessHit(other);
         TellMovementToStartBurrow();
         if (hitPoints <= 0)
@@ -61,6 +80,7 @@ public class BurrowerHealth : EnemyHealth {
 
     override public IEnumerator Burning(float fireDmg)
     {
+        //burning underground sucks, but ill allow it ATM.
         if (hitPoints < 1)
         {
             KillsEnemyandAddsGold();

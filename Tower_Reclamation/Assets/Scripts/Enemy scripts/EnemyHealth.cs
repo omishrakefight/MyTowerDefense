@@ -27,6 +27,8 @@ public abstract class EnemyHealth : MonoBehaviour {
     protected float healTime = 0f;
     protected float healPercent;
 
+    public bool isTargetable = true;
+
     // Use this for initialization
     protected virtual void Start()
     {
@@ -107,7 +109,7 @@ public abstract class EnemyHealth : MonoBehaviour {
         dmg = other.GetComponentInParent<Tower_Dmg>().towerDMG();
         hitPoints = hitPoints - dmg;
         hitparticleprefab.Play();
-            print("Current hit points are : " + hitPoints);
+            //print("Current hit points are : " + hitPoints);
     }
 
     public virtual void HitByNonProjectile(float damage)

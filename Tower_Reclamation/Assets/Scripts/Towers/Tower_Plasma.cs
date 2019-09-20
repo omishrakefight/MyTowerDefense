@@ -12,7 +12,8 @@ public class Tower_Plasma : Tower
     List<EnemyHealth> targets = new List<EnemyHealth>();
     Tower_PlasmaHead plasmaTargeter;
 
-    float chargeTime = 0f;
+    float maxCharge;
+    float currentChargeTime = 0f;
     bool canFire = false;
 
     //1.25 worked well
@@ -24,9 +25,11 @@ public class Tower_Plasma : Tower
     override protected void Start()
     {
         base.Start();
-        goldCost = 0;
+        maxCharge = 4f;
+        goldCost = 70;
         attackRange = 30;
-        towerDmg = 20;
+        towerDmg = 18;
+        CheckAndApplyBuff();
         //laser = transform.GetComponentInChildren<CapsuleCollider>();
     }
 
@@ -35,11 +38,11 @@ public class Tower_Plasma : Tower
     {
         if (!canFire)
         {
-            chargeTime += 1 * Time.deltaTime;
-            if (chargeTime > 5.0f)
+            currentChargeTime += 1 * Time.deltaTime;
+            if (currentChargeTime > maxCharge)
             {
                 canFire = true;
-                chargeTime = 0f;
+                currentChargeTime = 0f;
             }
         }
 

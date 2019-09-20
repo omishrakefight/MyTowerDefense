@@ -5,7 +5,7 @@ using UnityEngine;
 public class LighteningTower : Tower {
 
     [SerializeField] public SphereCollider attackAOE;
-    [SerializeField] public float chargeTime = 4f;
+    [SerializeField] public float chargeTime = 8f;
     [SerializeField] public float currentChargeTime = 0;
     public bool isCharged = false;
     //public new int goldCost = 80;
@@ -30,7 +30,8 @@ public class LighteningTower : Tower {
 
     protected override void Start()
     {
-        goldCost = 60;
+        towerDmg = 30;
+        goldCost = 80;
 
         if (!keepBuffed)   {    }
         if (keepBuffed)
@@ -92,7 +93,7 @@ public class LighteningTower : Tower {
         if (currentChargeTime < chargeTime)
         {
             currentChargeTime += Time.deltaTime;
-            charge.intensity = currentChargeTime / 3.33f;
+            charge.intensity = currentChargeTime / 6.33f;
         }
         else
         {

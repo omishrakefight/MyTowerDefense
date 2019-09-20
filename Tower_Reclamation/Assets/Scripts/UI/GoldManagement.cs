@@ -7,11 +7,12 @@ using UnityEngine;
 public class GoldManagement : MonoBehaviour {
 
     //inside enemy health dmg
-    [SerializeField] public int goldCount = 100;
+    [SerializeField] public int goldCount = 120;
     public Text gold;
 
     // Use this for initialization
     void Start () {
+        goldCount = 120;
         GoldCounter();
     }
 	

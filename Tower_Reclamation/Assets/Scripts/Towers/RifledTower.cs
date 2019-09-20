@@ -22,7 +22,10 @@ public class RifledTower : Tower {
 
     override protected void Start () {
         base.Start();
-        goldCost = 100;
+        towerDmg = 9f;
+        currentTowerDmg = 8f;
+        goldCost = 50;
+        CheckAndApplyBuff();
 	}
 
     //todo  check towerBuffs - is it in start? does it need a method? sync light tower, Tower.cs and others so its consistent.

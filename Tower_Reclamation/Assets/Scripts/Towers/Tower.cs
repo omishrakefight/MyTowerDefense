@@ -25,13 +25,7 @@ public abstract class Tower : MonoBehaviour {
 
     protected virtual void Start()
     {
-        // nothing if it is unbuffed 
-        if (!keepBuffed)   {   }
-        else
-        {
-            attackRange = attackRange * 1.4f;
-            currentTowerDmg = currentTowerDmg * 1.2f;
-        }
+        
     }
 
     public void TowerBuff()
@@ -39,7 +33,16 @@ public abstract class Tower : MonoBehaviour {
         keepBuffed = true;
     }
 
-
+    public void CheckAndApplyBuff()
+    {
+        // nothing if it is unbuffed 
+        if (!keepBuffed) { }
+        else
+        {
+            attackRange = attackRange * 1.4f;
+            currentTowerDmg = towerDmg * 1.2f;
+        }
+    }
 
     public void TowerUpgrade()
     {

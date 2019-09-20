@@ -14,7 +14,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     [SerializeField] protected AudioClip enemyHitAudio;
     [SerializeField] protected AudioClip enemyDiedAudio;
 
-    [SerializeField] public float hitPoints = 60;
+    [SerializeField] public float hitPoints = 40;
     [SerializeField] public float hitPointsMax;
 
     protected float burnTime = 3f;
@@ -32,7 +32,8 @@ public abstract class EnemyHealth : MonoBehaviour {
     // Use this for initialization
     protected virtual void Start()
     {
-        float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 15;
+        hitPoints = 40;
+        float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 10;
         hitPoints += healthModifier;
         hitPointsMax = hitPoints;
     }

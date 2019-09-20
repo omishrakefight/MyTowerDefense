@@ -5,7 +5,7 @@ using UnityEngine;
 public class Flame_AOE : MonoBehaviour {
 
 
-    [SerializeField] float towerDmg = 5;
+    [SerializeField] float towerDmg = 4;
     [SerializeField] private float currentTowerDmg = 5;
 
     [SerializeField] float currentAttackRange;

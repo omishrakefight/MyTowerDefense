@@ -108,6 +108,7 @@ public class EnemySpawner : MonoBehaviour
                 // make < 0 switch?
                 if (betweenWaves)
                 {
+                    level.WaveUpOne();
                     currentlySpawning = false;
                     betweenWaves = false;
                     yield return StartCoroutine(WaitBetweenWaves());

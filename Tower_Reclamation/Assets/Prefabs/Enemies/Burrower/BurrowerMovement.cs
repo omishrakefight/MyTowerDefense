@@ -15,7 +15,7 @@ public class BurrowerMovement : EnemyMovement {
     public float currentDiggingTime = 0f;
     public float digTime = .25f;
 
-    private float distanceToBurrow = 2f;
+    private float distanceToBurrow;
 
     protected bool canBurrow = true;
     protected Vector3 currentDigSite;
@@ -32,7 +32,7 @@ public class BurrowerMovement : EnemyMovement {
         canBeHit = true;
         digTime = .35f;
         burrowTime = 2f;
-        distanceToBurrow = 3f;
+        distanceToBurrow = 5f;
         trialSpeedForDigging = (distanceToBurrow * ((1/digTime) * Time.deltaTime));
         myHealth = GetComponent<BurrowerHealth>();
     }

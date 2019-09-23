@@ -99,7 +99,7 @@ public class TowerSelecter : MonoBehaviour
     {
         towerTurret.ClearOptions();
         towerTurret.AddOptions(towersKnown);
-        print("I worked and " + towersKnown.Count);
+        //print("I worked and " + towersKnown.Count);
     }
 
     public void ResetTowerPicture()

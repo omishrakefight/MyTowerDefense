@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
     float timeBetweenWaves = 12f;
     float waveTimer;
     [SerializeField] Slider slider;
-
+    public int enemyCounter = 0;
     // Use this for initialization
     /*
      * I Need THESE FOR INJECTION
@@ -65,6 +65,7 @@ public class EnemySpawner : MonoBehaviour
             if (x > 0)
             {
                 currentlySpawning = true;
+                enemyCounter++;
                 //var enemySpawnLoc = Instantiate(currentEnemy, transform.position, Quaternion.identity);
                 //enemySpawnLoc.transform.parent = enemiesLocation;
 
@@ -117,6 +118,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
+        print("Waiting for win!");
         // check for win
         while (FindObjectsOfType<EnemyMovement>().Length > 0)
         {
@@ -199,6 +201,9 @@ public class EnemySpawner : MonoBehaviour
             StartCoroutine(SpawnSpecificEnemies());
         }
     }
+
+
+
     //Get path on start so that you cant build towers wrongly
     //public IEnumerator ContinualSpawnEnemies()
     //{
@@ -230,7 +235,7 @@ public class EnemySpawner : MonoBehaviour
     //        yield return new WaitForSeconds(4);
     //        FindObjectOfType<LoadNextArea>().LoadBase();
     //    }
-        
+
     //    yield return StartCoroutine(WaitBetweenWaves());
     //}
 
@@ -241,7 +246,7 @@ public class EnemySpawner : MonoBehaviour
         {
             waveTimer = 0;
             //yield return StartCoroutine(ContinualSpawnEnemies());
-            yield return StartCoroutine(SpawnSpecificEnemies());
+            //yield return StartCoroutine(SpawnSpecificEnemies());
         }
     }
 

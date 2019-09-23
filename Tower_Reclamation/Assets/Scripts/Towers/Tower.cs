@@ -66,7 +66,6 @@ public abstract class Tower : MonoBehaviour {
     public void SetTargetEnemy()
     {
         bool getNext = false;
-        print("searching for dudes to shoot");
         var sceneEnemies = FindObjectsOfType<EnemyHealth>();
         if (sceneEnemies.Length == 0) { return; }
 

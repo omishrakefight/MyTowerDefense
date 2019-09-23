@@ -13,7 +13,6 @@ public class RifledTower : Tower {
     [SerializeField] ParticleSystem projectileParticle;
     //[SerializeField] float towerDmg = 12;
     //[SerializeField] private float currentTowerDmg = 12;
-
     // State of tower
 
 
@@ -28,8 +27,9 @@ public class RifledTower : Tower {
         CheckAndApplyBuff();
 	}
 
+
     //todo  check towerBuffs - is it in start? does it need a method? sync light tower, Tower.cs and others so its consistent.
-     
+
     //Waypoint baseWaypoint    For if i pass it here
     //public void TowerBuff()
     //{
@@ -40,19 +40,19 @@ public class RifledTower : Tower {
     //}
 
 
-  
-     //public void TowerUpgrade()
-     //{
-     //   // attackRange = attackRange * (1.0 + .2 * timesBuffed)
 
-     //   attackRange = attackRange * 1.2f;
+    //public void TowerUpgrade()
+    //{
+    //   // attackRange = attackRange * (1.0 + .2 * timesBuffed)
 
-     //    if (keepBuffed)
-     //    {
-     //        TowerBuff();
-     //    }
-     //}
-     
+    //   attackRange = attackRange * 1.2f;
+
+    //    if (keepBuffed)
+    //    {
+    //        TowerBuff();
+    //    }
+    //}
+
 
     // Update is called once per frame
     void Update () {

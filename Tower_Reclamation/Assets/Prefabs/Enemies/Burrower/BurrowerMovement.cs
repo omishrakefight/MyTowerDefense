@@ -60,7 +60,7 @@ public class BurrowerMovement : EnemyMovement {
 
         if (currentHitCountdown > 1.0f && currentDiggingTime < digTime)
         {
-            print("failing to dig?");
+            //print("failing to dig?");
             //currentHitCountdown = 0f;
             // add the time to burrowed here, then subtrat in unburrow.  great way to manage it and withotu an extra if loop
             currentDiggingTime += 1 * Time.deltaTime;
@@ -178,7 +178,6 @@ public class BurrowerMovement : EnemyMovement {
 
     public void Unburrow()
     {
-        print("Unburrowing!");
         burrowed = false;
         currentHitCountdown = 0;
         currentDigSite = transform.position;
@@ -187,7 +186,6 @@ public class BurrowerMovement : EnemyMovement {
     public void Burrow()
     {
         
-        print("burrowing");
         //burrowed = true;
         recentlyHit = false;
         canBurrow = false;

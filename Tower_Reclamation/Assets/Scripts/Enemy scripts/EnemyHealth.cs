@@ -144,7 +144,6 @@ public abstract class EnemyHealth : MonoBehaviour {
         float healPerTick = (healPercent * hitPointsMax);
         //print("HPT: " + healPerTick + " HPerc: " + healPercent + " HPM: " + hitPointsMax);
 
-        print("trying to heal...");
         if (healing && healTime < healTimer)
         {
             time += 1 * Time.deltaTime;

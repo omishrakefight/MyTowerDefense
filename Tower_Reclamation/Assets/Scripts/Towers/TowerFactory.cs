@@ -27,21 +27,50 @@ public class TowerFactory : MonoBehaviour {
     public void AddTower(Tower tower)
     {
         int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();
-        if (lastWaypoint.isAvailable && currentGold >= tower.goldCost)
+        int cost = (int)FindGoldCost(tower);
+        if (lastWaypoint.isAvailable && currentGold >= cost)
         {
             var newTower = Instantiate(tower, lastWaypoint.transform.position, Quaternion.identity);
             newTower.transform.parent = towerParentTransform;
             lastWaypoint.isAvailable = false;
-            FindObjectOfType<GoldManagement>().TowerCost(tower.goldCost);
+            FindObjectOfType<GoldManagement>().TowerCost(cost);
             if (lastWaypoint.CompareTag("Buff Tile"))
             {
                 newTower.TowerBuff();
             }
+            print("tower name is : " + tower.name);
+            print("tower is : " + tower);
         }
         else
         {
             print("Unable to build here.");
         }
+    }
+
+    public float FindGoldCost(Tower tower)
+    {
+        if (tower.name.Contains("Rifled"))
+        {
+            return 50;
+        }
+        else if (tower.name.Contains("Assault"))
+        {
+            return 55;
+        }
+        else if (tower.name.Contains("Flame"))
+        {
+            return 60;
+        }
+        else if (tower.name.Contains("Lightning"))
+        {
+            return 70;
+        }
+        else if (tower.name.Contains("Slow"))
+        {
+            return 60;
+        }
+
+        return 999;
     }
 
     public void AddRifledTower()

@@ -9,17 +9,20 @@ public class LoadNextArea : MonoBehaviour {
     bool loadNextArea;
     EnemySpawner enemySpawner;
 
+    [SerializeField] Button nextLevelButton;
     ChooseNextMissionPath nextPath;
     private bool pickedPath = false;
 
     [SerializeField] Text pickALane;
 
+    Singleton singleton;
     int currentLevel;
 
 	// Use this for initialization
 	void Start () {
         pickALane.enabled = false;
         enemySpawner = FindObjectOfType<EnemySpawner>();
+        singleton = FindObjectOfType<Singleton>();
     }
 	
 	// Update is called once per frame
@@ -33,6 +36,7 @@ public class LoadNextArea : MonoBehaviour {
     public void LoadBase()
     {
         // add singleton reset here**
+        singleton.LevelCleared();
         Singleton.Instance.isHasLearnedATower = false;
 
         SceneManager.LoadSceneAsync("_Scenes/_Base");
@@ -45,9 +49,15 @@ public class LoadNextArea : MonoBehaviour {
 
         if (Singleton.Instance.isHasPickedAPath)
         {
-            FindObjectOfType<LevelTracker>().IncreaseLevel();
-            currentLevel = FindObjectOfType<LevelTracker>().currentLevel;
+            //print("level is currently: " + FindObjectOfType<LevelTracker>().currentLevel);
+            //FindObjectOfType<LevelTracker>().IncreaseLevel();
+            //print("level is now : " + FindObjectOfType<LevelTracker>().currentLevel);
+
+            currentLevel = singleton.level;
+            print("current level is : " + currentLevel);
+
             SceneManager.LoadSceneAsync("_Scenes/Level_ " + currentLevel.ToString());
+            nextLevelButton.enabled = false;
             //testing purposes
             Singleton.Instance.scenesChanged++;
         }

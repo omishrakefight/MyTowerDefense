@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114631120473449324}
   - component: {fileID: 114421436848017702}
   - component: {fileID: 114045020016099854}
+  - component: {fileID: 114621738988789926}
   m_Layer: 5
   m_Name: Level Canvas
   m_TagString: Untagged
@@ -58,7 +59,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 398adb5a3fff7be4e9c0d87722bf3541, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: {fileID: 114117635315248902}
 --- !u!114 &114117635315248902
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,6 +108,28 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &114621738988789926
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1401690255948322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea8924db822837547918bfb77fa2d9cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelText: {fileID: 114117635315248902}
+  enemyList: 
+  tempTower: {fileID: 0}
+  towerOne: {fileID: 0}
+  towerTwo: {fileID: 0}
+  towerThree: {fileID: 0}
+  dropdown: {fileID: 0}
+  scenesChanged: 0
+  level: 1
+  isHasPickedAPath: 0
+  isHasLearnedATower: 0
 --- !u!114 &114631120473449324
 MonoBehaviour:
   m_ObjectHideFlags: 1

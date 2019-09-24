@@ -505,6 +505,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df77b2fc8a23f9e40ac9f8cede4ff4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLevelButton: {fileID: 0}
   pickALane: {fileID: 1254165538}
 --- !u!1 &50790788
 GameObject:
@@ -16627,18 +16628,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsBetweenSpawns: 2
-  enemyPrefab1: {fileID: 0}
-  enemyBurrower: {fileID: 0}
-  enemyPrefab3: {fileID: 0}
-  enemyDoubles: {fileID: 0}
-  enemySlimer: {fileID: 0}
-  enemyHealer: {fileID: 0}
+  enemyPrefab1: {fileID: 114277369253632548, guid: 04f81ff9814844ccfa08226f8d46a3f4,
+    type: 2}
+  enemyBurrower: {fileID: 114815673108897594, guid: 60fcd257385cf79458a1b48f661760ae,
+    type: 2}
+  enemyPrefab3: {fileID: 114726908905558888, guid: ee31e288441edde4695b6bc5b226e169,
+    type: 2}
+  enemyDoubles: {fileID: 114258887241237854, guid: 88f64d91bea821c48a72f1c36bba5d6b,
+    type: 2}
+  enemySlimer: {fileID: 114613971649881678, guid: d63f06c6d460954419e689d32b324195,
+    type: 2}
+  enemyHealer: {fileID: 114501412771417988, guid: 8c60480ce40db1045906cc5eca59545e,
+    type: 2}
   enemiesLocation: {fileID: 1292924664}
   enemySpawnAudio: {fileID: 8300000, guid: a8c6def41b8aafd4881fc5641c0d921b, type: 3}
   win: {fileID: 1254165538}
   stillAlive: 1
   enemyList: 
   slider: {fileID: 1193706440}
+  enemyCounter: 0
 --- !u!82 &1292924666
 AudioSource:
   m_ObjectHideFlags: 0

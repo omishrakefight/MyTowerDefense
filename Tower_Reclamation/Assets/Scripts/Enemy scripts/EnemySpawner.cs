@@ -197,7 +197,7 @@ public class EnemySpawner : MonoBehaviour
         //print("talks over time to fight!");
         if (!currentlySpawning)
         {
-            waveTimer = 0;
+            waveTimer = 1;
             StartCoroutine(SpawnSpecificEnemies());
         }
     }

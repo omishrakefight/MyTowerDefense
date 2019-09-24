@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public sealed class Singleton : MonoBehaviour {
 
-    TowerFactory towerFactory = new TowerFactory();
+    TowerFactory towerFactory;
     [SerializeField] Text levelText;
     // do not put a singleton in first map, it has static base turret for level one.
     public List<int> enemyList = new List<int>();
@@ -29,7 +29,8 @@ public sealed class Singleton : MonoBehaviour {
     public bool isHasLearnedATower = false;
 
     public void TowerOne()
-    {
+    { 
+        towerFactory = new TowerFactory();
         towerFactory.AddTower(towerOne);
     }
 
@@ -84,6 +85,7 @@ public sealed class Singleton : MonoBehaviour {
      public void LevelCleared()
      {
         level++;
+        print(level + "is the level now!!!!!!");
         levelText.text = "Level : " + level.ToString();
     }
 
@@ -96,7 +98,8 @@ public sealed class Singleton : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        
+        level = 2;
+        levelText.text = "Level : " + level.ToString();
     }
 
     // Update is called once per frame
@@ -105,7 +108,12 @@ public sealed class Singleton : MonoBehaviour {
 
     }
 
-
+//          ______                                      
+//         / ____/  ____     ___     ____ ___     __ __
+//        / __/    / __ \   / _ \   / __ `__ \   / / / /
+//       / /___   / / / /  /  __/  / / / / / /  / /_/ / 
+//      /_____/  /_/ /_/   \___/  /_/ /_/ /_/   \__, /  
+//                                             /____/ 
 
     public void DecidedPath(List<int> chosenEnemies)
     {

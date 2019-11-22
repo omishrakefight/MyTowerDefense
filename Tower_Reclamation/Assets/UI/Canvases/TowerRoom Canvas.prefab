@@ -2353,8 +2353,10 @@ MonoBehaviour:
     type: 2}
   basicLightTower: {fileID: 114078197882030082, guid: a1c22a29f73f70444806c15d320ffb5a,
     type: 2}
-  basicPlasmaTower: {fileID: 0}
-  basicIceTower: {fileID: 0}
+  basicPlasmaTower: {fileID: 114692334048397588, guid: b415da16db46191489644c54efc0abe8,
+    type: 2}
+  basicIceTower: {fileID: 114733931375009144, guid: f5de3bbfd2a4ba54596a7eaefbf2c0e4,
+    type: 2}
   towerPlaceholder: {fileID: 0}
 --- !u!114 &114726297846820894
 MonoBehaviour:

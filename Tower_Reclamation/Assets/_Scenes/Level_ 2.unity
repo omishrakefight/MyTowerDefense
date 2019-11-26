@@ -4151,6 +4151,23 @@ Prefab:
       propertyPath: m_RootOrder
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 114163640136331754, guid: c75d683a57da05b46abfab717912e227,
+        type: 2}
+      propertyPath: obj2
+      value: 
+      objectReference: {fileID: 1711761046976802, guid: 4fd1a8985ef61cc40be1903aa87715be,
+        type: 2}
+    - target: {fileID: 114163640136331754, guid: c75d683a57da05b46abfab717912e227,
+        type: 2}
+      propertyPath: obj1
+      value: 
+      objectReference: {fileID: 1007152016750614, guid: fa1bd93eafb114548a926cc53ef41c12,
+        type: 2}
+    - target: {fileID: 114696372635713882, guid: c75d683a57da05b46abfab717912e227,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TestInstantiationUnderObj
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c75d683a57da05b46abfab717912e227, type: 2}
   m_IsPrefabParent: 0

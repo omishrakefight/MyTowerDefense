@@ -150,6 +150,7 @@ GameObject:
   - component: {fileID: 114045020016099854}
   - component: {fileID: 114621738988789926}
   - component: {fileID: 114555522775592060}
+  - component: {fileID: 114712454102056050}
   m_Layer: 5
   m_Name: Level Canvas
   m_TagString: Untagged
@@ -687,6 +688,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a447f4f3d03ea5541bcf147657f4cf20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  save: {fileID: 114114899256876744}
+  load: {fileID: 114288499778544406}
   pauseMenu: {fileID: 1821712017079582}
 --- !u!114 &114573235363664836
 MonoBehaviour:
@@ -870,6 +873,19 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114712454102056050
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1401690255948322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7a8a90d400458499ad1fa51e665f5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  towerList: 
+  missionChoice: {fileID: 0}
 --- !u!114 &114720670384435048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1108,7 +1124,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &224010926843550894
 RectTransform:

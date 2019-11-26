@@ -1,11 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour {
 
 
     public static bool isPaused = false;
+
+    [SerializeField] Button save;
+    [SerializeField] Button load;
 
     [SerializeField] GameObject pauseMenu;
     // Use this for initialization
@@ -40,6 +45,18 @@ public class PauseMenu : MonoBehaviour {
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+        print(SceneManager.GetActiveScene().name.ToString());
+        if (!SceneManager.GetActiveScene().name.Equals("_Base"))
+        {
+            save.gameObject.SetActive(false);
+            load.gameObject.SetActive(false);
+            //load.interactable = false;
+        }
+        else
+        {
+            save.gameObject.SetActive(true);
+            load.gameObject.SetActive(true);
+        }
     }
 
     public void LoadMenu()

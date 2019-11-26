@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.UI;
 public class TowerButton3 : MonoBehaviour {
 
@@ -18,7 +19,25 @@ public class TowerButton3 : MonoBehaviour {
     {
         towerFactory = FindObjectOfType<TowerFactory>();
         singleton = FindObjectOfType<Singleton>();
-        buttonName3.text = singleton.towerThree.name;
+        //try
+        //{
+        //    buttonName3.text = singleton.towerThree.name;
+        //}
+        //catch (Exception e)
+        //{
+        //    // no name, then it is unassigned as of yet.
+        //    buttonName3.text = "Unassigned";
+        //}
+
+        if (singleton.towerThree != null)
+        {
+            buttonName3.text = singleton.towerThree.name;
+        }
+        else
+        {
+            buttonName3.text = "Unassigned";
+        }
+
     }
 
     public void BuildTower()

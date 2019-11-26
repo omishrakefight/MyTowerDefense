@@ -21,6 +21,9 @@ public class TowerButton1 : MonoBehaviour {
         if (singleton.towerOne != null)
         {
             buttonName1.text = singleton.towerOne.name;
+        } else
+        {
+            buttonName1.text = "Unassigned";
         }
     }
 

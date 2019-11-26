@@ -3217,6 +3217,19 @@ Prefab:
       propertyPath: missionChoice
       value: 
       objectReference: {fileID: 307409075}
+    - target: {fileID: 114429227000347860, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1400129891402258, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1238441602551592, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a1c4fb500cfdf4a4bb6ca1217a03baf3, type: 2}
   m_IsPrefabParent: 0
@@ -6622,6 +6635,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114712454102056050, guid: c5b4c2940301de444bbf331f8341ce0c,
+        type: 2}
+      propertyPath: missionChoice
+      value: 
+      objectReference: {fileID: 307409075}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5b4c2940301de444bbf331f8341ce0c, type: 2}
   m_IsPrefabParent: 0

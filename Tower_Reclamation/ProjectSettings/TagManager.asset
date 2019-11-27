@@ -8,6 +8,7 @@ TagManager:
   - WalkPath
   - Buff Tile
   - Selected Tile Light
+  - TowerInfo
   layers:
   - Default
   - TransparentFX

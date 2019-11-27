@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 
 [Serializable]
 public class SaveAndLoad : MonoBehaviour {
@@ -19,8 +20,9 @@ public class SaveAndLoad : MonoBehaviour {
     void Start()
     {
         //missionChoice = FindObjectOfType<ChooseNextMissionPath>();
-        towerListObj = FindObjectOfType<PlayerTowerLog>();
+        towerListObj = GameObject.FindGameObjectWithTag("TowerInfo").GetComponentInChildren<PlayerTowerLog>();// FindObjectOfType<PlayerTowerLog>();
         singleton = FindObjectOfType<Singleton>();
+        print(GameObject.FindGameObjectWithTag("TowerInfo"));
     }
 
     // Update is called once per frame
@@ -70,30 +72,59 @@ public class SaveAndLoad : MonoBehaviour {
 
     public void Load()
     {
-        BinaryFormatter bf = new BinaryFormatter();
-        // ?????????????????????????????? openWrite?
-        FileStream file = File.Open(Application.persistentDataPath + "/TowerInformation.dat", FileMode.Open);
-
-        SaveSerializedObject f = (SaveSerializedObject)bf.Deserialize(file);
-        towerListObj.LoadTowers(f.towerList);
-        missionChoice.LoadPathChoices(f.enemyOption1List, f.enemyOption2List);
-        singleton.isHasLearnedATower = f.hasChosenATower;
-
-
-        // ---- they can choose new path each time for now.
-        //if (f.hasChosenEnemies)
-        //{
-        //    singleton.LoadEnemyList(f.enemyList);
-        //    //missionChoice.   set the has chosen a path variable
-        //    //-----------^^^^^^^^
-        //}
-
-        file.Close();
-        //towerList = towerLog.towerList; // initializing off of new object.
-        foreach (bool tower in f.towerList)
+        try
         {
-            print(tower);
+            FileStream file = File.Open(Application.persistentDataPath + "/TowerInformation.dat", FileMode.Open);
+            try
+            {
+                print(GameObject.FindGameObjectWithTag("TowerInfo"));
+
+                var x = GameObject.FindGameObjectWithTag("TowerInfo");
+                towerListObj = x.GetComponentInChildren<PlayerTowerLog>();
+                print(x.GetComponentInChildren<PlayerTowerLog>());
+
+                BinaryFormatter bf = new BinaryFormatter();
+                // ?????????????????????????????? openWrite?
+                
+
+                SaveSerializedObject f = (SaveSerializedObject)bf.Deserialize(file);
+                print(towerListObj);
+                towerListObj.LoadTowers(f.towerList);
+                missionChoice.LoadPathChoices(f.enemyOption1List, f.enemyOption2List);
+                singleton.isHasLearnedATower = f.hasChosenATower;
+
+
+                // ---- they can choose new path each time for now.
+                //if (f.hasChosenEnemies)
+                //{
+                //    singleton.LoadEnemyList(f.enemyList);
+                //    //missionChoice.   set the has chosen a path variable
+                //    //-----------^^^^^^^^
+                //}
+
+
+                //towerList = towerLog.towerList; // initializing off of new object.
+                foreach (bool tower in f.towerList)
+                {
+                    print(tower);
+                }
+                // initialize or create whatever wiht information now.
+
+                // load base location
+                SceneManager.LoadSceneAsync("_Scenes/_Base");
+            }
+            catch (Exception e)
+            {
+                print("Failed! " + e.Message);
+            }
+            finally
+            {
+                file.Close();
+            }
         }
-        // initialize or create whatever wiht information now.
+        catch(Exception z)
+        {
+            print("couldn't open file");
+        }
     }
 }

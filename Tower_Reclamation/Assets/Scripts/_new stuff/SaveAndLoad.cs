@@ -20,9 +20,7 @@ public class SaveAndLoad : MonoBehaviour {
     void Start()
     {
         //missionChoice = FindObjectOfType<ChooseNextMissionPath>();
-        towerListObj = GameObject.FindGameObjectWithTag("TowerInfo").GetComponentInChildren<PlayerTowerLog>();// FindObjectOfType<PlayerTowerLog>();
-        singleton = FindObjectOfType<Singleton>();
-        print(GameObject.FindGameObjectWithTag("TowerInfo"));
+
     }
 
     // Update is called once per frame
@@ -34,10 +32,13 @@ public class SaveAndLoad : MonoBehaviour {
     private void GetReferences()
     {
 
+        towerListObj = GameObject.FindGameObjectWithTag("TowerInfo").GetComponentInChildren<PlayerTowerLog>();// FindObjectOfType<PlayerTowerLog>();
+        singleton = FindObjectOfType<Singleton>();
+        print(GameObject.FindGameObjectWithTag("TowerInfo"));
+
         towerList = towerListObj.SaveTowers();
 
         saver = new SaveSerializedObject();
-
 
         saver.SaveTowers(towerListObj.SaveTowers());
         saver.IsHasChosenATower(singleton.isHasLearnedATower);

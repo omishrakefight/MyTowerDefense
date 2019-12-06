@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public sealed class Singleton : MonoBehaviour {
 
+    const string towerNumTag = "Tower Number Dropdown";
     TowerFactory towerFactory;
     [SerializeField] Text levelText;
     // do not put a singleton in first map, it has static base turret for level one.
@@ -14,7 +15,7 @@ public sealed class Singleton : MonoBehaviour {
     public Tower towerOne;
     public Tower towerTwo;
     public Tower towerThree;
-    [SerializeField] Dropdown dropdown;
+    protected Dropdown dropdown;
 
     TowerSelecter towerSelector;
 
@@ -49,6 +50,7 @@ public sealed class Singleton : MonoBehaviour {
 
     public void FindTower()
     {
+        dropdown = GameObject.FindGameObjectWithTag(towerNumTag).GetComponent<Dropdown>();
         towerSelector = FindObjectOfType<TowerSelecter>();
         tempTower = towerSelector.PickTower();
         print(dropdown.value + " " + tempTower);
@@ -118,6 +120,11 @@ public sealed class Singleton : MonoBehaviour {
     public void DecidedPath(List<int> chosenEnemies)
     {
         enemyList = chosenEnemies;
+        print(enemyList.ToString());
+        foreach (int x in enemyList)
+        {
+            print(x);
+        }
     }
 
     public List<int> GetEnemyList()

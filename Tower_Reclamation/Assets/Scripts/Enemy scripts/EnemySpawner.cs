@@ -53,6 +53,11 @@ public class EnemySpawner : MonoBehaviour
         win.enabled = false;
         
         enemyList = FindObjectOfType<Singleton>().GetEnemyList();  //GetComponent<Singleton>().GetEnemyList();
+        print(FindObjectOfType<Singleton>() + "is enemy singleton thing" + FindObjectOfType<Singleton>().GetEnemyList());
+        foreach (int x in FindObjectOfType<Singleton>().GetEnemyList())
+        {
+            print(x);
+        }
     }
 
     public IEnumerator SpawnSpecificEnemies() //List<int> enemyList

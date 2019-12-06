@@ -16,6 +16,7 @@ public class LoadNextArea : MonoBehaviour {
     [SerializeField] Text pickALane;
 
     Singleton singleton;
+    SaveAndLoad save;
     int currentLevel;
 
 	// Use this for initialization
@@ -23,6 +24,7 @@ public class LoadNextArea : MonoBehaviour {
         pickALane.enabled = false;
         enemySpawner = FindObjectOfType<EnemySpawner>();
         singleton = FindObjectOfType<Singleton>();
+        save = FindObjectOfType<SaveAndLoad>();
     }
 	
 	// Update is called once per frame
@@ -44,6 +46,9 @@ public class LoadNextArea : MonoBehaviour {
 
     public void LoadNextLevel() // checks next level / wave HAS been chosen first.
     {
+        //save on next wave start, that way they have the updated towers list saved for next base section.  Otherwise it wont treat them as learned.
+        save.Save();
+
         nextPath = FindObjectOfType<ChooseNextMissionPath>();
         pickedPath = nextPath.isHasChosen;
 

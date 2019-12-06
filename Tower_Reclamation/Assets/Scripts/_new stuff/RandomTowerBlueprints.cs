@@ -75,6 +75,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
     public void ManualStart()
     {
         towerLog = GetComponent<PlayerTowerLog>();
+        //print(towerLog+ "I am tower log!");
         towers = towerLog.towers1;
         amountOfTowers = towers.Length;
         GetAmountOfUndiscoveredTowers();
@@ -192,7 +193,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
         {
             discoveredTowers.Add("SlowTower");
         }
-        print(discoveredTowers+ "discovered towers");
+        //print(discoveredTowers+ "discovered towers");
         return discoveredTowers;
     }
 
@@ -266,6 +267,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
         }
 
         turretTypes.UpdateTowersAvailable(GetDiscoveredTowers());
+        
     }
 
     // is passed in towerButtonOne.GetComponentInChildren<Text>().text

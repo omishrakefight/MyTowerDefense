@@ -60,7 +60,7 @@ public class TowerSelecter : MonoBehaviour
 
         if (towerBarrel.value == 0 && towerTurret.value == 0 && towerBase.value == 0)
         {
-            print("reading dropdown");
+            //print("reading dropdown");
             newTower = Instantiate(basicRifledTower, towerPosition, Quaternion.identity);
             newTower.transform.localScale = new Vector3(.3f, .3f, .3f);
 
@@ -98,7 +98,13 @@ public class TowerSelecter : MonoBehaviour
     public void UpdateTowersAvailable(List<string> towersKnown)
     {
         towerTurret.ClearOptions();
+        foreach (string t in towersKnown)
+        {
+            print(t + "You should see me!!");
+        }
         towerTurret.AddOptions(towersKnown);
+        print(towerTurret.options.Count + " Is the count!!");
+
         //print("I worked and " + towersKnown.Count);
     }
 
@@ -112,31 +118,7 @@ public class TowerSelecter : MonoBehaviour
         print("summoned");
     }
 
-    // change to tower type
-    //public Tower PickTower2()
-    //{
-    //    if (towerTurret.value == 0)   //.itemText.Equals("RifledTower"))  //
-    //    {
-    //        print("Rifled Tower selected");
-    //        FocusRifledTowers();
-    //        decidedTower = basicRifledTower;
-    //    }
 
-    //    if (towerTurret.value == 1)
-    //    {
-    //        print("Flame Turret selected");
-    //        FocusFireTowers();
-    //        PickFireTower();        
-    //    }
-
-    //    if (towerTurret.value == 2)
-    //    {
-    //        print("Light Turret selected");
-    //        FocusLighteningTowers();
-    //        decidedTower = basicLightTower;
-    //    }
-    //    return decidedTower;
-    //}
 
     public Tower PickTower()
     {

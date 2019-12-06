@@ -9,6 +9,8 @@ TagManager:
   - Buff Tile
   - Selected Tile Light
   - TowerInfo
+  - Base Rooms Obj
+  - Tower Number Dropdown
   layers:
   - Default
   - TransparentFX

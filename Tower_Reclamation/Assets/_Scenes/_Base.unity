@@ -1482,7 +1482,7 @@ GameObject:
   - component: {fileID: 317621694}
   m_Layer: 0
   m_Name: Rooms
-  m_TagString: Untagged
+  m_TagString: Base Rooms Obj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4155,11 +4155,20 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114393848420998872, guid: 0dda80d1a3480b246ae2a6121eb27390,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1819176714}
     - target: {fileID: 114667929893754478, guid: 0dda80d1a3480b246ae2a6121eb27390,
         type: 2}
       propertyPath: towerPlaceholder
       value: 
       objectReference: {fileID: 223473339}
+    - target: {fileID: 1484824492926834, guid: 0dda80d1a3480b246ae2a6121eb27390, type: 2}
+      propertyPath: m_TagString
+      value: Tower Number Dropdown
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0dda80d1a3480b246ae2a6121eb27390, type: 2}
   m_IsPrefabParent: 0
@@ -6622,11 +6631,11 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114712454102056050, guid: c5b4c2940301de444bbf331f8341ce0c,
+    - target: {fileID: 114621738988789926, guid: c5b4c2940301de444bbf331f8341ce0c,
         type: 2}
-      propertyPath: missionChoice
+      propertyPath: dropdown
       value: 
-      objectReference: {fileID: 307409075}
+      objectReference: {fileID: 1721455835}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5b4c2940301de444bbf331f8341ce0c, type: 2}
   m_IsPrefabParent: 0
@@ -6948,6 +6957,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!114 &1721455835 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114618686829543624, guid: 0dda80d1a3480b246ae2a6121eb27390,
+    type: 2}
+  m_PrefabInternal: {fileID: 1185144495}
+  m_Script: {fileID: 853051423, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1724576351
 GameObject:
   m_ObjectHideFlags: 0
@@ -7368,6 +7383,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1791691564}
+--- !u!114 &1819176714 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114621738988789926, guid: c5b4c2940301de444bbf331f8341ce0c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1594332973}
+  m_Script: {fileID: 11500000, guid: ea8924db822837547918bfb77fa2d9cc, type: 3}
 --- !u!1 &1840470505
 GameObject:
   m_ObjectHideFlags: 0

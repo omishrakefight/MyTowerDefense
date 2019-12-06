@@ -8,13 +8,16 @@ using UnityEngine.SceneManagement;
 
 [Serializable]
 public class SaveAndLoad : MonoBehaviour {
+    private const string TagForBase = "Base Rooms Obj";
+    public bool[] towerList;
 
-     public bool[] towerList;
-
+    bool finishedLoading = false;
     SaveSerializedObject saver;
     PlayerTowerLog towerListObj;
     Singleton singleton;
-    [SerializeField] ChooseNextMissionPath missionChoice;
+    //[SerializeField] ChooseNextMissionPath missionChoice;
+    ChooseNextMissionPath missionChoice;
+
     // create a new serializable object and then just import / export into it THEN serialize it here.
     // Use this for initialization
     void Start()
@@ -31,10 +34,12 @@ public class SaveAndLoad : MonoBehaviour {
 
     private void GetReferences()
     {
-
-        towerListObj = GameObject.FindGameObjectWithTag("TowerInfo").GetComponentInChildren<PlayerTowerLog>();// FindObjectOfType<PlayerTowerLog>();
+        missionChoice = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<ChooseNextMissionPath>();
+        towerListObj = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<PlayerTowerLog>();// FindObjectOfType<PlayerTowerLog>();
         singleton = FindObjectOfType<Singleton>();
-        print(GameObject.FindGameObjectWithTag("TowerInfo"));
+        //print(GameObject.FindGameObjectWithTag("TowerInfo"));
+        print(missionChoice);
+        print(towerListObj);
 
         towerList = towerListObj.SaveTowers();
 
@@ -73,12 +78,42 @@ public class SaveAndLoad : MonoBehaviour {
 
     public void Load()
     {
+        finishedLoading = false;
+        IEnumerator load;
+        load = LoadFromFile();
+
+        StartCoroutine(load);
+        if (finishedLoading) {
+            StopCoroutine(load);
+            print("shutdown!");
+        }
+    }
+
+    public IEnumerator LoadFromFile()
+    {
+        AsyncOperation loadingBase;
+        loadingBase = SceneManager.LoadSceneAsync("_Scenes/_Base");
+
+        while (!loadingBase.isDone)
+        {
+            print("Curious, " + loadingBase.progress);
+            yield return new WaitForSeconds(.75f);
+        }
         try
         {
+
             FileStream file = File.Open(Application.persistentDataPath + "/TowerInformation.dat", FileMode.Open);
             try
             {
-                print(GameObject.FindGameObjectWithTag("TowerInfo"));
+
+                // load base location
+
+                //if (!loadingBase.isDone)
+                //{
+                print("Curious again, " + loadingBase.progress);
+                //}
+
+                GetReferences();
 
                 var x = GameObject.FindGameObjectWithTag("TowerInfo");
                 towerListObj = x.GetComponentInChildren<PlayerTowerLog>();
@@ -89,7 +124,10 @@ public class SaveAndLoad : MonoBehaviour {
                 
 
                 SaveSerializedObject f = (SaveSerializedObject)bf.Deserialize(file);
-                print(towerListObj);
+
+
+
+                //print(towerListObj);
                 towerListObj.LoadTowers(f.towerList);
                 missionChoice.LoadPathChoices(f.enemyOption1List, f.enemyOption2List);
                 singleton.isHasLearnedATower = f.hasChosenATower;
@@ -107,12 +145,11 @@ public class SaveAndLoad : MonoBehaviour {
                 //towerList = towerLog.towerList; // initializing off of new object.
                 foreach (bool tower in f.towerList)
                 {
-                    print(tower);
+                    print(tower + " AT sAVE AND LOAD");
                 }
                 // initialize or create whatever wiht information now.
 
-                // load base location
-                SceneManager.LoadSceneAsync("_Scenes/_Base");
+
             }
             catch (Exception e)
             {
@@ -121,11 +158,15 @@ public class SaveAndLoad : MonoBehaviour {
             finally
             {
                 file.Close();
+
             }
         }
         catch(Exception z)
         {
             print("couldn't open file");
         }
+        finishedLoading = true;
+        print("Im starting to wait!!");
+        yield return new WaitForSeconds(12f);
     }
 }

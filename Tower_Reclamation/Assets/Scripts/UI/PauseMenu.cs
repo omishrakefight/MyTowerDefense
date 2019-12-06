@@ -43,9 +43,8 @@ public class PauseMenu : MonoBehaviour {
     void Pause()
     {
         pauseMenu.SetActive(true);
-        Time.timeScale = 0f;
         isPaused = true;
-        print(SceneManager.GetActiveScene().name.ToString());
+        //print(SceneManager.GetActiveScene().name.ToString());
         if (!SceneManager.GetActiveScene().name.Equals("_Base"))
         {
             save.gameObject.SetActive(false);
@@ -54,6 +53,7 @@ public class PauseMenu : MonoBehaviour {
         }
         else
         {
+            Time.timeScale = 0f;
             save.gameObject.SetActive(true);
             load.gameObject.SetActive(true);
         }

@@ -9,8 +9,8 @@ public class PlayerTowerLog : MonoBehaviour {
     /// MAKES IT EASIER TO ADD AND REMOVE.
     /// </summary>
     //Dictionary<string, bool> towers;
-    public bool[] towers1;
-
+    public bool[] towers1 = null;
+    bool startNew = true;
     //int numberOfTowers = 6;
 
     //basic starting tower
@@ -26,15 +26,17 @@ public class PlayerTowerLog : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        towers1 = new bool[] 
-        {
+        if (startNew) {
+            towers1 = new bool[]
+            {
             true,  // Rifled Tower
             false, // Assault Tower
             false, // Flame Tower
             false, // Lightening Tower
             false, // Plasma Tower
             false  // Slow Tower
-        };
+            };
+        }
         print("loaded " + towers1.Length + " towers");
         GetComponent<RandomTowerBlueprints>().ManualStart();
         //gana pull this from saved file hopefully.
@@ -60,7 +62,12 @@ public class PlayerTowerLog : MonoBehaviour {
     public void LoadTowers(bool[] loadedTowers)
     {
         this.towers1 = loadedTowers;
+        foreach (bool tower in towers1)
+        {
+            print(tower + " At PlayerTower Logs");
+        }
         GetComponent<RandomTowerBlueprints>().ManualStart();
+        startNew = false;
     }
 
     //public Dictionary<string, bool> SaveTowers()

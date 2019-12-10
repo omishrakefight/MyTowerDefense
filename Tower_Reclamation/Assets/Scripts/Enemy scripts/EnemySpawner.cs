@@ -8,6 +8,9 @@ public class EnemySpawner : MonoBehaviour
 
     [Range(0.1f, 120f)]
     [SerializeField]
+    private float startSetupTime = 10f;
+    private float startupTimer = 0;
+    private bool begin = false;
     float secondsBetweenSpawns = 2.00f;
     const float originalSecondsBetweenSpawns = 2.00f;
     private EnemyMovement currentEnemy;
@@ -24,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] AudioClip enemySpawnAudio;
     [SerializeField] Text win;
 
+    public int frame = 0;
     public bool stillAlive = true;
     bool currentlySpawning = false;
     CurrentWave level;
@@ -51,13 +55,13 @@ public class EnemySpawner : MonoBehaviour
         level = FindObjectOfType<CurrentWave>();
         slider.maxValue = timeBetweenWaves;
         win.enabled = false;
-        
+        StartCoroutine(Example());
         enemyList = FindObjectOfType<Singleton>().GetEnemyList();  //GetComponent<Singleton>().GetEnemyList();
-        print(FindObjectOfType<Singleton>() + "is enemy singleton thing" + FindObjectOfType<Singleton>().GetEnemyList());
-        foreach (int x in FindObjectOfType<Singleton>().GetEnemyList())
-        {
-            print(x);
-        }
+        //print(FindObjectOfType<Singleton>() + "is enemy singleton thing" + FindObjectOfType<Singleton>().GetEnemyList());
+        //foreach (int x in FindObjectOfType<Singleton>().GetEnemyList())
+        //{
+        //    print(x);
+        //}
     }
 
     public IEnumerator SpawnSpecificEnemies() //List<int> enemyList
@@ -105,7 +109,6 @@ public class EnemySpawner : MonoBehaviour
                         SpawnGenericEnemy();
                         break;
                 }
-                //GetComponent<AudioSource>().PlayOneShot(enemySpawnAudio);
 
                 yield return new WaitForSeconds(secondsBetweenSpawns);
             }
@@ -116,12 +119,28 @@ public class EnemySpawner : MonoBehaviour
                 {
                     level.WaveUpOne();
                     currentlySpawning = false;
+
+                    //yield return StartCoroutine(WaitBetweenWaves());
+                    print("Im about to start waiting between waves! " + waveTimer + ", > " + timeBetweenWaves);
+                    // This is wait WHILE so its inverse.  wait while wave is less than time between, once this FALSE proceede.
+                    yield return new WaitWhile(() => (waveTimer < timeBetweenWaves));
+                    print("I am past it! lets see, " + waveTimer + ", > " + timeBetweenWaves);
                     betweenWaves = false;
-                    yield return StartCoroutine(WaitBetweenWaves());
+                    waveTimer = 0;
                 }
+                //if (x == -1)
+                //{
+                //    level.WaveUpOne();
+                //    currentlySpawning = false;
+                //    betweenWaves = false;
+                //    //yield return StartCoroutine(WaitBetweenWaves());
+                //    yield return new WaitWhile(() => waveTimer > timeBetweenWaves);
+                //    waveTimer = 0;
+                //}
                 
             }
         }
+
 
         print("Waiting for win!");
         // check for win
@@ -137,7 +156,16 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(4);
         FindObjectOfType<LoadNextArea>().LoadBase();
 
-        yield return StartCoroutine(WaitBetweenWaves());
+        //yield return StartCoroutine(WaitBetweenWaves());
+        yield return new WaitWhile(() => waveTimer > timeBetweenWaves);
+        waveTimer = 0;
+    }
+
+    IEnumerator Example()
+    {
+        Debug.Log("Waiting for prince/princess to rescue me...");
+        yield return new WaitWhile(() => frame < 10);
+        Debug.Log("Finally I have been rescued!");
     }
 
 
@@ -246,18 +274,37 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator WaitBetweenWaves()
     {
-        yield return new WaitForSeconds(timeBetweenWaves);
-        if (!currentlySpawning)
-        {
+        //yield return new WaitForSeconds(timeBetweenWaves);
+        yield return new WaitWhile(() => waveTimer > timeBetweenWaves);
+        //if (!currentlySpawning)
+        //{
+        
             waveTimer = 0;
             //yield return StartCoroutine(ContinualSpawnEnemies());
             //yield return StartCoroutine(SpawnSpecificEnemies());
-        }
+        //}
     }
 
     
     void Update()
     {
+        if (!begin)
+        {
+            startupTimer += 1 * Time.deltaTime;
+
+            if(startupTimer >= startSetupTime)
+            {
+                print("You hsould see me only once");
+                StartCoroutine(SpawnSpecificEnemies());
+                begin = true;
+            }
+        }
+        if (frame <= 10)
+        {
+            Debug.Log("Frame: " + frame);
+            frame++;
+        }
+
         if (stillAlive && !currentlySpawning)
         {
             waveTimer += 1 * Time.deltaTime;
@@ -267,11 +314,12 @@ public class EnemySpawner : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && !currentlySpawning)
         {
-            waveTimer = 0;
-            currentlySpawning = true;
-            betweenWaves = false;
+            waveTimer = timeBetweenWaves;
+            startupTimer = startSetupTime;
+            //currentlySpawning = true;
+            //betweenWaves = false;
             //StartCoroutine(ContinualSpawnEnemies());
-            StartCoroutine(SpawnSpecificEnemies());
+            //StartCoroutine(SpawnSpecificEnemies());
         }
     }
 

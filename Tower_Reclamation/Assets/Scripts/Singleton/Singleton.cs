@@ -121,10 +121,10 @@ public sealed class Singleton : MonoBehaviour {
     {
         enemyList = chosenEnemies;
         print(enemyList.ToString());
-        foreach (int x in enemyList)
-        {
-            print(x);
-        }
+        //foreach (int x in enemyList)
+        //{
+        //    print(x);
+        //}
     }
 
     public List<int> GetEnemyList()

@@ -98,10 +98,10 @@ public class TowerSelecter : MonoBehaviour
     public void UpdateTowersAvailable(List<string> towersKnown)
     {
         towerTurret.ClearOptions();
-        foreach (string t in towersKnown)
-        {
-            print(t + "You should see me!!");
-        }
+        //foreach (string t in towersKnown)
+        //{
+        //    print(t + "You should see me!!");
+        //}
         towerTurret.AddOptions(towersKnown);
         print(towerTurret.options.Count + " Is the count!!");
 

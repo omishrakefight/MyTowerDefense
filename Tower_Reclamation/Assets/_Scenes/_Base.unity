@@ -6636,6 +6636,11 @@ Prefab:
       propertyPath: dropdown
       value: 
       objectReference: {fileID: 1721455835}
+    - target: {fileID: 114288499778544406, guid: c5b4c2940301de444bbf331f8341ce0c,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadSavedBase
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5b4c2940301de444bbf331f8341ce0c, type: 2}
   m_IsPrefabParent: 0

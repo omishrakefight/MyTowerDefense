@@ -41,7 +41,8 @@ public class LoadNextArea : MonoBehaviour {
         singleton.LevelCleared();
         Singleton.Instance.isHasLearnedATower = false;
 
-        SceneManager.LoadSceneAsync("_Scenes/_Base");
+        save.LoadNewBase();
+        //SceneManager.LoadSceneAsync("_Scenes/_Base");
     }
 
     public void LoadNextLevel() // checks next level / wave HAS been chosen first.

@@ -76,11 +76,11 @@ public class SaveAndLoad : MonoBehaviour {
 
     }
 
-    public void Load()
+    public void LoadSavedBase()
     {
         finishedLoading = false;
         IEnumerator load;
-        load = LoadFromFile();
+        load = LoadFromFile(false);
 
         StartCoroutine(load);
         if (finishedLoading) {
@@ -89,7 +89,21 @@ public class SaveAndLoad : MonoBehaviour {
         }
     }
 
-    public IEnumerator LoadFromFile()
+    public void LoadNewBase()
+    {
+        finishedLoading = false;
+        IEnumerator load;
+        load = LoadFromFile(true);
+
+        StartCoroutine(load);
+        if (finishedLoading)
+        {
+            StopCoroutine(load);
+            print("shutdown!");
+        }
+    }
+
+    public IEnumerator LoadFromFile(bool newBase)
     {
         AsyncOperation loadingBase;
         loadingBase = SceneManager.LoadSceneAsync("_Scenes/_Base");
@@ -129,9 +143,13 @@ public class SaveAndLoad : MonoBehaviour {
 
                 //print(towerListObj);
                 towerListObj.LoadTowers(f.towerList);
-                missionChoice.LoadPathChoices(f.enemyOption1List, f.enemyOption2List);
-                singleton.isHasLearnedATower = f.hasChosenATower;
 
+                //if it is loading onld base, load these, if not get new ones.
+                if (!newBase)
+                {
+                    missionChoice.LoadPathChoices(f.enemyOption1List, f.enemyOption2List);
+                    singleton.isHasLearnedATower = f.hasChosenATower;
+                }
 
                 // ---- they can choose new path each time for now.
                 //if (f.hasChosenEnemies)

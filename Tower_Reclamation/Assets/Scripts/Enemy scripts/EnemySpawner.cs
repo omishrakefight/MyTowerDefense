@@ -27,7 +27,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] AudioClip enemySpawnAudio;
     [SerializeField] Text win;
 
-    public int frame = 0;
     public bool stillAlive = true;
     bool currentlySpawning = false;
     CurrentWave level;
@@ -55,7 +54,6 @@ public class EnemySpawner : MonoBehaviour
         level = FindObjectOfType<CurrentWave>();
         slider.maxValue = timeBetweenWaves;
         win.enabled = false;
-        StartCoroutine(Example());
         enemyList = FindObjectOfType<Singleton>().GetEnemyList();  //GetComponent<Singleton>().GetEnemyList();
         //print(FindObjectOfType<Singleton>() + "is enemy singleton thing" + FindObjectOfType<Singleton>().GetEnemyList());
         //foreach (int x in FindObjectOfType<Singleton>().GetEnemyList())
@@ -157,15 +155,8 @@ public class EnemySpawner : MonoBehaviour
         FindObjectOfType<LoadNextArea>().LoadBase();
 
         //yield return StartCoroutine(WaitBetweenWaves());
-        yield return new WaitWhile(() => waveTimer > timeBetweenWaves);
-        waveTimer = 0;
-    }
-
-    IEnumerator Example()
-    {
-        Debug.Log("Waiting for prince/princess to rescue me...");
-        yield return new WaitWhile(() => frame < 10);
-        Debug.Log("Finally I have been rescued!");
+        //yield return new WaitWhile(() => waveTimer > timeBetweenWaves);
+        //waveTimer = 0;
     }
 
 
@@ -299,11 +290,6 @@ public class EnemySpawner : MonoBehaviour
                 begin = true;
             }
         }
-        if (frame <= 10)
-        {
-            Debug.Log("Frame: " + frame);
-            frame++;
-        }
 
         if (stillAlive && !currentlySpawning)
         {
@@ -321,6 +307,11 @@ public class EnemySpawner : MonoBehaviour
             //StartCoroutine(ContinualSpawnEnemies());
             //StartCoroutine(SpawnSpecificEnemies());
         }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            FindObjectOfType<LoadNextArea>().LoadBase();
+        }
+
     }
 
 }

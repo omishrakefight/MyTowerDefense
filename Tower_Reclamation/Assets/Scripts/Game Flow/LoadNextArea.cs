@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using System;
 
 public class LoadNextArea : MonoBehaviour {
 
@@ -21,10 +22,17 @@ public class LoadNextArea : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        pickALane.enabled = false;
         enemySpawner = FindObjectOfType<EnemySpawner>();
         singleton = FindObjectOfType<Singleton>();
         save = FindObjectOfType<SaveAndLoad>();
+        try
+        {
+            pickALane.enabled = false;
+        }
+        catch (Exception e)
+        {
+            // nothing, if in a level, I dont have this.
+        }
     }
 	
 	// Update is called once per frame

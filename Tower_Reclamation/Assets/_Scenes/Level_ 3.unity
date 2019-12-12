@@ -337,6 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df77b2fc8a23f9e40ac9f8cede4ff4c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLevelButton: {fileID: 0}
+  pickALane: {fileID: 0}
 --- !u!1001 &50259788
 Prefab:
   m_ObjectHideFlags: 0
@@ -2525,34 +2527,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 8
       objectReference: {fileID: 0}
-    - target: {fileID: 114515504549701550, guid: c75d683a57da05b46abfab717912e227,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 47542412}
-    - target: {fileID: 114155086969083726, guid: c75d683a57da05b46abfab717912e227,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 47542412}
     - target: {fileID: 1751253469719790, guid: c75d683a57da05b46abfab717912e227, type: 2}
       propertyPath: m_Name
       value: Canvas Container (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114668364242958928, guid: c75d683a57da05b46abfab717912e227,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 47542412}
-    - target: {fileID: 114295532304938660, guid: c75d683a57da05b46abfab717912e227,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 47542412}
-    - target: {fileID: 114253936290668030, guid: c75d683a57da05b46abfab717912e227,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c75d683a57da05b46abfab717912e227, type: 2}

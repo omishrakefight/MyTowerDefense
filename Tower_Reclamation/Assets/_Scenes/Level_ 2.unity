@@ -4183,6 +4183,11 @@ Prefab:
       propertyPath: wave
       value: 
       objectReference: {fileID: 521744123}
+    - target: {fileID: 114901376297547574, guid: 37ecf30468607124aafd21227190c343,
+        type: 2}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 37ecf30468607124aafd21227190c343, type: 2}
   m_IsPrefabParent: 0

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -139,6 +140,16 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
+        bool isFinal = false;
+        FinalWave finalWave = null;
+        try
+        {
+            finalWave = FindObjectOfType<FinalWave>();
+            isFinal = true;
+        } catch(Exception e )
+        {
+             isFinal = false;
+        }
 
         print("Waiting for win!");
         // check for win
@@ -146,7 +157,14 @@ public class EnemySpawner : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
         }
-        if (stillAlive)
+        if (stillAlive && isFinal)
+        {
+            win.enabled = true;
+            finalWave.DisplayWinningCongratulations();
+            yield return new WaitForSeconds(5f);
+            Application.Quit();
+        }
+        else if (stillAlive)
         {
             win.enabled = true;
         }

@@ -11,7 +11,7 @@ public abstract class EnemyMovement : MonoBehaviour
 
     [SerializeField] public float enemySpeed = 5.75f;
 
-    [SerializeField] protected float enemyBaseSpeed = 5.75f;
+    [SerializeField] public float enemyBaseSpeed = 5.75f;
     protected float enemySpeedMultiplier; // equal to chilledMultiplier, frenzy, and slimeMultiplier.
 
     public bool chilled = false;

@@ -29,13 +29,24 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     public bool isTargetable = true;
 
+    protected bool noSpecialHealthThings = true;
+
     // Use this for initialization
     protected virtual void Start()
     {
-        hitPoints = 40;
-        float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 10;
-        hitPoints += healthModifier;
-        hitPointsMax = hitPoints;
+        if (noSpecialHealthThings)
+        {
+            hitPoints = 40;
+            float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 10;
+            hitPoints += healthModifier;
+            hitPointsMax = hitPoints;
+        }
+
+    }
+
+    public void DontResethealthPlease()
+    {
+        noSpecialHealthThings = false;
     }
 
     protected virtual void Update()

@@ -13,6 +13,7 @@ public class EnemySpawner : MonoBehaviour
     private float startupTimer = 0;
     private bool begin = false;
     float secondsBetweenSpawns = 2.00f;
+    private bool checkForBoss = true;
     const float originalSecondsBetweenSpawns = 2.00f;
     private EnemyMovement currentEnemy;
     [SerializeField] EnemyMovement enemyPrefab1;
@@ -68,6 +69,22 @@ public class EnemySpawner : MonoBehaviour
         // get on stsart the neemy list from singleton.
         foreach (int x in enemyList)
         {
+            //check for boss
+            if (checkForBoss)
+            {
+                try
+                {
+                    BossEnemy boss = FindObjectOfType<BossEnemy>();
+                    boss.SpawnBoss();
+                    boss.BuffBossMob();
+                }
+                catch (Exception e)
+                {
+                    // nothing,  I failed to find and spawn boss, all good he doesnt exist.
+                }
+                checkForBoss = false;
+            }
+
             //print("Here comes a specific enemy!");
             CheckArray(x);
             if (x > 0)

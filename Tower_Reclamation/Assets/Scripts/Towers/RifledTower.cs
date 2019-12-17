@@ -23,7 +23,7 @@ public class RifledTower : Tower {
         base.Start();
         towerDmg = 9f;
         currentTowerDmg = 8f;
-        goldCost = 50;
+        goldCost = (int)TowerCosts.RifledTowerCost;
         CheckAndApplyBuff();
 	}
 
@@ -89,4 +89,13 @@ public class RifledTower : Tower {
         var emissionModule = projectileParticle.emission;
         emissionModule.enabled = isActive;
     }
+
+    public override int GetTowerCost()
+    {
+        int towerCost = 0;
+
+        towerCost = (int)TowerCosts.RifledTowerCost;
+        return towerCost;
+    }
+
 }

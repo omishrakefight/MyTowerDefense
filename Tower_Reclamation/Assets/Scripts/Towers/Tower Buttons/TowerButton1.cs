@@ -11,7 +11,7 @@ public class TowerButton1 : MonoBehaviour {
 
     public void UpdateName()
     {
-        buttonName1.text = singleton.towerOne.name;
+        buttonName1.text = (singleton.towerOne.name + "   cost: " + singleton.towerOne.GetTowerCost().ToString());
     }
     // Use this for initialization
     void Start()
@@ -20,7 +20,7 @@ public class TowerButton1 : MonoBehaviour {
         singleton = FindObjectOfType<Singleton>();
         if (singleton.towerOne != null)
         {
-            buttonName1.text = singleton.towerOne.name;
+            buttonName1.text = (singleton.towerOne.name + "   cost: " + singleton.towerOne.GetTowerCost().ToString());
         } else
         {
             buttonName1.text = "Unassigned";

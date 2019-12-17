@@ -17,7 +17,7 @@ public class TowerButton2 : MonoBehaviour {
 
     public void UpdateName()
     {
-        buttonName2.text = singleton.towerTwo.name;
+        buttonName2.text = (singleton.towerTwo.name + "   cost: " + singleton.towerTwo.GetTowerCost().ToString());
     }
     // Use this for initialization
     void Start()
@@ -26,7 +26,7 @@ public class TowerButton2 : MonoBehaviour {
         singleton = FindObjectOfType<Singleton>();
         if (singleton.towerTwo != null)
         {
-            buttonName2.text = singleton.towerTwo.name;
+            buttonName2.text = (singleton.towerTwo.name + "   cost: " + singleton.towerTwo.GetTowerCost().ToString());
         }
         else
         {

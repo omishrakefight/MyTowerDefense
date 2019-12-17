@@ -10,7 +10,7 @@ public class Tower_Ice : Tower {
     void Start()
     {
         test = blueLight.range;
-        goldCost = 50;
+        goldCost = (int)TowerCosts.SlowTowerCost;
     }
 
     // Update is called once per frame
@@ -35,5 +35,14 @@ public class Tower_Ice : Tower {
             }
             i++;
         }
+    }
+
+
+    public override int GetTowerCost()
+    {
+        int towerCost = 0;
+
+        towerCost = (int)TowerCosts.SlowTowerCost;
+        return towerCost;
     }
 }

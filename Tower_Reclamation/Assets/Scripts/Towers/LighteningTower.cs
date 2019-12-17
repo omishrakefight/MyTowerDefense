@@ -31,7 +31,7 @@ public class LighteningTower : Tower {
     protected override void Start()
     {
         towerDmg = 30;
-        goldCost = 80;
+        goldCost = (int)TowerCosts.LighteningTowerCost;
 
         if (!keepBuffed)   {    }
         if (keepBuffed)
@@ -100,6 +100,14 @@ public class LighteningTower : Tower {
             isCharged = true;
         }
 
+    }
+
+    public override int GetTowerCost()
+    {
+        int towerCost = 0;
+
+        towerCost = (int)TowerCosts.LighteningTowerCost;
+        return towerCost;
     }
 
 

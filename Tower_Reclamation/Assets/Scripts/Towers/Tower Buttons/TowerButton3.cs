@@ -12,7 +12,7 @@ public class TowerButton3 : MonoBehaviour {
 
     public void UpdateName()
     {
-        buttonName3.text = singleton.towerThree.name;
+        buttonName3.text = (singleton.towerThree.name + "   cost: " + singleton.towerThree.GetTowerCost().ToString());
     }
     // Use this for initialization
     void Start()
@@ -31,7 +31,7 @@ public class TowerButton3 : MonoBehaviour {
 
         if (singleton.towerThree != null)
         {
-            buttonName3.text = singleton.towerThree.name;
+            buttonName3.text = (singleton.towerThree.name + "   cost: " + singleton.towerThree.GetTowerCost().ToString());
         }
         else
         {

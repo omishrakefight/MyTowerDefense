@@ -23,7 +23,7 @@ public class Tower_Flame : Tower {
 
     override protected void Start()
     {
-        goldCost = 60;
+        goldCost = (int)TowerCosts.FlameTowerCost;
         // nothing if it is unbuffed 
         if (!keepBuffed) { }
         else
@@ -139,4 +139,14 @@ public class Tower_Flame : Tower {
         var emissionModuleThree = projectileParticleThree.emission;
         emissionModuleThree.enabled = isActive;
     }
+
+
+    public override int GetTowerCost()
+    {
+        int towerCost = 0;
+
+        towerCost = (int)TowerCosts.FlameTowerCost;
+        return towerCost;
+    }
+
 }

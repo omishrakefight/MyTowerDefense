@@ -86,13 +86,14 @@ public class PlayerTowerLog : MonoBehaviour {
 
 }
 
-public enum Towers
-{
-    RifledTower = 0,
-    AssaultTower = 1,
-    FlameTower = 2,
-    LighteningTower = 3,
-    PlasmaTower = 4,
-    SlowTower = 5
+// TODO KYLE check if these are global and free
+//public enum Towers
+//{
+//    RifledTower = 0,
+//    AssaultTower = 1,
+//    FlameTower = 2,
+//    LighteningTower = 3,
+//    PlasmaTower = 4,
+//    SlowTower = 5
 
-}
+//}

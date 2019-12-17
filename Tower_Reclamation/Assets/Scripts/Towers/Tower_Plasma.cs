@@ -26,12 +26,13 @@ public class Tower_Plasma : Tower
     {
         base.Start();
         maxCharge = 4f;
-        goldCost = 70;
+        goldCost = (int)TowerCosts.PlasmaTowerCost;
         attackRange = 30;
         towerDmg = 18;
         CheckAndApplyBuff();
         //laser = transform.GetComponentInChildren<CapsuleCollider>();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -122,5 +123,13 @@ public class Tower_Plasma : Tower
             laser.gameObject.SetActive(true);
             laserIsOn = true;
         }
+    }
+
+    public override int GetTowerCost()
+    {
+        int towerCost = 0;
+
+        towerCost = (int)TowerCosts.PlasmaTowerCost;
+        return towerCost;
     }
 }

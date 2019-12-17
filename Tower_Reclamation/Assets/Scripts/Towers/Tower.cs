@@ -109,6 +109,11 @@ public abstract class Tower : MonoBehaviour {
         }
     }
 
+    public virtual int GetTowerCost()
+    {
+        return 1000;
+    }
+
     // Update is called once per frame
     void Update () {
 		

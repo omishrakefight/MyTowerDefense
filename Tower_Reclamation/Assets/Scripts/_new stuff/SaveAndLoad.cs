@@ -161,12 +161,8 @@ public class SaveAndLoad : MonoBehaviour {
 
 
                 //towerList = towerLog.towerList; // initializing off of new object.
-                foreach (bool tower in f.towerList)
-                {
-                    print(tower + " AT sAVE AND LOAD");
-                }
-                // initialize or create whatever wiht information now.
 
+                // initialize or create whatever wiht information now.
 
             }
             catch (Exception e)
@@ -184,7 +180,7 @@ public class SaveAndLoad : MonoBehaviour {
             print("couldn't open file");
         }
         finishedLoading = true;
-        print("Im starting to wait!!");
+
         yield return new WaitForSeconds(12f);
     }
 }

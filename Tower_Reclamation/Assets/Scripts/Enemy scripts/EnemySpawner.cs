@@ -38,7 +38,7 @@ public class EnemySpawner : MonoBehaviour
     //Singleton enemyListContainer;
 
     bool betweenWaves = false;
-    float timeBetweenWaves = 12f;
+    float timeBetweenWaves = 8.5f;
     float waveTimer;
     [SerializeField] Slider slider;
     public int enemyCounter = 0;

@@ -62,10 +62,7 @@ public class PlayerTowerLog : MonoBehaviour {
     public void LoadTowers(bool[] loadedTowers)
     {
         this.towers1 = loadedTowers;
-        foreach (bool tower in towers1)
-        {
-            print(tower + " At PlayerTower Logs");
-        }
+
         GetComponent<RandomTowerBlueprints>().ManualStart();
         startNew = false;
     }

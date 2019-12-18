@@ -77,6 +77,8 @@ public abstract class EnemyMovement : MonoBehaviour
                 }
 
                 // increments the path node (go to next one) and turns them if need be.
+                // TODO turn this into a function 'Fix Enemy Direction() and have it activate on start.
+                // Todo move the model part of the enemy so that only it spins not the whole enemy.
                 ++currentPathNode;
                 if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x > 1f)
                 {

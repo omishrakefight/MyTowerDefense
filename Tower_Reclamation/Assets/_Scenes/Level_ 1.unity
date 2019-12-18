@@ -16627,7 +16627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ec5a7db5bc26824dba298199f5f3463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsBetweenSpawns: 2
+  startSetupTime: 10
   enemyPrefab1: {fileID: 114277369253632548, guid: 04f81ff9814844ccfa08226f8d46a3f4,
     type: 2}
   enemyBurrower: {fileID: 114815673108897594, guid: 60fcd257385cf79458a1b48f661760ae,

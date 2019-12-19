@@ -53,6 +53,8 @@ public class SlimerMovement : EnemyMovement {
                     gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 90f, 0f));
                 }
 
+                healthBar.transform.LookAt(healthBar.transform.position + Camera.main.transform.rotation * Vector3.forward, Camera.main.transform.rotation * Vector3.up);
+
                 if (path[currentPathNode + 1].isSlimed)
                 {
                     slimeMultiplier = 1.8f;

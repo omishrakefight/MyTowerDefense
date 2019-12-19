@@ -162,7 +162,15 @@ public class EnemySpawner : MonoBehaviour
         try
         {
             finalWave = FindObjectOfType<FinalWave>();
-            isFinal = true;
+            if (finalWave != null)
+            {
+                isFinal = true;
+            } else
+            {
+                isFinal = false;
+                print("Had to tell it im not final :o");
+            }
+            
         } catch(Exception e )
         {
              isFinal = false;

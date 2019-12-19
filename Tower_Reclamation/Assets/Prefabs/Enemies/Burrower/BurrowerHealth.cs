@@ -44,6 +44,7 @@ public class BurrowerHealth : EnemyHealth {
 
         float dmg = damage;
         hitPoints = hitPoints - dmg;
+        healthImage.fillAmount = (hitPoints / hitPointsMax);
         TellMovementToStartBurrow();
         hitparticleprefab.Play();
 
@@ -66,6 +67,7 @@ public class BurrowerHealth : EnemyHealth {
         }
 
         ProcessHit(other);
+        healthImage.fillAmount = (hitPoints / hitPointsMax);
         TellMovementToStartBurrow();
         if (hitPoints <= 0)
         {
@@ -91,6 +93,7 @@ public class BurrowerHealth : EnemyHealth {
             time += 1 * Time.deltaTime;
             hitPoints -= burnDmg * Time.deltaTime;
             TellMovementToStartBurrow();
+            healthImage.fillAmount = (hitPoints / hitPointsMax);
         }
         else
         {

@@ -16,6 +16,8 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     [SerializeField] public float hitPoints = 40;
     [SerializeField] public float hitPointsMax;
+    [SerializeField] public Canvas enemyHealthBar;
+    protected Image healthImage;
 
     protected float burnTime = 3f;
     [SerializeField] protected bool onFire = false;
@@ -40,6 +42,8 @@ public abstract class EnemyHealth : MonoBehaviour {
             float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 10;
             hitPoints += healthModifier;
             hitPointsMax = hitPoints;
+            healthImage = enemyHealthBar.gameObject.GetComponentInChildren<Image>();
+            healthImage.fillAmount = 1.0f;
         }
 
     }
@@ -72,6 +76,7 @@ public abstract class EnemyHealth : MonoBehaviour {
 
             time += 1 * Time.deltaTime;
             hitPoints -= burnDmg * Time.deltaTime;
+            healthImage.fillAmount = (hitPoints / hitPointsMax);
         }
         else
         {
@@ -121,13 +126,15 @@ public abstract class EnemyHealth : MonoBehaviour {
         dmg = other.GetComponentInParent<Tower_Dmg>().towerDMG();
         hitPoints = hitPoints - dmg;
         hitparticleprefab.Play();
-            //print("Current hit points are : " + hitPoints);
+        healthImage.fillAmount = (hitPoints / hitPointsMax);
     }
 
     public virtual void HitByNonProjectile(float damage)
     {
         float dmg = damage;
         hitPoints = hitPoints - dmg;
+        healthImage.fillAmount = (hitPoints / hitPointsMax);
+
         hitparticleprefab.Play();
 
         if (hitPoints <= 0)
@@ -167,7 +174,7 @@ public abstract class EnemyHealth : MonoBehaviour {
             {
                 hitPoints += (healPerTick * Time.deltaTime);
             }
-
+            healthImage.fillAmount = (hitPoints / hitPointsMax);
             //print("I healed " + healPerTick + " HP!" + "   | healPercent: " + healPercent);
         }
         else

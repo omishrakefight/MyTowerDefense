@@ -118,31 +118,32 @@ public class BurrowerMovement : EnemyMovement {
             {
                 // increments the path node (go to next one) and turns them if need be.
                 ++currentPathNode;
-                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x > 1f)
-                {
-                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
-                }
-                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x < -1f)
-                {
-                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
-                }
-                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).z > 1f)
-                {
-                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 270f, 0f));
-                }
-                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).z < -1f)
-                {
-                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 90f, 0f));
-                }
+                //if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x > 1f)
+                //{
+                //    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+                //}
+                //if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x < -1f)
+                //{
+                //    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+                //}
+                //if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).z > 1f)
+                //{
+                //    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 270f, 0f));
+                //}
+                //if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).z < -1f)
+                //{
+                //    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 90f, 0f));
+                //}
 
-                if (path[currentPathNode + 1].isSlimed)
-                {
-                    slimeMultiplier = 1.4f;
-                }
-                else
-                {
-                    slimeMultiplier = 1.0f;
-                }
+                //if (path[currentPathNode + 1].isSlimed)
+                //{
+                //    slimeMultiplier = 1.4f;
+                //}
+                //else
+                //{
+                //    slimeMultiplier = 1.0f;
+                //}
+                CheckEnemyDirection();
 
                 // chilled is 0?
                 enemySpeed = enemyBaseSpeed * chilledMultiplier * frenzyMultiplier * slimeMultiplier;

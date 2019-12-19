@@ -859,6 +859,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1466523237876820, guid: 86d91e9d5e8d1e044bc0f9ef50af9096, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 86d91e9d5e8d1e044bc0f9ef50af9096, type: 2}
   m_IsPrefabParent: 0
@@ -1526,6 +1530,10 @@ Prefab:
     - target: {fileID: 1410041591377740, guid: 9b88788f1af26d945a3ec20203b67002, type: 2}
       propertyPath: m_Name
       value: Flame Basic Tower (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1410041591377740, guid: 9b88788f1af26d945a3ec20203b67002, type: 2}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b88788f1af26d945a3ec20203b67002, type: 2}
@@ -10953,6 +10961,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1800955467326716, guid: 88f64d91bea821c48a72f1c36bba5d6b, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 88f64d91bea821c48a72f1c36bba5d6b, type: 2}
   m_IsPrefabParent: 0
@@ -11370,6 +11382,7 @@ MonoBehaviour:
   enemyDiedAudio: {fileID: 8300000, guid: 93ac45ea8331dff4391221eb09000fc2, type: 3}
   hitPoints: 60
   hitPointsMax: 0
+  enemyHealthBar: {fileID: 0}
   onFire: 0
   time: 0
   isTargetable: 1

@@ -8,6 +8,10 @@ using PicaVoxel;
 public abstract class EnemyMovement : MonoBehaviour
 {
     public bool willSlime = false;
+    Camera camera;
+    protected Canvas healthBar;
+
+    //[SerializeField] Canvas enemyHealthBar;
 
     [SerializeField] public float enemySpeed = 5.75f;
 
@@ -35,6 +39,7 @@ public abstract class EnemyMovement : MonoBehaviour
 
     protected virtual void Start()
     {
+        camera = Camera.main; 
         PathFinder pathFinder = FindObjectOfType<PathFinder>();
         path = pathFinder.GivePath();
         transform.position = path[0].transform.position;
@@ -46,6 +51,10 @@ public abstract class EnemyMovement : MonoBehaviour
         heightOffset = new Vector3(0f, 1f, 0f);
         //heightOffset = new Vector3(0f, gameObject.GetComponent<Volume>().Pivot.y, 0f);
         // StartCoroutine(FollowWaypoints(path));
+        //get healthbar for rotations
+        healthBar = GetComponent<EnemyHealth>().enemyHealthBar;
+
+        CheckEnemyDirection();
     }
 
 
@@ -80,30 +89,7 @@ public abstract class EnemyMovement : MonoBehaviour
                 // TODO turn this into a function 'Fix Enemy Direction() and have it activate on start.
                 // Todo move the model part of the enemy so that only it spins not the whole enemy.
                 ++currentPathNode;
-                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x > 1f)
-                {
-                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
-                }
-                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x < -1f)
-                {
-                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
-                }
-                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).z > 1f)
-                {
-                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 270f, 0f));
-                }
-                if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).z < -1f)
-                {
-                    gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 90f, 0f));
-                }
-
-                if(path[currentPathNode + 1].isSlimed)
-                {
-                    slimeMultiplier = 1.4f;
-                } else
-                {
-                    slimeMultiplier = 1.0f;
-                }
+                CheckEnemyDirection();
 
                 // chilled is 0?
                 enemySpeed = enemyBaseSpeed * chilledMultiplier * frenzyMultiplier * slimeMultiplier;
@@ -113,6 +99,39 @@ public abstract class EnemyMovement : MonoBehaviour
         }
 
 
+    }
+
+    protected void CheckEnemyDirection()
+    {
+        if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x > 1f)
+        {
+            gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, 0f));
+        }
+        if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x < -1f)
+        {
+            gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 180f, 0f));
+        }
+        if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).z > 1f)
+        {
+            gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 270f, 0f));
+        }
+        if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).z < -1f)
+        {
+            gameObject.transform.rotation = Quaternion.Euler(new Vector3(0f, 90f, 0f));
+        }
+
+        healthBar.transform.LookAt(healthBar.transform.position + camera.transform.rotation * Vector3.forward, camera.transform.rotation * Vector3.up);
+        //enemyHealthBar.transform.rotation = Quaternion.Euler(new Vector3(0f, 270f, 0f)); 
+        //enemyHealthBar.transform.LookAt(Camera.main.transform);
+
+        if (path[currentPathNode + 1].isSlimed)
+        {
+            slimeMultiplier = 1.4f;
+        }
+        else
+        {
+            slimeMultiplier = 1.0f;
+        }
     }
 
     //private List<Waypoint> FindNextNode()

@@ -154,7 +154,7 @@ public sealed class Singleton : MonoBehaviour {
         int rng = Random.Range(0, 100);
         if(rng < 75)
         { // change to max reg enemy.
-            enemy = Random.Range(1, 4);
+            enemy = Random.Range(1, 5);
             waveEnemyDifficultyChecker -= 1;
         } else
         {

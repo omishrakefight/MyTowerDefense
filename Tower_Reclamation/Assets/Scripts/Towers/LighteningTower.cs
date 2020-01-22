@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LighteningTower : Tower {
 
+    // Todo try to make this a physics.OverlapSphere.
     [SerializeField] public SphereCollider attackAOE;
     [SerializeField] public float chargeTime = 8f;
     [SerializeField] public float currentChargeTime = 0;

@@ -38,8 +38,6 @@ public class SaveAndLoad : MonoBehaviour {
         towerListObj = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<PlayerTowerLog>();// FindObjectOfType<PlayerTowerLog>();
         singleton = FindObjectOfType<Singleton>();
         //print(GameObject.FindGameObjectWithTag("TowerInfo"));
-        print(missionChoice);
-        print(towerListObj);
 
         towerList = towerListObj.SaveTowers();
 

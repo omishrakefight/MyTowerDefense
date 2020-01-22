@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Text win;
 
     public bool stillAlive = true;
-    bool currentlySpawning = false;
+    bool currentlySpawning = true;
     CurrentWave level;
     //public int level = 1;
     int monstersSpawned = 0;

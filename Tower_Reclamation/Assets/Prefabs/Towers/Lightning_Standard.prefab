@@ -205,16 +205,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc219a6d6c3e9d04ea636718b7e1ab65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackAOE: {fileID: 135991062907235084}
+  goldCost: 60
   attackRange: 10
-  baseAttackRange: 0
-  chargeTime: 4
-  currentChargeTime: 0
-  charge: {fileID: 108406019157774086}
-  projectileParticle: {fileID: 0}
   towerDmg: 30
   currentTowerDmg: 30
   targetEnemy: {fileID: 0}
+  objectToPan: {fileID: 0}
+  targetEnemyBody: {fileID: 0}
+  keepBuffed: 0
+  attackAOE: {fileID: 135991062907235084}
+  chargeTime: 4
+  currentChargeTime: 0
+  isCharged: 0
+  charge: {fileID: 108406019157774086}
+  projectileParticle: {fileID: 0}
 --- !u!114 &114358188498118118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -246,7 +250,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1087647114204398}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 9.98

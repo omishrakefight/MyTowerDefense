@@ -17,7 +17,7 @@ public class TinkerUpgrades : MonoBehaviour {
 
     string silverWiring = "With a more conductive wiring, faster processes are enabled.  The tower can acquire targets and shoot at them faster.";
     string alloyReasearchI = "By studying the art of alloy smelting, one can produce more quantity of the metals.  Increasing supply has lowered the cost.";
-    string studyTankI = "With research into more compressed tanks, we can put the product inside under more pressure, spraying in a farthur area.";
+    string sturdyTankI = "With research into more compressed tanks, we can put the product inside under more pressure, spraying in a farthur area.";
     string heavyShellingI = "With study into the carpaces of the aliens, we have found out how to make the ballistics penetrate them more easily.";
     string towerEngineerI = "Through a better study of towers, the ramping cost of continuous upgrades is cheaper.";
     //string x = "";

@@ -53,7 +53,6 @@ public sealed class Singleton : MonoBehaviour {
         dropdown = GameObject.FindGameObjectWithTag(towerNumTag).GetComponent<Dropdown>();
         towerSelector = FindObjectOfType<TowerSelecter>();
         tempTower = towerSelector.PickTower();
-        print(dropdown.value + " " + tempTower);
         //temp tower holds the new tower, swtich determines what button it takes over.need to convert to Tower instetad of towerDmG
         switch (dropdown.value)
         {
@@ -120,7 +119,6 @@ public sealed class Singleton : MonoBehaviour {
     public void DecidedPath(List<int> chosenEnemies)
     {
         enemyList = chosenEnemies;
-        print(enemyList.ToString());
         //foreach (int x in enemyList)
         //{
         //    print(x);
@@ -196,4 +194,18 @@ public sealed class Singleton : MonoBehaviour {
     //        }
     //    }
     //}
+
+//    _______       __                __ __                            __         
+//   /_ __ (_)___  / / _____ _____   / / / /___  ____ __________ _____/ /__ _____
+//    / / / / __ \/ //_/ _ \/ ___/  / / / / __ \/ __ `/ ___/ __ `/ __  / _ \/ ___/
+//   / / / / / / / ,< /  __/ /     / /_/ / /_/ / /_/ / /  / /_/ / /_/ /  __(__  )
+//  /_/ /_/_/ /_/_/|_|\___/_/      \____/ .___/\__, /_/   \__,_/\__,_/\___/____/  
+//                                     /_/    /____/                                          
+
+    public bool silverWiring = false;
+    public bool alloyReasearchI = false;
+    public bool sturdyTankI = false;
+    public bool heavyShellingI = false;
+    public bool towerEngineerI = false;
+
 }

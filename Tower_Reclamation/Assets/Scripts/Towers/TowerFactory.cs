@@ -38,8 +38,8 @@ public class TowerFactory : MonoBehaviour {
             {
                 newTower.TowerBuff();
             }
-            print("tower name is : " + tower.name);
-            print("tower is : " + tower);
+            //print("tower name is : " + tower.name);
+            //print("tower is : " + tower);
         }
         else
         {
@@ -49,26 +49,30 @@ public class TowerFactory : MonoBehaviour {
 
     public float FindGoldCost(Tower tower)
     {
-        if (tower.name.Contains("Rifled"))
-        {
-            return 50;
-        }
-        else if (tower.name.Contains("Assault"))
-        {
-            return 55;
-        }
-        else if (tower.name.Contains("Flame"))
-        {
-            return 60;
-        }
-        else if (tower.name.Contains("Lightning"))
-        {
-            return 70;
-        }
-        else if (tower.name.Contains("Slow"))
-        {
-            return 60;
-        }
+        float cost = tower.GetTowerCost();
+        print(cost + " this is the cost from the overriden function of towercost!");
+
+        return cost;
+        //if (tower.name.Contains("Rifled"))
+        //{
+        //    return (int)TowerCosts.RifledTowerCost;
+        //}
+        //else if (tower.name.Contains("Assault"))
+        //{
+        //    return (int)TowerCosts.AssaultTowerCost;
+        //}
+        //else if (tower.name.Contains("Flame"))
+        //{
+        //    return (int)TowerCosts.FlameTowerCost;
+        //}
+        //else if (tower.name.Contains("Lightning"))
+        //{
+        //    return (int)TowerCosts.LighteningTowerCost;
+        //}
+        //else if (tower.name.Contains("Slow"))
+        //{
+        //    return (int)TowerCosts.SlowTowerCost;
+        //}
 
         return 999;
     }

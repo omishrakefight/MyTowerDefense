@@ -40,7 +40,7 @@ public class GoldManagement : MonoBehaviour {
     public void TowerCost(int towerCost)
     {
         goldCount -= towerCost;
-        print("i just bough a tower i am now " + goldCount);
+        //print("i just bough a tower i am now " + goldCount);
         GoldCounter();
     }
 }

@@ -19,6 +19,6 @@ public class CurrentWave : MonoBehaviour {
     public void WaveUpOne()
     {
         ++waveCount;
-        wave.text = "Score : " + waveCount.ToString();
+        wave.text = "Wave : " + waveCount.ToString();
     }
 }

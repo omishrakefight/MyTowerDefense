@@ -103,7 +103,6 @@ public class TowerSelecter : MonoBehaviour
         //    print(t + "You should see me!!");
         //}
         towerTurret.AddOptions(towersKnown);
-        print(towerTurret.options.Count + " Is the count!!");
 
         //print("I worked and " + towersKnown.Count);
     }

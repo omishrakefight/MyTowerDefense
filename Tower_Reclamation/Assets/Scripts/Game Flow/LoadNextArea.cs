@@ -68,7 +68,6 @@ public class LoadNextArea : MonoBehaviour {
             //print("level is now : " + FindObjectOfType<LevelTracker>().currentLevel);
 
             currentLevel = singleton.level;
-            print("current level is : " + currentLevel);
 
             SceneManager.LoadSceneAsync("_Scenes/Level_ " + currentLevel.ToString());
             nextLevelButton.enabled = false;

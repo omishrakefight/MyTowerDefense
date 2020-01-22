@@ -8,6 +8,7 @@ public class Tower_Dmg : MonoBehaviour {
     bool flameTower = false;
     bool rifledTower = false;
     int tower = 0;
+    Singleton singleton;
 
     // Use this for initialization
     void Start () {
@@ -27,17 +28,31 @@ public class Tower_Dmg : MonoBehaviour {
 
         if (GetComponent<LighteningTower>())
         {
-            flameTower = true;
+            //flameTower = true;
             tower = 2;
             //dmg = GetComponent<LighteningTower>().Damage();
         }
 
         if (GetComponent<Tower_Plasma>())
         {
-            flameTower = true;
+            //flameTower = true;
             tower = 3;
             //dmg = GetComponent<Tower_Plasma>().Damage();
         }
+
+        //if (singleton.sturdyTankII)
+        //{
+        // I can do it this way to only get the highest mark of upgrade.
+        //}
+        //else if (singleton.sturdyTankI)
+        //{
+
+        //}
+
+        //if (singleton.heavyShellingI )//&& canShelling)
+        //{
+
+        //}
     }
 	
     // this reduces the amount of checks needed.

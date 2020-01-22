@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -449,7 +449,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114712454102056050}
-        m_MethodName: Load
+        m_MethodName: LoadSavedBase
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -768,7 +768,6 @@ MonoBehaviour:
   towerOne: {fileID: 0}
   towerTwo: {fileID: 0}
   towerThree: {fileID: 0}
-  dropdown: {fileID: 0}
   scenesChanged: 0
   level: 1
   isHasPickedAPath: 0

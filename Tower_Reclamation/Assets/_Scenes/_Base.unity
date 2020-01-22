@@ -6631,16 +6631,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114621738988789926, guid: c5b4c2940301de444bbf331f8341ce0c,
-        type: 2}
-      propertyPath: dropdown
-      value: 
-      objectReference: {fileID: 1721455835}
-    - target: {fileID: 114288499778544406, guid: c5b4c2940301de444bbf331f8341ce0c,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadSavedBase
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5b4c2940301de444bbf331f8341ce0c, type: 2}
   m_IsPrefabParent: 0
@@ -6962,12 +6952,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 28}
   m_Pivot: {x: 0.5, y: 1}
---- !u!114 &1721455835 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114618686829543624, guid: 0dda80d1a3480b246ae2a6121eb27390,
-    type: 2}
-  m_PrefabInternal: {fileID: 1185144495}
-  m_Script: {fileID: 853051423, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1724576351
 GameObject:
   m_ObjectHideFlags: 0

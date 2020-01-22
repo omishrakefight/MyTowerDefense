@@ -9,6 +9,8 @@ public class LighteningTower : Tower {
     [SerializeField] public float chargeTime = 8f;
     [SerializeField] public float currentChargeTime = 0;
     public bool isCharged = false;
+    Singleton singleton;
+    bool reducedCost = false;
     //public new int goldCost = 80;
 
     [SerializeField] protected Light charge;
@@ -31,6 +33,13 @@ public class LighteningTower : Tower {
 
     protected override void Start()
     {
+        singleton = FindObjectOfType<Singleton>();
+        if (singleton.silverWiring)
+        {
+            reducedCost = true;
+        }
+
+
         towerDmg = 30;
         goldCost = (int)TowerCosts.LighteningTowerCost;
 
@@ -108,6 +117,12 @@ public class LighteningTower : Tower {
         int towerCost = 0;
 
         towerCost = (int)TowerCosts.LighteningTowerCost;
+
+        if (true)
+        {
+            //towerCost *= .90f;
+            towerCost = Mathf.RoundToInt(towerCost * .90f);
+        }
         return towerCost;
     }
 

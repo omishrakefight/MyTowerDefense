@@ -11,6 +11,7 @@ public class TowerButton1 : MonoBehaviour {
 
     public void UpdateName()
     {
+        towerFactory = FindObjectOfType<TowerFactory>();
         buttonName1.text = (singleton.towerOne.name + "   cost: " + singleton.towerOne.GetTowerCost().ToString());
     }
     // Use this for initialization
@@ -29,6 +30,7 @@ public class TowerButton1 : MonoBehaviour {
 
     public void BuildTower()
     {
+        towerFactory = FindObjectOfType<TowerFactory>();
         towerFactory.AddTower(singleton.towerOne);
     }
 }

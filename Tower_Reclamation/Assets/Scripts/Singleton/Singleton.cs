@@ -35,6 +35,17 @@ public sealed class Singleton : MonoBehaviour {
         towerFactory.AddTower(towerOne);
     }
 
+    // TODO something with the load destroying references, that i cannot apply new towers (old references bad !!! THE TOWER BUTTONS!!!!
+    // This keeps the old towers, they are never reset.  Look into this, maybe the singleton is getting destroyed?  either way they persist when everything else wipes maybe error there.  They have a bad towerfactory!!!
+
+
+    // Use this for initialization
+    void Start()
+    {
+        level = 2;
+        levelText.text = "Level : " + level.ToString();
+    }
+
     private void Awake()
     {
         if (Instance == null)
@@ -96,12 +107,7 @@ public sealed class Singleton : MonoBehaviour {
         levelText.text = "Level : " + level.ToString();
     }
 
-    // Use this for initialization
-    void Start()
-    {
-        level = 2;
-        levelText.text = "Level : " + level.ToString();
-    }
+
 
     // Update is called once per frame
     void Update()

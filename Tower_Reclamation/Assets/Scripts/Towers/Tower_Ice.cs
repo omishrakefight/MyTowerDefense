@@ -6,6 +6,7 @@ public class Tower_Ice : Tower {
 
     [SerializeField] Light blueLight;
     public float test;
+    Singleton singleton;
     // Use this for initialization
     void Start()
     {
@@ -43,6 +44,13 @@ public class Tower_Ice : Tower {
         int towerCost = 0;
 
         towerCost = (int)TowerCosts.SlowTowerCost;
+        singleton = FindObjectOfType<Singleton>();
+
+        if (singleton.silverWiring)
+        {
+            towerCost = Mathf.RoundToInt(towerCost * (float)((int)TinkerUpgradePercent.mark1 / 100f));
+        }
+
         return towerCost;
     }
 }

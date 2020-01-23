@@ -62,6 +62,7 @@ public class PauseMenu : MonoBehaviour {
     public void LoadMenu()
     {
         print("loading the menu...");
+        Resume();
     }
 
     public void QuitGame()

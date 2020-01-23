@@ -11,6 +11,8 @@ public class Tower_Flame : Tower {
     [SerializeField] ParticleSystem projectileParticle;
     [SerializeField] ParticleSystem projectileParticleTwo;
     [SerializeField] ParticleSystem projectileParticleThree;
+
+    Singleton singleton;
     // float particleLifetime;
     // float currentParticleLifetime;
     //public new int goldCost = 60;
@@ -146,6 +148,13 @@ public class Tower_Flame : Tower {
         int towerCost = 0;
 
         towerCost = (int)TowerCosts.FlameTowerCost;
+        singleton = FindObjectOfType<Singleton>();
+
+        if (singleton.silverWiring)
+        {
+            towerCost = Mathf.RoundToInt(towerCost * (float)((int)TinkerUpgradePercent.mark1 / 100f));
+        }
+
         return towerCost;
     }
 

@@ -43,6 +43,7 @@ public class TowerSelecter : MonoBehaviour
     Bounds bound;
     BoxCollider collider;
 
+    Singleton singleton;
     // Use this for initialization
     void Start()
     {
@@ -231,6 +232,16 @@ public class TowerSelecter : MonoBehaviour
         towerBase.AddOptions(plasmaBases);
     }
 
+    /// <summary>
+    /// Since FindTower() in singleton is the one I need, I put the proxy here
+    /// to cover the broken reference when towerroom is deleted on load.
+    /// </summary>
+    /// more precisely, The button references the new singleton which kills itself on spawning in, then this is a blnak reference.
+    public void ProxyFindTower()
+    {
+        singleton = FindObjectOfType<Singleton>();
+        singleton.FindTower();
+    }
 
 }
 //towerBarrel.options.Clear();

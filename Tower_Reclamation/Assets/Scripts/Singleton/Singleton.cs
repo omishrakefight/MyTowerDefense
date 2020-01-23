@@ -37,13 +37,15 @@ public sealed class Singleton : MonoBehaviour {
 
     // TODO something with the load destroying references, that i cannot apply new towers (old references bad !!! THE TOWER BUTTONS!!!!
     // This keeps the old towers, they are never reset.  Look into this, maybe the singleton is getting destroyed?  either way they persist when everything else wipes maybe error there.  They have a bad towerfactory!!!
-
+    // it ge ts routed to creation wiht a singleton it gets destroyed.  After load it doesnt work it has no activation.
+    //Fix, route the function through something  that persists, THEN that thing calls the singleton function.  Roundabout but works.
 
     // Use this for initialization
     void Start()
     {
         level = 2;
         levelText.text = "Level : " + level.ToString();
+        silverWiring = true;
     }
 
     private void Awake()
@@ -208,7 +210,7 @@ public sealed class Singleton : MonoBehaviour {
 //  /_/ /_/_/ /_/_/|_|\___/_/      \____/ .___/\__, /_/   \__,_/\__,_/\___/____/  
 //                                     /_/    /____/                                          
 
-    public bool silverWiring = false;
+    public bool silverWiring = true;
     public bool alloyReasearchI = false;
     public bool sturdyTankI = false;
     public bool heavyShellingI = false;

@@ -21,6 +21,8 @@ public class Tower_Plasma : Tower
     float laserCurrentTime = 0f;
     bool laserIsOn = false;
 
+    Singleton singleton;
+
     // Use this for initialization
     override protected void Start()
     {
@@ -130,6 +132,12 @@ public class Tower_Plasma : Tower
         int towerCost = 0;
 
         towerCost = (int)TowerCosts.PlasmaTowerCost;
+        singleton = FindObjectOfType<Singleton>();
+
+        if (singleton.silverWiring)
+        {
+            towerCost = Mathf.RoundToInt(towerCost * (float)((int)TinkerUpgradePercent.mark1 / 100f));
+        }
         return towerCost;
     }
 }

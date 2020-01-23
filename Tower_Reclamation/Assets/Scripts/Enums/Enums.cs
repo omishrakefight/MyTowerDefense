@@ -34,3 +34,11 @@ public enum TowerCosts
     PlasmaTowerCost = 70,
     SlowTowerCost = 60
 }
+
+public enum TinkerUpgradePercent
+{
+    mark1 = 92,
+    mark2 = 84,
+    mark3 = 76,
+    mark4 = 68
+}

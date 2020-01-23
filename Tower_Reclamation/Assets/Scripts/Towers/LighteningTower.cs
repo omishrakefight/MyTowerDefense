@@ -117,12 +117,13 @@ public class LighteningTower : Tower {
         int towerCost = 0;
 
         towerCost = (int)TowerCosts.LighteningTowerCost;
+        singleton = FindObjectOfType<Singleton>();
 
-        if (true)
+        if (singleton.silverWiring)
         {
-            //towerCost *= .90f;
-            towerCost = Mathf.RoundToInt(towerCost * .90f);
+            towerCost = Mathf.RoundToInt(towerCost * (float)((int)TinkerUpgradePercent.mark1 / 100f));
         }
+
         return towerCost;
     }
 

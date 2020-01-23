@@ -11,6 +11,7 @@ public class RifledTower : Tower {
     //public new int goldCost = 50;
 
     [SerializeField] ParticleSystem projectileParticle;
+    Singleton singleton;
     //[SerializeField] float towerDmg = 12;
     //[SerializeField] private float currentTowerDmg = 12;
     // State of tower
@@ -95,6 +96,13 @@ public class RifledTower : Tower {
         int towerCost = 0;
 
         towerCost = (int)TowerCosts.RifledTowerCost;
+        singleton = FindObjectOfType<Singleton>();
+
+        if (singleton.silverWiring)
+        {
+            towerCost = Mathf.RoundToInt(towerCost * (float)((int)TinkerUpgradePercent.mark1 / 100f));
+        }
+
         return towerCost;
     }
 

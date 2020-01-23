@@ -5,7 +5,7 @@ using UnityEngine;
 public class LighteningTower : Tower {
 
     // Todo try to make this a physics.OverlapSphere.
-    [SerializeField] public SphereCollider attackAOE;
+    //[SerializeField] public SphereCollider attackAOE;
     [SerializeField] public float chargeTime = 8f;
     [SerializeField] public float currentChargeTime = 0;
     public bool isCharged = false;
@@ -48,10 +48,13 @@ public class LighteningTower : Tower {
         {
             attackRange = attackRange * 1.4f;
             currentTowerDmg = currentTowerDmg * 1.2f;
-            attackAOE.radius = attackAOE.radius * 1.4f;
+            //attackAOE.radius = attackAOE.radius * 1.4f;
         }
     }
-
+    /// <summary>
+    ///  *****************************************Change layer to ignore raycast fixes targetting bug.   ***************************** need to make sure i can click children though for tower upgrades.
+    /// </summary>
+    /// <param name="targets"></param>
 
 
     //Waypoint baseWaypoint    For if i pass it here
@@ -80,7 +83,7 @@ public class LighteningTower : Tower {
             List<EnemyMovement> targets = new List<EnemyMovement>();
             print("I am charged and enemies are nearby!!");
             CheckEnemyRange(targets);
-            var sceneEnemies = FindObjectsOfType<EnemyMovement>();
+            //var sceneEnemies = FindObjectsOfType<EnemyMovement>();
             for (int i = 0; i < targets.Count; i++)
             {
                 print("POW");

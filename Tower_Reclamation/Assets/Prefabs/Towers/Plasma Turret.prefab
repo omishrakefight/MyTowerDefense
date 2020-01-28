@@ -432,7 +432,8 @@ GameObject:
   - component: {fileID: 4494300134300618}
   - component: {fileID: 114692334048397588}
   - component: {fileID: 114754392663893620}
-  m_Layer: 0
+  - component: {fileID: 65706099974543820}
+  m_Layer: 8
   m_Name: Plasma Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1578,7 +1579,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1352428943688078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 16.2, y: 0, z: -4.3}
+  m_LocalPosition: {x: 17.298763, y: -0.000029563904, z: -23.485815}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4752050909348344}
@@ -4136,6 +4137,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1778101363267396}
   m_Mesh: {fileID: 0}
+--- !u!65 &65706099974543820
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1352428943688078}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8, y: 1, z: 8}
+  m_Center: {x: 4, y: 0, z: 4.09}
 --- !u!65 &65777505679448786
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -4460,7 +4473,7 @@ MonoBehaviour:
   ImportedFrom: 1
   ImportedFile: C:/Users/omish/Desktop/MagicaVoxel/MagicaVoxel-0.99.3-alpha-win64/vox/PlasmaTurret.vox
   ImportedCutoutColor: {r: 0, g: 0, b: 0, a: 0}
-  thisInstanceId: -718182
+  thisInstanceId: -24554
   Undone: 1
 --- !u!114 &114343664093719850
 MonoBehaviour:
@@ -4546,7 +4559,7 @@ MonoBehaviour:
   ImportedFrom: 1
   ImportedFile: C:/Users/omish/Desktop/MagicaVoxel/MagicaVoxel-0.99.3-alpha-win64/vox/PlasmaTurretHead.vox
   ImportedCutoutColor: {r: 0, g: 0, b: 0, a: 0}
-  thisInstanceId: -717920
+  thisInstanceId: -24536
   Undone: 1
 --- !u!114 &114374871311621832
 MonoBehaviour:
@@ -4764,7 +4777,9 @@ MonoBehaviour:
   currentTowerDmg: 30
   targetEnemy: {fileID: 0}
   objectToPan: {fileID: 4566123121030416}
+  targetEnemyBody: {fileID: 0}
   keepBuffed: 0
+  distanceToEnemyTest: 0
   laser: {fileID: 136885891201317604}
   spray: {fileID: 198421111282345838}
 --- !u!114 &114693475437939178

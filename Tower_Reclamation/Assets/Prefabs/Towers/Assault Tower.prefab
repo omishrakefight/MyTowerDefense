@@ -87,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1466523237876820}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 477.85507, y: 655.76227, z: -819.063}
+  m_LocalPosition: {x: 20.21208, y: -0.000030517578, z: -20.241718}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4774012340045536}
@@ -227,8 +227,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.37, y: 12.19, z: 7.97}
-  m_Center: {x: 0, y: 4.31, z: 0}
+  m_Size: {x: 8, y: 2, z: 8}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114246891154863348
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -252,13 +252,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14cb0a91c21fc024eaeff0130a9c9e9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToPan: {fileID: 4613106442342080}
+  goldCost: 60
   attackRange: 22
-  baseAttackRange: 0
-  projectileParticle: {fileID: 198511639874854404}
   towerDmg: 10
   currentTowerDmg: 10
   targetEnemy: {fileID: 0}
+  objectToPan: {fileID: 4613106442342080}
+  targetEnemyBody: {fileID: 0}
+  keepBuffed: 0
+  projectileParticle: {fileID: 198511639874854404}
 --- !u!198 &198511639874854404
 ParticleSystem:
   m_ObjectHideFlags: 1

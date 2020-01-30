@@ -1442,7 +1442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488037f2fb46dc643a251c1bd56888e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myNumericalHealth: 10
+  myNumericalHealth: 100
   myHealth: {fileID: 114528662453730894}
   myHealthNumber: {fileID: 114341040362676026}
   HPbar: {fileID: 114222500709098266}

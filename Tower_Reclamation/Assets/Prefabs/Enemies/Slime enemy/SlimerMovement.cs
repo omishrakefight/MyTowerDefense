@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SlimerMovement : EnemyMovement {
 
+    
     // Use this for initialization
     override protected void Start () {
         base.Start();
@@ -22,14 +23,16 @@ public class SlimerMovement : EnemyMovement {
 
         if (transform.position == path[currentPathNode + 1].transform.position + heightOffset)
         {
-            if (transform.position == path[path.Count - 1].transform.position + heightOffset)
+            if (transform.position == path[path.Count - 1].transform.position + heightOffset && !punchingBase)
             {
-                GetComponent<EnemyHealth>().GotToEnd();
-                FindObjectOfType<MyHealth>().AnEnemyFinishedThePath();
+                punchingBase = true;
+                GetComponent<EnemyDamage>().startPunchingBase();
+                //GetComponent<EnemyHealth>().GotToEnd();
+                //FindObjectOfType<MyHealth>().AnEnemyFinishedThePath();
             }
             else
             {
-
+                punchingBase = false;
                 if (path[currentPathNode].isSlimed == false) {
                     GetComponent<SlimeBug>().SpawnSlime(path[currentPathNode].transform.position, path[currentPathNode + 1].transform.position);
                     path[currentPathNode].isSlimed = true;

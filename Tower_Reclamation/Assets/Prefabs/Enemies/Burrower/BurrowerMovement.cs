@@ -107,15 +107,18 @@ public class BurrowerMovement : EnemyMovement {
             transform.position = Vector3.MoveTowards(transform.position, (path[currentPathNode + 1].transform.position + heightOffset), enemySpeedASecond);
         }
 
-        if (transform.position == path[currentPathNode + 1].transform.position + heightOffset)
+        if (transform.position == path[currentPathNode + 1].transform.position + heightOffset && !punchingBase)
         {
             if (transform.position == path[path.Count - 1].transform.position + heightOffset)
             {
-                GetComponent<EnemyHealth>().GotToEnd();
-                FindObjectOfType<MyHealth>().AnEnemyFinishedThePath();
+                punchingBase = true;
+                GetComponent<EnemyDamage>().startPunchingBase();
+                //GetComponent<EnemyHealth>().GotToEnd();
+                //FindObjectOfType<MyHealth>().AnEnemyFinishedThePath();
             }
             else
             {
+                punchingBase = false;
                 // increments the path node (go to next one) and turns them if need be.
                 ++currentPathNode;
                 //if ((path[currentPathNode].transform.position - path[currentPathNode + 1].transform.position).x > 1f)

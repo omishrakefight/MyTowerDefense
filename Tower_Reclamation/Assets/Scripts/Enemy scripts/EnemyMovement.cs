@@ -12,6 +12,7 @@ public abstract class EnemyMovement : MonoBehaviour
     protected Canvas healthBar;
 
     //[SerializeField] Canvas enemyHealthBar;
+    protected bool punchingBase = false;
 
     [SerializeField] public float enemySpeed = 5.75f;
 
@@ -71,13 +72,16 @@ public abstract class EnemyMovement : MonoBehaviour
 
         if (transform.position == path[currentPathNode + 1].transform.position + heightOffset)
         {
-            if (transform.position == path[path.Count - 1].transform.position + heightOffset)
+            if (transform.position == path[path.Count - 1].transform.position + heightOffset && !punchingBase)
             {
-                GetComponent<EnemyHealth>().GotToEnd();
-                FindObjectOfType<MyHealth>().AnEnemyFinishedThePath();
+                punchingBase = true;
+                GetComponent<EnemyDamage>().startPunchingBase();
+                //GetComponent<EnemyHealth>().GotToEnd();
+                //FindObjectOfType<MyHealth>().AnEnemyFinishedThePath();
             }
             else
             {
+                punchingBase = false;
                 if (willSlime)
                 {
                     // todo change movement to a abstract and so this will be in start specific to monster. (not every time)

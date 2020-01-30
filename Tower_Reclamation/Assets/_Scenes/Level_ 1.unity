@@ -660,6 +660,11 @@ Prefab:
       propertyPath: worldFalls
       value: 
       objectReference: {fileID: 1008681746}
+    - target: {fileID: 114379118460173414, guid: a467c20795e0fed40b0d21d2bebe3b04,
+        type: 2}
+      propertyPath: myNumericalHealth
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a467c20795e0fed40b0d21d2bebe3b04, type: 2}
   m_IsPrefabParent: 0
@@ -6769,7 +6774,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Base HP : 10 / 10'
+  m_Text: 'Base HP : 100 / 100'
 --- !u!222 &701554122
 CanvasRenderer:
   m_ObjectHideFlags: 0

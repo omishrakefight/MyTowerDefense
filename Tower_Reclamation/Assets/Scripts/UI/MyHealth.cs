@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class MyHealth : MonoBehaviour {
 
-    [SerializeField] public int myNumericalHealth = 10;
+    [SerializeField] public int myNumericalHealth = 100;
     [SerializeField] public Text myHealth;
     [SerializeField] public Text myHealthNumber;
     [SerializeField] Image HPbar;
@@ -16,7 +16,7 @@ public class MyHealth : MonoBehaviour {
     // Use this for initialization
     void Start () {
         myHealth.text = "Base HP : ";// + myNumericalHealth.ToString() + " / 10";
-        myHealthNumber.text = myNumericalHealth.ToString() + " / 10";
+        myHealthNumber.text = myNumericalHealth.ToString() + " / 100";
 
         // Setting text to invisible until triggered.
         defeat.enabled = false;
@@ -30,10 +30,26 @@ public class MyHealth : MonoBehaviour {
         
     }
 
+    public void AnEnemyIsHittingBase(float initialDMG)
+    {
+        int dmg = Mathf.RoundToInt(initialDMG);
+        myNumericalHealth -= dmg;
+        HPbar.fillAmount -= ((float)dmg/100);
+        GetComponent<AudioSource>().PlayOneShot(baseHurtAudio);
+        myHealthNumber.text = myNumericalHealth.ToString() + " / 100";
+        if (myNumericalHealth <= 0)
+        {
+            FindObjectOfType<EnemySpawner>().stillAlive = false;
+            defeat.enabled = true;
+            worldFalls.enabled = true;
+        }
+    }
+
+    // obsolete until exploders.
     public void AnEnemyFinishedThePath()
     {
         myNumericalHealth -= 1;
-        myHealthNumber.text = myNumericalHealth.ToString() + " / 10";
+        myHealthNumber.text = myNumericalHealth.ToString() + " / 100";
         GetComponent<AudioSource>().PlayOneShot(baseHurtAudio);
         HPbar.fillAmount -= .1f;
         if (myNumericalHealth <= 0)

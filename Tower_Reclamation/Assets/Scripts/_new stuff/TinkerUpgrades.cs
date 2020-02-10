@@ -9,6 +9,11 @@ public class TinkerUpgrades : MonoBehaviour {
 
     List<int> currentUpgradeLevels = new List<int>();
     List<int> learnableUpgrades = new List<int>();
+    List<int> pickedUpgrades = new List<int>();
+    public bool selected = false;
+    public static int numSelected;
+    public int randomPick;
+    public Color baseColor;
 
     // KYLE CHECK to see if I only need one of these, set it on a button, then custom set up each serialized field, same script though.
     [SerializeField] Text description;
@@ -28,16 +33,40 @@ public class TinkerUpgrades : MonoBehaviour {
         }
 
         PickTower();
-	}
+        baseColor = buttonName.GetComponentInParent<Button>().GetComponent<Image>().color;
+
+    }
 
     public void UpdateDescription()
     {
         description.text = selectedDescription;
+
+        if (selected)
+        {
+            numSelected--;
+            buttonName.GetComponentInParent<Button>().GetComponent<Image>().color = baseColor;
+            selected = false;
+
+        }
+        else 
+        {
+            if (numSelected < 2)
+            {
+                numSelected++;
+                buttonName.GetComponentInParent<Button>().GetComponent<Image>().color = Color.cyan;
+                selected = true;
+            }
+        }
+    }
+
+    public void Selected()
+    {
+
     }
 
     public void PickTower()
     {
-        int randomPick = Random.Range(0, learnableUpgrades.Count);
+        randomPick = Random.Range(0, learnableUpgrades.Count);
         int version = currentUpgradeLevels[randomPick] + 1;
 
         switch (randomPick)

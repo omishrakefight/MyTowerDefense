@@ -73,7 +73,6 @@ public abstract class Tower : MonoBehaviour {
         // This meanas grab next in comparisons
         if (!sceneEnemies[0].isTargetable)
         {
-            print("Willing to shoot next thing behind the guy undergrounds");
             getNext = true;
         }
 

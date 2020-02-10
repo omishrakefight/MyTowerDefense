@@ -211,9 +211,29 @@ public sealed class Singleton : MonoBehaviour {
 //                                     /_/    /____/                                          
 
     public bool silverWiring = true;
+    public bool goldWiring = false;
+    public bool platinumWiring = false;
+    public bool diamondWiring = false;
+
     public bool alloyReasearchI = false;
+    public bool alloyReasearchII = false;
+    public bool alloyReasearchIII = false;
+    public bool alloyReasearchIV = false;
+
     public bool sturdyTankI = false;
+    public bool sturdyTankII = false;
+    public bool sturdyTankIII = false;
+    public bool sturdyTankIV = false;
+
     public bool heavyShellingI = false;
+    public bool heavyShellingII = false;
+    public bool heavyShellingIII = false;
+    public bool heavyShellingIV = false;
+
     public bool towerEngineerI = false;
+    public bool towerEngineerII = false;
+    public bool towerEngineerIII = false;
+    public bool towerEngineerIV = false;
+
 
 }

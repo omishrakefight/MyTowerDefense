@@ -57,7 +57,7 @@ public class RifledTower : Tower {
 
     // Update is called once per frame
     void Update () {
-
+        // add in here about having a priority target or something
         if (targetEnemy)
         {
             objectToPan.LookAt(targetEnemy);

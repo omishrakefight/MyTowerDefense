@@ -168,7 +168,7 @@ namespace PicaVoxel
         /// <summary>
         /// Returns a voxel contained in this volume's current frame, at a given world position
         /// </summary>
-        /// <param name="pos">The world position in the scene</param>
+        /// <param buttonName="pos">The world position in the scene</param>
         /// <returns>A voxel if position is within this volume, otherwise null</returns>
         public Voxel? GetVoxelAtWorldPosition(Vector3 pos)
         {
@@ -178,9 +178,9 @@ namespace PicaVoxel
         /// <summary>
         /// Returns a voxel contained in this volume's current frame,, at a given array position
         /// </summary>
-        /// <param name="x">X array position</param>
-        /// <param name="y">Y array position</param>
-        /// <param name="z">Z array position</param>
+        /// <param buttonName="x">X array position</param>
+        /// <param buttonName="y">Y array position</param>
+        /// <param buttonName="z">Z array position</param>
         /// <returns>A voxel if position is within the array, otherwise null</returns>
         public Voxel? GetVoxelAtArrayPosition(int x, int y, int z)
         {
@@ -190,8 +190,8 @@ namespace PicaVoxel
         /// <summary>
         /// Attempts to set a voxel within this volume's current frame, at a given world position, to the supplied voxel value
         /// </summary>
-        /// <param name="pos">The world position in the scene</param>
-        /// <param name="vox">The new voxel to set to</param>
+        /// <param buttonName="pos">The world position in the scene</param>
+        /// <param buttonName="vox">The new voxel to set to</param>
         /// <returns>The array position of the voxel</returns>
         public Vector3 SetVoxelAtWorldPosition(Vector3 pos, Voxel vox)
         {
@@ -201,8 +201,8 @@ namespace PicaVoxel
         /// <summary>
         /// Attempts to set a voxel's state within this volume's current frame, at a given world position, to the supplied value
         /// </summary>
-        /// <param name="pos">The world position in the scene</param>
-        /// <param name="state">The new voxel state to set to</param>
+        /// <param buttonName="pos">The world position in the scene</param>
+        /// <param buttonName="state">The new voxel state to set to</param>
         /// <returns>The array position of the voxel</returns>
         public Vector3 SetVoxelStateAtWorldPosition(Vector3 pos, VoxelState state)
         {
@@ -212,8 +212,8 @@ namespace PicaVoxel
         /// <summary>
         /// Attempts to set a voxel within this volume's current frame, at a specified array position
         /// </summary>
-        /// <param name="pos">A PicaVoxelPoint location within the 3D array of voxels</param>
-        /// <param name="vox">The new voxel to set to</param>
+        /// <param buttonName="pos">A PicaVoxelPoint location within the 3D array of voxels</param>
+        /// <param buttonName="vox">The new voxel to set to</param>
         public void SetVoxelAtArrayPosition(PicaVoxelPoint pos, Voxel vox)
         {
             Frames[CurrentFrame].SetVoxelAtArrayPosition(pos, vox);
@@ -222,8 +222,8 @@ namespace PicaVoxel
         /// <summary>
         /// Attempts to set a voxel's state within this volume's current frame, at a specified array position
         /// </summary>
-        /// <param name="pos">A PicaVoxelPoint location within the 3D array of voxels</param>
-        /// <param name="state">The new state to set to</param>
+        /// <param buttonName="pos">A PicaVoxelPoint location within the 3D array of voxels</param>
+        /// <param buttonName="state">The new state to set to</param>
         public void SetVoxelStateAtArrayPosition(PicaVoxelPoint pos, VoxelState state)
         {
             Frames[CurrentFrame].SetVoxelStateAtArrayPosition(pos, state);
@@ -232,10 +232,10 @@ namespace PicaVoxel
         /// <summary>
         /// Attempts to set a voxel within this volume's current frame, at a specified x,y,z array position
         /// </summary>
-        /// <param name="x">X array position</param>
-        /// <param name="y">Y array position</param>
-        /// <param name="z">Z array position</param>
-        /// <param name="vox">The new voxel to set to</param>
+        /// <param buttonName="x">X array position</param>
+        /// <param buttonName="y">Y array position</param>
+        /// <param buttonName="z">Z array position</param>
+        /// <param buttonName="vox">The new voxel to set to</param>
         public void SetVoxelAtArrayPosition(int x, int y, int z, Voxel vox)
         {
             Frames[CurrentFrame].SetVoxelAtArrayPosition(x, y, z, vox);
@@ -244,10 +244,10 @@ namespace PicaVoxel
         /// <summary>
         /// Attempts to set a voxel's state within this volume's current frame, at a specified x,y,z array position
         /// </summary>
-        /// <param name="x">X array position</param>
-        /// <param name="y">Y array position</param>
-        /// <param name="z">Z array position</param>
-        /// <param name="state">The new state to set to</param>
+        /// <param buttonName="x">X array position</param>
+        /// <param buttonName="y">Y array position</param>
+        /// <param buttonName="z">Z array position</param>
+        /// <param buttonName="state">The new state to set to</param>
         public void SetVoxelStateAtArrayPosition(int x, int y, int z, VoxelState state)
         {
             Frames[CurrentFrame].SetVoxelStateAtArrayPosition(x, y, z, state);
@@ -256,7 +256,7 @@ namespace PicaVoxel
         /// <summary>
         /// Returns the local position of a voxel within this volume's current frame, at a specified world position
         /// </summary>
-        /// <param name="pos">The world position in the scene</param>
+        /// <param buttonName="pos">The world position in the scene</param>
         /// <returns>The local voxel position</returns>
         public Vector3 GetVoxelPosition(Vector3 pos)
         {
@@ -266,7 +266,7 @@ namespace PicaVoxel
         /// <summary>
         /// Returns the array position of a voxel within this volume's current frame, at a specified world position
         /// </summary>
-        /// <param name="pos">The world position in the scene</param>
+        /// <param buttonName="pos">The world position in the scene</param>
         /// <returns>The array position of the voxel</returns>
         public PicaVoxelPoint GetVoxelArrayPosition(Vector3 pos)
         {
@@ -276,9 +276,9 @@ namespace PicaVoxel
         /// <summary>
         /// Returns the world position of a voxel given its array positions
         /// </summary>
-        /// <param name="x">The X position of the voxel in the array</param>
-        /// <param name="y">The Y position of the voxel in the array</param>
-        /// <param name="z">The Z position of the voxel in the array</param>
+        /// <param buttonName="x">The X position of the voxel in the array</param>
+        /// <param buttonName="y">The Y position of the voxel in the array</param>
+        /// <param buttonName="z">The Z position of the voxel in the array</param>
         /// <returns>The world position of the center of the voxel</returns>
         public Vector3 GetVoxelWorldPosition(int x, int y, int z)
         {
@@ -319,7 +319,7 @@ namespace PicaVoxel
         /// <summary>
         /// Insert a new animation frame before the supplied frame number
         /// </summary>
-        /// <param name="where">The frame number to insert the new frame before</param>
+        /// <param buttonName="where">The frame number to insert the new frame before</param>
         public void AddFrame(int where)
         {
             //Debug.Log("Object AddFrame");
@@ -409,7 +409,7 @@ namespace PicaVoxel
         /// <summary>
         /// Sets the current animation frame
         /// </summary>
-        /// <param name="frame">The frame number to set to</param>
+        /// <param buttonName="frame">The frame number to set to</param>
         /// Will not set the frame if supplied frame is invalid
         public void SetFrame(int frame)
         {
@@ -439,7 +439,7 @@ namespace PicaVoxel
         /// <summary>
         /// Update only the chunks which have changed voxels on the current frame
         /// </summary>
-        /// <param name="immediate">If true, don't use threading to perform this update</param>
+        /// <param buttonName="immediate">If true, don't use threading to perform this update</param>
         public void UpdateChunks(bool immediate)
         {
             //Debug.Log("Object UpdateChunks");
@@ -497,8 +497,8 @@ namespace PicaVoxel
         /// <summary>
         /// Deactivates all particles in the current frame, within a supplied radius of a world position
         /// </summary>
-        /// <param name="position">The world position of the centre of the explosion</param>
-        /// <param name="explosionRadius">The radius of the explosion</param>
+        /// <param buttonName="position">The world position of the centre of the explosion</param>
+        /// <param buttonName="explosionRadius">The radius of the explosion</param>
         /// <returns>A Batch of voxels that were destroyed by the explosion</returns>
         public Batch Explode(Vector3 position, float explosionRadius, int valueFilter, Exploder.ExplodeValueFilterOperation valueFilterOperation)
         {
@@ -545,8 +545,8 @@ namespace PicaVoxel
         /// Adds particles to the PicaVoxel Particle System (if available) representing the shape of this volume
         /// Use it before destroying/deactivating the volume to leave particles behind
         /// </summary>
-        /// <param name="particleVelocity">Initial velocity of the created particles (outward from center of volume)</param>
-        /// <param name="actuallyDestroyVoxels">If true, will set all the voxels to inactive</param>
+        /// <param buttonName="particleVelocity">Initial velocity of the created particles (outward from center of volume)</param>
+        /// <param buttonName="actuallyDestroyVoxels">If true, will set all the voxels to inactive</param>
         public void Destruct(float particleVelocity, bool actuallyDestroyVoxels)
         {
             Vector3 posZero = transform.position + (transform.rotation * (-Pivot + (Vector3.one * (VoxelSize * 0.5f))));
@@ -726,7 +726,7 @@ namespace PicaVoxel
         /// <summary>
         /// Change the mesh collision mode of all frames
         /// </summary>
-        /// <param name="collisionMode">The CollisonMode to change to</param>
+        /// <param buttonName="collisionMode">The CollisonMode to change to</param>
         public void ChangeCollisionMode(CollisionMode collisionMode)
         {
             CollisionMode = collisionMode;

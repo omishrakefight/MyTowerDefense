@@ -72,7 +72,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// less or equal 16 and if this call succeeds, you must drop
 		/// at least n - 8 bits in the next call.
 		/// </summary>
-		/// <param name="bitCount">The number of bits to peek.</param>
+		/// <param buttonName="bitCount">The number of bits to peek.</param>
 		/// <returns>
 		/// the value of the bits, or -1 if not enough bits available.  */
 		/// </returns>
@@ -94,7 +94,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// with a bigger or equal n before, to make sure that enough bits are in
 		/// the bit buffer.
 		/// </summary>
-		/// <param name="bitCount">The number of bits to drop.</param>
+		/// <param buttonName="bitCount">The number of bits to drop.</param>
 		public void DropBits(int bitCount)
 		{
 			buffer_ >>= bitCount;
@@ -105,7 +105,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// Gets the next n bits and increases input pointer.  This is equivalent
 		/// to <see cref="PeekBits"/> followed by <see cref="DropBits"/>, except for correct error handling.
 		/// </summary>
-		/// <param name="bitCount">The number of bits to retrieve.</param>
+		/// <param buttonName="bitCount">The number of bits to retrieve.</param>
 		/// <returns>
 		/// the value of the bits, or -1 if not enough bits available.
 		/// </returns>
@@ -167,13 +167,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// byte aligned.  If not enough bytes are available, copies fewer
 		/// bytes.
 		/// </summary>
-		/// <param name="output">
+		/// <param buttonName="output">
 		/// The buffer to copy bytes to.
 		/// </param>
-		/// <param name="offset">
+		/// <param buttonName="offset">
 		/// The offset in the buffer at which copying starts
 		/// </param>
-		/// <param name="length">
+		/// <param buttonName="length">
 		/// The length to copy, 0 is allowed.
 		/// </param>
 		/// <returns>
@@ -237,9 +237,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// Add more input for consumption.
 		/// Only call when IsNeedingInput returns true
 		/// </summary>
-		/// <param name="buffer">data to be input</param>
-		/// <param name="offset">offset of first byte of input</param>
-		/// <param name="count">number of bytes of input to add.</param>
+		/// <param buttonName="buffer">data to be input</param>
+		/// <param buttonName="offset">offset of first byte of input</param>
+		/// <param buttonName="count">number of bytes of input to add.</param>
 		public void SetInput(byte[] buffer, int offset, int count)
 		{
 			if ( buffer == null ) {

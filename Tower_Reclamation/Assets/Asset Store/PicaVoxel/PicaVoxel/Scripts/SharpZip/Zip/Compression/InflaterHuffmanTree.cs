@@ -99,7 +99,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Constructs a Huffman tree from the array of code lengths.
 		/// </summary>
-		/// <param name = "codeLengths">
+		/// <param buttonName = "codeLengths">
 		/// the array of code lengths
 		/// </param>
 		public InflaterHuffmanTree(byte[] codeLengths)
@@ -184,7 +184,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// Reads the next symbol from input.  The symbol is encoded using the
 		/// huffman tree.
 		/// </summary>
-		/// <param name="input">
+		/// <param buttonName="input">
 		/// input the input source.
 		/// </param>
 		/// <returns>

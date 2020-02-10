@@ -6,12 +6,15 @@ using UnityEngine.UI;
 public class TinkerUpgrades : MonoBehaviour {
 
     bool isLoadedFromSave = false;
-    List<string> learnableUpgrades = new List<string>();
+
+    List<int> currentUpgradeLevels = new List<int>();
+    List<int> learnableUpgrades = new List<int>();
 
     // KYLE CHECK to see if I only need one of these, set it on a button, then custom set up each serialized field, same script though.
     [SerializeField] Text description;
+    string selectedDescription = "";
     // maybe do a button
-    [SerializeField] Text name;
+    [SerializeField] Text buttonName;
     // Use this for initialization
 
     // Have a single array that keeps track of the highest version IE [0, 0, 4, 1, 1], means no upgrades first two and a mark 4 on the third.  Have the array known.
@@ -20,13 +23,67 @@ public class TinkerUpgrades : MonoBehaviour {
 	void Start () {
         if (!isLoadedFromSave)
         {
-            //learnableUpgrades = new list
+            currentUpgradeLevels = new List<int>() { 1, 2, 0, 0, 0};
+            learnableUpgrades = new List<int>() { 0, 1 };
         }
+
+        PickTower();
 	}
+
+    public void UpdateDescription()
+    {
+        description.text = selectedDescription;
+    }
+
+    public void PickTower()
+    {
+        int randomPick = Random.Range(0, learnableUpgrades.Count);
+        int version = currentUpgradeLevels[randomPick] + 1;
+
+        switch (randomPick)
+        {
+            case 0:
+                buttonName.text = "Silver Wiring: Mark " + version.ToString();
+                switch (version)
+                {
+                    case 1:
+                        selectedDescription = silverWiringI;
+                        break;
+                    case 2:
+                        selectedDescription = silverWiringII;
+                        break;
+                    case 3:
+                        selectedDescription = silverWiringIII;
+                        break;
+                    case 4:
+                        selectedDescription = silverWiringIV;
+                        break;
+                }
+                break;
+            case 1:
+                buttonName.text = "Alloy Research: Mark " + version.ToString();
+                switch (version)
+                {
+                    case 1:
+                        selectedDescription = alloyReasearchI;
+                        break;
+                    case 2:
+                        selectedDescription = alloyReasearchII;
+                        break;
+                    case 3:
+                        selectedDescription = alloyReasearchIII;
+                        break;
+                    case 4:
+                        selectedDescription = alloyReasearchIV;
+                        break;
+                }
+                break;
+        }
+    }
 
     public void getWiringVersion(int version)
     {
-        name.text = "Silver Wiring: Mark " + version.ToString();
+        buttonName.text = "Silver Wiring: Mark " + version.ToString();
         switch (version)
         {
             case 0:
@@ -46,7 +103,7 @@ public class TinkerUpgrades : MonoBehaviour {
 
     public void getAlloyVersion(int version)
     {
-        name.text = "Alloy Research: Mark " + version.ToString();
+        buttonName.text = "Alloy Research: Mark " + version.ToString();
         switch (version)
         {
             case 0:

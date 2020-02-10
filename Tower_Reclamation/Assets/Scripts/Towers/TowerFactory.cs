@@ -38,7 +38,7 @@ public class TowerFactory : MonoBehaviour {
             {
                 newTower.TowerBuff();
             }
-            //print("tower name is : " + tower.name);
+            //print("tower buttonName is : " + tower.buttonName);
             //print("tower is : " + tower);
         }
         else
@@ -53,23 +53,23 @@ public class TowerFactory : MonoBehaviour {
         print(cost + " this is the cost from the overriden function of towercost!");
 
         return cost;
-        //if (tower.name.Contains("Rifled"))
+        //if (tower.buttonName.Contains("Rifled"))
         //{
         //    return (int)TowerCosts.RifledTowerCost;
         //}
-        //else if (tower.name.Contains("Assault"))
+        //else if (tower.buttonName.Contains("Assault"))
         //{
         //    return (int)TowerCosts.AssaultTowerCost;
         //}
-        //else if (tower.name.Contains("Flame"))
+        //else if (tower.buttonName.Contains("Flame"))
         //{
         //    return (int)TowerCosts.FlameTowerCost;
         //}
-        //else if (tower.name.Contains("Lightning"))
+        //else if (tower.buttonName.Contains("Lightning"))
         //{
         //    return (int)TowerCosts.LighteningTowerCost;
         //}
-        //else if (tower.name.Contains("Slow"))
+        //else if (tower.buttonName.Contains("Slow"))
         //{
         //    return (int)TowerCosts.SlowTowerCost;
         //}

@@ -76,7 +76,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// construct instance using specified buffer size
 		/// </summary>
-		/// <param name="bufferSize">
+		/// <param buttonName="bufferSize">
 		/// size to use for internal buffer
 		/// </param>
 		public PendingBuffer(int bufferSize)
@@ -97,7 +97,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Write a byte to buffer
 		/// </summary>
-		/// <param name="value">
+		/// <param buttonName="value">
 		/// The value to write
 		/// </param>
 		public void WriteByte(int value)
@@ -114,7 +114,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Write a short value to buffer LSB first
 		/// </summary>
-		/// <param name="value">
+		/// <param buttonName="value">
 		/// The value to write.
 		/// </param>
 		public void WriteShort(int value)
@@ -132,7 +132,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// write an integer LSB first
 		/// </summary>
-		/// <param name="value">The value to write.</param>
+		/// <param buttonName="value">The value to write.</param>
 		public void WriteInt(int value)
 		{
 #if DebugDeflation
@@ -150,9 +150,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Write a block of data to buffer
 		/// </summary>
-		/// <param name="block">data to write</param>
-		/// <param name="offset">offset of first byte to write</param>
-		/// <param name="length">number of bytes to write</param>
+		/// <param buttonName="block">data to write</param>
+		/// <param buttonName="offset">offset of first byte to write</param>
+		/// <param buttonName="length">number of bytes to write</param>
 		public void WriteBlock(byte[] block, int offset, int length)
 		{
 #if DebugDeflation
@@ -199,8 +199,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Write bits to internal buffer
 		/// </summary>
-		/// <param name="b">source of bits</param>
-		/// <param name="count">number of bits to write</param>
+		/// <param buttonName="b">source of bits</param>
+		/// <param buttonName="count">number of bits to write</param>
 		public void WriteBits(int b, int count)
 		{
 #if DebugDeflation
@@ -226,7 +226,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Write a short value to internal buffer most significant byte first
 		/// </summary>
-		/// <param name="s">value to write</param>
+		/// <param buttonName="s">value to write</param>
 		public void WriteShortMSB(int s) 
 		{
 #if DebugDeflation
@@ -252,9 +252,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// Flushes the pending buffer into the given output array.  If the
 		/// output array is to small, only a partial flush is done.
 		/// </summary>
-		/// <param name="output">The output array.</param>
-		/// <param name="offset">The offset into output array.</param>
-		/// <param name="length">The maximum number of bytes to store.</param>
+		/// <param buttonName="output">The output array.</param>
+		/// <param buttonName="offset">The offset into output array.</param>
+		/// <param buttonName="length">The maximum number of bytes to store.</param>
 		/// <returns>The number of bytes flushed.</returns>
 		public int Flush(byte[] output, int offset, int length) 
 		{

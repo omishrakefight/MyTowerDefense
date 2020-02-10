@@ -198,7 +198,7 @@ namespace Ionic.Zlib
         private static readonly int END_BLOCK = 256;
 
         internal ZlibCodec _codec; // the zlib encoder/decoder
-        internal int status;       // as the name implies
+        internal int status;       // as the buttonName implies
         internal byte[] pending;   // output still pending - waiting to be compressed
         internal int nextPending;  // index of next pending byte to output to the stream
         internal int pendingCount; // number of bytes in the pending buffer

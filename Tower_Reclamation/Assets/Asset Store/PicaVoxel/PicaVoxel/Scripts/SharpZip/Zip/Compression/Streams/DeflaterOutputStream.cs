@@ -59,7 +59,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Creates a new DeflaterOutputStream with a default Deflater and default buffer size.
 		/// </summary>
-		/// <param name="baseOutputStream">
+		/// <param buttonName="baseOutputStream">
 		/// the output stream where deflated output should be written.
 		/// </param>
 		public DeflaterOutputStream(Stream baseOutputStream)
@@ -71,10 +71,10 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// Creates a new DeflaterOutputStream with the given Deflater and
 		/// default buffer size.
 		/// </summary>
-		/// <param name="baseOutputStream">
+		/// <param buttonName="baseOutputStream">
 		/// the output stream where deflated output should be written.
 		/// </param>
-		/// <param name="deflater">
+		/// <param buttonName="deflater">
 		/// the underlying deflater.
 		/// </param>
 		public DeflaterOutputStream(Stream baseOutputStream, Deflater deflater)
@@ -86,13 +86,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// Creates a new DeflaterOutputStream with the given Deflater and
 		/// buffer size.
 		/// </summary>
-		/// <param name="baseOutputStream">
+		/// <param buttonName="baseOutputStream">
 		/// The output stream where deflated output is written.
 		/// </param>
-		/// <param name="deflater">
+		/// <param buttonName="deflater">
 		/// The underlying deflater to use
 		/// </param>
-		/// <param name="bufferSize">
+		/// <param buttonName="bufferSize">
 		/// The buffer size in bytes to use when deflating (minimum value 512)
 		/// </param>
 		/// <exception cref="ArgumentOutOfRangeException">
@@ -218,13 +218,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Encrypt a block of data
 		/// </summary>
-		/// <param name="buffer">
+		/// <param buttonName="buffer">
 		/// Data to encrypt.  NOTE the original contents of the buffer are lost
 		/// </param>
-		/// <param name="offset">
+		/// <param buttonName="offset">
 		/// Offset of first byte in buffer to encrypt
 		/// </param>
-		/// <param name="length">
+		/// <param buttonName="length">
 		/// Number of bytes in buffer to encrypt
 		/// </param>
 		protected void EncryptBlock(byte[] buffer, int offset, int length)
@@ -241,9 +241,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		}
 
 //        /// <summary>
-//        /// Initializes encryption keys based on given <paramref name="password"/>.
+//        /// Initializes encryption keys based on given <paramref buttonName="password"/>.
 //        /// </summary>
-//        /// <param name="password">The password.</param>
+//        /// <param buttonName="password">The password.</param>
 //        protected void InitializePassword(string password)
 //        {
 //#if NETCF_1_0 || UNITY_WINRT
@@ -400,8 +400,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Sets the current position of this stream to the given value. Not supported by this class!
 		/// </summary>
-		/// <param name="offset">The offset relative to the <paramref name="origin"/> to seek.</param>
-		/// <param name="origin">The <see cref="SeekOrigin"/> to seek from.</param>
+		/// <param buttonName="offset">The offset relative to the <paramref buttonName="origin"/> to seek.</param>
+		/// <param buttonName="origin">The <see cref="SeekOrigin"/> to seek from.</param>
 		/// <returns>The new position in the stream.</returns>
 		/// <exception cref="NotSupportedException">Any access</exception>
 		public override long Seek(long offset, SeekOrigin origin)
@@ -412,7 +412,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Sets the length of this stream to the given value. Not supported by this class!
 		/// </summary>
-		/// <param name="value">The new stream length.</param>
+		/// <param buttonName="value">The new stream length.</param>
 		/// <exception cref="NotSupportedException">Any access</exception>
 		public override void SetLength(long value)
 		{
@@ -432,9 +432,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Read a block of bytes from stream
 		/// </summary>
-		/// <param name="buffer">The buffer to store read data in.</param>
-		/// <param name="offset">The offset to start storing at.</param>
-		/// <param name="count">The maximum number of bytes to read.</param>
+		/// <param buttonName="buffer">The buffer to store read data in.</param>
+		/// <param buttonName="offset">The offset to start storing at.</param>
+		/// <param buttonName="count">The maximum number of bytes to read.</param>
 		/// <returns>The actual number of bytes read.  Zero if end of stream is detected.</returns>
 		/// <exception cref="NotSupportedException">Any access</exception>
 		public override int Read(byte[] buffer, int offset, int count)
@@ -445,11 +445,11 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Asynchronous reads are not supported a NotSupportedException is always thrown
 		/// </summary>
-		/// <param name="buffer">The buffer to read into.</param>
-		/// <param name="offset">The offset to start storing data at.</param>
-		/// <param name="count">The number of bytes to read</param>
-		/// <param name="callback">The async callback to use.</param>
-		/// <param name="state">The state to use.</param>
+		/// <param buttonName="buffer">The buffer to read into.</param>
+		/// <param buttonName="offset">The offset to start storing data at.</param>
+		/// <param buttonName="count">The number of bytes to read</param>
+		/// <param buttonName="callback">The async callback to use.</param>
+		/// <param buttonName="state">The state to use.</param>
 		/// <returns>Returns an <see cref="IAsyncResult"/></returns>
 		/// <exception cref="NotSupportedException">Any access</exception>
 		#if UNITY_METRO && !UNITY_EDITOR
@@ -464,11 +464,11 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Asynchronous writes arent supported, a NotSupportedException is always thrown
 		/// </summary>
-		/// <param name="buffer">The buffer to write.</param>
-		/// <param name="offset">The offset to begin writing at.</param>
-		/// <param name="count">The number of bytes to write.</param>
-		/// <param name="callback">The <see cref="AsyncCallback"/> to use.</param>
-		/// <param name="state">The state object.</param>
+		/// <param buttonName="buffer">The buffer to write.</param>
+		/// <param buttonName="offset">The offset to begin writing at.</param>
+		/// <param buttonName="count">The number of bytes to write.</param>
+		/// <param buttonName="callback">The <see cref="AsyncCallback"/> to use.</param>
+		/// <param buttonName="state">The state object.</param>
 		/// <returns>Returns an IAsyncResult.</returns>
 		/// <exception cref="NotSupportedException">Any access</exception>
 		#if UNITY_METRO && !UNITY_EDITOR
@@ -519,7 +519,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Writes a single byte to the compressed output stream.
 		/// </summary>
-		/// <param name="value">
+		/// <param buttonName="value">
 		/// The byte value.
 		/// </param>
 		public override void WriteByte(byte value)
@@ -532,13 +532,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Writes bytes from an array to the compressed stream.
 		/// </summary>
-		/// <param name="buffer">
+		/// <param buttonName="buffer">
 		/// The byte array
 		/// </param>
-		/// <param name="offset">
+		/// <param buttonName="offset">
 		/// The offset into the byte array where to start.
 		/// </param>
-		/// <param name="count">
+		/// <param buttonName="count">
 		/// The number of bytes to write.
 		/// </param>
 		public override void Write(byte[] buffer, int offset, int count)

@@ -77,7 +77,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 		public const int FEXTRA   = 0x4;
 		
 		/// <summary>
-		/// flag bitmask for name
+		/// flag bitmask for buttonName
 		/// </summary>
 		public const int FNAME    = 0x8;
 		

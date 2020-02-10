@@ -54,7 +54,7 @@ public class LighteningTower : Tower {
     /// <summary>
     ///  *****************************************Change layer to ignore raycast fixes targetting bug.   ***************************** need to make sure i can click children though for tower upgrades.
     /// </summary>
-    /// <param name="targets"></param>
+    /// <param buttonName="targets"></param>
 
 
     //Waypoint baseWaypoint    For if i pass it here

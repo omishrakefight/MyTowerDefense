@@ -219,7 +219,7 @@ namespace Ionic.Zlib
         /// End Using
         /// </code>
         /// </example>
-        /// <param name="stream">The stream to which compressed data will be written.</param>
+        /// <param buttonName="stream">The stream to which compressed data will be written.</param>
         public ParallelDeflateOutputStream(System.IO.Stream stream)
             : this(stream, CompressionLevel.Default, CompressionStrategy.Default, false)
         {
@@ -232,8 +232,8 @@ namespace Ionic.Zlib
         ///   See the <see cref="ParallelDeflateOutputStream(System.IO.Stream)"/>
         ///   constructor for example code.
         /// </remarks>
-        /// <param name="stream">The stream to which compressed data will be written.</param>
-        /// <param name="level">A tuning knob to trade speed for effectiveness.</param>
+        /// <param buttonName="stream">The stream to which compressed data will be written.</param>
+        /// <param buttonName="level">A tuning knob to trade speed for effectiveness.</param>
         public ParallelDeflateOutputStream(System.IO.Stream stream, CompressionLevel level)
             : this(stream, level, CompressionStrategy.Default, false)
         {
@@ -247,8 +247,8 @@ namespace Ionic.Zlib
         ///   See the <see cref="ParallelDeflateOutputStream(System.IO.Stream)"/>
         ///   constructor for example code.
         /// </remarks>
-        /// <param name="stream">The stream to which compressed data will be written.</param>
-        /// <param name="leaveOpen">
+        /// <param buttonName="stream">The stream to which compressed data will be written.</param>
+        /// <param buttonName="leaveOpen">
         ///    true if the application would like the stream to remain open after inflation/deflation.
         /// </param>
         public ParallelDeflateOutputStream(System.IO.Stream stream, bool leaveOpen)
@@ -264,9 +264,9 @@ namespace Ionic.Zlib
         ///   See the <see cref="ParallelDeflateOutputStream(System.IO.Stream)"/>
         ///   constructor for example code.
         /// </remarks>
-        /// <param name="stream">The stream to which compressed data will be written.</param>
-        /// <param name="level">A tuning knob to trade speed for effectiveness.</param>
-        /// <param name="leaveOpen">
+        /// <param buttonName="stream">The stream to which compressed data will be written.</param>
+        /// <param buttonName="level">A tuning knob to trade speed for effectiveness.</param>
+        /// <param buttonName="leaveOpen">
         ///    true if the application would like the stream to remain open after inflation/deflation.
         /// </param>
         public ParallelDeflateOutputStream(System.IO.Stream stream, CompressionLevel level, bool leaveOpen)
@@ -284,13 +284,13 @@ namespace Ionic.Zlib
         ///   See the <see cref="ParallelDeflateOutputStream(System.IO.Stream)"/>
         ///   constructor for example code.
         /// </remarks>
-        /// <param name="stream">The stream to which compressed data will be written.</param>
-        /// <param name="level">A tuning knob to trade speed for effectiveness.</param>
-        /// <param name="strategy">
+        /// <param buttonName="stream">The stream to which compressed data will be written.</param>
+        /// <param buttonName="level">A tuning knob to trade speed for effectiveness.</param>
+        /// <param buttonName="strategy">
         ///   By tweaking this parameter, you may be able to optimize the compression for
         ///   data with particular characteristics.
         /// </param>
-        /// <param name="leaveOpen">
+        /// <param buttonName="leaveOpen">
         ///    true if the application would like the stream to remain open after inflation/deflation.
         /// </param>
         public ParallelDeflateOutputStream(System.IO.Stream stream,
@@ -518,9 +518,9 @@ namespace Ionic.Zlib
         /// </para>
         ///
         /// </remarks>
-        /// <param name="buffer">The buffer holding data to write to the stream.</param>
-        /// <param name="offset">the offset within that data array to find the first byte to write.</param>
-        /// <param name="count">the number of bytes to write.</param>
+        /// <param buttonName="buffer">The buffer holding data to write to the stream.</param>
+        /// <param buttonName="offset">the offset within that data array to find the first byte to write.</param>
+        /// <param buttonName="count">the number of bytes to write.</param>
         public override void Write(byte[] buffer, int offset, int count)
         {
             bool mustWait = false;
@@ -789,7 +789,7 @@ namespace Ionic.Zlib
 
 
         /// <summary>The Dispose method</summary>
-        /// <param name="disposing">
+        /// <param buttonName="disposing">
         ///   indicates whether the Dispose method was invoked by user code.
         /// </param>
         protected override void Dispose(bool disposing)
@@ -808,7 +808,7 @@ namespace Ionic.Zlib
         ///   it, to use it again on another stream.
         /// </remarks>
         ///
-        /// <param name="stream">
+        /// <param buttonName="stream">
         ///   The new output stream for this era.
         /// </param>
         ///
@@ -1327,16 +1327,16 @@ namespace Ionic.Zlib
         /// <summary>
         /// This method always throws a NotSupportedException.
         /// </summary>
-        /// <param name="buffer">
+        /// <param buttonName="buffer">
         ///   The buffer into which data would be read, IF THIS METHOD
         ///   ACTUALLY DID ANYTHING.
         /// </param>
-        /// <param name="offset">
+        /// <param buttonName="offset">
         ///   The offset within that data array at which to insert the
         ///   data that is read, IF THIS METHOD ACTUALLY DID
         ///   ANYTHING.
         /// </param>
-        /// <param name="count">
+        /// <param buttonName="count">
         ///   The number of bytes to write, IF THIS METHOD ACTUALLY DID
         ///   ANYTHING.
         /// </param>
@@ -1349,11 +1349,11 @@ namespace Ionic.Zlib
         /// <summary>
         /// This method always throws a NotSupportedException.
         /// </summary>
-        /// <param name="offset">
+        /// <param buttonName="offset">
         ///   The offset to seek to....
         ///   IF THIS METHOD ACTUALLY DID ANYTHING.
         /// </param>
-        /// <param name="origin">
+        /// <param buttonName="origin">
         ///   The reference specifying how to apply the offset....  IF
         ///   THIS METHOD ACTUALLY DID ANYTHING.
         /// </param>
@@ -1366,7 +1366,7 @@ namespace Ionic.Zlib
         /// <summary>
         /// This method always throws a NotSupportedException.
         /// </summary>
-        /// <param name="value">
+        /// <param buttonName="value">
         ///   The new value for the stream length....  IF
         ///   THIS METHOD ACTUALLY DID ANYTHING.
         /// </param>

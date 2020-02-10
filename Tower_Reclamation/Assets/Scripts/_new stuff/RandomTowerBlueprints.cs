@@ -104,7 +104,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
 
     public void ButtonOne()
     {
-        // how to get the reference to a booleanspot by a string name
+        // how to get the reference to a booleanspot by a string buttonName
         LearnedANewTower(towerButtonOne.GetComponentInChildren<Text>().text);
         if (towerTwoInUse)
         {
@@ -125,7 +125,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
 
     public void ButtonTwo()
     {
-        // how to get the reference to a booleanspot by a string name
+        // how to get the reference to a booleanspot by a string buttonName
         LearnedANewTower(towerButtonTwo.GetComponentInChildren<Text>().text);
         if (towerOneInUse)
         {
@@ -146,7 +146,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
 
     public void ButtonThree()
     {
-        // how to get the reference to a booleanspot by a string name
+        // how to get the reference to a booleanspot by a string buttonName
         LearnedANewTower(towerButtonThree.GetComponentInChildren<Text>().text);
         if (towerTwoInUse)
         {

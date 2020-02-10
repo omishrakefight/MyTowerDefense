@@ -171,8 +171,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			/// <summary>
 			/// Set static codes and length
 			/// </summary>
-			/// <param name="staticCodes">new codes</param>
-			/// <param name="staticLengths">length for new codes</param>
+			/// <param buttonName="staticCodes">new codes</param>
+			/// <param buttonName="staticLengths">length for new codes</param>
 			public void SetStaticCodes(short[] staticCodes, byte[] staticLengths)
 			{
 				codes = staticCodes;
@@ -412,7 +412,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 			/// <summary>
 			/// Write tree values
 			/// </summary>
-			/// <param name="blTree">Tree to write</param>
+			/// <param buttonName="blTree">Tree to write</param>
 			public void WriteTree(Tree blTree)
 			{
 				int max_count;               // max repeat count
@@ -614,7 +614,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Construct instance with pending buffer
 		/// </summary>
-		/// <param name="pending">Pending buffer to use</param>
+		/// <param buttonName="pending">Pending buffer to use</param>
 		public DeflaterHuffman(DeflaterPending pending)
 		{
 			this.pending = pending;
@@ -642,7 +642,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Write all trees to pending buffer
 		/// </summary>
-		/// <param name="blTreeCodes">The number/rank of treecodes to send.</param>
+		/// <param buttonName="blTreeCodes">The number/rank of treecodes to send.</param>
 		public void SendAllTrees(int blTreeCodes)
 		{
 			blTree.BuildCodes();
@@ -722,10 +722,10 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Flush block to output with no compression
 		/// </summary>
-		/// <param name="stored">Data to write</param>
-		/// <param name="storedOffset">Index of first byte to write</param>
-		/// <param name="storedLength">Count of bytes to write</param>
-		/// <param name="lastBlock">True if this is the last block</param>
+		/// <param buttonName="stored">Data to write</param>
+		/// <param buttonName="storedOffset">Index of first byte to write</param>
+		/// <param buttonName="storedLength">Count of bytes to write</param>
+		/// <param buttonName="lastBlock">True if this is the last block</param>
 		public void FlushStoredBlock(byte[] stored, int storedOffset, int storedLength, bool lastBlock)
 		{
 #if DebugDeflation
@@ -744,10 +744,10 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Flush block to output with compression
 		/// </summary>		
-		/// <param name="stored">Data to flush</param>
-		/// <param name="storedOffset">Index of first byte to flush</param>
-		/// <param name="storedLength">Count of bytes to flush</param>
-		/// <param name="lastBlock">True if this is the last block</param>
+		/// <param buttonName="stored">Data to flush</param>
+		/// <param buttonName="storedOffset">Index of first byte to flush</param>
+		/// <param buttonName="storedLength">Count of bytes to flush</param>
+		/// <param buttonName="lastBlock">True if this is the last block</param>
 		public void FlushBlock(byte[] stored, int storedOffset, int storedLength, bool lastBlock)
 		{
 			literalTree.freqs[EOF_SYMBOL]++;
@@ -821,7 +821,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Add literal to buffer
 		/// </summary>
-		/// <param name="literal">Literal value to add to buffer.</param>
+		/// <param buttonName="literal">Literal value to add to buffer.</param>
 		/// <returns>Value indicating internal buffer is full</returns>
 		public bool TallyLit(int literal)
 		{
@@ -841,8 +841,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Add distance code and length to literal and distance trees
 		/// </summary>
-		/// <param name="distance">Distance code</param>
-		/// <param name="length">Length</param>
+		/// <param buttonName="distance">Distance code</param>
+		/// <param buttonName="length">Length</param>
 		/// <returns>Value indicating if internal buffer is full</returns>
 		public bool TallyDist(int distance, int length)
 		{
@@ -871,7 +871,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Reverse the bits of a 16 bit value.
 		/// </summary>
-		/// <param name="toReverse">Value to reverse bits</param>
+		/// <param buttonName="toReverse">Value to reverse bits</param>
 		/// <returns>Value with bits reversed</returns>
 		public static short BitReverse(int toReverse) 
 		{

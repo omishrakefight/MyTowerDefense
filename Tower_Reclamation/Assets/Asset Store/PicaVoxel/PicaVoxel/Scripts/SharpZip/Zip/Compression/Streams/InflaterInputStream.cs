@@ -62,7 +62,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Initialise a new instance of <see cref="InflaterInputBuffer"/> with a default buffer size
 		/// </summary>
-		/// <param name="stream">The stream to buffer.</param>
+		/// <param buttonName="stream">The stream to buffer.</param>
 		public InflaterInputBuffer(Stream stream) : this(stream , 4096)
 		{
 		}
@@ -70,8 +70,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Initialise a new instance of <see cref="InflaterInputBuffer"/>
 		/// </summary>
-		/// <param name="stream">The stream to buffer.</param>
-		/// <param name="bufferSize">The size to use for the buffer</param>
+		/// <param buttonName="stream">The stream to buffer.</param>
+		/// <param buttonName="bufferSize">The size to use for the buffer</param>
 		/// <remarks>A minimum buffer size of 1KB is permitted.  Lower sizes are treated as 1KB.</remarks>
 		public InflaterInputBuffer(Stream stream, int bufferSize)
 		{
@@ -137,7 +137,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Call <see cref="Inflater.SetInput(byte[], int, int)"/> passing the current clear text buffer contents.
 		/// </summary>
-		/// <param name="inflater">The inflater to set input for.</param>
+		/// <param buttonName="inflater">The inflater to set input for.</param>
 		public void SetInflaterInput(Inflater inflater)
 		{
 			if ( available > 0 ) {
@@ -179,7 +179,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Read a buffer directly from the input stream
 		/// </summary>
-		/// <param name="buffer">The buffer to fill</param>
+		/// <param buttonName="buffer">The buffer to fill</param>
 		/// <returns>Returns the number of bytes read.</returns>
 		public int ReadRawBuffer(byte[] buffer)
 		{
@@ -189,9 +189,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Read a buffer directly from the input stream
 		/// </summary>
-		/// <param name="outBuffer">The buffer to read into</param>
-		/// <param name="offset">The offset to start reading data into.</param>
-		/// <param name="length">The number of bytes to read.</param>
+		/// <param buttonName="outBuffer">The buffer to read into</param>
+		/// <param buttonName="offset">The offset to start reading data into.</param>
+		/// <param buttonName="length">The number of bytes to read.</param>
 		/// <returns>Returns the number of bytes read.</returns>
 		public int ReadRawBuffer(byte[] outBuffer, int offset, int length)
 		{
@@ -221,9 +221,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Read clear text data from the input stream.
 		/// </summary>
-		/// <param name="outBuffer">The buffer to add data to.</param>
-		/// <param name="offset">The offset to start adding data at.</param>
-		/// <param name="length">The number of bytes to read.</param>
+		/// <param buttonName="outBuffer">The buffer to add data to.</param>
+		/// <param buttonName="offset">The offset to start adding data at.</param>
+		/// <param buttonName="length">The number of bytes to read.</param>
 		/// <returns>Returns the number of bytes actually read.</returns>
 		public int ReadClearTextBuffer(byte[] outBuffer, int offset, int length)
 		{
@@ -358,7 +358,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// Create an InflaterInputStream with the default decompressor
 		/// and a default buffer size of 4KB.
 		/// </summary>
-		/// <param name = "baseInputStream">
+		/// <param buttonName = "baseInputStream">
 		/// The InputStream to read bytes from
 		/// </param>
 		public InflaterInputStream(Stream baseInputStream)
@@ -370,10 +370,10 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// Create an InflaterInputStream with the specified decompressor
 		/// and a default buffer size of 4KB.
 		/// </summary>
-		/// <param name = "baseInputStream">
+		/// <param buttonName = "baseInputStream">
 		/// The source of input data
 		/// </param>
-		/// <param name = "inf">
+		/// <param buttonName = "inf">
 		/// The decompressor used to decompress data read from baseInputStream
 		/// </param>
 		public InflaterInputStream(Stream baseInputStream, Inflater inf)
@@ -385,13 +385,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// Create an InflaterInputStream with the specified decompressor
 		/// and the specified buffer size.
 		/// </summary>
-		/// <param name = "baseInputStream">
+		/// <param buttonName = "baseInputStream">
 		/// The InputStream to read bytes from
 		/// </param>
-		/// <param name = "inflater">
+		/// <param buttonName = "inflater">
 		/// The decompressor to use
 		/// </param>
-		/// <param name = "bufferSize">
+		/// <param buttonName = "bufferSize">
 		/// Size of the buffer to use
 		/// </param>
 		public InflaterInputStream(Stream baseInputStream, Inflater inflater, int bufferSize)
@@ -432,7 +432,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Skip specified number of bytes of uncompressed data
 		/// </summary>
-		/// <param name ="count">
+		/// <param buttonName ="count">
 		/// Number of bytes to skip
 		/// </param>
 		/// <returns>
@@ -440,7 +440,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// stream has been reached
 		/// </returns>
 		/// <exception cref="ArgumentOutOfRangeException">
-		/// <paramref name="count">The number of bytes</paramref> to skip is less than or equal to zero.
+		/// <paramref buttonName="count">The number of bytes</paramref> to skip is less than or equal to zero.
 		/// </exception>
 		public long Skip(long count)
 		{
@@ -579,8 +579,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// Sets the position within the current stream
 		/// Always throws a NotSupportedException
 		/// </summary>
-		/// <param name="offset">The relative offset to seek to.</param>
-		/// <param name="origin">The <see cref="SeekOrigin"/> defining where to seek from.</param>
+		/// <param buttonName="offset">The relative offset to seek to.</param>
+		/// <param buttonName="origin">The <see cref="SeekOrigin"/> defining where to seek from.</param>
 		/// <returns>The new position in the stream.</returns>
 		/// <exception cref="NotSupportedException">Any access</exception>
 		public override long Seek(long offset, SeekOrigin origin)
@@ -592,7 +592,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// Set the length of the current stream
 		/// Always throws a NotSupportedException
 		/// </summary>
-		/// <param name="value">The new length value for the stream.</param>
+		/// <param buttonName="value">The new length value for the stream.</param>
 		/// <exception cref="NotSupportedException">Any access</exception>
 		public override void SetLength(long value)
 		{
@@ -603,9 +603,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// Writes a sequence of bytes to stream and advances the current position
 		/// This method always throws a NotSupportedException
 		/// </summary>
-		/// <param name="buffer">Thew buffer containing data to write.</param>
-		/// <param name="offset">The offset of the first byte to write.</param>
-		/// <param name="count">The number of bytes to write.</param>
+		/// <param buttonName="buffer">Thew buffer containing data to write.</param>
+		/// <param buttonName="offset">The offset of the first byte to write.</param>
+		/// <param buttonName="count">The number of bytes to write.</param>
 		/// <exception cref="NotSupportedException">Any access</exception>
 		public override void Write(byte[] buffer, int offset, int count)
 		{
@@ -616,7 +616,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// Writes one byte to the current stream and advances the current position
 		/// Always throws a NotSupportedException
 		/// </summary>
-		/// <param name="value">The byte to write.</param>
+		/// <param buttonName="value">The byte to write.</param>
 		/// <exception cref="NotSupportedException">Any access</exception>
 		public override void WriteByte(byte value)
 		{
@@ -626,11 +626,11 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Entry point to begin an asynchronous write.  Always throws a NotSupportedException.
 		/// </summary>
-		/// <param name="buffer">The buffer to write data from</param>
-		/// <param name="offset">Offset of first byte to write</param>
-		/// <param name="count">The maximum number of bytes to write</param>
-		/// <param name="callback">The method to be called when the asynchronous write operation is completed</param>
-		/// <param name="state">A user-provided object that distinguishes this particular asynchronous write request from other requests</param>
+		/// <param buttonName="buffer">The buffer to write data from</param>
+		/// <param buttonName="offset">Offset of first byte to write</param>
+		/// <param buttonName="count">The maximum number of bytes to write</param>
+		/// <param buttonName="callback">The method to be called when the asynchronous write operation is completed</param>
+		/// <param buttonName="state">A user-provided object that distinguishes this particular asynchronous write request from other requests</param>
 		/// <returns>An <see cref="System.IAsyncResult">IAsyncResult</see> that references the asynchronous write</returns>
 		/// <exception cref="NotSupportedException">Any access</exception>
 		#if UNITY_METRO && !UNITY_EDITOR
@@ -663,13 +663,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
 		/// <summary>
 		/// Reads decompressed data into the provided buffer byte array
 		/// </summary>
-		/// <param name ="buffer">
+		/// <param buttonName ="buffer">
 		/// The array to read and decompress data into
 		/// </param>
-		/// <param name ="offset">
+		/// <param buttonName ="offset">
 		/// The offset indicating where the data should be placed
 		/// </param>
-		/// <param name ="count">
+		/// <param buttonName ="count">
 		/// The number of bytes to decompress
 		/// </param>
 		/// <returns>The number of bytes read.  Zero signals the end of stream</returns>

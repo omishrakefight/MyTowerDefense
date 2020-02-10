@@ -230,7 +230,7 @@ void Start()
 
 private void DetermineConversations()
 {
-    if (t1_currentScene.name == "Base Exit Doorway")
+    if (t1_currentScene.buttonName == "Base Exit Doorway")
     {
         conversationTracker = 0;
         conversationLimit = 2;

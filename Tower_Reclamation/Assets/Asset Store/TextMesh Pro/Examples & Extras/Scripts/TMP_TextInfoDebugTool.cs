@@ -88,7 +88,7 @@ namespace TMPro.Examples
         /// <summary>
         /// Method to draw a rectangle around each character.
         /// </summary>
-        /// <param name="text"></param>
+        /// <param buttonName="text"></param>
         void DrawCharactersBounds()
         {
             TMP_TextInfo textInfo = m_TextComponent.textInfo;
@@ -155,7 +155,7 @@ namespace TMPro.Examples
         /// <summary>
         /// Method to draw rectangles around each word of the text.
         /// </summary>
-        /// <param name="text"></param>
+        /// <param buttonName="text"></param>
         void DrawWordBounds()
         {
             TMP_TextInfo textInfo = m_TextComponent.textInfo;
@@ -261,7 +261,7 @@ namespace TMPro.Examples
         /// <summary>
         /// Draw rectangle around each of the links contained in the text.
         /// </summary>
-        /// <param name="text"></param>
+        /// <param buttonName="text"></param>
         void DrawLinkBounds()
         {
             TMP_TextInfo textInfo = m_TextComponent.textInfo;
@@ -365,7 +365,7 @@ namespace TMPro.Examples
         /// <summary>
         /// Draw Rectangles around each lines of the text.
         /// </summary>
-        /// <param name="text"></param>
+        /// <param buttonName="text"></param>
         void DrawLineBounds()
         {
             TMP_TextInfo textInfo = m_TextComponent.textInfo;

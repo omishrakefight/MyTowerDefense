@@ -97,7 +97,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Construct instance with pending buffer
 		/// </summary>
-		/// <param name="pending">
+		/// <param buttonName="pending">
 		/// Pending buffer to use
 		/// </param>>
 		public DeflaterEngine(DeflaterPending pending) 
@@ -120,8 +120,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Deflate drives actual compression of data
 		/// </summary>
-		/// <param name="flush">True to flush input buffers</param>
-		/// <param name="finish">Finish deflation with the current input.</param>
+		/// <param buttonName="flush">True to flush input buffers</param>
+		/// <param buttonName="finish">Finish deflation with the current input.</param>
 		/// <returns>Returns true if progress has been made.</returns>
 		public bool Deflate(bool flush, bool finish)
 		{
@@ -159,9 +159,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// Sets input data to be deflated.  Should only be called when <code>NeedsInput()</code>
 		/// returns true
 		/// </summary>
-		/// <param name="buffer">The buffer containing input data.</param>
-		/// <param name="offset">The offset of the first byte of data.</param>
-		/// <param name="count">The number of bytes of data to use as input.</param>
+		/// <param buttonName="buffer">The buffer containing input data.</param>
+		/// <param buttonName="offset">The offset of the first byte of data.</param>
+		/// <param buttonName="count">The number of bytes of data to use as input.</param>
 		public void SetInput(byte[] buffer, int offset, int count)
 		{
 			if ( buffer == null ) 
@@ -211,9 +211,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Set compression dictionary
 		/// </summary>
-		/// <param name="buffer">The buffer containing the dictionary data</param>
-		/// <param name="offset">The offset in the buffer for the first byte of data</param>
-		/// <param name="length">The length of the dictionary data.</param>
+		/// <param buttonName="buffer">The buffer containing the dictionary data</param>
+		/// <param buttonName="offset">The offset in the buffer for the first byte of data</param>
+		/// <param buttonName="length">The length of the dictionary data.</param>
 		public void SetDictionary(byte[] buffer, int offset, int length) 
 		{
 #if DebugDeflation
@@ -310,7 +310,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Set the deflate level (0-9)
 		/// </summary>
-		/// <param name="level">The value to set the level to.</param>
+		/// <param buttonName="level">The value to set the level to.</param>
 		public void SetLevel(int level)
 		{
 			if ( (level < 0) || (level > 9) )
@@ -472,7 +472,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <code>
 		/// strstart + MAX_MATCH &lt;= window.length.</code>
 		/// </summary>
-		/// <param name="curMatch"></param>
+		/// <param buttonName="curMatch"></param>
 		/// <returns>True if a match greater than the minimum length is found</returns>
 		bool FindLongestMatch(int curMatch) 
 		{

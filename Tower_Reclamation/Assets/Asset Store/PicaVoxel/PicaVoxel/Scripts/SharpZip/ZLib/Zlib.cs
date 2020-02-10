@@ -277,7 +277,7 @@ namespace Ionic.Zlib
         /// <summary>
         /// This ctor collects a message attached to the exception.
         /// </summary>
-        /// <param name="s">the message for the exception.</param>
+        /// <param buttonName="s">the message for the exception.</param>
         public ZlibException(System.String s)
             : base(s)
         {
@@ -290,8 +290,8 @@ namespace Ionic.Zlib
         /// <summary>
         /// Performs an unsigned bitwise right shift with the specified number
         /// </summary>
-        /// <param name="number">Number to operate on</param>
-        /// <param name="bits">Ammount of bits to shift</param>
+        /// <param buttonName="number">Number to operate on</param>
+        /// <param buttonName="bits">Ammount of bits to shift</param>
         /// <returns>The resulting number from the shift operation</returns>
         public static int URShift(int number, int bits)
         {
@@ -316,10 +316,10 @@ namespace Ionic.Zlib
         ///   the data to the target array at the specified index.
         /// </summary>
         ///
-        /// <param name="sourceTextReader">The source TextReader to read from</param>
-        /// <param name="target">Contains the array of characteres read from the source TextReader.</param>
-        /// <param name="start">The starting index of the target array.</param>
-        /// <param name="count">The maximum number of characters to read from the source TextReader.</param>
+        /// <param buttonName="sourceTextReader">The source TextReader to read from</param>
+        /// <param buttonName="target">Contains the array of characteres read from the source TextReader.</param>
+        /// <param buttonName="start">The starting index of the target array.</param>
+        /// <param buttonName="count">The maximum number of characters to read from the source TextReader.</param>
         ///
         /// <returns>
         ///   The number of characters read. The number will be less than or equal to

@@ -156,7 +156,7 @@ namespace ICSharpCode.SharpZipLib.Checksums
 		/// <summary>
 		/// Updates the checksum with the int bval.
 		/// </summary>
-		/// <param name = "value">
+		/// <param buttonName = "value">
 		/// the byte is taken as the lower 8 bits of value
 		/// </param>
 		public void Update(int value)
@@ -169,7 +169,7 @@ namespace ICSharpCode.SharpZipLib.Checksums
 		/// <summary>
 		/// Updates the checksum with the bytes taken from the array.
 		/// </summary>
-		/// <param name="buffer">
+		/// <param buttonName="buffer">
 		/// buffer an array of bytes
 		/// </param>
 		public void Update(byte[] buffer)
@@ -184,13 +184,13 @@ namespace ICSharpCode.SharpZipLib.Checksums
 		/// <summary>
 		/// Adds the byte array to the data checksum.
 		/// </summary>
-		/// <param name = "buffer">
+		/// <param buttonName = "buffer">
 		/// The buffer which contains the data
 		/// </param>
-		/// <param name = "offset">
+		/// <param buttonName = "offset">
 		/// The offset in the buffer where the data starts
 		/// </param>
-		/// <param name = "count">
+		/// <param buttonName = "count">
 		/// The number of data bytes to update the CRC with.
 		/// </param>
 		public void Update(byte[] buffer, int offset, int count)

@@ -145,7 +145,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Creates a new deflater with given compression level.
 		/// </summary>
-		/// <param name="level">
+		/// <param buttonName="level">
 		/// the compression level, a value between NO_COMPRESSION
 		/// and BEST_COMPRESSION, or DEFAULT_COMPRESSION.
 		/// </param>
@@ -158,11 +158,11 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Creates a new deflater with given compression level.
 		/// </summary>
-		/// <param name="level">
+		/// <param buttonName="level">
 		/// the compression level, a value between NO_COMPRESSION
 		/// and BEST_COMPRESSION.
 		/// </param>
-		/// <param name="noZlibHeaderOrFooter">
+		/// <param buttonName="noZlibHeaderOrFooter">
 		/// true, if we should suppress the Zlib/RFC1950 header at the
 		/// beginning and the adler checksum at the end of the output.  This is
 		/// useful for the GZIP/PKZIP formats.
@@ -278,7 +278,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// true again.
 		/// This call is equivalent to <code>setInput(input, 0, input.length)</code>.
 		/// </summary>
-		/// <param name="input">
+		/// <param buttonName="input">
 		/// the buffer containing the input data.
 		/// </param>
 		/// <exception cref="System.InvalidOperationException">
@@ -295,13 +295,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// The given byte array should not be changed, before needsInput() returns
 		/// true again.
 		/// </summary>
-		/// <param name="input">
+		/// <param buttonName="input">
 		/// the buffer containing the input data.
 		/// </param>
-		/// <param name="offset">
+		/// <param buttonName="offset">
 		/// the start of the data.
 		/// </param>
-		/// <param name="count">
+		/// <param buttonName="count">
 		/// the number of data bytes of input.
 		/// </param>
 		/// <exception cref="System.InvalidOperationException">
@@ -321,7 +321,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// true the change of compression level will occur somewhere near
 		/// before the end of the so far given input.
 		/// </summary>
-		/// <param name="level">
+		/// <param buttonName="level">
 		/// the new compression level.
 		/// </param>
 		public void SetLevel(int level)
@@ -352,7 +352,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// position where the strategy is changed, the same as for
 		/// SetLevel() applies.
 		/// </summary>
-		/// <param name="strategy">
+		/// <param buttonName="strategy">
 		/// The new compression strategy.
 		/// </param>
 		public void SetStrategy(DeflateStrategy strategy)
@@ -363,7 +363,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Deflates the current input block with to the given array.
 		/// </summary>
-		/// <param name="output">
+		/// <param buttonName="output">
 		/// The buffer where compressed data is stored
 		/// </param>
 		/// <returns>
@@ -378,13 +378,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Deflates the current input block to the given array.
 		/// </summary>
-		/// <param name="output">
+		/// <param buttonName="output">
 		/// Buffer to store the compressed data.
 		/// </param>
-		/// <param name="offset">
+		/// <param buttonName="offset">
 		/// Offset into the output array.
 		/// </param>
-		/// <param name="length">
+		/// <param buttonName="length">
 		/// The maximum number of bytes that may be stored.
 		/// </param>
 		/// <returns>
@@ -481,7 +481,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// Sets the dictionary which should be used in the deflate process.
 		/// This call is equivalent to <code>setDictionary(dict, 0, dict.Length)</code>.
 		/// </summary>
-		/// <param name="dictionary">
+		/// <param buttonName="dictionary">
 		/// the dictionary.
 		/// </param>
 		/// <exception cref="System.InvalidOperationException">
@@ -500,13 +500,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// checksum.  To decompress the output you need to supply the same
 		/// dictionary again.
 		/// </summary>
-		/// <param name="dictionary">
+		/// <param buttonName="dictionary">
 		/// The dictionary data
 		/// </param>
-		/// <param name="index">
+		/// <param buttonName="index">
 		/// The index where dictionary information commences.
 		/// </param>
-		/// <param name="count">
+		/// <param buttonName="count">
 		/// The number of bytes in the dictionary.
 		/// </param>
 		/// <exception cref="System.InvalidOperationException">

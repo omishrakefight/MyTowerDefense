@@ -193,7 +193,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// <summary>
 		/// Creates a new inflater.
 		/// </summary>
-		/// <param name="noHeader">
+		/// <param buttonName="noHeader">
 		/// True if no RFC1950/Zlib header and footer fields are expected in the input data
 		/// 
 		/// This is used for GZIPed/Zipped input.
@@ -564,7 +564,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// dictionary, that was used for deflating.  The getAdler()
 		/// function returns the checksum of the dictionary needed.
 		/// </summary>
-		/// <param name="buffer">
+		/// <param buttonName="buffer">
 		/// The dictionary.
 		/// </param>
 		public void SetDictionary(byte[] buffer)
@@ -578,13 +578,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// dictionary, that was used for deflating.  The getAdler()
 		/// function returns the checksum of the dictionary needed.
 		/// </summary>
-		/// <param name="buffer">
+		/// <param buttonName="buffer">
 		/// The dictionary.
 		/// </param>
-		/// <param name="index">
+		/// <param buttonName="index">
 		/// The index into buffer where the dictionary starts.
 		/// </param>
-		/// <param name="count">
+		/// <param buttonName="count">
 		/// The number of bytes in the dictionary.
 		/// </param>
 		/// <exception cref="System.InvalidOperationException">
@@ -625,7 +625,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// Sets the input.  This should only be called, if needsInput()
 		/// returns true.
 		/// </summary>
-		/// <param name="buffer">
+		/// <param buttonName="buffer">
 		/// the input.
 		/// </param>
 		public void SetInput(byte[] buffer)
@@ -637,13 +637,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// Sets the input.  This should only be called, if needsInput()
 		/// returns true.
 		/// </summary>
-		/// <param name="buffer">
+		/// <param buttonName="buffer">
 		/// The source of input data
 		/// </param>
-		/// <param name="index">
+		/// <param buttonName="index">
 		/// The index into buffer where the input starts.
 		/// </param>
-		/// <param name="count">
+		/// <param buttonName="count">
 		/// The number of bytes of input to use.
 		/// </param>
 		/// <exception cref="System.InvalidOperationException">
@@ -664,7 +664,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// IsNeedingInput() or IsFinished() returns true, to determine why no
 		/// further output is produced.
 		/// </summary>
-		/// <param name="buffer">
+		/// <param buttonName="buffer">
 		/// the output buffer.
 		/// </param>
 		/// <returns>
@@ -693,13 +693,13 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression
 		/// needsInput() or finished() returns true, to determine why no
 		/// further output is produced.
 		/// </summary>
-		/// <param name="buffer">
+		/// <param buttonName="buffer">
 		/// the output buffer.
 		/// </param>
-		/// <param name="offset">
+		/// <param buttonName="offset">
 		/// the offset in buffer where storing starts.
 		/// </param>
-		/// <param name="count">
+		/// <param buttonName="count">
 		/// the maximum number of bytes to output.
 		/// </param>
 		/// <returns>

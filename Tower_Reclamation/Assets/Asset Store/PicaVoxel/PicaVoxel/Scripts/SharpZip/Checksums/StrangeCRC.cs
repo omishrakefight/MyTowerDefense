@@ -142,7 +142,7 @@ namespace ICSharpCode.SharpZipLib.Checksums
 		/// <summary>
 		/// Update the Crc value.
 		/// </summary>
-		/// <param name="value">data update is based on</param>
+		/// <param buttonName="value">data update is based on</param>
 		public void Update(int value)
 		{
 			int temp = (globalCrc >> 24) ^ value;
@@ -155,7 +155,7 @@ namespace ICSharpCode.SharpZipLib.Checksums
 		/// <summary>
 		/// Update Crc based on a block of data
 		/// </summary>
-		/// <param name="buffer">The buffer containing data to update the crc with.</param>
+		/// <param buttonName="buffer">The buffer containing data to update the crc with.</param>
 		public void Update(byte[] buffer)
 		{
 			if (buffer == null) {
@@ -168,9 +168,9 @@ namespace ICSharpCode.SharpZipLib.Checksums
 		/// <summary>
 		/// Update Crc based on a portion of a block of data
 		/// </summary>
-		/// <param name="buffer">block of data</param>
-		/// <param name="offset">index of first byte to use</param>
-		/// <param name="count">number of bytes to use</param>
+		/// <param buttonName="buffer">block of data</param>
+		/// <param buttonName="offset">index of first byte to use</param>
+		/// <param buttonName="count">number of bytes to use</param>
 		public void Update(byte[] buffer, int offset, int count)
 		{
 			if (buffer == null) {

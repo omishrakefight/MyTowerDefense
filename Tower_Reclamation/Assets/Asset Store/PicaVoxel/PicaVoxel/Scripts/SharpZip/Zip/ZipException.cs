@@ -57,8 +57,8 @@ namespace ICSharpCode.SharpZipLib.Zip
         /// <summary>
         /// Deserialization constructor 
         /// </summary>
-        /// <param name="info"><see cref="SerializationInfo"/> for this constructor</param>
-        /// <param name="context"><see cref="StreamingContext"/> for this constructor</param>
+        /// <param buttonName="info"><see cref="SerializationInfo"/> for this constructor</param>
+        /// <param buttonName="context"><see cref="StreamingContext"/> for this constructor</param>
         protected ZipException(SerializationInfo info, StreamingContext context )
             : base( info, context )
         {
@@ -75,7 +75,7 @@ namespace ICSharpCode.SharpZipLib.Zip
         /// <summary>
         /// Initializes a new instance of the ZipException class with a specified error message.
         /// </summary>
-        /// <param name="message">The error message that explains the reason for the exception.</param>
+        /// <param buttonName="message">The error message that explains the reason for the exception.</param>
         public ZipException(string message)
             : base(message)
         {
@@ -84,8 +84,8 @@ namespace ICSharpCode.SharpZipLib.Zip
         /// <summary>
         /// Initialise a new instance of ZipException.
         /// </summary>
-        /// <param name="message">A message describing the error.</param>
-        /// <param name="exception">The exception that is the cause of the current exception.</param>
+        /// <param buttonName="message">A message describing the error.</param>
+        /// <param buttonName="exception">The exception that is the cause of the current exception.</param>
         public ZipException(string message, Exception exception)
             : base(message, exception)
         {

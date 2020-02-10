@@ -56,8 +56,8 @@ namespace ICSharpCode.SharpZipLib
 		/// <summary>
 		/// Deserialization constructor 
 		/// </summary>
-		/// <param name="info"><see cref="System.Runtime.Serialization.SerializationInfo"/> for this constructor</param>
-		/// <param name="context"><see cref="StreamingContext"/> for this constructor</param>
+		/// <param buttonName="info"><see cref="System.Runtime.Serialization.SerializationInfo"/> for this constructor</param>
+		/// <param buttonName="context"><see cref="StreamingContext"/> for this constructor</param>
 		protected SharpZipBaseException(SerializationInfo info, StreamingContext context )
 			: base( info, context )
 		{
@@ -74,7 +74,7 @@ namespace ICSharpCode.SharpZipLib
 		/// <summary>
 		/// Initializes a new instance of the SharpZipBaseException class with a specified error message.
 		/// </summary>
-		/// <param name="message">A message describing the exception.</param>
+		/// <param buttonName="message">A message describing the exception.</param>
 		public SharpZipBaseException(string message)
 			: base(message)
 		{
@@ -84,8 +84,8 @@ namespace ICSharpCode.SharpZipLib
 		/// Initializes a new instance of the SharpZipBaseException class with a specified
 		/// error message and a reference to the inner exception that is the cause of this exception.
 		/// </summary>
-		/// <param name="message">A message describing the exception.</param>
-		/// <param name="innerException">The inner exception</param>
+		/// <param buttonName="message">A message describing the exception.</param>
+		/// <param buttonName="innerException">The inner exception</param>
 		public SharpZipBaseException(string message, Exception innerException)
 			: base(message, innerException)
 		{

@@ -96,7 +96,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 		/// <summary>
 		/// Creates a GzipOutputStream with the default buffer size
 		/// </summary>
-		/// <param name="baseOutputStream">
+		/// <param buttonName="baseOutputStream">
 		/// The stream to read data (to be compressed) from
 		/// </param>
 		public GZipOutputStream(Stream baseOutputStream)
@@ -107,10 +107,10 @@ namespace ICSharpCode.SharpZipLib.GZip
 		/// <summary>
 		/// Creates a GZipOutputStream with the specified buffer size
 		/// </summary>
-		/// <param name="baseOutputStream">
+		/// <param buttonName="baseOutputStream">
 		/// The stream to read data (to be compressed) from
 		/// </param>
-		/// <param name="size">
+		/// <param buttonName="size">
 		/// Size of the buffer to use
 		/// </param>
 		public GZipOutputStream(Stream baseOutputStream, int size) : base(baseOutputStream, new Deflater(Deflater.DEFAULT_COMPRESSION, true), size)
@@ -123,7 +123,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 		/// Sets the active compression level (1-9).  The new level will be activated
 		/// immediately.
 		/// </summary>
-		/// <param name="level">The compression level to set.</param>
+		/// <param buttonName="level">The compression level to set.</param>
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// Level specified is not supported.
 		/// </exception>
@@ -150,9 +150,9 @@ namespace ICSharpCode.SharpZipLib.GZip
 		/// <summary>
 		/// Write given buffer to output updating crc
 		/// </summary>
-		/// <param name="buffer">Buffer to write</param>
-		/// <param name="offset">Offset of first byte in buf to write</param>
-		/// <param name="count">Number of bytes to write</param>
+		/// <param buttonName="buffer">Buffer to write</param>
+		/// <param buttonName="offset">Offset of first byte in buf to write</param>
+		/// <param buttonName="count">Number of bytes to write</param>
 		public override void Write(byte[] buffer, int offset, int count)
 		{
 			if ( state_ == OutputState.Header ) {

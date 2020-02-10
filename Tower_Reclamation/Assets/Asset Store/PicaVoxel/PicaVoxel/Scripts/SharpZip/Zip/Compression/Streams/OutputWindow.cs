@@ -64,7 +64,7 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
         /// <summary>
         /// Write a byte to this output window
         /// </summary>
-        /// <param name="value">value to write</param>
+        /// <param buttonName="value">value to write</param>
         /// <exception cref="InvalidOperationException">
         /// if window is full
         /// </exception>
@@ -92,8 +92,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
         /// <summary>
         /// Append a byte pattern already in the window itself
         /// </summary>
-        /// <param name="length">length of pattern to copy</param>
-        /// <param name="distance">distance from end of window pattern occurs</param>
+        /// <param buttonName="length">length of pattern to copy</param>
+        /// <param buttonName="distance">distance from end of window pattern occurs</param>
         /// <exception cref="InvalidOperationException">
         /// If the repeated data overflows the window
         /// </exception>
@@ -131,8 +131,8 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
         /// <summary>
         /// Copy from input manipulator to internal window
         /// </summary>
-        /// <param name="input">source of data</param>
-        /// <param name="length">length of data to copy</param>
+        /// <param buttonName="input">source of data</param>
+        /// <param buttonName="length">length of data to copy</param>
         /// <returns>the number of bytes copied</returns>
         public int CopyStored(StreamManipulator input, int length)
         {
@@ -161,9 +161,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
         /// <summary>
         /// Copy dictionary to window
         /// </summary>
-        /// <param name="dictionary">source dictionary</param>
-        /// <param name="offset">offset of start in source dictionary</param>
-        /// <param name="length">length of dictionary</param>
+        /// <param buttonName="dictionary">source dictionary</param>
+        /// <param buttonName="offset">offset of start in source dictionary</param>
+        /// <param buttonName="length">length of dictionary</param>
         /// <exception cref="InvalidOperationException">
         /// If window isnt empty
         /// </exception>
@@ -209,9 +209,9 @@ namespace ICSharpCode.SharpZipLib.Zip.Compression.Streams
         /// <summary>
         /// Copy contents of window to output
         /// </summary>
-        /// <param name="output">buffer to copy to</param>
-        /// <param name="offset">offset to start at</param>
-        /// <param name="len">number of bytes to count</param>
+        /// <param buttonName="output">buffer to copy to</param>
+        /// <param buttonName="offset">offset to start at</param>
+        /// <param buttonName="len">number of bytes to count</param>
         /// <returns>The number of bytes copied</returns>
         /// <exception cref="InvalidOperationException">
         /// If a window underflow occurs

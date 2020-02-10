@@ -96,7 +96,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 		/// <summary>
 		/// Creates a GZipInputStream with the default buffer size
 		/// </summary>
-		/// <param name="baseInputStream">
+		/// <param buttonName="baseInputStream">
 		/// The stream to read compressed data from (baseInputStream GZIP format)
 		/// </param>
 		public GZipInputStream(Stream baseInputStream)
@@ -107,10 +107,10 @@ namespace ICSharpCode.SharpZipLib.GZip
 		/// <summary>
 		/// Creates a GZIPInputStream with the specified buffer size
 		/// </summary>
-		/// <param name="baseInputStream">
+		/// <param buttonName="baseInputStream">
 		/// The stream to read compressed data from (baseInputStream GZIP format)
 		/// </param>
-		/// <param name="size">
+		/// <param buttonName="size">
 		/// Size of the buffer to use
 		/// </param>
 		public GZipInputStream(Stream baseInputStream, int size)
@@ -123,13 +123,13 @@ namespace ICSharpCode.SharpZipLib.GZip
 		/// <summary>
 		/// Reads uncompressed data into an array of bytes
 		/// </summary>
-		/// <param name="buffer">
+		/// <param buttonName="buffer">
 		/// The buffer to read uncompressed data into
 		/// </param>
-		/// <param name="offset">
+		/// <param buttonName="offset">
 		/// The offset indicating where the data should be placed
 		/// </param>
-		/// <param name="count">
+		/// <param buttonName="count">
 		/// The number of uncompressed bytes to be read
 		/// </param>
 		/// <returns>Returns the number of bytes actually read.</returns>
@@ -280,7 +280,7 @@ namespace ICSharpCode.SharpZipLib.GZip
 				}
 			}
 
-			// 8. Read file name
+			// 8. Read file buttonName
 			if ((flags & GZipConstants.FNAME) != 0) {
 				int readByte;
 				while ( (readByte = inputBuffer.ReadLeByte()) > 0) {

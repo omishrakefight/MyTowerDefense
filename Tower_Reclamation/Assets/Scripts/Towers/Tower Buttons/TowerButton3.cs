@@ -21,11 +21,11 @@ public class TowerButton3 : MonoBehaviour {
         singleton = FindObjectOfType<Singleton>();
         //try
         //{
-        //    buttonName3.text = singleton.towerThree.name;
+        //    buttonName3.text = singleton.towerThree.buttonName;
         //}
         //catch (Exception e)
         //{
-        //    // no name, then it is unassigned as of yet.
+        //    // no buttonName, then it is unassigned as of yet.
         //    buttonName3.text = "Unassigned";
         //}
 

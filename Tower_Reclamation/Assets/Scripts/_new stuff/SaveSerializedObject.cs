@@ -18,6 +18,14 @@ public class SaveSerializedObject  {
 
     public bool hasChosenATower = false;
 
+    //Tinker room
+    public int[] currentUpgradeLevels;
+    public int[] learnableUpgrades;
+    public int[] possibleOptions;
+    public bool hasPicked;
+    // add the bool
+
+
 
     public SaveSerializedObject()
     {

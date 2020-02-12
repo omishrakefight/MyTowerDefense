@@ -7,10 +7,14 @@ public class TinkerUpgrades : MonoBehaviour {
 
     bool isLoadedFromSave = false;
 
-    List<int> currentUpgradeLevels = new List<int>();
-    List<int> learnableUpgrades = new List<int>();
-    List<int> pickedUpgrades = new List<int>();
-    public bool selected = false;
+    public static List<int> currentUpgradeLevels = new List<int>();
+    public static List<int> learnableUpgrades = new List<int>();
+    public static List<int> possibleOptions = new List<int>();
+
+    protected static List<int> pickedUpgrades = new List<int>();
+    public static bool hasPicked = false;
+
+    public bool isSelected = false;
     public static int numSelected;
     public int randomPick;
     public Color baseColor;
@@ -29,7 +33,7 @@ public class TinkerUpgrades : MonoBehaviour {
         if (!isLoadedFromSave)
         {
             currentUpgradeLevels = new List<int>() { 1, 2, 0, 0, 0};
-            learnableUpgrades = new List<int>() { 0, 1 };
+            learnableUpgrades = new List<int>() { 0, 1, 2, 3, 4 };
         }
 
         PickTower();
@@ -41,33 +45,78 @@ public class TinkerUpgrades : MonoBehaviour {
     {
         description.text = selectedDescription;
 
-        if (selected)
+        if (isSelected)
         {
             numSelected--;
             buttonName.GetComponentInParent<Button>().GetComponent<Image>().color = baseColor;
-            selected = false;
-
+            isSelected = false;
+            pickedUpgrades.Remove(randomPick);
         }
         else 
         {
-            if (numSelected < 2)
+            if (numSelected < 2 && !hasPicked)
             {
                 numSelected++;
                 buttonName.GetComponentInParent<Button>().GetComponent<Image>().color = Color.cyan;
-                selected = true;
+                isSelected = true;
+                pickedUpgrades.Add(randomPick);
             }
         }
     }
 
+    // Select the buttons that are highlighted.  This loops and adds back to the list of learnable upgrades.
+    //It also ups the upgrade level.
     public void Selected()
     {
+        hasPicked = true;
 
+        TinkerUpgrades[] tinkerBtns = GetComponentsInParent<TinkerUpgrades>();
+        foreach(TinkerUpgrades upgrades in tinkerBtns)
+        {
+            if(upgrades.isSelected)
+            {
+                currentUpgradeLevels[upgrades.randomPick]++;
+                DetermineIfHasAnotherUpgrade(upgrades.randomPick);
+            }
+            else
+            {
+                learnableUpgrades.Add(upgrades.randomPick);
+            }
+        }
+        foreach (int upgradeItem in pickedUpgrades)
+        {
+            currentUpgradeLevels[upgradeItem]++;
+            print(upgradeItem);
+            //PickTower();
+
+        }
+    }
+
+    public void DetermineIfHasAnotherUpgrade(int position)
+    {
+        switch (position)
+        {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+                if(currentUpgradeLevels[position] < 4)
+                {
+                    learnableUpgrades.Add(position);
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     public void PickTower()
     {
         randomPick = Random.Range(0, learnableUpgrades.Count);
         int version = currentUpgradeLevels[randomPick] + 1;
+        possibleOptions.Add(randomPick);
+        learnableUpgrades.Remove(randomPick);
 
         switch (randomPick)
         {
@@ -107,48 +156,83 @@ public class TinkerUpgrades : MonoBehaviour {
                         break;
                 }
                 break;
+            case 2:
+                buttonName.text = "Pressurized Tanks: Mark " + version.ToString();
+                switch (version)
+                {
+                    case 1:
+                        selectedDescription = sturdyTankI;
+                        break;
+                    case 2:
+                        selectedDescription = sturdyTankII;
+                        break;
+                    case 3:
+                        selectedDescription = sturdyTankIII;
+                        break;
+                    case 4:
+                        selectedDescription = sturdyTankIV;
+                        break;
+                }
+                break;
+            case 3:
+                buttonName.text = "Heavy Shelling: Mark " + version.ToString();
+                switch (version)
+                {
+                    case 1:
+                        selectedDescription = heavyShellingI;
+                        break;
+                    case 2:
+                        selectedDescription = heavyShellingII;
+                        break;
+                    case 3:
+                        selectedDescription = heavyShellingIII;
+                        break;
+                    case 4:
+                        selectedDescription = heavyShellingIV;
+                        break;
+                }
+                break;
+            case 4:
+                buttonName.text = "Tower Engineering: Mark " + version.ToString();
+                switch (version)
+                {
+                    case 1:
+                        selectedDescription = towerEngineerI;
+                        break;
+                    case 2:
+                        selectedDescription = towerEngineerII;
+                        break;
+                    case 3:
+                        selectedDescription = towerEngineerIII;
+                        break;
+                    case 4:
+                        selectedDescription = towerEngineerIV;
+                        break;
+                }
+                break;
         }
     }
 
-    public void getWiringVersion(int version)
-    {
-        buttonName.text = "Silver Wiring: Mark " + version.ToString();
-        switch (version)
-        {
-            case 0:
-                description.text = silverWiringI;
-                break;
-            case 1:
-                description.text = silverWiringII;
-                break;
-            case 2:
-                description.text = silverWiringIII;
-                break;
-            case 3:
-                description.text = silverWiringIV;
-                break;
-        }
-    }
 
-    public void getAlloyVersion(int version)
-    {
-        buttonName.text = "Alloy Research: Mark " + version.ToString();
-        switch (version)
-        {
-            case 0:
-                description.text = alloyReasearchI;
-                break;
-            case 1:
-                description.text = alloyReasearchII;
-                break;
-            case 2:
-                description.text = alloyReasearchIII;
-                break;
-            case 3:
-                description.text = alloyReasearchIV;
-                break;
-        }
-    }
+    //public void getAlloyVersion(int version)
+    //{
+    //    buttonName.text = "Alloy Research: Mark " + version.ToString();
+    //    switch (version)
+    //    {
+    //        case 0:
+    //            description.text = alloyReasearchI;
+    //            break;
+    //        case 1:
+    //            description.text = alloyReasearchII;
+    //            break;
+    //        case 2:
+    //            description.text = alloyReasearchIII;
+    //            break;
+    //        case 3:
+    //            description.text = alloyReasearchIV;
+    //            break;
+    //    }
+    //}
 
     // Update is called once per frame
     void Update () {

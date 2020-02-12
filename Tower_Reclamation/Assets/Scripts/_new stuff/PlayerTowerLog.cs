@@ -37,7 +37,7 @@ public class PlayerTowerLog : MonoBehaviour {
             false  // Slow Tower
             };
         }
-        print("loaded " + towers1.Length + " towers");
+        //print("loaded " + towers1.Length + " towers");
         GetComponent<RandomTowerBlueprints>().ManualStart();
         //gana pull this from saved file hopefully.
         //towers.Add("hasRifled", true);

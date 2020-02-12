@@ -19,6 +19,9 @@ public class TinkerUpgrades : MonoBehaviour {
     public int randomPick;
     public Color baseColor;
 
+    // this is the location in current upgrades, gotten with rando in learable
+    private int chosenNumber;
+
     // KYLE CHECK to see if I only need one of these, set it on a button, then custom set up each serialized field, same script though.
     [SerializeField] Text description;
     string selectedDescription = "";
@@ -30,10 +33,14 @@ public class TinkerUpgrades : MonoBehaviour {
     // maybe store that way for saves, but it is easier to utilize seperate.  have them as ints, and then have silver wiring = 0.  upgrade, silver wiring = 1.  
     // Base it off the ints, an do a switchh to keep it easier?
 	void Start () {
-        if (!isLoadedFromSave)
+        if (learnableUpgrades.Count == 0)
         {
-            currentUpgradeLevels = new List<int>() { 1, 2, 0, 0, 0};
             learnableUpgrades = new List<int>() { 0, 1, 2, 3, 4 };
+            //print(" only once!!!");
+        }
+        if(currentUpgradeLevels.Count == 0)
+        {
+            currentUpgradeLevels = new List<int>() { 1, 2, 0, 0, 0 };
         }
 
         PickTower();
@@ -50,7 +57,7 @@ public class TinkerUpgrades : MonoBehaviour {
             numSelected--;
             buttonName.GetComponentInParent<Button>().GetComponent<Image>().color = baseColor;
             isSelected = false;
-            pickedUpgrades.Remove(randomPick);
+            pickedUpgrades.Remove(chosenNumber);
         }
         else 
         {
@@ -59,7 +66,7 @@ public class TinkerUpgrades : MonoBehaviour {
                 numSelected++;
                 buttonName.GetComponentInParent<Button>().GetComponent<Image>().color = Color.cyan;
                 isSelected = true;
-                pickedUpgrades.Add(randomPick);
+                pickedUpgrades.Add(chosenNumber);
             }
         }
     }
@@ -75,12 +82,12 @@ public class TinkerUpgrades : MonoBehaviour {
         {
             if(upgrades.isSelected)
             {
-                currentUpgradeLevels[upgrades.randomPick]++;
-                DetermineIfHasAnotherUpgrade(upgrades.randomPick);
+                currentUpgradeLevels[upgrades.chosenNumber]++;
+                DetermineIfHasAnotherUpgrade(upgrades.chosenNumber);
             }
             else
             {
-                learnableUpgrades.Add(upgrades.randomPick);
+                learnableUpgrades.Add(upgrades.chosenNumber);
             }
         }
         foreach (int upgradeItem in pickedUpgrades)
@@ -113,12 +120,20 @@ public class TinkerUpgrades : MonoBehaviour {
 
     public void PickTower()
     {
-        randomPick = Random.Range(0, learnableUpgrades.Count);
-        int version = currentUpgradeLevels[randomPick] + 1;
-        possibleOptions.Add(randomPick);
-        learnableUpgrades.Remove(randomPick);
+        foreach (int x in learnableUpgrades)
+        {
+            print(x);
+        }
 
-        switch (randomPick)
+        randomPick = Random.Range(0, learnableUpgrades.Count);
+        chosenNumber = learnableUpgrades[randomPick];
+        possibleOptions.Add(chosenNumber);
+        print("Rando pick is " + randomPick + "   And learnable count is: " + (learnableUpgrades.Count));
+        learnableUpgrades.RemoveAt(randomPick);
+        int version = currentUpgradeLevels[chosenNumber] + 1;
+
+        print("I have chosen: " + chosenNumber);
+        switch (chosenNumber)
         {
             case 0:
                 buttonName.text = "Silver Wiring: Mark " + version.ToString();

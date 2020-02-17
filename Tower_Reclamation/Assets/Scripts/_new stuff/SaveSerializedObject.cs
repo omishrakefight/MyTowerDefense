@@ -31,6 +31,14 @@ public class SaveSerializedObject  {
     {
     }
 
+    public void SaveTinkerRoomInfo(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasPicked)
+    {
+        currentUpgradeLevels = _currentUpgradeLevels;
+        learnableUpgrades = _learnableUpgrades;
+        possibleOptions = _possibleOptions;
+        hasPicked = _hasPicked;
+    }
+
     public void IsHasChosenATower(bool chosen)
     {
         hasChosenATower = chosen;

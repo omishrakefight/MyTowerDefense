@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class TinkerUpgrades : MonoBehaviour {
-
-    bool isLoadedFromSave = false;
 
     public static List<int> currentUpgradeLevels = new List<int>();
     public static List<int> learnableUpgrades = new List<int>();
     public static List<int> possibleOptions = new List<int>();
+    public static List<int> possibleOptionsFromSave = new List<int>();
 
     protected static List<int> pickedUpgrades = new List<int>();
     public static bool hasPicked = false;
@@ -18,9 +18,13 @@ public class TinkerUpgrades : MonoBehaviour {
     public static int numSelected;
     public int randomPick;
     public Color baseColor;
+    int version = 0;
 
     // this is the location in current upgrades, gotten with rando in learable
     private int chosenNumber;
+
+    static private bool isLoaded = false;
+    static private bool loadMeOnce = true;
 
     // KYLE CHECK to see if I only need one of these, set it on a button, then custom set up each serialized field, same script though.
     [SerializeField] Text description;
@@ -33,15 +37,18 @@ public class TinkerUpgrades : MonoBehaviour {
     // maybe store that way for saves, but it is easier to utilize seperate.  have them as ints, and then have silver wiring = 0.  upgrade, silver wiring = 1.  
     // Base it off the ints, an do a switchh to keep it easier?
 	void Start () {
-        if (learnableUpgrades.Count == 0)
+        if (!isLoaded && loadMeOnce)
         {
             learnableUpgrades = new List<int>() { 0, 1, 2, 3, 4 };
+            currentUpgradeLevels = new List<int>() { 0, 0, 0, 0, 0 };
+            // not completely true, but to make sure it doesnt loop
+            loadMeOnce = false;
             //print(" only once!!!");
         }
-        if(currentUpgradeLevels.Count == 0)
-        {
-            currentUpgradeLevels = new List<int>() { 1, 2, 0, 0, 0 };
-        }
+        //if(!isLoaded)
+        //{
+        //    currentUpgradeLevels = new List<int>() { 1, 2, 0, 0, 0 };
+        //}
 
         PickTower();
         baseColor = buttonName.GetComponentInParent<Button>().GetComponent<Image>().color;
@@ -90,13 +97,13 @@ public class TinkerUpgrades : MonoBehaviour {
                 learnableUpgrades.Add(upgrades.chosenNumber);
             }
         }
-        foreach (int upgradeItem in pickedUpgrades)
-        {
-            currentUpgradeLevels[upgradeItem]++;
-            print(upgradeItem);
-            //PickTower();
+        //foreach (int upgradeItem in pickedUpgrades)
+        //{
+        //    currentUpgradeLevels[upgradeItem]++;
+        //    print(upgradeItem);
+        //    //PickTower();
 
-        }
+        //}
     }
 
     public void DetermineIfHasAnotherUpgrade(int position)
@@ -118,21 +125,70 @@ public class TinkerUpgrades : MonoBehaviour {
         }
     }
 
+    public void AddToBackupList()
+    {
+        foreach(int x in possibleOptions)
+        {
+            possibleOptionsFromSave.Add(x);
+        }
+    }
+
     public void PickTower()
     {
-        foreach (int x in learnableUpgrades)
+        try
         {
-            print(x);
+            if (learnableUpgrades.Count == 0)
+            {
+                buttonName.text = "Nothing New";
+                selectedDescription = "Nothing new could be found.";
+                // KYLE TODO do better than simply not exist/  Maybe disable or put in that selecting them does a different action andl iterally is a waste.
+                //gameObject.SetActive(false);
+                GetComponent<Button>().interactable = false;
+                print("nothing new");
+                return;
+            }
+
+            // if it is a loaded base, special load.
+            if (isLoaded)
+            {
+                if (possibleOptionsFromSave.Count == 0)
+                {
+                    buttonName.text = "Nothing New";
+                    selectedDescription = "Nothing new could be found.";
+                    // KYLE TODO do better than simply not exist/  Maybe disable or put in that selecting them does a different action andl iterally is a waste.
+                    //gameObject.SetActive(false);
+                    GetComponent<Button>().interactable = false;
+                    print("nothing new");
+                    return;
+                }
+                chosenNumber = possibleOptionsFromSave[0];
+                possibleOptionsFromSave.RemoveAt(0);
+
+            } // else do a normal new load.
+            else
+            {
+                randomPick = UnityEngine.Random.Range(0, learnableUpgrades.Count);
+                chosenNumber = learnableUpgrades[randomPick];
+                possibleOptions.Add(chosenNumber);
+                print("Rando pick is " + randomPick + "   And learnable count is: " + (learnableUpgrades.Count));
+                learnableUpgrades.RemoveAt(randomPick);
+            }
+
+            version = currentUpgradeLevels[chosenNumber] + 1;
+            print("I have chosen: " + chosenNumber);
+
+            DetermineButtonNameAndDescription(version);
         }
+        catch (Exception e)
+        {
+            buttonName.text = "Nothing New";
+            selectedDescription = "Nothing new could be found.";
+            gameObject.SetActive(false);
+        }
+    }
 
-        randomPick = Random.Range(0, learnableUpgrades.Count);
-        chosenNumber = learnableUpgrades[randomPick];
-        possibleOptions.Add(chosenNumber);
-        print("Rando pick is " + randomPick + "   And learnable count is: " + (learnableUpgrades.Count));
-        learnableUpgrades.RemoveAt(randomPick);
-        int version = currentUpgradeLevels[chosenNumber] + 1;
-
-        print("I have chosen: " + chosenNumber);
+    private void DetermineButtonNameAndDescription(int version)
+    {
         switch (chosenNumber)
         {
             case 0:
@@ -249,6 +305,49 @@ public class TinkerUpgrades : MonoBehaviour {
     //    }
     //}
 
+
+
+    //public static List<int> currentUpgradeLevels = new List<int>();
+    //public static List<int> learnableUpgrades = new List<int>();
+    //public static List<int> possibleOptions = new List<int>();
+
+    public int[] SaveCurrentUpgradeLevels()
+    {
+        return currentUpgradeLevels.ToArray();
+    }
+    public int[] SaveLearnableUpgrades()
+    {
+        return learnableUpgrades.ToArray();
+    }
+    public int[] SavePossibleOptions()
+    {
+        return possibleOptions.ToArray();
+    }
+    public bool SaveHasPicked()
+    {
+        return hasPicked;
+    }
+
+    public void LoadInfo(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasPicked)
+    {
+        foreach (int x in _currentUpgradeLevels)
+        {
+            currentUpgradeLevels.Add(x);
+        }
+        foreach (int x in _learnableUpgrades)
+        {
+            learnableUpgrades.Add(x);
+        }
+        foreach (int x in _possibleOptions)
+        {
+            possibleOptions.Add(x);
+        }
+
+        isLoaded = true;
+
+        // KYLE TODO remove, this is just to test the advancement of the upgrades.
+        //hasPicked = _hasPicked;
+    }
     // Update is called once per frame
     void Update () {
 		

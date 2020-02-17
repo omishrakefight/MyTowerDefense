@@ -226,7 +226,7 @@ MonoBehaviour:
   objectToPan: {fileID: 0}
   targetEnemyBody: {fileID: 0}
   keepBuffed: 0
-  chargeTime: 4
+  chargeTime: 7
   currentChargeTime: 0
   isCharged: 0
   charge: {fileID: 108406019157774086}

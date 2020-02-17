@@ -15,6 +15,7 @@ public class SaveAndLoad : MonoBehaviour {
     SaveSerializedObject saver;
     PlayerTowerLog towerListObj;
     Singleton singleton;
+    TinkerUpgrades tinkerUpgrades;
     //[SerializeField] ChooseNextMissionPath missionChoice;
     ChooseNextMissionPath missionChoice;
 
@@ -37,6 +38,7 @@ public class SaveAndLoad : MonoBehaviour {
         missionChoice = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<ChooseNextMissionPath>();
         towerListObj = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<PlayerTowerLog>();// FindObjectOfType<PlayerTowerLog>();
         singleton = FindObjectOfType<Singleton>();
+        tinkerUpgrades = FindObjectOfType<TinkerUpgrades>();
         //print(GameObject.FindGameObjectWithTag("TowerInfo"));
 
         towerList = towerListObj.SaveTowers();
@@ -48,6 +50,8 @@ public class SaveAndLoad : MonoBehaviour {
         // need to convert back to a list when reading in. ?
         // ERROR IS BEACAUSE THE SCRIPT IS DISABLED IN SAVE WINDOW, THE CANVASSES ARE ALL DISABLED EXCEPT USED ONE.
         saver.SaveEnemyOptions(missionChoice.firstEnemySet.ToArray(), missionChoice.secondEnemySet.ToArray());
+
+        saver.SaveTinkerRoomInfo(tinkerUpgrades.SaveCurrentUpgradeLevels(), tinkerUpgrades.SaveLearnableUpgrades(), tinkerUpgrades.SavePossibleOptions(), tinkerUpgrades.SaveHasPicked());  
 
         if (missionChoice.isHasChosen)
         {
@@ -147,6 +151,9 @@ public class SaveAndLoad : MonoBehaviour {
                 {
                     missionChoice.LoadPathChoices(f.enemyOption1List, f.enemyOption2List);
                     singleton.isHasLearnedATower = f.hasChosenATower;
+
+                    tinkerUpgrades.LoadInfo(f.currentUpgradeLevels, f.learnableUpgrades, f.possibleOptions, f.hasPicked);
+                    tinkerUpgrades.AddToBackupList();
                 }
 
                 // ---- they can choose new path each time for now.

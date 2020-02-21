@@ -12,7 +12,7 @@ public class TinkerUpgrades : MonoBehaviour {
     public static List<int> possibleOptionsFromSave = new List<int>();
 
     protected static List<int> pickedUpgrades = new List<int>();
-    public static bool hasPicked = false;
+    public static bool hasPicked;
 
     public bool isSelected = false;
     public static int numSelected;
@@ -42,7 +42,9 @@ public class TinkerUpgrades : MonoBehaviour {
             learnableUpgrades = new List<int>() { 0, 1, 2, 3, 4 };
             currentUpgradeLevels = new List<int>() { 0, 0, 0, 0, 0 };
             // not completely true, but to make sure it doesnt loop
+            print("I am default loaded!");
             loadMeOnce = false;
+            hasPicked = false;
             //print(" only once!!!");
         }
         //if(!isLoaded)
@@ -83,27 +85,24 @@ public class TinkerUpgrades : MonoBehaviour {
     public void Selected()
     {
         hasPicked = true;
+        Transform parent = transform.parent;
 
-        TinkerUpgrades[] tinkerBtns = GetComponentsInParent<TinkerUpgrades>();
-        foreach(TinkerUpgrades upgrades in tinkerBtns)
+        TinkerUpgrades[] tinkerBtns = parent.GetComponentsInChildren<TinkerUpgrades>();
+        print("test.count = " + tinkerBtns.Length);
+        foreach (TinkerUpgrades upgrades in tinkerBtns)
         {
             if(upgrades.isSelected)
             {
+                print("select saved");
                 currentUpgradeLevels[upgrades.chosenNumber]++;
                 DetermineIfHasAnotherUpgrade(upgrades.chosenNumber);
             }
             else
             {
+                print("select not Saved");
                 learnableUpgrades.Add(upgrades.chosenNumber);
             }
         }
-        //foreach (int upgradeItem in pickedUpgrades)
-        //{
-        //    currentUpgradeLevels[upgradeItem]++;
-        //    print(upgradeItem);
-        //    //PickTower();
-
-        //}
     }
 
     public void DetermineIfHasAnotherUpgrade(int position)
@@ -151,6 +150,10 @@ public class TinkerUpgrades : MonoBehaviour {
             // if it is a loaded base, special load.
             if (isLoaded)
             {
+                print("isLoaded button created.");
+                // if first loop after instantiation changes false, need a 2nd round reset
+                GetComponent<Button>().interactable = true;
+
                 if (possibleOptionsFromSave.Count == 0)
                 {
                     buttonName.text = "Nothing New";
@@ -158,7 +161,6 @@ public class TinkerUpgrades : MonoBehaviour {
                     // KYLE TODO do better than simply not exist/  Maybe disable or put in that selecting them does a different action andl iterally is a waste.
                     //gameObject.SetActive(false);
                     GetComponent<Button>().interactable = false;
-                    print("nothing new");
                     return;
                 }
                 chosenNumber = possibleOptionsFromSave[0];
@@ -166,7 +168,7 @@ public class TinkerUpgrades : MonoBehaviour {
 
             } // else do a normal new load.
             else
-            {
+            { 
                 randomPick = UnityEngine.Random.Range(0, learnableUpgrades.Count);
                 chosenNumber = learnableUpgrades[randomPick];
                 possibleOptions.Add(chosenNumber);
@@ -330,6 +332,16 @@ public class TinkerUpgrades : MonoBehaviour {
 
     public void LoadInfo(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasPicked)
     {
+        print("changed");
+        isLoaded = true;
+        currentUpgradeLevels.Clear();
+        learnableUpgrades.Clear();
+        possibleOptions.Clear();
+        possibleOptionsFromSave.Clear();
+
+        numSelected =  0;
+        hasPicked = _hasPicked;
+
         foreach (int x in _currentUpgradeLevels)
         {
             currentUpgradeLevels.Add(x);
@@ -341,12 +353,18 @@ public class TinkerUpgrades : MonoBehaviour {
         foreach (int x in _possibleOptions)
         {
             possibleOptions.Add(x);
+            possibleOptionsFromSave.Add(x);
+            print(x + "Is from load.");
         }
 
-        isLoaded = true;
+        Transform parent = transform.parent;
+        TinkerUpgrades[] tinkerBtns = parent.GetComponentsInChildren<TinkerUpgrades>();
+        foreach (TinkerUpgrades upgrades in tinkerBtns) {
+            print("looping tinkerUpgrades");
+            upgrades.PickTower();
+        }
+                // KYLE TODO remove, this is just to test the advancement of the upgrades.
 
-        // KYLE TODO remove, this is just to test the advancement of the upgrades.
-        //hasPicked = _hasPicked;
     }
     // Update is called once per frame
     void Update () {

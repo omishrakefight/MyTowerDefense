@@ -90,7 +90,15 @@ public class Tower_Plasma : Tower
         print(targets.Count + " enemies in list");
         foreach (EnemyHealth enemy in targets)
         {
-            enemy.HitByNonProjectile(towerDmg);
+            try
+            {
+                enemy.HitByNonProjectile(towerDmg);
+            } catch(Exception e)
+            {
+                print("problem hitting the guy " + enemy.name);
+                // nothing it may have died since being in the list.
+            }
+            
         }
     }
 

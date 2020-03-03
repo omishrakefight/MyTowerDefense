@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 114761716323531132}
   - component: {fileID: 114266368849620598}
   - component: {fileID: 114415798757362562}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WormAlien
   m_TagString: PicaVoxelVolume
   m_Icon: {fileID: 0}

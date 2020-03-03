@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 114358188498118118}
   - component: {fileID: 65394785270816944}
   - component: {fileID: 114078197882030082}
-  - component: {fileID: 114832670974894306}
   - component: {fileID: 135991062907235084}
   m_Layer: 2
   m_Name: Lightning_Standard
@@ -232,18 +231,6 @@ MonoBehaviour:
   charge: {fileID: 108406019157774086}
   projectileParticle: {fileID: 0}
 --- !u!114 &114358188498118118
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087647114204398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5319e7436162f744ea33463a396fc1a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmg: 0
---- !u!114 &114832670974894306
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}

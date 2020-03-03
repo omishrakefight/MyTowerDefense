@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 114351487532930552}
   - component: {fileID: 54507352726697720}
   - component: {fileID: 65571274398295272}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Aura Heal Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

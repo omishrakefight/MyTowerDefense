@@ -37,7 +37,7 @@ public class Tower_PlasmaHead : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         //print(other + "found something to trigger on");
-        if (other.gameObject.GetComponentInParent<EnemyHealth>())
+        if (other.gameObject.GetComponentInParent<EnemyHealth>() != null)
         {
             print("in parent");
             if (!enemies.Contains(other.gameObject.GetComponentInParent<EnemyHealth>()))
@@ -46,10 +46,26 @@ public class Tower_PlasmaHead : MonoBehaviour
                 enemies.Add(other.gameObject.GetComponentInParent<EnemyHealth>());
                 print("added them" + enemies.Count);
             }
+        } else if(other.gameObject.GetComponentInChildren<EnemyHealth>() != null) 
+        {
+            print("in child");
+            if (!enemies.Contains(other.gameObject.GetComponentInChildren<EnemyHealth>()))
+            {
+                //print("found someone");
+                enemies.Add(other.gameObject.GetComponentInParent<EnemyHealth>());
+                print("added them" + enemies.Count);
+            }
+        } else if (other.gameObject.GetComponent<EnemyHealth>() != null)
+        {
+            print("just get it");
+        }
+        else
+        {
+            print("Not a valid target for plasma turret");
         }
         if (other.gameObject.GetComponent<EnemyHealth>())
         {
-            //print("not in parent :o");
+            print("not in parent :o");
         }
     }
 }

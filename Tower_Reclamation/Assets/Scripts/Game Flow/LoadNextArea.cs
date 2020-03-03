@@ -61,6 +61,7 @@ public class LoadNextArea : MonoBehaviour {
         nextPath = FindObjectOfType<ChooseNextMissionPath>();
         pickedPath = nextPath.isHasChosen;
 
+        singleton.GetUpdateTinkerUpgrades();
         if (Singleton.Instance.isHasPickedAPath)
         {
             //print("level is currently: " + FindObjectOfType<LevelTracker>().currentLevel);

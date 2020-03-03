@@ -43,7 +43,7 @@ public class Tower_Flame : Tower {
             //  currentParticleLifetime = particleLifetime;
             // projectileParticle.main.startLifetimeMultiplier = currentParticleLifetime;
 
-            attackRange = attackRange * 1.4f;
+            attackRange = attackRange * 1.3f;
             GetComponentInChildren<Flame_AOE>().TowerBuff();
 
             keepBuffed = true;

@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 114823716844580150}
   - component: {fileID: 65763290971919538}
   - component: {fileID: 54870314139606562}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rolling Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LighteningTower : Tower {
 
@@ -15,12 +16,20 @@ public class LighteningTower : Tower {
 
     [SerializeField] protected Light charge;
     [SerializeField] protected ParticleSystem projectileParticle;
+
     //paramteres of each tower
     //SphereCollider attackAOE;
     //float attackRange;
     //float chargeTime;
     //float currentChargeTime;
     //bool isCharged = false;
+
+    //For tinker upgrades
+    readonly new bool canSilverWiring = true;
+    readonly new bool canAlloyReasearch = true;
+    readonly new bool canSturdyTank = true;
+    readonly new bool canHeavyShelling = false;
+    readonly new bool canTowerEngineer = true;
 
     //Light charge;
     //ParticleSystem projectileParticle;
@@ -38,19 +47,56 @@ public class LighteningTower : Tower {
         {
             reducedCost = true;
         }
+        attackRange = 10;
 
-
+        // i neeed the initialization to ge tthe turret specific stats, just make another function in here that checks and modifies, it doesnth ave to be in towerfactory.
         towerDmg = 30;
         goldCost = (int)TowerCosts.LighteningTowerCost;
 
         if (!keepBuffed)   {    }
+
+
         if (keepBuffed)
         {
-            attackRange = attackRange * 1.4f;
-            currentTowerDmg = currentTowerDmg * 1.2f;
+            // TODO make these additive, get the percent number, find it as an int (the difference) and add it to dmg so it wont double dip dmg boostes
+            attackRange = attackRange * 1.3f;
+            towerDmg = towerDmg * 1.2f;
             //attackAOE.radius = attackAOE.radius * 1.4f;
         }
+        base.CheckWhichUpgradesAreApplicable(ref towerDmg, ref attackRange);
+        currentTowerDmg = towerDmg;
     }
+
+    //readonly bool canSilverWiring = true;
+    //readonly bool canAlloyReasearch = true;
+    //readonly bool canSturdyTank = true;
+    //readonly bool canHeavyShelling = false;
+    //readonly bool canTowerEngineer = true;
+    //private void CheckWhichUpgradesAreApplicable(ref float towerDmg, ref float attackRange)
+    //{
+    //    float percentModifier = 1.0f;
+    //    if (canHeavyShelling)
+    //    {
+    //        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.heavyShelling);
+    //        //since most are a reduction and this is a dmg buff, i mius from 2 and multiply by difference.
+    //        float multiplyFodder = 2.0f;
+    //        percentModifier = multiplyFodder - percentModifier;
+    //        float amountToAdd = (percentModifier * towerDmg);
+    //        towerDmg += amountToAdd;
+    //    }
+    //    if(canSturdyTank)
+    //    {
+    //        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.pressurizedTank);
+    //        //since most are a reduction and this is a  buff, i mius from 2 and multiply by difference.
+    //        float multiplyFodder = 2.0f;
+    //        percentModifier = multiplyFodder - percentModifier;
+    //        float amountToAdd = (percentModifier * attackRange);
+    //        //do overlap sphere and range is the diameter?  then attack range could work easily.
+    //        attackRange += amountToAdd;
+    //    }
+    //    //throw new NotImplementedException();
+    //}
+
     /// <summary>
     ///  *****************************************Change layer to ignore raycast fixes targetting bug.   ***************************** need to make sure i can click children though for tower upgrades.
     /// </summary>
@@ -59,6 +105,44 @@ public class LighteningTower : Tower {
 
     //Waypoint baseWaypoint    For if i pass it here
 
+    //void ExplosionDamage()
+    //{
+    //    //  10 is the enemy layer
+    //    Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, attackRange, 11);
+    //    int i = 0;
+    //    while (i < hitColliders.Length && hitColliders.Length > 0)
+    //    {
+    //        try
+    //        {
+    //            EnemyHealth enemyHealth = null;
+    //            print("new collider goes pow");
+    //            i++;
+    //            currentChargeTime = 0f;
+    //            isCharged = false;
+    //            if (hitColliders[i].GetComponentInParent<EnemyHealth>() != null)
+    //            {
+    //                enemyHealth = hitColliders[i].GetComponentInParent<EnemyHealth>();
+    //            }
+    //            else if (hitColliders[i].GetComponentInChildren<EnemyHealth>() != null)
+    //            {
+    //                enemyHealth = hitColliders[i].GetComponentInChildren<EnemyHealth>();
+    //            }
+    //            else
+    //            {
+    //                print(hitColliders[i].name);
+    //                continue;
+    //            }
+    //            enemyHealth.HitByNonProjectile(towerDmg);
+    //            if (enemyHealth.hitPoints < 1)
+    //            {
+    //                enemyHealth.KillsEnemyandAddsGold();
+    //            }
+    //        } catch(Exception e)
+    //        {
+    //            // nothing, the enemy may have died in the list.
+    //        }
+    //    }
+    //}
 
     private void CheckEnemyRange(List<EnemyMovement> targets)
     {
@@ -72,12 +156,11 @@ public class LighteningTower : Tower {
                 targets.Add(enemy);
             }
         }
-        print(targets.Count);
+        //print(targets.Count);
     }
 
     private void OnTriggerStay(Collider other)
     {
- 
         if (isCharged)
         {
             List<EnemyMovement> targets = new List<EnemyMovement>();
@@ -86,7 +169,7 @@ public class LighteningTower : Tower {
             //var sceneEnemies = FindObjectsOfType<EnemyMovement>();
             for (int i = 0; i < targets.Count; i++)
             {
-                print("POW");
+                //print("POW");
                 targets[i].GetComponent<EnemyHealth>().hitPoints -= towerDmg;
                 if (targets[i].GetComponent<EnemyHealth>().hitPoints < 1)
                 {
@@ -99,7 +182,7 @@ public class LighteningTower : Tower {
             targets.Clear();
         }
     }
-    
+
     // Update is called once per frame
     void Update()
     {
@@ -111,6 +194,7 @@ public class LighteningTower : Tower {
         else
         {
             isCharged = true;
+            //ExplosionDamage();
         }
 
     }

@@ -5,20 +5,30 @@ using UnityEngine;
 public class Tower_Ice : Tower {
 
     [SerializeField] Light blueLight;
-    public float test;
+    public float range;
     Singleton singleton;
     // Use this for initialization
-    void Start()
+
+    readonly new bool canSilverWiring = true;
+    readonly new bool canAlloyReasearch = true;
+    readonly new bool canSturdyTank = true;
+    readonly new bool canHeavyShelling = false;
+    readonly new bool canTowerEngineer = true;
+
+    protected float notAProjectileTurret = 0f;
+
+    override protected void Start()
     {
-        test = blueLight.range;
+        range = blueLight.range;
         goldCost = (int)TowerCosts.SlowTowerCost;
+        base.CheckWhichUpgradesAreApplicable(ref notAProjectileTurret, ref range);
     }
 
     // Update is called once per frame
     void Update()
     {
         // maybe hard code it? try wihtout the 1/2
-        ChillAura(this.transform.position, (blueLight.range));
+        ChillAura(this.transform.position, range);
     }
 
 

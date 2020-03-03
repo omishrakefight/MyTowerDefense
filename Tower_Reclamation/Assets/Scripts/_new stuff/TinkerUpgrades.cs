@@ -27,6 +27,7 @@ public class TinkerUpgrades : MonoBehaviour {
     static private bool loadMeOnce = true;
 
     // KYLE CHECK to see if I only need one of these, set it on a button, then custom set up each serialized field, same script though.
+    [SerializeField] Text Hint;
     [SerializeField] Text description;
     string selectedDescription = "";
     // maybe do a button
@@ -46,15 +47,11 @@ public class TinkerUpgrades : MonoBehaviour {
             loadMeOnce = false;
             hasPicked = false;
             //print(" only once!!!");
+            Hint.text = hintPick2;
         }
-        //if(!isLoaded)
-        //{
-        //    currentUpgradeLevels = new List<int>() { 1, 2, 0, 0, 0 };
-        //}
 
         PickTower();
         baseColor = buttonName.GetComponentInParent<Button>().GetComponent<Image>().color;
-
     }
 
     public void UpdateDescription()
@@ -84,24 +81,29 @@ public class TinkerUpgrades : MonoBehaviour {
     //It also ups the upgrade level.
     public void Selected()
     {
-        hasPicked = true;
-        Transform parent = transform.parent;
-
-        TinkerUpgrades[] tinkerBtns = parent.GetComponentsInChildren<TinkerUpgrades>();
-        print("test.count = " + tinkerBtns.Length);
-        foreach (TinkerUpgrades upgrades in tinkerBtns)
+        if (!hasPicked)
         {
-            if(upgrades.isSelected)
+            hasPicked = true;
+            Hint.text = outOfResearch;
+            Transform parent = transform.parent;
+
+            TinkerUpgrades[] tinkerBtns = parent.GetComponentsInChildren<TinkerUpgrades>();
+            print("test.count = " + tinkerBtns.Length);
+            foreach (TinkerUpgrades upgrades in tinkerBtns)
             {
-                print("select saved");
-                currentUpgradeLevels[upgrades.chosenNumber]++;
-                DetermineIfHasAnotherUpgrade(upgrades.chosenNumber);
+                if (upgrades.isSelected)
+                {
+                    print("select saved");
+                    currentUpgradeLevels[upgrades.chosenNumber]++;
+                    DetermineIfHasAnotherUpgrade(upgrades.chosenNumber);
+                }
+                else
+                {
+                    print("select not Saved");
+                    learnableUpgrades.Add(upgrades.chosenNumber);
+                }
             }
-            else
-            {
-                print("select not Saved");
-                learnableUpgrades.Add(upgrades.chosenNumber);
-            }
+            FindObjectOfType<Singleton>().SendUpdateTinkerUpgrades(currentUpgradeLevels);
         }
     }
 
@@ -141,7 +143,6 @@ public class TinkerUpgrades : MonoBehaviour {
                 buttonName.text = "Nothing New";
                 selectedDescription = "Nothing new could be found.";
                 // KYLE TODO do better than simply not exist/  Maybe disable or put in that selecting them does a different action andl iterally is a waste.
-                //gameObject.SetActive(false);
                 GetComponent<Button>().interactable = false;
                 print("nothing new");
                 return;
@@ -150,7 +151,6 @@ public class TinkerUpgrades : MonoBehaviour {
             // if it is a loaded base, special load.
             if (isLoaded)
             {
-                print("isLoaded button created.");
                 // if first loop after instantiation changes false, need a 2nd round reset
                 GetComponent<Button>().interactable = true;
 
@@ -172,12 +172,12 @@ public class TinkerUpgrades : MonoBehaviour {
                 randomPick = UnityEngine.Random.Range(0, learnableUpgrades.Count);
                 chosenNumber = learnableUpgrades[randomPick];
                 possibleOptions.Add(chosenNumber);
-                print("Rando pick is " + randomPick + "   And learnable count is: " + (learnableUpgrades.Count));
+                //print("Rando pick is " + randomPick + "   And learnable count is: " + (learnableUpgrades.Count));
                 learnableUpgrades.RemoveAt(randomPick);
             }
 
             version = currentUpgradeLevels[chosenNumber] + 1;
-            print("I have chosen: " + chosenNumber);
+            //print("I have chosen: " + chosenNumber);
 
             DetermineButtonNameAndDescription(version);
         }
@@ -211,7 +211,7 @@ public class TinkerUpgrades : MonoBehaviour {
                         break;
                 }
                 break;
-            case 1:
+            case 1:   //silver o, alloy 1, pressurized tank 2, heavy shelling 3, tower engineer 4
                 buttonName.text = "Alloy Research: Mark " + version.ToString();
                 switch (version)
                 {
@@ -286,32 +286,11 @@ public class TinkerUpgrades : MonoBehaviour {
         }
     }
 
-
-    //public void getAlloyVersion(int version)
+    //public List<int> UpdateTinkerUpgrades()
     //{
-    //    buttonName.text = "Alloy Research: Mark " + version.ToString();
-    //    switch (version)
-    //    {
-    //        case 0:
-    //            description.text = alloyReasearchI;
-    //            break;
-    //        case 1:
-    //            description.text = alloyReasearchII;
-    //            break;
-    //        case 2:
-    //            description.text = alloyReasearchIII;
-    //            break;
-    //        case 3:
-    //            description.text = alloyReasearchIV;
-    //            break;
-    //    }
+    //    return currentUpgradeLevels;
     //}
 
-
-
-    //public static List<int> currentUpgradeLevels = new List<int>();
-    //public static List<int> learnableUpgrades = new List<int>();
-    //public static List<int> possibleOptions = new List<int>();
 
     public int[] SaveCurrentUpgradeLevels()
     {
@@ -332,7 +311,6 @@ public class TinkerUpgrades : MonoBehaviour {
 
     public void LoadInfo(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasPicked)
     {
-        print("changed");
         isLoaded = true;
         currentUpgradeLevels.Clear();
         learnableUpgrades.Clear();
@@ -341,6 +319,13 @@ public class TinkerUpgrades : MonoBehaviour {
 
         numSelected =  0;
         hasPicked = _hasPicked;
+        if(hasPicked)
+        {
+            Hint.text = outOfResearch;
+        } else
+        {
+            Hint.text = hintPick2;
+        }
 
         foreach (int x in _currentUpgradeLevels)
         {
@@ -354,23 +339,26 @@ public class TinkerUpgrades : MonoBehaviour {
         {
             possibleOptions.Add(x);
             possibleOptionsFromSave.Add(x);
-            print(x + "Is from load.");
         }
 
         Transform parent = transform.parent;
         TinkerUpgrades[] tinkerBtns = parent.GetComponentsInChildren<TinkerUpgrades>();
         foreach (TinkerUpgrades upgrades in tinkerBtns) {
-            print("looping tinkerUpgrades");
             upgrades.PickTower();
         }
-                // KYLE TODO remove, this is just to test the advancement of the upgrades.
 
+        //give singleton the upgrades
+        FindObjectOfType<Singleton>().SendUpdateTinkerUpgrades(currentUpgradeLevels);
     }
-    // Update is called once per frame
-    void Update () {
-		
-	}
+
+    public List<int> GetTinkerUpgrades()
+    {
+        return currentUpgradeLevels;
+    }
+
     // hmm not bad if I count on getting 10 of these with 4 upgrades each, 40 upgrades is not bad.
+    string hintPick2 = "Pick two of the options and select";
+    string outOfResearch = "You have no new options to research";
 
     string silverWiringI = "With a more conductive wiring, faster processes are enabled.  The tower can acquire targets and shoot at them faster.";
     string alloyReasearchI = "By studying the art of alloy smelting, one can produce more quantity of the metals.  Increasing supply has lowered the cost.";

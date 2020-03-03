@@ -19,13 +19,25 @@ public class RifledTower : Tower {
 
     // Buff info
     //bool keepBuffed = false;
+    readonly new bool canSilverWiring = true;
+    readonly new bool canAlloyReasearch = true;
+    readonly new bool canSturdyTank = false;
+    readonly new bool canHeavyShelling = true;
+    readonly new bool canTowerEngineer = true;
+
+    protected float notATankTower = 0f;
+
 
     override protected void Start () {
         base.Start();
         towerDmg = 9f;
-        currentTowerDmg = 8f;
+        currentTowerDmg = 9f;
+        currentAttackRange = attackRange;
         goldCost = (int)TowerCosts.RifledTowerCost;
+        base.CheckWhichUpgradesAreApplicable(ref towerDmg, ref notATankTower);
         CheckAndApplyBuff();
+        currentTowerDmg = towerDmg;
+        currentAttackRange = attackRange;
 	}
 
 

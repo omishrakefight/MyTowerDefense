@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public sealed class Singleton : MonoBehaviour {
 
@@ -157,14 +158,14 @@ public sealed class Singleton : MonoBehaviour {
     public int PickARandoEnemy()
     {
         int enemy = 0;
-        int rng = Random.Range(0, 100);
+        int rng = UnityEngine.Random.Range(0, 100);
         if(rng < 75)
         { // change to max reg enemy.
-            enemy = Random.Range(1, 5);
+            enemy = UnityEngine.Random.Range(1, 5);
             waveEnemyDifficultyChecker -= 1;
         } else
         {
-            enemy = Random.Range(20, 22);
+            enemy = UnityEngine.Random.Range(20, 22);
             waveEnemyDifficultyChecker -= 2;
         }
 
@@ -203,14 +204,68 @@ public sealed class Singleton : MonoBehaviour {
     //    }
     //}
 
-//    _______       __                __ __                            __         
-//   /_ __ (_)___  / / _____ _____   / / / /___  ____ __________ _____/ /__ _____
-//    / / / / __ \/ //_/ _ \/ ___/  / / / / __ \/ __ `/ ___/ __ `/ __  / _ \/ ___/
-//   / / / / / / / ,< /  __/ /     / /_/ / /_/ / /_/ / /  / /_/ / /_/ /  __(__  )
-//  /_/ /_/_/ /_/_/|_|\___/_/      \____/ .___/\__, /_/   \__,_/\__,_/\___/____/  
-//                                     /_/    /____/                                          
+    //    _______       __                __ __                            __         
+    //   /_ __ (_)___  / / _____ _____   / / / /___  ____ __________ _____/ /__ _____
+    //    / / / / __ \/ //_/ _ \/ ___/  / / / / __ \/ __ `/ ___/ __ `/ __  / _ \/ ___/
+    //   / / / / / / / ,< /  __/ /     / /_/ / /_/ / /_/ / /  / /_/ / /_/ /  __(__  )
+    //  /_/ /_/_/ /_/_/|_|\___/_/      \____/ .___/\__, /_/   \__,_/\__,_/\___/____/  
+    //                                     /_/    /____/                                          
+    private List<int> tinkerUpgrades;
 
-    public bool silverWiring = true;
+    public void SendUpdateTinkerUpgrades(List<int> _tinkerUpgrades)
+    {
+        tinkerUpgrades = _tinkerUpgrades;
+    }
+
+    public void GetUpdateTinkerUpgrades()
+    {
+        TinkerUpgrades upgrades = FindObjectOfType<TinkerUpgrades>();
+        tinkerUpgrades = upgrades.GetTinkerUpgrades();
+    }
+
+    public int GetResearchLevel(int x)
+    {
+        return tinkerUpgrades[x];
+    }
+
+    public float GetPercentageModifier(int tinkerUpgrade)
+    {
+        float returnPercentModifier = 1.0f;
+        try
+        {
+            int version = tinkerUpgrades[tinkerUpgrade];
+            switch (version)
+            {
+                case 0:
+                    //this is nothing, havent researched yet
+                    break;
+                case 1:
+                    returnPercentModifier = (float)TinkerUpgradePercent.mark1;
+                    break;
+                case 2:
+                    returnPercentModifier = (float)TinkerUpgradePercent.mark2;
+                    break;
+                case 3:
+                    returnPercentModifier = (float)TinkerUpgradePercent.mark3;
+                    break;
+                case 4:
+                    returnPercentModifier = (float)TinkerUpgradePercent.mark4;
+                    break;
+                default:
+                    Debug.Log("Error, case exceeded expected");
+                    print("Error, case exceeded expected");
+                    returnPercentModifier = 1.0f;
+                    break;
+            }
+        } catch (Exception e)
+        {
+            Debug.Log("Error, tinkerUpgrade not found");
+            print("Error, tinkerUpgrade not found");
+        }
+        return returnPercentModifier;
+    }
+
+    public bool silverWiring = false;
     public bool goldWiring = false;
     public bool platinumWiring = false;
     public bool diamondWiring = false;

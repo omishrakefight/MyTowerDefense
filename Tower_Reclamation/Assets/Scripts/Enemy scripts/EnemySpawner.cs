@@ -137,7 +137,7 @@ public class EnemySpawner : MonoBehaviour
                     currentlySpawning = false;
 
                     //yield return StartCoroutine(WaitBetweenWaves());
-                    print("Im about to start waiting between waves! " + waveTimer + ", > " + timeBetweenWaves);
+                    //print("Im about to start waiting between waves! " + waveTimer + ", > " + timeBetweenWaves);
                     // This is wait WHILE so its inverse.  wait while wave is less than time between, once this FALSE proceede.
                     yield return new WaitWhile(() => (waveTimer < timeBetweenWaves));
                     print("I am past it! lets see, " + waveTimer + ", > " + timeBetweenWaves);
@@ -328,7 +328,7 @@ public class EnemySpawner : MonoBehaviour
 
             if(startupTimer >= startSetupTime)
             {
-                print("You hsould see me only once");
+                //print("You hsould see me only once");
                 StartCoroutine(SpawnSpecificEnemies());
                 begin = true;
             }

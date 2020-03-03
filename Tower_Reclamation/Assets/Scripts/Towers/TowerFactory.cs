@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,14 +10,17 @@ public class TowerFactory : MonoBehaviour {
     [SerializeField] RifledTower assaultTowerPrefab;
     [SerializeField] Tower_Flame flameTowerPrefab;
     [SerializeField] LighteningTower lighteningTowerPrefab;
+    [SerializeField] Tower_Plasma plasmaTowerPrefab;
     [SerializeField] Transform towerParentTransform;
 
     // For Lights and last waypoint
     [SerializeField] Waypoint lastWaypoint;
+    Singleton singleton;
 
 
     private void Start()
     {
+        singleton = FindObjectOfType<Singleton>();
         // this is how I will change the tower summons.
     }
 
@@ -38,8 +42,7 @@ public class TowerFactory : MonoBehaviour {
             {
                 newTower.TowerBuff();
             }
-            //print("tower buttonName is : " + tower.buttonName);
-            //print("tower is : " + tower);
+            //CheckWhichUpgradesAreApplicable(tower);
         }
         else
         {
@@ -47,11 +50,47 @@ public class TowerFactory : MonoBehaviour {
         }
     }
 
+
+
     public float FindGoldCost(Tower tower)
     {
+        int alloyResearchLevel = 0;
+        float percentToPay = 100f;
         float cost = tower.GetTowerCost();
-        print(cost + " this is the cost from the overriden function of towercost!");
+        //print(cost + " this is the cost from the overriden function of towercost!");
 
+        // *************************I could generalize this, it doesnt matter really what upgrade it is as the output is a percent.***********************
+        // put this in singleton call singleton . get percent BA M i know what any upgrade is, pass in the main thing like alloyresearch
+        alloyResearchLevel = singleton.GetResearchLevel((int)TinkerUpgradeNumbers.alloyResearch);
+        switch (alloyResearchLevel)
+        {
+            case 0:
+                //this is nothing, havent researched yet
+                break;
+            case 1:
+                percentToPay = (float)TinkerUpgradePercent.mark1;
+                break;
+            case 2:
+                percentToPay = (float)TinkerUpgradePercent.mark2;
+                break;
+            case 3:
+                percentToPay = (float)TinkerUpgradePercent.mark3;
+                break;
+            case 4:
+                percentToPay = (float)TinkerUpgradePercent.mark4;
+                break;
+            default:
+                Debug.Log("Error, case exceeded expected");
+                print("Error, case exceeded expected");
+                percentToPay = 1.0f;
+                break;
+        }
+        //print("Percent to pay from local function" + percentToPay);
+
+        percentToPay = singleton.GetPercentageModifier(alloyResearchLevel);
+        //print("Percent to pay from singleton function" + percentToPay);
+
+        cost = cost * percentToPay;
         return cost;
         //if (tower.buttonName.Contains("Rifled"))
         //{
@@ -131,6 +170,26 @@ public class TowerFactory : MonoBehaviour {
             newTower.transform.parent = towerParentTransform;
             lastWaypoint.isAvailable = false;
             FindObjectOfType<GoldManagement>().TowerCost(lighteningTowerPrefab.goldCost);
+            if (lastWaypoint.CompareTag("Buff Tile"))
+            {
+                newTower.TowerBuff();
+            }
+        }
+        else
+        {
+            print("Unable to build here.");
+        }
+    }
+
+    public void AddPlasmaTurret()
+    {
+        int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();
+        if (lastWaypoint.isAvailable && currentGold >= plasmaTowerPrefab.goldCost)
+        {
+            var newTower = Instantiate(plasmaTowerPrefab, lastWaypoint.transform.position, Quaternion.identity);
+            newTower.transform.parent = towerParentTransform;
+            lastWaypoint.isAvailable = false;
+            FindObjectOfType<GoldManagement>().TowerCost(plasmaTowerPrefab.goldCost);
             if (lastWaypoint.CompareTag("Buff Tile"))
             {
                 newTower.TowerBuff();

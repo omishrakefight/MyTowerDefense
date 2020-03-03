@@ -379,6 +379,7 @@ GameObject:
   - component: {fileID: 33101451911507302}
   - component: {fileID: 136885891201317604}
   - component: {fileID: 23715308070251488}
+  - component: {fileID: 114488887305530760}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Untagged
@@ -838,7 +839,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4115475691050344}
   - component: {fileID: 114371864065955980}
-  - component: {fileID: 114007170974421930}
   m_Layer: 0
   m_Name: PlasmaTurretHead
   m_TagString: PicaVoxelVolume
@@ -1579,7 +1579,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1352428943688078}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.298763, y: -0.000029563904, z: -23.485815}
+  m_LocalPosition: {x: 6.902383, y: -1.17, z: -33.808937}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4752050909348344}
@@ -4173,18 +4173,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 8, y: 8, z: 8}
   m_Center: {x: 4, y: 4, z: 4}
---- !u!114 &114007170974421930
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1826165948597298}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d23d8359c1a7186448c7229eaf011ccc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  laser: {fileID: 136885891201317604}
 --- !u!114 &114010627924313642
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4473,7 +4461,7 @@ MonoBehaviour:
   ImportedFrom: 1
   ImportedFile: C:/Users/omish/Desktop/MagicaVoxel/MagicaVoxel-0.99.3-alpha-win64/vox/PlasmaTurret.vox
   ImportedCutoutColor: {r: 0, g: 0, b: 0, a: 0}
-  thisInstanceId: -24554
+  thisInstanceId: -494922
   Undone: 1
 --- !u!114 &114343664093719850
 MonoBehaviour:
@@ -4559,7 +4547,7 @@ MonoBehaviour:
   ImportedFrom: 1
   ImportedFile: C:/Users/omish/Desktop/MagicaVoxel/MagicaVoxel-0.99.3-alpha-win64/vox/PlasmaTurretHead.vox
   ImportedCutoutColor: {r: 0, g: 0, b: 0, a: 0}
-  thisInstanceId: -24536
+  thisInstanceId: -494904
   Undone: 1
 --- !u!114 &114374871311621832
 MonoBehaviour:
@@ -4597,6 +4585,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsUpdated: 0
+--- !u!114 &114488887305530760
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1334769697939268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23d8359c1a7186448c7229eaf011ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  laser: {fileID: 136885891201317604}
 --- !u!114 &114492368282102242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4778,6 +4778,11 @@ MonoBehaviour:
   targetEnemy: {fileID: 0}
   objectToPan: {fileID: 4566123121030416}
   targetEnemyBody: {fileID: 0}
+  canSilverWiring: 0
+  canAlloyReasearch: 0
+  canSturdyTank: 0
+  canHeavyShelling: 0
+  canTowerEngineer: 0
   keepBuffed: 0
   distanceToEnemyTest: 0
   laser: {fileID: 136885891201317604}

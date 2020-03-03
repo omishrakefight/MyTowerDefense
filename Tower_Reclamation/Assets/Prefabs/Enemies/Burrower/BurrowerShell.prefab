@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 82876625519796750}
   - component: {fileID: 54442688095407366}
   - component: {fileID: 65744605153959280}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: BurrowerShell
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -7,7 +7,8 @@ public abstract class Tower : MonoBehaviour {
     public int goldCost = 60;
 
     // paramteres of each tower
-    [SerializeField] public float attackRange = 10f;
+    [SerializeField] public float attackRange = 9f;
+    protected float currentAttackRange = 0;
     
 
 
@@ -18,6 +19,13 @@ public abstract class Tower : MonoBehaviour {
     [SerializeField] public Transform targetEnemy;
     [SerializeField] protected Transform objectToPan;
     public EnemyHealth targetEnemyBody;
+
+    // for tinker upgrades
+    public bool canSilverWiring = false;
+    public bool canAlloyReasearch = false;
+    public bool canSturdyTank = false;
+    public bool canHeavyShelling = false;
+    public bool canTowerEngineer = false;
 
     // Use this for initialization
     // Buff info
@@ -35,12 +43,13 @@ public abstract class Tower : MonoBehaviour {
 
     public void CheckAndApplyBuff()
     {
+        //currentAttackRange = attackRange;
         // nothing if it is unbuffed 
         if (!keepBuffed) { }
         else
         {
-            attackRange = attackRange * 1.4f;
-            currentTowerDmg = towerDmg * 1.2f;
+            attackRange += currentAttackRange * .3f;
+            towerDmg += currentTowerDmg * .2f;
         }
     }
 
@@ -48,7 +57,7 @@ public abstract class Tower : MonoBehaviour {
     {
         // attackRange = attackRange * (1.0 + .2 * timesBuffed)
 
-        attackRange = attackRange * 1.2f;
+        //attackRange = attackRange * 1.2f;
 
         if (keepBuffed)
         {
@@ -117,4 +126,30 @@ public abstract class Tower : MonoBehaviour {
     void Update () {
 		
 	}
+
+    public void CheckWhichUpgradesAreApplicable(ref float towerDmg, ref float TankAOERange)
+    {
+        Singleton singleton = FindObjectOfType<Singleton>();
+        float percentModifier = 1.0f;
+        if (canHeavyShelling)
+        {
+            percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.heavyShelling);
+            //since most are a reduction and this is a dmg buff, i mius from 2 and multiply by difference.
+            float multiplyFodder = 1.0f;
+            percentModifier = multiplyFodder - percentModifier;
+            float amountToAdd = (percentModifier * towerDmg);
+            towerDmg += amountToAdd;
+        }
+        if (canSturdyTank)
+        {
+            percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.pressurizedTank);
+            //since most are a reduction and this is a  buff, i mius from 2 and multiply by difference.
+            float multiplyFodder = 1.0f;
+            percentModifier = multiplyFodder - percentModifier;
+            float amountToAdd = (percentModifier * TankAOERange);
+            //do overlap sphere and range is the diameter?  then attack range could work easily.
+            TankAOERange += amountToAdd;
+        }
+        //throw new NotImplementedException();
+    }
 }

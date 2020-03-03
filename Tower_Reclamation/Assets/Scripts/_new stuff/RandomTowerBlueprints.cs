@@ -229,40 +229,40 @@ public class RandomTowerBlueprints : MonoBehaviour {
 
     public void LearnedANewTower(string buttonName)
     {
-        print("trying to learn " + buttonName);
+        //print("trying to learn " + buttonName);
         if (buttonName.Equals("RifledTower"))
         {
             towerLog.towers1[(int)Towers.RifledTower] = true;
-            print("tower[ " + (int)Towers.RifledTower + "] should be true");
+            //print("tower[ " + (int)Towers.RifledTower + "] should be true");
         }
         else if (buttonName.Equals("AssaultTower"))
         {
             towerLog.towers1[(int)Towers.AssaultTower] = true;
-            print("tower[ " + (int)Towers.AssaultTower + "] should be true");
+            //print("tower[ " + (int)Towers.AssaultTower + "] should be true");
 
         }
         else if(buttonName.Equals("FlameTower"))
         {
             towerLog.towers1[(int)Towers.FlameTower] = true;
-            print("tower[ " + (int)Towers.FlameTower + "] should be true");
+            //print("tower[ " + (int)Towers.FlameTower + "] should be true");
 
         }
         else if(buttonName.Equals("LighteningTower"))
         {
             towerLog.towers1[(int)Towers.LighteningTower] = true;
-            print("tower[ " + (int)Towers.LighteningTower + "] should be true");
+            //print("tower[ " + (int)Towers.LighteningTower + "] should be true");
 
         }
         else if(buttonName.Equals("PlasmaTower"))
         {
             towerLog.towers1[(int)Towers.PlasmaTower] = true;
-            print("tower[ " + (int)Towers.PlasmaTower + "] should be true");
+            //print("tower[ " + (int)Towers.PlasmaTower + "] should be true");
 
         }
         else if(buttonName.Equals("SlowTower"))
         {
             towerLog.towers1[(int)Towers.SlowTower] = true;
-            print("tower[ " + (int)Towers.SlowTower + "] should be true");
+            //print("tower[ " + (int)Towers.SlowTower + "] should be true");
 
         }
 

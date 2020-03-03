@@ -14,6 +14,12 @@ public class Flame_AOE : MonoBehaviour {
     [SerializeField] float baseAttackWidth;
     [SerializeField] CapsuleCollider flameAOE;
 
+    readonly new bool canSilverWiring = true;
+    readonly new bool canAlloyReasearch = true;
+    readonly new bool canSturdyTank = true;
+    readonly new bool canHeavyShelling = false;
+    readonly new bool canTowerEngineer = true;
+
     bool keepBuffed = false;
 
     void Start()

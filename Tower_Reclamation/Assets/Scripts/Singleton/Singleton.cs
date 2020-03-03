@@ -44,6 +44,7 @@ public sealed class Singleton : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+
         level = 2;
         levelText.text = "Level : " + level.ToString();
         silverWiring = true;
@@ -210,10 +211,11 @@ public sealed class Singleton : MonoBehaviour {
     //   / / / / / / / ,< /  __/ /     / /_/ / /_/ / /_/ / /  / /_/ / /_/ /  __(__  )
     //  /_/ /_/_/ /_/_/|_|\___/_/      \____/ .___/\__, /_/   \__,_/\__,_/\___/____/  
     //                                     /_/    /____/                                          
-    private List<int> tinkerUpgrades;
+    private List<int> tinkerUpgrades = null;
 
     public void SendUpdateTinkerUpgrades(List<int> _tinkerUpgrades)
     {
+        CheckIfNeedList();
         tinkerUpgrades = _tinkerUpgrades;
     }
 
@@ -225,11 +227,23 @@ public sealed class Singleton : MonoBehaviour {
 
     public int GetResearchLevel(int x)
     {
+        CheckIfNeedList();
         return tinkerUpgrades[x];
+    }
+
+    private void CheckIfNeedList()
+    {
+        if (tinkerUpgrades == null)
+        {
+            TinkerUpgrades upgrades = FindObjectOfType<TinkerUpgrades>();
+            tinkerUpgrades = upgrades.GetTinkerUpgrades();
+        }
     }
 
     public float GetPercentageModifier(int tinkerUpgrade)
     {
+        CheckIfNeedList();
+
         float returnPercentModifier = 1.0f;
         try
         {
@@ -257,6 +271,7 @@ public sealed class Singleton : MonoBehaviour {
                     returnPercentModifier = 1.0f;
                     break;
             }
+            returnPercentModifier = returnPercentModifier / 100f;
         } catch (Exception e)
         {
             Debug.Log("Error, tinkerUpgrade not found");

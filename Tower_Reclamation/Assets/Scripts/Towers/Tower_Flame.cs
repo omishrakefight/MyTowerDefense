@@ -20,6 +20,12 @@ public class Tower_Flame : Tower {
     // State of tower
     //[SerializeField] Transform targetEnemy;
 
+    readonly new bool canSilverWiring = true;
+    readonly new bool canAlloyReasearch = true;
+    readonly new bool canSturdyTank = true;
+    readonly new bool canHeavyShelling = false;
+    readonly new bool canTowerEngineer = true;
+
     // Buff info
     //bool keepBuffed = false;
 

@@ -131,25 +131,29 @@ public abstract class Tower : MonoBehaviour {
     {
         Singleton singleton = FindObjectOfType<Singleton>();
         float percentModifier = 1.0f;
-        if (canHeavyShelling)
-        {
+        float multiplyFodder = 1.0f;
+        float amountToAdd = 0f;
+        print("Checking if tower can be upgraded...");
+        //if (canHeavyShelling)
+        //{
             percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.heavyShelling);
             //since most are a reduction and this is a dmg buff, i mius from 2 and multiply by difference.
-            float multiplyFodder = 1.0f;
+             multiplyFodder = 1.0f;
             percentModifier = multiplyFodder - percentModifier;
-            float amountToAdd = (percentModifier * towerDmg);
+            amountToAdd = (percentModifier * towerDmg);
             towerDmg += amountToAdd;
-        }
-        if (canSturdyTank)
-        {
+        //}
+        //if (canSturdyTank)
+        //{
+            print("Can heavy shelling, calculating");
             percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.pressurizedTank);
             //since most are a reduction and this is a  buff, i mius from 2 and multiply by difference.
-            float multiplyFodder = 1.0f;
+             multiplyFodder = 1.0f;
             percentModifier = multiplyFodder - percentModifier;
-            float amountToAdd = (percentModifier * TankAOERange);
+            amountToAdd = (percentModifier * TankAOERange);
             //do overlap sphere and range is the diameter?  then attack range could work easily.
             TankAOERange += amountToAdd;
-        }
+        //}
         //throw new NotImplementedException();
     }
 }

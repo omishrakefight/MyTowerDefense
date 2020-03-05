@@ -129,6 +129,16 @@ public sealed class Singleton : MonoBehaviour {
 //      /_____/  /_/ /_/   \___/  /_/ /_/ /_/   \__, /  
 //                                             /____/ 
 
+
+    public void SetPreferedEnemy(EnemyHealth newEnemy)
+    {
+        Tower[] towers = FindObjectsOfType<Tower>();
+        foreach(Tower tower in towers)
+        {
+            tower.preferedEnemyBody = newEnemy;
+        }
+    }
+
     public void DecidedPath(List<int> chosenEnemies)
     {
         enemyList = chosenEnemies;

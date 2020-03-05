@@ -85,7 +85,19 @@ public class RifledTower : Tower {
 
     private void FireAtEnemy()
     {
+        if (preferedEnemyBody != null && preferedEnemyBody != targetEnemyBody)
+        {
+            float distanceToPreferedEnemy = Vector3.Distance(preferedEnemyBody.gameObject.transform.position, gameObject.transform.position);
+            if (distanceToPreferedEnemy <= attackRange && targetEnemyBody.isTargetable)
+            {
+                print(preferedEnemyBody.gameObject.name);
+                targetEnemyBody = preferedEnemyBody;
+                targetEnemy = preferedEnemyBody.gameObject.transform;
+            }
+        }
+
         float distanceToEnemy = Vector3.Distance(targetEnemy.transform.position, gameObject.transform.position);
+
         if (distanceToEnemy <= attackRange && targetEnemyBody.isTargetable)
         {
             Shoot(true);

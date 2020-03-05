@@ -19,6 +19,7 @@ public abstract class Tower : MonoBehaviour {
     [SerializeField] public Transform targetEnemy;
     [SerializeField] protected Transform objectToPan;
     public EnemyHealth targetEnemyBody;
+    public EnemyHealth preferedEnemyBody = null;
 
     // for tinker upgrades
     public bool canSilverWiring = false;
@@ -33,7 +34,7 @@ public abstract class Tower : MonoBehaviour {
 
     protected virtual void Start()
     {
-        
+        //preferedEnemyBody = FindObjectOfType<Singleton>().preferedTargetEnemy;
     }
 
     public void TowerBuff()

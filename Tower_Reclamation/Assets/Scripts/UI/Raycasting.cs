@@ -12,6 +12,7 @@ public class Raycasting : MonoBehaviour {
 
     [SerializeField] float distanceToBackground = 100f;
     Camera viewCamera;
+    Singleton singleton;
 
 
     RaycastHit raycastHit;
@@ -31,6 +32,7 @@ public class Raycasting : MonoBehaviour {
 
     private void Start()
     {
+        singleton = FindObjectOfType<Singleton>();
         viewCamera = Camera.main;
     }
 
@@ -40,6 +42,8 @@ public class Raycasting : MonoBehaviour {
         {
             //print(layerHit);
             print(raycastHit.collider.name);
+            singleton.SetPreferedEnemy(raycastHit.collider.GetComponentInChildren<EnemyHealth>());
+                //preferedTargetEnemy = raycastHit.collider.GetComponentInChildren<EnemyHealth>();
         }
 
         // Look for and return priority layer hit

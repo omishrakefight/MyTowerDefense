@@ -23,37 +23,38 @@ public class CursorIcons : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        switch (raycasting.currentLayerHit)
-        {
-            case Layer.Enemy:
-                Cursor.SetCursor(enemyCursor, cursorHotspot, CursorMode.Auto);
-                break;
-            case Layer.Tower:
-                Cursor.SetCursor(towerCursor, cursorHotspot, CursorMode.Auto);
-                break;
-            case Layer.Waypoint:
-                Cursor.SetCursor(waypointCursor, cursorHotspot, CursorMode.Auto);
-                break;
-            case Layer.RaycastEndStop:
-                Cursor.SetCursor(regularCursor, cursorOutOfBoundsHotspot, CursorMode.Auto);
-                break;
-            default:
-                //Debug.LogError("Error in cursorIcons script targetting");
-                break;
-        }
+        //switch (raycasting.currentLayerHit)
+        //{
+        //    case Layer.Enemy:
+        //        Cursor.SetCursor(enemyCursor, cursorHotspot, CursorMode.Auto);
+        //        break;
+        //    case Layer.Tower:
+        //        Cursor.SetCursor(towerCursor, cursorHotspot, CursorMode.Auto);
+        //        break;
+        //    case Layer.Waypoint:
+        //        Cursor.SetCursor(waypointCursor, cursorHotspot, CursorMode.Auto);
+        //        break;
+        //    case Layer.RaycastEndStop:
+        //        Cursor.SetCursor(regularCursor, cursorOutOfBoundsHotspot, CursorMode.Auto);
+        //        break;
+        //    default:
+        //        Cursor.SetCursor(regularCursor, cursorOutOfBoundsHotspot, CursorMode.Auto);
+        //        //Debug.LogError("Error in cursorIcons script targetting");
+        //        break;
+        //}
     }
 
     public void PrintLayerHit()
     {
-        //print(raycasting.currentLayerHit);
+        print(raycasting.currentLayerHit);
     }
 
     // Delegate listener
     void SetCursorOnLayerChange()
     {
-        /*
+       // /*
         print("delegate for cursor change..");
-        switch (raycasting.LayerHit)
+        switch (raycasting.currentLayerHit)
         {
             case Layer.Enemy:
                 Cursor.SetCursor(enemyCursor, cursorHotspot, CursorMode.Auto);
@@ -68,8 +69,9 @@ public class CursorIcons : MonoBehaviour {
                 Cursor.SetCursor(regularCursor, cursorHotspot, CursorMode.Auto);
                 break;
             default:
+                Cursor.SetCursor(regularCursor, cursorHotspot, CursorMode.Auto);
                 Debug.LogError("Error in cursorIcons script targetting");
                 break;
-        } */
+        } //*/
     }
 }

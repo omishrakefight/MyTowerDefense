@@ -18,6 +18,9 @@ public sealed class Singleton : MonoBehaviour {
     public Tower towerThree;
     protected Dropdown dropdown;
 
+    public EnemyHealth preferedTargetEnemy = null;
+
+
     TowerSelecter towerSelector;
 
     int towerButton = 0;

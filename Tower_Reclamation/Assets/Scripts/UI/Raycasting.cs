@@ -36,6 +36,12 @@ public class Raycasting : MonoBehaviour {
 
     void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            //print(layerHit);
+            print(raycastHit.collider.name);
+        }
+
         // Look for and return priority layer hit
         foreach (Layer layer in layerPriorities)
         {
@@ -53,7 +59,7 @@ public class Raycasting : MonoBehaviour {
             }
         }
 
-        FindObjectOfType<CursorIcons>().PrintLayerHit();
+        //FindObjectOfType<CursorIcons>().PrintLayerHit();
         // Otherwise return background hit
         raycastHit.distance = distanceToBackground;
         layerHit = Layer.RaycastEndStop;
@@ -74,6 +80,12 @@ public class Raycasting : MonoBehaviour {
         }
         return null;
     }
+
+
+    //private void OnMouseDown()
+    //{
+    //    print(hit.collider.name);
+    //}
 }
 
 

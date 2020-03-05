@@ -13,6 +13,7 @@ public class BurrowerHealth : EnemyHealth {
         burrowerMove = GetComponent<BurrowerMovement>();
         hitPoints = hitPoints * .5f;
         hitPointsMax = hitPoints;
+        burrowed = burrowerMove.burrowed;
     }
 
     // Update is called once per frame
@@ -83,6 +84,9 @@ public class BurrowerHealth : EnemyHealth {
     override public IEnumerator Burning(float fireDmg)
     {
         //burning underground sucks, but ill allow it ATM.
+        if (burrowed)
+            yield return new WaitForSeconds(1f);
+
         if (hitPoints < 1)
         {
             KillsEnemyandAddsGold();

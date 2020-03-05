@@ -479,6 +479,7 @@ MonoBehaviour:
     type: 2}
   lighteningTowerPrefab: {fileID: 114078197882030082, guid: a1c22a29f73f70444806c15d320ffb5a,
     type: 2}
+  plasmaTowerPrefab: {fileID: 0}
   towerParentTransform: {fileID: 2023514800}
   lastWaypoint: {fileID: 0}
 --- !u!114 &47542413

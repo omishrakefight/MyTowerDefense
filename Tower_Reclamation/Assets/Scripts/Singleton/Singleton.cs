@@ -137,6 +137,7 @@ public sealed class Singleton : MonoBehaviour {
         {
             tower.preferedEnemyBody = newEnemy;
         }
+        FindObjectOfType<PreferedEnemyPanel>().SetTargetEnemy(newEnemy);
     }
 
     public void DecidedPath(List<int> chosenEnemies)

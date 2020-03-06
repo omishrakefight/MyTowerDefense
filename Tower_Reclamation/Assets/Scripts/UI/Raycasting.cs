@@ -38,12 +38,20 @@ public class Raycasting : MonoBehaviour {
 
     void Update()
     {
+        // on raycasting, if the click is on an enemy send it to the singleton to disperse to the towers.
+        // hsould be after the foreach, but i had trouble and it will be rare someone will click the same frame.
         if (Input.GetMouseButtonDown(0))
         {
             //print(layerHit);
+
             print(raycastHit.collider.name);
-            singleton.SetPreferedEnemy(raycastHit.collider.GetComponentInChildren<EnemyHealth>());
-                //preferedTargetEnemy = raycastHit.collider.GetComponentInChildren<EnemyHealth>();
+            
+            if (raycastHit.collider.GetComponentInChildren<EnemyHealth>() != null)
+            {
+                singleton.SetPreferedEnemy(raycastHit.collider.GetComponentInChildren<EnemyHealth>());
+
+            }
+            //preferedTargetEnemy = raycastHit.collider.GetComponentInChildren<EnemyHealth>();
         }
 
         // Look for and return priority layer hit

@@ -48,6 +48,11 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     }
 
+    public float getHPPercent()
+    {
+        return healthImage.fillAmount;
+    }
+
     public void DontResethealthPlease()
     {
         noSpecialHealthThings = false;

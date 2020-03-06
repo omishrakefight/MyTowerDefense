@@ -41,6 +41,8 @@ public class RollerHealth : EnemyHealth {
         {
             dmg = other.GetComponentInParent<Tower_Dmg>().towerDMG();
             hitPoints = hitPoints - dmg;
+            healthImage.fillAmount = (hitPoints / hitPointsMax);
+                
             hitparticleprefab.Play();
         }
         

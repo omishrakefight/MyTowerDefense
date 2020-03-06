@@ -49,8 +49,10 @@ public abstract class Tower : MonoBehaviour {
         if (!keepBuffed) { }
         else
         {
-            attackRange += currentAttackRange * .3f;
-            towerDmg += currentTowerDmg * .2f;
+            print(towerDmg + " = towerdmg, current = " + currentTowerDmg);
+            attackRange += (currentAttackRange * .3f);
+            towerDmg += (currentTowerDmg * .2f);
+            print("towerDMG after 2nd buff " + towerDmg);
         }
     }
 
@@ -134,13 +136,14 @@ public abstract class Tower : MonoBehaviour {
         float percentModifier = 1.0f;
         float multiplyFodder = 1.0f;
         float amountToAdd = 0f;
-        print("Checking if tower can be upgraded...");
+        print("Checking if tower can be upgraded. . .");
         //if (canHeavyShelling)
         //{
             percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.heavyShelling);
             //since most are a reduction and this is a dmg buff, i mius from 2 and multiply by difference.
              multiplyFodder = 1.0f;
             percentModifier = multiplyFodder - percentModifier;
+        print("percentModifier = " + percentModifier + ", and percent * tower dmg = " + (percentModifier * towerDmg));
             amountToAdd = (percentModifier * towerDmg);
             towerDmg += amountToAdd;
         //}

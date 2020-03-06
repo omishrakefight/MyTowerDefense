@@ -25,6 +25,16 @@ public enum Towers
     SlowTower = 5
 }
 
+public enum Layer
+{
+    Tower = 8,
+    Waypoint = 9,
+    Enemy = 10,
+    RaycastEndStop = -1
+
+}
+
+
 public enum TowerCosts
 {
     RifledTowerCost = 50,

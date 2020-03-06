@@ -44,10 +44,11 @@ public class Raycasting : MonoBehaviour {
         {
             //print(layerHit);
 
-            print(raycastHit.collider.name);
             
             if (raycastHit.collider.GetComponentInChildren<EnemyHealth>() != null)
             {
+                print(raycastHit.collider.name);
+
                 singleton.SetPreferedEnemy(raycastHit.collider.GetComponentInChildren<EnemyHealth>());
 
             }

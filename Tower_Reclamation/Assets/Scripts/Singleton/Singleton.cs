@@ -133,11 +133,13 @@ public sealed class Singleton : MonoBehaviour {
     public void SetPreferedEnemy(EnemyHealth newEnemy)
     {
         Tower[] towers = FindObjectsOfType<Tower>();
-        foreach(Tower tower in towers)
-        {
-            tower.preferedEnemyBody = newEnemy;
+        if (towers.Length != 0) {
+            foreach (Tower tower in towers)
+            {
+                tower.preferedEnemyBody = newEnemy;
+            }
+            FindObjectOfType<PreferedEnemyPanel>().SetTargetEnemy(newEnemy);
         }
-        FindObjectOfType<PreferedEnemyPanel>().SetTargetEnemy(newEnemy);
     }
 
     public void DecidedPath(List<int> chosenEnemies)
@@ -265,7 +267,8 @@ public sealed class Singleton : MonoBehaviour {
             switch (version)
             {
                 case 0:
-                    //this is nothing, havent researched yet
+                    //this is 100 - 100 is 0% bonus
+                    returnPercentModifier = 100.0f;
                     break;
                 case 1:
                     returnPercentModifier = (float)TinkerUpgradePercent.mark1;

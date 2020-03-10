@@ -73,6 +73,17 @@ public class Tower_Plasma : Tower
             }
         }
 
+        if (preferedEnemyBody != null && preferedEnemyBody != targetEnemyBody)
+        {
+            float distanceToPreferedEnemy = Vector3.Distance(preferedEnemyBody.gameObject.transform.position, gameObject.transform.position);
+            if (distanceToPreferedEnemy <= attackRange && targetEnemyBody.isTargetable)
+            {
+                print(preferedEnemyBody.gameObject.name);
+                targetEnemyBody = preferedEnemyBody;
+                targetEnemy = preferedEnemyBody.gameObject.transform;
+            }
+        }
+
         if (targetEnemy)
         {
             objectToPan.LookAt(targetEnemy);
@@ -113,6 +124,7 @@ public class Tower_Plasma : Tower
 
     private void FireAtEnemy()
     {
+
         float distanceToEnemy = Vector3.Distance(targetEnemy.transform.position, gameObject.transform.position);
         if (distanceToEnemy <= attackRange)
         {

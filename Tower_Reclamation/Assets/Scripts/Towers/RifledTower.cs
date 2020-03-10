@@ -70,6 +70,17 @@ public class RifledTower : Tower {
     // Update is called once per frame
     void Update () {
         // add in here about having a priority target or something
+        if (preferedEnemyBody != null && preferedEnemyBody != targetEnemyBody)
+        {
+            float distanceToPreferedEnemy = Vector3.Distance(preferedEnemyBody.gameObject.transform.position, gameObject.transform.position);
+            if (distanceToPreferedEnemy <= attackRange && targetEnemyBody.isTargetable)
+            {
+                print(preferedEnemyBody.gameObject.name);
+                targetEnemyBody = preferedEnemyBody;
+                targetEnemy = preferedEnemyBody.gameObject.transform;
+            }
+        }
+
         if (targetEnemy)
         {
             objectToPan.LookAt(targetEnemy);
@@ -85,16 +96,7 @@ public class RifledTower : Tower {
 
     private void FireAtEnemy()
     {
-        if (preferedEnemyBody != null && preferedEnemyBody != targetEnemyBody)
-        {
-            float distanceToPreferedEnemy = Vector3.Distance(preferedEnemyBody.gameObject.transform.position, gameObject.transform.position);
-            if (distanceToPreferedEnemy <= attackRange && targetEnemyBody.isTargetable)
-            {
-                print(preferedEnemyBody.gameObject.name);
-                targetEnemyBody = preferedEnemyBody;
-                targetEnemy = preferedEnemyBody.gameObject.transform;
-            }
-        }
+
 
         float distanceToEnemy = Vector3.Distance(targetEnemy.transform.position, gameObject.transform.position);
 

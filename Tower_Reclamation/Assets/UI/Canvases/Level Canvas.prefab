@@ -779,15 +779,31 @@ MonoBehaviour:
   towerOne: {fileID: 0}
   towerTwo: {fileID: 0}
   towerThree: {fileID: 0}
+  preferedTargetEnemy: {fileID: 0}
   scenesChanged: 0
   level: 1
   isHasPickedAPath: 0
   isHasLearnedATower: 0
   silverWiring: 0
+  goldWiring: 0
+  platinumWiring: 0
+  diamondWiring: 0
   alloyReasearchI: 0
+  alloyReasearchII: 0
+  alloyReasearchIII: 0
+  alloyReasearchIV: 0
   sturdyTankI: 0
+  sturdyTankII: 0
+  sturdyTankIII: 0
+  sturdyTankIV: 0
   heavyShellingI: 0
+  heavyShellingII: 0
+  heavyShellingIII: 0
+  heavyShellingIV: 0
   towerEngineerI: 0
+  towerEngineerII: 0
+  towerEngineerIII: 0
+  towerEngineerIV: 0
 --- !u!114 &114631120473449324
 MonoBehaviour:
   m_ObjectHideFlags: 1

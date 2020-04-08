@@ -2537,9 +2537,15 @@ MonoBehaviour:
   targetEnemy: {fileID: 0}
   objectToPan: {fileID: 0}
   targetEnemyBody: {fileID: 0}
+  preferedEnemyBody: {fileID: 0}
+  canSilverWiring: 0
+  canAlloyReasearch: 0
+  canSturdyTank: 0
+  canHeavyShelling: 0
+  canTowerEngineer: 0
   keepBuffed: 0
   blueLight: {fileID: 108403913272185168}
-  test: 0
+  range: 0
 --- !u!114 &114736845598676228
 MonoBehaviour:
   m_ObjectHideFlags: 1

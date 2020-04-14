@@ -63,4 +63,9 @@ public class Tower_Ice : Tower {
 
         return towerCost;
     }
+
+    new public void SetHead(Transform towerHead)
+    {
+        //Do nothing, this tower doesnt have a swivelHead so doesnt matter
+    }
 }

@@ -61,3 +61,57 @@ public enum TinkerUpgradeNumbers //silver o, alloy 1, pressurized tank 2, heavy 
     heavyShelling = 3,
     towerEngineer = 4
 }
+
+public enum FlameHead
+{
+    Basic = 0
+}
+
+public enum FlameBase //"Basic Base", "Tall Base", "Heavy Base", "Light Base", "Alien Base" };
+{
+    Basic = 0,
+    Tall = 1,
+    Heavy = 2,
+    Light = 3,
+    Alien = 4
+}
+
+public enum RifledHead
+{
+    Basic = 0
+}
+
+public enum RifledBase
+{
+    Basic = 0
+}
+
+public enum PlasmaHead
+{
+    Basic = 0
+}
+
+public enum PlasmaBase
+{
+    Basic = 0
+}
+
+public enum IceHead
+{
+    Basic = 0
+}
+
+public enum IceBase
+{
+    Basic = 0
+}
+
+public enum LightningHead
+{
+    Basic = 0
+}
+
+public enum LightningBase
+{
+    Basic = 0
+}

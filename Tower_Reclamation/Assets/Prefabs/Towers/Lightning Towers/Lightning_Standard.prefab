@@ -224,6 +224,12 @@ MonoBehaviour:
   targetEnemy: {fileID: 0}
   objectToPan: {fileID: 0}
   targetEnemyBody: {fileID: 0}
+  preferedEnemyBody: {fileID: 0}
+  canSilverWiring: 0
+  canAlloyReasearch: 0
+  canSturdyTank: 0
+  canHeavyShelling: 0
+  canTowerEngineer: 0
   keepBuffed: 0
   chargeTime: 7
   currentChargeTime: 0

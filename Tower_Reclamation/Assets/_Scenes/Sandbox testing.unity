@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1524,6 +1524,23 @@ Transform:
   m_PrefabParentObject: {fileID: 4803110345335862, guid: 9755912896f51c84482190fe7f28a6c0,
     type: 2}
   m_PrefabInternal: {fileID: 1212666064}
+--- !u!1 &1235535118 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1734256024262500, guid: f7b52aa762816ab4d95427f056391df2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1449648561}
+--- !u!65 &1235535119
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1235535118}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1330264786
 Prefab:
   m_ObjectHideFlags: 0
@@ -1608,8 +1625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3c0d4e07b25ff48a67765aaca803e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rifledTowerPrefab: {fileID: 114298003256897080, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
-    type: 2}
+  rifledTowerPrefab: {fileID: 0}
   assaultTowerPrefab: {fileID: 114298003256897080, guid: 1836db111551ce448b548d20199ce23c,
     type: 2}
   flameTowerPrefab: {fileID: 114262617888070472, guid: 9b88788f1af26d945a3ec20203b67002,

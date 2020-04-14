@@ -189,7 +189,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1477993137076744}
-  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0.08575976, y: -0.02810902, z: 0.0024205074, w: 0.9959163}
   m_LocalPosition: {x: 0, y: 6.52, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
@@ -304,12 +304,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 026cc90123f8f39458f151e8e0b93cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToPan: {fileID: 4695589155867020}
+  goldCost: 60
   attackRange: 20
+  towerDmg: 30
+  currentTowerDmg: 30
+  targetEnemy: {fileID: 0}
+  objectToPan: {fileID: 4695589155867020}
+  targetEnemyBody: {fileID: 0}
+  preferedEnemyBody: {fileID: 0}
+  canSilverWiring: 0
+  canAlloyReasearch: 0
+  canSturdyTank: 0
+  canHeavyShelling: 0
+  canTowerEngineer: 0
+  keepBuffed: 0
   projectileParticle: {fileID: 198292466415716428}
   projectileParticleTwo: {fileID: 198849436724297864}
   projectileParticleThree: {fileID: 198527551074869486}
-  targetEnemy: {fileID: 0}
 --- !u!114 &114417965939613588
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -324,7 +335,9 @@ MonoBehaviour:
   towerDmg: 5
   currentTowerDmg: 5
   currentAttackRange: 0
+  baseAttackRange: 0
   currentAttackWidth: 0
+  baseAttackWidth: 0
   flameAOE: {fileID: 136568488708309660}
 --- !u!114 &114582363562050618
 MonoBehaviour:
@@ -418,7 +431,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.35
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -3779,7 +3792,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.35
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -7140,7 +7153,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.35
+      scalar: 0.5
       minScalar: 5
       maxCurve:
         serializedVersion: 2

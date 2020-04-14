@@ -16,6 +16,16 @@ public sealed class Singleton : MonoBehaviour {
     public Tower towerOne;
     public Tower towerTwo;
     public Tower towerThree;
+
+    public Tower towerOneBase = null;
+    public GameObject towerOneHead = null;
+
+    public Tower towerTwoBase = null;
+    public GameObject towerTwoHead = null;
+
+    public Tower towerThreeBase = null;
+    public GameObject towerThreeHead = null;
+
     protected Dropdown dropdown;
 
     public EnemyHealth preferedTargetEnemy = null;
@@ -68,23 +78,32 @@ public sealed class Singleton : MonoBehaviour {
 
     public void FindTower()
     {
+        Tower towerBase = null;
+        GameObject towerHead = null;
         dropdown = GameObject.FindGameObjectWithTag(towerNumTag).GetComponent<Dropdown>();
         towerSelector = FindObjectOfType<TowerSelecter>();
-        tempTower = towerSelector.PickTower();
+        tempTower = towerSelector.PickTower(ref towerBase, ref towerHead);
         //temp tower holds the new tower, swtich determines what button it takes over.need to convert to Tower instetad of towerDmG
         switch (dropdown.value)
         {
             case 1:
-                towerOne = tempTower;
-                print(towerOne.name);
+                //towerOne = tempTower;
+                towerOneBase = towerBase;
+                towerOneHead = towerHead;
+
+                //print(towerOne.name);
                 //FindObjectOfType<TowerButton1>().UpdateName();
                 break;
             case 2:
-                towerTwo = tempTower;
+                towerTwoBase = towerBase;
+                towerTwoHead = towerHead;
+                //towerTwo = tempTower;
                 //FindObjectOfType<TowerButton2>().UpdateName();
                 break;
             case 3:
-                towerThree = tempTower;
+                towerThreeBase = towerBase;
+                towerThreeHead = towerHead;
+                //towerThree = tempTower;
                 //FindObjectOfType<TowerButton3>().UpdateName();
                 break;
             default:

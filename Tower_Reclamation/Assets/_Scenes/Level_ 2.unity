@@ -438,8 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3c0d4e07b25ff48a67765aaca803e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rifledTowerPrefab: {fileID: 114298003256897080, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
-    type: 2}
+  rifledTowerPrefab: {fileID: 0}
   assaultTowerPrefab: {fileID: 114298003256897080, guid: 1836db111551ce448b548d20199ce23c,
     type: 2}
   flameTowerPrefab: {fileID: 114262617888070472, guid: 9b88788f1af26d945a3ec20203b67002,
@@ -1590,21 +1589,6 @@ Prefab:
     - target: {fileID: 224775776926525188, guid: c75d683a57da05b46abfab717912e227,
         type: 2}
       propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224302923489851782, guid: c75d683a57da05b46abfab717912e227,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224445724363945336, guid: c75d683a57da05b46abfab717912e227,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224313739467669542, guid: c75d683a57da05b46abfab717912e227,
-        type: 2}
-      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -160,4 +160,9 @@ public abstract class Tower : MonoBehaviour {
         //}
         //throw new NotImplementedException();
     }
+
+    public void SetHead(Transform towerHead)
+    {
+        objectToPan = towerHead;
+    }
 }

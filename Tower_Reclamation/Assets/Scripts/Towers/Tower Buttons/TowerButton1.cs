@@ -12,16 +12,16 @@ public class TowerButton1 : MonoBehaviour {
     public void UpdateName()
     {
         towerFactory = FindObjectOfType<TowerFactory>();
-        buttonName1.text = (singleton.towerOne.name + "   cost: " + singleton.towerOne.GetTowerCost().ToString());
+        buttonName1.text = (singleton.towerOneBase.name + "   cost: " + singleton.towerOneBase.GetTowerCost().ToString());
     }
     // Use this for initialization
     void Start()
     {
         towerFactory = FindObjectOfType<TowerFactory>();
         singleton = FindObjectOfType<Singleton>();
-        if (singleton.towerOne != null)
+        if (singleton.towerOneBase != null)
         {
-            buttonName1.text = (singleton.towerOne.name + "   cost: " + singleton.towerOne.GetTowerCost().ToString());
+            buttonName1.text = (singleton.towerOneBase.name + "   cost: " + singleton.towerOneBase.GetTowerCost().ToString());
         } else
         {
             buttonName1.text = "Unassigned";
@@ -30,7 +30,8 @@ public class TowerButton1 : MonoBehaviour {
 
     public void BuildTower()
     {
-        towerFactory = FindObjectOfType<TowerFactory>();
-        towerFactory.AddTower(singleton.towerOne);
+        //towerFactory.AddTower(singleton.towerOne);
+        towerFactory.CreateAndStackTower(singleton.towerOneBase, singleton.towerOneHead);
+
     }
 }

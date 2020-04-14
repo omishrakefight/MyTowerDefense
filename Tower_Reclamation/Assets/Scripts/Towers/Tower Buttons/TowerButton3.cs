@@ -12,7 +12,7 @@ public class TowerButton3 : MonoBehaviour {
 
     public void UpdateName()
     {
-        buttonName3.text = (singleton.towerThree.name + "   cost: " + singleton.towerThree.GetTowerCost().ToString());
+        buttonName3.text = (singleton.towerThreeBase.name + "   cost: " + singleton.towerThreeBase.GetTowerCost().ToString());
     }
     // Use this for initialization
     void Start()
@@ -29,9 +29,9 @@ public class TowerButton3 : MonoBehaviour {
         //    buttonName3.text = "Unassigned";
         //}
 
-        if (singleton.towerThree != null)
+        if (singleton.towerThreeBase != null)
         {
-            buttonName3.text = (singleton.towerThree.name + "   cost: " + singleton.towerThree.GetTowerCost().ToString());
+            buttonName3.text = (singleton.towerThreeBase.name + "   cost: " + singleton.towerThreeBase.GetTowerCost().ToString());
         }
         else
         {
@@ -42,6 +42,8 @@ public class TowerButton3 : MonoBehaviour {
 
     public void BuildTower()
     {
-        towerFactory.AddTower(singleton.towerThree);
+        //towerFactory.AddTower(singleton.towerThree);
+        towerFactory.CreateAndStackTower(singleton.towerThreeBase, singleton.towerThreeHead);
+
     }
 }

@@ -1154,8 +1154,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonName2: {fileID: 114097962505576060}
-  obj1: {fileID: 1007152016750614, guid: fa1bd93eafb114548a926cc53ef41c12, type: 2}
-  obj2: {fileID: 1711761046976802, guid: 4fd1a8985ef61cc40be1903aa87715be, type: 2}
+  towerBase: {fileID: 114953501215125282, guid: fa1bd93eafb114548a926cc53ef41c12,
+    type: 2}
+  towerHead: {fileID: 1711761046976802, guid: 4fd1a8985ef61cc40be1903aa87715be, type: 2}
 --- !u!114 &114165244775304044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2745,8 +2746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3c0d4e07b25ff48a67765aaca803e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rifledTowerPrefab: {fileID: 114298003256897080, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
-    type: 2}
+  rifledTowerPrefab: {fileID: 0}
   assaultTowerPrefab: {fileID: 114298003256897080, guid: 1836db111551ce448b548d20199ce23c,
     type: 2}
   flameTowerPrefab: {fileID: 114262617888070472, guid: 9b88788f1af26d945a3ec20203b67002,

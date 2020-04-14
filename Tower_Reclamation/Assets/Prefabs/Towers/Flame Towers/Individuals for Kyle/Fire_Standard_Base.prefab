@@ -21,6 +21,9 @@ GameObject:
   - component: {fileID: 4017675807458736}
   - component: {fileID: 33619033595092434}
   - component: {fileID: 23660308056852246}
+  - component: {fileID: 114953501215125282}
+  - component: {fileID: 114036213664897604}
+  - component: {fileID: 65827630174282156}
   m_Layer: 8
   m_Name: Fire_Standard_Base
   m_TagString: Untagged
@@ -82,3 +85,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1007152016750614}
   m_Mesh: {fileID: 4300000, guid: c8dd5fe50e04a7b44bd9d4b5cb211f42, type: 3}
+--- !u!65 &65827630174282156
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1007152016750614}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6, y: 8.57, z: 6.43}
+  m_Center: {x: 0, y: 4.72, z: 0}
+--- !u!114 &114036213664897604
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1007152016750614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5319e7436162f744ea33463a396fc1a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmg: 0
+--- !u!114 &114953501215125282
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1007152016750614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 026cc90123f8f39458f151e8e0b93cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldCost: 60
+  attackRange: 20
+  towerDmg: 30
+  currentTowerDmg: 30
+  targetEnemy: {fileID: 0}
+  objectToPan: {fileID: 4695589155867020, guid: 9b88788f1af26d945a3ec20203b67002,
+    type: 2}
+  targetEnemyBody: {fileID: 0}
+  preferedEnemyBody: {fileID: 0}
+  canSilverWiring: 0
+  canAlloyReasearch: 0
+  canSturdyTank: 0
+  canHeavyShelling: 0
+  canTowerEngineer: 0
+  keepBuffed: 0
+  projectileParticle: {fileID: 198292466415716428, guid: 9b88788f1af26d945a3ec20203b67002,
+    type: 2}
+  projectileParticleTwo: {fileID: 198849436724297864, guid: 9b88788f1af26d945a3ec20203b67002,
+    type: 2}
+  projectileParticleThree: {fileID: 198527551074869486, guid: 9b88788f1af26d945a3ec20203b67002,
+    type: 2}

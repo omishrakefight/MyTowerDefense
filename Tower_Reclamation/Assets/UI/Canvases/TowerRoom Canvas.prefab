@@ -547,6 +547,9 @@ GameObject:
   - component: {fileID: 222088465492596664}
   - component: {fileID: 114447771770762530}
   - component: {fileID: 114914303830005064}
+  - component: {fileID: 223566283989989518}
+  - component: {fileID: 114895659929887974}
+  - component: {fileID: 225128496847663096}
   m_Layer: 5
   m_Name: Template
   m_TagString: Untagged
@@ -603,7 +606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1737208764583834
 GameObject:
   m_ObjectHideFlags: 1
@@ -784,6 +787,7 @@ GameObject:
   m_Component:
   - component: {fileID: 224658391144034488}
   - component: {fileID: 114268628195833454}
+  - component: {fileID: 114851349930603572}
   m_Layer: 5
   m_Name: Item
   m_TagString: Untagged
@@ -1756,15 +1760,7 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
-    - m_Text: Rifled Turret
-      m_Image: {fileID: 0}
-    - m_Text: Flame Turret
-      m_Image: {fileID: 0}
-    - m_Text: Lightening Turret
-      m_Image: {fileID: 0}
-    - m_Text: Option C
-      m_Image: {fileID: 0}
-    - m_Text: Option C
+    - m_Text: RifledTower
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2324,7 +2320,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Rifled Turret
+  m_Text: RifledTower
 --- !u!114 &114667929893754478
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2339,7 +2335,7 @@ MonoBehaviour:
   towerBarrel: {fileID: 114336131870631448}
   towerTurret: {fileID: 114389285663288508}
   towerBase: {fileID: 114014292850026776}
-  basicRifledTower: {fileID: 114298003256897080, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
+  basicRifledTower: {fileID: 114262617888070472, guid: 9b88788f1af26d945a3ec20203b67002,
     type: 2}
   basicFlameTower: {fileID: 114262617888070472, guid: 9b88788f1af26d945a3ec20203b67002,
     type: 2}
@@ -2355,9 +2351,27 @@ MonoBehaviour:
     type: 2}
   basicPlasmaTower: {fileID: 114692334048397588, guid: b415da16db46191489644c54efc0abe8,
     type: 2}
-  basicIceTower: {fileID: 114470172631351910, guid: f7b52aa762816ab4d95427f056391df2,
+  basicIceTower: {fileID: 114733931375009144, guid: f5de3bbfd2a4ba54596a7eaefbf2c0e4,
     type: 2}
   towerPlaceholder: {fileID: 0}
+  basicFlameTowerBase: {fileID: 114953501215125282, guid: fa1bd93eafb114548a926cc53ef41c12,
+    type: 2}
+  tallFlameTowerBase: {fileID: 0}
+  heavyFlameTowerBase: {fileID: 0}
+  lightFlameTowerBase: {fileID: 0}
+  alienFlameTowerBase: {fileID: 0}
+  basicFlameTowerHead: {fileID: 1711761046976802, guid: 4fd1a8985ef61cc40be1903aa87715be,
+    type: 2}
+  basicRifledTowerBase: {fileID: 114224958929666816, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
+    type: 2}
+  basicRifledTowerHead: {fileID: 1568905355939266, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
+    type: 2}
+  basicPlasmaTowerBase: {fileID: 0}
+  basicPlasmaTowerHead: {fileID: 0}
+  basicLightTowerBase: {fileID: 114078197882030082, guid: a1c22a29f73f70444806c15d320ffb5a,
+    type: 2}
+  basicIceTowerBase: {fileID: 114470172631351910, guid: f7b52aa762816ab4d95427f056391df2,
+    type: 2}
 --- !u!114 &114726297846820894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2755,6 +2769,37 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114851349930603572
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847615801783110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Text: {fileID: 114393110412122654}
+  m_Image: {fileID: 0}
+  m_RectTransform: {fileID: 224658391144034488}
+  m_Toggle: {fileID: 114268628195833454}
+--- !u!114 &114895659929887974
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1671997711718110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!114 &114902723755519780
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3328,6 +3373,26 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!223 &223566283989989518
+Canvas:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1671997711718110}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 30000
   m_TargetDisplay: 0
 --- !u!224 &224010791413258462
 RectTransform:
@@ -4256,7 +4321,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 2}
-  m_SizeDelta: {x: 0, y: 150}
+  m_SizeDelta: {x: 0, y: 200}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!224 &224957371016069598
 RectTransform:
@@ -4373,3 +4438,14 @@ RectTransform:
   m_AnchoredPosition: {x: -7.5, y: -0.5}
   m_SizeDelta: {x: -35, y: -13}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &225128496847663096
+CanvasGroup:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1671997711718110}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

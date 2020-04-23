@@ -50,14 +50,14 @@ public class TowerFactory : MonoBehaviour {
         }
     }
 
-    public void CreateAndStackTower(Tower towerBase, GameObject towerHead)
+    public void CreateAndStackTower(Tower towerBase, GameObject towerHead, int baseType, int headType)
     {
         int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();
         int cost = (int)FindGoldCost(towerBase);
         if (lastWaypoint.isAvailable && currentGold >= cost)
         {
             //var newTower = Instantiate(tower, lastWaypoint.transform.position, Quaternion.identity);
-            GameObject newTower = StackTower(towerBase, towerHead);
+            GameObject newTower = StackTower(towerBase, towerHead, baseType, headType);
             newTower.transform.parent = towerParentTransform;
             lastWaypoint.isAvailable = false;
             FindObjectOfType<GoldManagement>().TowerCost(cost);
@@ -73,19 +73,22 @@ public class TowerFactory : MonoBehaviour {
         }
     }
 
-    private GameObject StackTower(Tower towerBase, GameObject towerHead)
+    private GameObject StackTower(Tower towerBase, GameObject towerHead, int baseType, int headType)
     {
         var container = new GameObject();
         container.name = "Viewing Tower";
         container.transform.position = lastWaypoint.transform.position;
 
-        float headHeight = ((towerBase.GetComponentInChildren<MeshFilter>().sharedMesh.bounds.extents.y) * .94f); //This is to account for bigger meshes    // + (obj2.GetComponent<MeshFilter>().sharedMesh.bounds.extents.y));
+        float headHeight = ((towerBase.GetComponentInChildren<MeshFilter>().sharedMesh.bounds.extents.y) * .95f); //This is to account for bigger meshes    // + (obj2.GetComponent<MeshFilter>().sharedMesh.bounds.extents.y));
         //Instantiate(container, new Vector3(0, 0, 0), Quaternion.identity);
         var tBase = Instantiate(towerBase, lastWaypoint.transform.position, Quaternion.identity);
         // use this for the placement
         var tHead = Instantiate(towerHead, (lastWaypoint.transform.position + new Vector3(0, headHeight, 0)), Quaternion.identity); //new Vector3(0, headHeight, 0)
         tBase.transform.parent = container.transform;
         tHead.transform.parent = tBase.transform;
+        tBase.DelayedStart();
+        tBase.DetermineTowerHeadType(headType);
+        tBase.DetermineTowerTypeBase(baseType);
 
         //not needed in base but w/e
         tBase.SetHead(tHead.transform);

@@ -5,14 +5,18 @@ using UnityEngine;
 public class Flame_AOE : MonoBehaviour {
 
 
-    [SerializeField] float towerDmg = 4;
-    [SerializeField] private float currentTowerDmg = 4;
+    public float towerDmg = 4;
+    public float currentTowerDmg = 4;
 
     [SerializeField] float currentAttackRange;
     [SerializeField] float baseAttackRange;
     [SerializeField] float currentAttackWidth;
     [SerializeField] float baseAttackWidth;
     [SerializeField] CapsuleCollider flameAOE;
+
+    [SerializeField] ParticleSystem projectileParticle;
+    [SerializeField] ParticleSystem projectileParticleTwo;
+    [SerializeField] ParticleSystem projectileParticleThree;
 
     readonly new bool canSilverWiring = true;
     readonly new bool canAlloyReasearch = true;
@@ -33,6 +37,15 @@ public class Flame_AOE : MonoBehaviour {
         baseAttackRange = flameAOE.radius;
         currentAttackWidth = flameAOE.height;
         baseAttackWidth = flameAOE.height;
+
+        var particleLifetime = projectileParticle.main;
+        particleLifetime.startLifetimeMultiplier = .5f;
+        particleLifetime = projectileParticleTwo.main;
+
+        particleLifetime.startLifetimeMultiplier = .5f;
+
+        particleLifetime = projectileParticleThree.main;
+        particleLifetime.startLifetimeMultiplier = .5f;
 
         //logic test
         print("_F The base range is " + currentAttackRange + " and the modifier bonus is " + rangeModifier);
@@ -61,6 +74,17 @@ public class Flame_AOE : MonoBehaviour {
         baseAttackWidth = currentAttackWidth;
     }
 
+    public void BuffRange(float rangeBuff)
+    {
+        //logic test
+        print("_F The base range is " + currentAttackRange + " and the modifier bonus is " + rangeBuff);
+        currentAttackRange = (currentAttackRange * rangeBuff);
+        print("_F After buff the range is " + currentAttackRange);
+        currentAttackWidth = (currentAttackWidth * rangeBuff);
+        flameAOE.height = currentAttackWidth;
+        flameAOE.radius = currentAttackRange;
+    }
+
     public void TowerBuff()
     {
         // called by Tower_Flame.
@@ -71,6 +95,16 @@ public class Flame_AOE : MonoBehaviour {
     public float Damage()
     {
         return currentTowerDmg;
+    }
+
+    public void Shoot(bool isActive)
+    {
+        var emissionModule = projectileParticle.emission;
+        emissionModule.enabled = isActive;
+        var emissionModuleTwo = projectileParticleTwo.emission;
+        emissionModuleTwo.enabled = isActive;
+        var emissionModuleThree = projectileParticleThree.emission;
+        emissionModuleThree.enabled = isActive;
     }
 
 

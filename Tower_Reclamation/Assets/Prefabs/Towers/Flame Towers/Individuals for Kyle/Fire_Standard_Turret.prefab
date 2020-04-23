@@ -191,8 +191,13 @@ MonoBehaviour:
   towerDmg: 5
   currentTowerDmg: 5
   currentAttackRange: 0
+  baseAttackRange: 0
   currentAttackWidth: 0
+  baseAttackWidth: 0
   flameAOE: {fileID: 136015542547881202}
+  projectileParticle: {fileID: 198559348418826528}
+  projectileParticleTwo: {fileID: 198851005622062600}
+  projectileParticleThree: {fileID: 198889475704242276}
 --- !u!136 &136015542547881202
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -8,10 +8,11 @@ public class Tower_Flame : Tower {
     // paramteres of each tower
     //[SerializeField] Transform objectToPan;
     //[SerializeField] float attackRange = 15f;
-    [SerializeField] ParticleSystem projectileParticle;
-    [SerializeField] ParticleSystem projectileParticleTwo;
-    [SerializeField] ParticleSystem projectileParticleThree;
+    //[SerializeField] ParticleSystem projectileParticle;
+    //[SerializeField] ParticleSystem projectileParticleTwo;
+    //[SerializeField] ParticleSystem projectileParticleThree;
 
+    Flame_AOE head = null;
     Singleton singleton;
     // float particleLifetime;
     // float currentParticleLifetime;
@@ -33,27 +34,65 @@ public class Tower_Flame : Tower {
     {
         goldCost = (int)TowerCosts.FlameTowerCost;
         // nothing if it is unbuffed 
+
+        // change this to percentage based buff.  otherwise it is an overwrite
+        //if (!keepBuffed) { }
+        //else
+        //{
+        //    //var particleLifetime = projectileParticle.main;
+        //    //particleLifetime.startLifetimeMultiplier = .5f;
+        //    //particleLifetime = projectileParticleTwo.main;
+
+        //    //particleLifetime.startLifetimeMultiplier = .5f;
+
+        //    //particleLifetime = projectileParticleThree.main;
+        //    //particleLifetime.startLifetimeMultiplier = .5f;
+
+        //    //.startLifetimeMultiplier;
+        //    //  currentParticleLifetime = particleLifetime;
+        //    // projectileParticle.main.startLifetimeMultiplier = currentParticleLifetime;
+
+        //    attackRange = attackRange * 1.3f;
+        //    GetComponentInChildren<Flame_AOE>().TowerBuff();
+
+        //    keepBuffed = true;
+        //}
+    }
+
+    public override void DelayedStart()
+    {
+        head = GetComponentInChildren<Flame_AOE>();
         if (!keepBuffed) { }
         else
         {
-            var particleLifetime = projectileParticle.main;
-            particleLifetime.startLifetimeMultiplier = .5f;
-
-            particleLifetime = projectileParticleTwo.main;
-            particleLifetime.startLifetimeMultiplier = .5f;
-
-            particleLifetime = projectileParticleThree.main;
-            particleLifetime.startLifetimeMultiplier = .5f;
-
-            //.startLifetimeMultiplier;
-            //  currentParticleLifetime = particleLifetime;
-            // projectileParticle.main.startLifetimeMultiplier = currentParticleLifetime;
-
             attackRange = attackRange * 1.3f;
             GetComponentInChildren<Flame_AOE>().TowerBuff();
 
             keepBuffed = true;
         }
+    }
+
+    public override void DetermineTowerTypeBase(int towerInt)
+    {
+
+        switch (towerInt)
+        {
+            case (int)FlameBase.Basic:
+                //nothing, normal settings?
+                break;
+            case (int)FlameBase.Alien:
+                print("Im doing alien base");
+                head.currentTowerDmg = 20f;
+                break;
+            case (int)FlameBase.Tall:
+                head.BuffRange(2.0f);
+                break;
+            default:
+                print("Default base, I am towerint of : " + towerInt);
+                //nothing
+                break;
+        }
+
     }
 
     //  The actual Dmg applier is on the head of the turret with the capsul collider.
@@ -82,6 +121,11 @@ public class Tower_Flame : Tower {
 
     // Update is called once per frame
     void Update () {
+        if(head == null)
+        {
+            return;
+        }
+
         //first check if prefered enemy isin range, if so he beomes the target enemy.
         if (preferedEnemyBody != null && preferedEnemyBody != targetEnemyBody)
         {
@@ -153,12 +197,13 @@ public class Tower_Flame : Tower {
 
     private void Shoot(bool isActive)
     {
-        var emissionModule = projectileParticle.emission;
-        emissionModule.enabled = isActive;
-        var emissionModuleTwo = projectileParticleTwo.emission;
-        emissionModuleTwo.enabled = isActive;
-        var emissionModuleThree = projectileParticleThree.emission;
-        emissionModuleThree.enabled = isActive;
+        head.Shoot(isActive);
+        //var emissionModule = projectileParticle.emission;
+        //emissionModule.enabled = isActive;
+        //var emissionModuleTwo = projectileParticleTwo.emission;
+        //emissionModuleTwo.enabled = isActive;
+        //var emissionModuleThree = projectileParticleThree.emission;
+        //emissionModuleThree.enabled = isActive;
     }
 
 

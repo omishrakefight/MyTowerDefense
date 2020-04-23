@@ -2356,18 +2356,22 @@ MonoBehaviour:
   towerPlaceholder: {fileID: 0}
   basicFlameTowerBase: {fileID: 114953501215125282, guid: fa1bd93eafb114548a926cc53ef41c12,
     type: 2}
-  tallFlameTowerBase: {fileID: 0}
+  tallFlameTowerBase: {fileID: 114845317692119150, guid: 4627388ebdfd18847bc48417ac56d7a8,
+    type: 2}
   heavyFlameTowerBase: {fileID: 0}
   lightFlameTowerBase: {fileID: 0}
-  alienFlameTowerBase: {fileID: 0}
+  alienFlameTowerBase: {fileID: 114136617961012516, guid: 04cc2f3f5497fd94791b2818eb39f7b9,
+    type: 2}
   basicFlameTowerHead: {fileID: 1711761046976802, guid: 4fd1a8985ef61cc40be1903aa87715be,
     type: 2}
   basicRifledTowerBase: {fileID: 114224958929666816, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
     type: 2}
   basicRifledTowerHead: {fileID: 1568905355939266, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
     type: 2}
-  basicPlasmaTowerBase: {fileID: 0}
-  basicPlasmaTowerHead: {fileID: 0}
+  basicPlasmaTowerBase: {fileID: 114801057434098164, guid: f72abd8f9bb4b7241a0489966bb39d06,
+    type: 2}
+  basicPlasmaTowerHead: {fileID: 1867615240620330, guid: d7389261726238b45989e37bc2b33ce0,
+    type: 2}
   basicLightTowerBase: {fileID: 114078197882030082, guid: a1c22a29f73f70444806c15d320ffb5a,
     type: 2}
   basicIceTowerBase: {fileID: 114470172631351910, guid: f7b52aa762816ab4d95427f056391df2,

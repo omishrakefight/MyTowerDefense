@@ -19,12 +19,18 @@ public sealed class Singleton : MonoBehaviour {
 
     public Tower towerOneBase = null;
     public GameObject towerOneHead = null;
+    public int towerOneBaseType = -1;
+    public int towerOneHeadType = -1;
 
     public Tower towerTwoBase = null;
     public GameObject towerTwoHead = null;
+    public int towerTwoBaseType = -1;
+    public int towerTwoHeadType = -1;
 
     public Tower towerThreeBase = null;
     public GameObject towerThreeHead = null;
+    public int towerThreeBaseType = -1;
+    public int towerThreeHeadType = -1;
 
     protected Dropdown dropdown;
 
@@ -80,9 +86,11 @@ public sealed class Singleton : MonoBehaviour {
     {
         Tower towerBase = null;
         GameObject towerHead = null;
+        int baseType = -1;
+        int headType = -1;
         dropdown = GameObject.FindGameObjectWithTag(towerNumTag).GetComponent<Dropdown>();
         towerSelector = FindObjectOfType<TowerSelecter>();
-        tempTower = towerSelector.PickTower(ref towerBase, ref towerHead);
+        tempTower = towerSelector.PickTower(ref towerBase, ref towerHead, ref baseType, ref headType);
         //temp tower holds the new tower, swtich determines what button it takes over.need to convert to Tower instetad of towerDmG
         switch (dropdown.value)
         {
@@ -90,6 +98,8 @@ public sealed class Singleton : MonoBehaviour {
                 //towerOne = tempTower;
                 towerOneBase = towerBase;
                 towerOneHead = towerHead;
+                towerOneBaseType = baseType;
+                towerOneHeadType = headType;
 
                 //print(towerOne.name);
                 //FindObjectOfType<TowerButton1>().UpdateName();
@@ -97,12 +107,14 @@ public sealed class Singleton : MonoBehaviour {
             case 2:
                 towerTwoBase = towerBase;
                 towerTwoHead = towerHead;
-                //towerTwo = tempTower;
-                //FindObjectOfType<TowerButton2>().UpdateName();
+                towerTwoBaseType = baseType;
+                towerTwoHeadType = headType;
                 break;
             case 3:
                 towerThreeBase = towerBase;
                 towerThreeHead = towerHead;
+                towerThreeBaseType = baseType;
+                towerThreeHeadType = headType;
                 //towerThree = tempTower;
                 //FindObjectOfType<TowerButton3>().UpdateName();
                 break;

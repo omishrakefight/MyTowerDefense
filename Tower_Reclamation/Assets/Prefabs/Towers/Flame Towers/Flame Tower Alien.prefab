@@ -254,13 +254,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 026cc90123f8f39458f151e8e0b93cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectToPan: {fileID: 0}
+  goldCost: 60
   attackRange: 15
-  baseAttackRange: 0
+  towerDmg: 30
+  currentTowerDmg: 30
+  targetEnemy: {fileID: 0}
+  objectToPan: {fileID: 0}
+  targetEnemyBody: {fileID: 0}
+  preferedEnemyBody: {fileID: 0}
+  canSilverWiring: 0
+  canAlloyReasearch: 0
+  canSturdyTank: 0
+  canHeavyShelling: 0
+  canTowerEngineer: 0
+  keepBuffed: 0
   projectileParticle: {fileID: 0}
   projectileParticleTwo: {fileID: 0}
   projectileParticleThree: {fileID: 0}
-  targetEnemy: {fileID: 0}
 --- !u!114 &114727172302712596
 MonoBehaviour:
   m_ObjectHideFlags: 1

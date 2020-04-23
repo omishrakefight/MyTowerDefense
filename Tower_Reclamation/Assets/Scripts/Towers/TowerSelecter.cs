@@ -72,6 +72,8 @@ public class TowerSelecter : MonoBehaviour
     [SerializeField] Tower basicIceTowerBase;
 
 
+    
+
     Singleton singleton;
     // Use this for initialization
     void Start()
@@ -150,6 +152,7 @@ public class TowerSelecter : MonoBehaviour
     {
         Tower towerBase = null;
         GameObject towerHead = null;
+        int fodder1 = 0, fodder2 = 0;
 
         if (tower == null)
         {
@@ -159,7 +162,7 @@ public class TowerSelecter : MonoBehaviour
             DestroyObject(tower.gameObject);
         }
 
-        decidedTower = PickTower(ref towerBase, ref towerHead);
+        decidedTower = PickTower(ref towerBase, ref towerHead, ref fodder1, ref fodder2);
 
         SpawnTowerForViewing(towerPosition, towerBase, towerHead);
         //newTower = Instantiate(decidedTower, towerPosition, Quaternion.identity);
@@ -184,6 +187,7 @@ public class TowerSelecter : MonoBehaviour
 
         // FOR NOW  I could go into the Tower Selecter and make that one function first.  I get info from there, so it needs to work first (also fastest to test.
         // I CAN hardcode stuff i dont have yet with this hack.  For slow and light tower, put it as an empty object.  It will get added, not throw an excepttion  AND be invisible and take low power.
+        print(towerBase.name);
         float headHeight = ((towerBase.GetComponentInChildren<MeshFilter>().sharedMesh.bounds.extents.y) * .94f); //This is to account for bigger meshes    // + (obj2.GetComponent<MeshFilter>().sharedMesh.bounds.extents.y));
         //Instantiate(container, new Vector3(0, 0, 0), Quaternion.identity);
         var tBase = Instantiate(towerBase, position, Quaternion.identity);
@@ -324,43 +328,48 @@ public class TowerSelecter : MonoBehaviour
     }
 
 
-    public Tower PickTower(ref Tower towerBase, ref GameObject towerHead)
+    public Tower PickTower(ref Tower turretBase, ref GameObject towerHead, ref int baseType, ref int towerType)
     {
         List<Dropdown.OptionData> list = towerTurret.options;
         //for (int i = 0; i < list.Count; i++)
         //{
+        baseType = towerBase.value;
+        towerType = towerTurret.value;
+
         string tower = list[towerTurret.value].text;//towerTurret.options(towerTurret.value).text;
+
         if (tower.Equals("RifledTower"))
         {
             print("Rifled Tower selected");
-            FocusRifledTowers(ref towerBase, ref towerHead);
+            FocusRifledTowers(ref turretBase, ref towerHead);
         }
         if (tower.Equals("AssaultTower"))
         {
             print("AssaultTower Turret selected");
-            FocusAssaultTowers(ref towerBase, ref towerHead);
+            FocusAssaultTowers(ref turretBase, ref towerHead);
         }
         if (tower.Equals("FlameTower"))
         {
             print("Flame Turret selected");
-            FocusFireTowers(ref towerBase, ref towerHead);
+            FocusFireTowers(ref turretBase, ref towerHead);
             //PickFireTower();
         }
         if (tower.Equals("LighteningTower"))
         {
             print("Light Turret selected");
-            FocusLighteningTowers(ref towerBase, ref towerHead);
+            FocusLighteningTowers(ref turretBase, ref towerHead);
         }
         if (tower.Equals("PlasmaTower"))
         {
             print("PlasmaTower Turret selected");
-            FocusPlasmaTowers(ref towerBase, ref towerHead);
+            FocusPlasmaTowers(ref turretBase, ref towerHead);
         }
         if (tower.Equals("SlowTower"))
         {
             print("SlowTower Turret selected");
-            FocusSlowTowers(ref towerBase, ref towerHead);
+            FocusSlowTowers(ref turretBase, ref towerHead);
         }
+
         return decidedTower;
     }
 
@@ -383,7 +392,7 @@ public class TowerSelecter : MonoBehaviour
                 turretBase = basicFlameTowerBase;
                 break;
             case (int)FlameBase.Tall:
-                turretBase = lightFlameTowerBase;
+                turretBase = tallFlameTowerBase;
                 break;
             case (int)FlameBase.Heavy:
                 turretBase = heavyFlameTowerBase;

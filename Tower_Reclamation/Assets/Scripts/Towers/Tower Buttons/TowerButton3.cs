@@ -43,7 +43,7 @@ public class TowerButton3 : MonoBehaviour {
     public void BuildTower()
     {
         //towerFactory.AddTower(singleton.towerThree);
-        towerFactory.CreateAndStackTower(singleton.towerThreeBase, singleton.towerThreeHead);
+        towerFactory.CreateAndStackTower(singleton.towerThreeBase, singleton.towerThreeHead, singleton.towerThreeBaseType, singleton.towerThreeHeadType);
 
     }
 }

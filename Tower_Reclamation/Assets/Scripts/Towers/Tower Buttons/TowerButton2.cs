@@ -65,7 +65,7 @@ public class TowerButton2 : MonoBehaviour {
     public void BuildTower()
     {
         //towerFactory.AddTower(singleton.towerTwo);
-        towerFactory.CreateAndStackTower(singleton.towerTwoBase, singleton.towerTwoHead);
+        towerFactory.CreateAndStackTower(singleton.towerTwoBase, singleton.towerTwoHead, singleton.towerTwoBaseType, singleton.towerTwoHeadType);
 
     }
 }

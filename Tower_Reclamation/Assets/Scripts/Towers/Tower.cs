@@ -165,4 +165,15 @@ public abstract class Tower : MonoBehaviour {
     {
         objectToPan = towerHead;
     }
+
+    public virtual void DetermineTowerTypeBase(int towerInt)
+    {
+        // Just a basic overrriden function, same method signature though so I can work off 'Tower' script type.
+    }
+    public virtual void DetermineTowerHeadType(int towerInt)
+    {
+    }
+    public virtual void DelayedStart()
+    {
+    }
 }

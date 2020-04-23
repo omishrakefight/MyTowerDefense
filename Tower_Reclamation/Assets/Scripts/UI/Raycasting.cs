@@ -47,7 +47,7 @@ public class Raycasting : MonoBehaviour {
             
             if (raycastHit.collider.GetComponentInChildren<EnemyHealth>() != null)
             {
-                print(raycastHit.collider.name);
+                //print(raycastHit.collider.name);
 
                 singleton.SetPreferedEnemy(raycastHit.collider.GetComponentInChildren<EnemyHealth>());
 

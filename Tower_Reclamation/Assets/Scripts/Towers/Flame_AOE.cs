@@ -76,13 +76,22 @@ public class Flame_AOE : MonoBehaviour {
 
     public void BuffRange(float rangeBuff)
     {
+
+        currentAttackRange = flameAOE.radius;
+        baseAttackRange = flameAOE.radius;
+        currentAttackWidth = flameAOE.height;
+        baseAttackWidth = flameAOE.height;
+
         //logic test
-        print("_F The base range is " + currentAttackRange + " and the modifier bonus is " + rangeBuff);
+        print("buff Range: The base range is " + currentAttackRange + " and the modifier bonus is " + rangeBuff);
         currentAttackRange = (currentAttackRange * rangeBuff);
-        print("_F After buff the range is " + currentAttackRange);
+        print("buff Range: After buff the range is " + currentAttackRange);
         currentAttackWidth = (currentAttackWidth * rangeBuff);
         flameAOE.height = currentAttackWidth;
         flameAOE.radius = currentAttackRange;
+
+        baseAttackRange = currentAttackRange;
+        baseAttackWidth = currentAttackWidth;
     }
 
     public void TowerBuff()

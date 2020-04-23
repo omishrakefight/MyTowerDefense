@@ -112,7 +112,6 @@ public class SaveAndLoad : MonoBehaviour {
 
         while (!loadingBase.isDone)
         {
-            print("Curious, " + loadingBase.progress);
             yield return new WaitForSeconds(.75f);
         }
         try

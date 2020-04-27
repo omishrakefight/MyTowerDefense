@@ -1007,10 +1007,6 @@ MonoBehaviour:
     m_Options:
     - m_Text: Standard Barrel
       m_Image: {fileID: 0}
-    - m_Text: Option B
-      m_Image: {fileID: 0}
-    - m_Text: Option C
-      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -1713,7 +1709,18 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114667929893754478}
+        m_MethodName: ResetTowerPicture
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Dropdown+DropdownEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114389285663288508
@@ -1765,17 +1772,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114667929893754478}
-        m_MethodName: ResetTowerPicture
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 114667929893754478}
         m_MethodName: ResetNumbersOnBaseChange
         m_Mode: 1
@@ -2363,6 +2359,8 @@ MonoBehaviour:
   alienFlameTowerBase: {fileID: 114136617961012516, guid: 04cc2f3f5497fd94791b2818eb39f7b9,
     type: 2}
   basicFlameTowerHead: {fileID: 1711761046976802, guid: 4fd1a8985ef61cc40be1903aa87715be,
+    type: 2}
+  flameThrowerFlameTowerHead: {fileID: 1715411075595922, guid: dbaf219dc21d05740a4c59121887c539,
     type: 2}
   basicRifledTowerBase: {fileID: 114224958929666816, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
     type: 2}

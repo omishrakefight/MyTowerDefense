@@ -28,6 +28,11 @@ public class Flame_AOE : MonoBehaviour {
 
     void Start()
     {
+
+    }
+
+    public void DelayedStart(bool keepBuffed)
+    {
         float doesntUse = 0f;
         float rangeModifier = 1.0f;
         // 1 is shelling, 2 is tank.
@@ -59,9 +64,7 @@ public class Flame_AOE : MonoBehaviour {
         }
         else
         {
-            //currentAttackRange = currentAttackRange * 1.3f;
-            //currentAttackWidth = currentAttackWidth * 1.3f;
-
+//  This needs to be moved to tower buff, might need to re-set the variables.  The problem here is that this does not get set to buffed until too late.
             //30% bonus to range
             currentAttackRange += baseAttackRange * .3f;
             currentAttackWidth += baseAttackWidth * .3f;
@@ -76,6 +79,7 @@ public class Flame_AOE : MonoBehaviour {
 
     public void BuffRange(float rangeBuff)
     {
+        Vector3 NewCapsulCenter;
 
         currentAttackRange = flameAOE.radius;
         baseAttackRange = flameAOE.radius;
@@ -92,7 +96,41 @@ public class Flame_AOE : MonoBehaviour {
 
         baseAttackRange = currentAttackRange;
         baseAttackWidth = currentAttackWidth;
+        NewCapsulCenter = flameAOE.center;  //= (currentAttackWidth / 2);
+        NewCapsulCenter.z = (currentAttackWidth / 2);
+        flameAOE.center = NewCapsulCenter;
     }
+
+    public void ChangeParticleTime(float timePercent)
+    {
+
+        var particleLifetime = projectileParticle.main;
+        particleLifetime.startLifetimeMultiplier = (particleLifetime.startLifetimeMultiplier * timePercent);
+        particleLifetime = projectileParticleTwo.main;
+
+        particleLifetime.startLifetimeMultiplier = (particleLifetime.startLifetimeMultiplier * timePercent);
+
+        particleLifetime = projectileParticleThree.main;
+        particleLifetime.startLifetimeMultiplier = (particleLifetime.startLifetimeMultiplier * timePercent);
+    }
+
+    public float SetTowerTypeFlameThrower()
+    {
+        Vector3 NewCapsulCenter;
+
+        currentAttackWidth = flameAOE.radius;
+        baseAttackWidth = flameAOE.radius;
+        currentAttackRange = flameAOE.height;
+        baseAttackRange = flameAOE.height;
+        //print("Flame current attack range = " + currentAttackRange);
+
+        NewCapsulCenter = flameAOE.center;  //= (currentAttackWidth / 2);
+        NewCapsulCenter.z = (currentAttackRange / 2);
+        flameAOE.center = NewCapsulCenter;
+
+        return (currentAttackRange / 2); // Divide by 2 because the scale is .5
+    }
+    // i need to add a switch for the head toype, the flamethrower needs to flip range with width since its lengthwise
 
     public void TowerBuff()
     {

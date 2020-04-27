@@ -56,15 +56,16 @@ public class TowerFactory : MonoBehaviour {
         int cost = (int)FindGoldCost(towerBase);
         if (lastWaypoint.isAvailable && currentGold >= cost)
         {
+            bool buffTower = false;
+            if (lastWaypoint.CompareTag("Buff Tile"))
+            {
+                buffTower = true;
+            }
             //var newTower = Instantiate(tower, lastWaypoint.transform.position, Quaternion.identity);
-            GameObject newTower = StackTower(towerBase, towerHead, baseType, headType);
+            GameObject newTower = StackTower(towerBase, towerHead, baseType, headType, buffTower);
             newTower.transform.parent = towerParentTransform;
             lastWaypoint.isAvailable = false;
             FindObjectOfType<GoldManagement>().TowerCost(cost);
-            if (lastWaypoint.CompareTag("Buff Tile"))
-            {
-                newTower.GetComponentInChildren<Tower>().TowerBuff();
-            }
             //CheckWhichUpgradesAreApplicable(tower);
         }
         else
@@ -73,22 +74,26 @@ public class TowerFactory : MonoBehaviour {
         }
     }
 
-    private GameObject StackTower(Tower towerBase, GameObject towerHead, int baseType, int headType)
+    private GameObject StackTower(Tower towerBase, GameObject towerHead, int baseType, int headType, bool bufftower)
     {
         var container = new GameObject();
         container.name = "Viewing Tower";
         container.transform.position = lastWaypoint.transform.position;
 
         float headHeight = ((towerBase.GetComponentInChildren<MeshFilter>().sharedMesh.bounds.extents.y) * .95f); //This is to account for bigger meshes    // + (obj2.GetComponent<MeshFilter>().sharedMesh.bounds.extents.y));
-        //Instantiate(container, new Vector3(0, 0, 0), Quaternion.identity);
         var tBase = Instantiate(towerBase, lastWaypoint.transform.position, Quaternion.identity);
         // use this for the placement
         var tHead = Instantiate(towerHead, (lastWaypoint.transform.position + new Vector3(0, headHeight, 0)), Quaternion.identity); //new Vector3(0, headHeight, 0)
         tBase.transform.parent = container.transform;
         tHead.transform.parent = tBase.transform;
+
+        if (bufftower)
+        {
+            tBase.TowerBuff();
+        }
         tBase.DelayedStart();
-        tBase.DetermineTowerHeadType(headType);
         tBase.DetermineTowerTypeBase(baseType);
+        tBase.DetermineTowerHeadType(headType);
 
         //not needed in base but w/e
         tBase.SetHead(tHead.transform);

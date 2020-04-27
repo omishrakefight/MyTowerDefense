@@ -70,6 +70,8 @@ public class Tower_Flame : Tower {
 
             keepBuffed = true;
         }
+
+        head.DelayedStart(keepBuffed);
     }
 
     public override void DetermineTowerTypeBase(int towerInt)
@@ -95,13 +97,27 @@ public class Tower_Flame : Tower {
 
     }
 
+    public override void DetermineTowerHeadType(int towerInt)
+    {
+        switch (towerInt)
+        {
+            case (int)FlameHead.Basic:
+                //nothing;
+                break;
+            case (int)FlameHead.FlameThrower:
+                head.ChangeParticleTime(1.5f);
+                attackRange = head.SetTowerTypeFlameThrower();
+                break;
+        }
+    }
+
     //  The actual Dmg applier is on the head of the turret with the capsul collider.
 
 
     //Waypoint baseWaypoint    For if i pass it here
     //public void TowerBuff()
     //{
-       
+
     //}
 
 

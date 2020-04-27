@@ -64,7 +64,8 @@ public enum TinkerUpgradeNumbers //silver o, alloy 1, pressurized tank 2, heavy 
 
 public enum FlameHead
 {
-    Basic = 0
+    Basic = 0,
+    FlameThrower = 1
 }
 
 public enum FlameBase //"Basic Base", "Tall Base", "Heavy Base", "Light Base", "Alien Base" };

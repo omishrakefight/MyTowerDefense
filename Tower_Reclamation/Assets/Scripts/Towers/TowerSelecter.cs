@@ -52,6 +52,7 @@ public class TowerSelecter : MonoBehaviour
 
     [Header("Flame Head")]
     [SerializeField] GameObject basicFlameTowerHead;
+    [SerializeField] GameObject flameThrowerFlameTowerHead;
 
     [Header("Rifle Tower Base")]
     [SerializeField] Tower basicRifledTowerBase;
@@ -71,7 +72,7 @@ public class TowerSelecter : MonoBehaviour
     [Header("Ice Tower Base")]
     [SerializeField] Tower basicIceTowerBase;
 
-
+    private bool changingTowerType = false;
     
 
     Singleton singleton;
@@ -93,11 +94,13 @@ public class TowerSelecter : MonoBehaviour
         if (towerBarrel.value == 0 && towerTurret.value == 0 && towerBase.value == 0)
         {
             //print("reading dropdown");
-            newTower = Instantiate(basicRifledTower, towerPosition, Quaternion.identity);
-            newTower.transform.localScale = new Vector3(.3f, .3f, .3f);
+            //newTower = Instantiate(basicRifledTower, towerPosition, Quaternion.identity);
+            //newTower.transform.localScale = new Vector3(.3f, .3f, .3f);
+            //tower = new GameObject();
+            ResetTowerPicture();
 
         }
-        collider = newTower.GetComponent<BoxCollider>();
+        collider = tower.GetComponentInChildren<BoxCollider>();
         bound = collider.bounds;
 
         //UpdateTowersAvailable();
@@ -129,11 +132,26 @@ public class TowerSelecter : MonoBehaviour
 
     public void ResetNumbersOnBaseChange()
     {
-        towerBase.value = 0;
+        changingTowerType = true;
         towerBarrel.value = 0;
+        towerBase.value = 0;
 
         SetTowerBaseAndHead();
+        ResetTowerPicture();
+        changingTowerType = false;
+
+        //test();
     }
+
+    //private IEnumerator test()
+    //{
+    //    changingTowerType = true;
+    //    SetTowerBaseAndHead();
+    //    ResetTowerPicture();
+    //    changingTowerType = false;
+
+    //    yield return null;
+    //}
 
     // Sent from RandomTowerBlueprints.  it calls this function.
     public void UpdateTowersAvailable(List<string> towersKnown)
@@ -156,7 +174,7 @@ public class TowerSelecter : MonoBehaviour
 
         if (tower == null)
         {
-            DestroyObject(newTower.gameObject);
+           // DestroyObject(newTower.gameObject);
         } else
         {
             DestroyObject(tower.gameObject);
@@ -165,11 +183,8 @@ public class TowerSelecter : MonoBehaviour
         decidedTower = PickTower(ref towerBase, ref towerHead, ref fodder1, ref fodder2);
 
         SpawnTowerForViewing(towerPosition, towerBase, towerHead);
-        //newTower = Instantiate(decidedTower, towerPosition, Quaternion.identity);
 
         tower.transform.localScale = new Vector3(.3f, .3f, .3f);
-        //newTower.transform.localScale = new Vector3(.3f, .3f, .3f);
-        print("summoned");
     }
 
     // plug this into the vector 3 for position, instead of the defaulted 0,0,0
@@ -189,7 +204,6 @@ public class TowerSelecter : MonoBehaviour
         // I CAN hardcode stuff i dont have yet with this hack.  For slow and light tower, put it as an empty object.  It will get added, not throw an excepttion  AND be invisible and take low power.
         print(towerBase.name);
         float headHeight = ((towerBase.GetComponentInChildren<MeshFilter>().sharedMesh.bounds.extents.y) * .94f); //This is to account for bigger meshes    // + (obj2.GetComponent<MeshFilter>().sharedMesh.bounds.extents.y));
-        //Instantiate(container, new Vector3(0, 0, 0), Quaternion.identity);
         var tBase = Instantiate(towerBase, position, Quaternion.identity);
         // use this for the placement
         var tHead = Instantiate(towerHead, (position + new Vector3(0, headHeight, 0)), Quaternion.identity); //new Vector3(0, headHeight, 0)
@@ -207,113 +221,147 @@ public class TowerSelecter : MonoBehaviour
     public Tower SetTowerBaseAndHead()
     {
         List<Dropdown.OptionData> list = towerTurret.options;
-        //for (int i = 0; i < list.Count; i++)
-        //{
-            string tower = list[towerTurret.value].text;//towerTurret.options(towerTurret.value).text;
-            if (tower.Equals("RifledTower"))
-            {
-                print("Rifled Tower selected");
-                FocusRifledTowers();
-                decidedTower = basicRifledTower;
-            }
-            if (tower.Equals("AssaultTower"))
-            {
-                print("AssaultTower Turret selected");
-                FocusAssaultTowers();
-                decidedTower = basicRifledTower;
-            }
-            if (tower.Equals("FlameTower"))
-            {
-                print("Flame Turret selected");
-                FocusFireTowers();
-                PickFireTower();
-            }
-            if (tower.Equals("LighteningTower"))
-            {
-                print("Light Turret selected");
-                FocusLighteningTowers();
-                decidedTower = basicLightTower;
-            }
-            if (tower.Equals("PlasmaTower"))
-            {
-                print("PlasmaTower Turret selected");
-                FocusPlasmaTowers();
-                decidedTower = basicPlasmaTower;
-            }
-            if (tower.Equals("SlowTower"))
-            {
-                print("SlowTower Turret selected");
-                FocusSlowTowers();
-                decidedTower = basicIceTower;
-            //}
+
+        string tower = list[towerTurret.value].text;//towerTurret.options(towerTurret.value).text;
+        if (tower.Equals("RifledTower"))
+        {
+            //print("Rifled Tower selected");
+            FocusRifledTowers();
+            //StartCoroutine(FocusRifledTowerss());
+            //decidedTower = basicRifledTower;
         }
+        if (tower.Equals("AssaultTower"))
+        {
+            FocusAssaultTowers();
+        }
+        if (tower.Equals("FlameTower"))
+        {
+            FocusFireTowers();
+        }
+        if (tower.Equals("LighteningTower"))
+        {
+            FocusLighteningTowers();
+        }
+        if (tower.Equals("PlasmaTower"))
+        {
+            FocusPlasmaTowers();
+        }
+        if (tower.Equals("SlowTower"))
+        {
+            FocusSlowTowers();
+        }
+
         return decidedTower;
     }
 
-    private void PickFireTower()
-    {
-        if (towerTurret.value == 1 && towerBase.value == 0)
-        {
-            decidedTower = basicFlameTower;
-        }
-        if (towerTurret.value == 1 && towerBase.value == 1)
-        {
-            decidedTower = tallFlameTower;
-        }
-        if (towerTurret.value == 1 && towerBase.value == 2)
-        {
-            decidedTower = heavyFlameTower;
-        }
-        if (towerTurret.value == 1 && towerBase.value == 3)
-        {
-            decidedTower = lightFlameTower;
-        }
-        if (towerTurret.value == 1 && towerBase.value == 4)
-        {
-            decidedTower = alienFlameTower;
-        }
-    }
 
     private void FocusFireTowers()
     {
         towerBase.ClearOptions();
+        towerBarrel.ClearOptions();
+        List<string> fireBarrels = new List<string> { "Basic Barrel", "Flame Thrower" };
         List<string> fireBases = new List<string> { "Basic Base", "Tall Base", "Heavy Base", "Light Base", "Alien Base" };
+        towerBarrel.AddOptions(fireBarrels);
+        towerBarrel.RefreshShownValue();
         towerBase.AddOptions(fireBases);
+        towerBase.RefreshShownValue();
     }
 
     private void FocusRifledTowers()
     {
+        //towerBarrel.value = 0;
+        //towerBase.value = 0;
         towerBase.ClearOptions();
+        towerBarrel.ClearOptions();
+        List<string> Barrels = new List<string> { "Basic Barrel" };
         List<string> rifledBases = new List<string> { "Basic Base" };
+        towerBarrel.AddOptions(Barrels);
+        towerBarrel.RefreshShownValue();
         towerBase.AddOptions(rifledBases);
+        towerBase.RefreshShownValue();
     }
+    //private IEnumerator FocusRifledTowerss()
+    //{
+    //    //towerBarrel.value = 0;
+    //    //towerBase.value = 0;
+    //    try
+    //    {
+    //        towerBarrel.ClearOptions();
+    //        List<string> Barrels = new List<string> { "Basic Barrel" };
+    //        towerBarrel.AddOptions(Barrels);
+    //        towerBarrel.value = 0;
+    //        towerBarrel.Select();
+    //        //towerBarrel.RefreshShownValue();
+
+    //    } catch(Exception e)
+    //    {
+    //        print(e.Message);
+    //    }
+
+
+    //    towerBase.ClearOptions();
+
+    //    //yield return new WaitForSeconds(.15f);
+    //    //print("Waited the .15!");
+    //    //yield return new WaitForEndOfFrame();
+    //    List<string> rifledBases = new List<string> { "Basic Base" };
+    //    towerBase.AddOptions(rifledBases);
+    //    towerBase.value = 0;
+    //    towerBase.Select();
+    //    //towerBase.RefreshShownValue();
+    //    towerBarrel.value = 0;
+    //    towerBase.value = 0;
+    //    print("finished resetting");
+    //    yield return null;
+    //}
 
     private void FocusAssaultTowers() 
     {
         towerBase.ClearOptions();
+        towerBarrel.ClearOptions();
+        List<string> Barrels = new List<string> { "Basic Barrel" };
         List<string> assaultBases = new List<string> { "Basic Base" };
+        towerBarrel.AddOptions(Barrels);
+        towerBarrel.RefreshShownValue();
         towerBase.AddOptions(assaultBases);
+        towerBase.RefreshShownValue();
     }
 
     private void FocusLighteningTowers()
     {
         towerBase.ClearOptions();
+        towerBarrel.ClearOptions();
+        List<string> Barrels = new List<string> { "Basic Barrel" };
         List<string> lighteningBases = new List<string> { "Basic Base" };
+        towerBarrel.AddOptions(Barrels);
+        towerBarrel.RefreshShownValue();
         towerBase.AddOptions(lighteningBases);
+        towerBase.RefreshShownValue();
     }
 
     private void FocusSlowTowers()
     {
         towerBase.ClearOptions();
+        towerBarrel.ClearOptions();
+        List<string> Barrels = new List<string> { "Basic Barrel" };
         List<string> slowBases = new List<string> { "Basic Base" };
+        towerBarrel.AddOptions(Barrels);
+        towerBarrel.RefreshShownValue();
         towerBase.AddOptions(slowBases);
+        towerBase.RefreshShownValue();
+        print("finished resetting the slow tower");
     }
 
     private void FocusPlasmaTowers()
     {
         towerBase.ClearOptions();
+        towerBarrel.ClearOptions();
+        List<string> Barrels = new List<string> { "Basic Barrel" };
         List<string> plasmaBases = new List<string> { "Basic Base" };
+        towerBarrel.AddOptions(Barrels);
+        towerBarrel.RefreshShownValue();
         towerBase.AddOptions(plasmaBases);
+        towerBase.RefreshShownValue();
     }
 
     /// <summary>
@@ -328,58 +376,71 @@ public class TowerSelecter : MonoBehaviour
     }
 
 
-    public Tower PickTower(ref Tower turretBase, ref GameObject towerHead, ref int baseType, ref int towerType)
+    public Tower PickTower(ref Tower turretBase, ref GameObject towerHead, ref int baseType, ref int towerBarrelType)
     {
         List<Dropdown.OptionData> list = towerTurret.options;
         //for (int i = 0; i < list.Count; i++)
         //{
-        baseType = towerBase.value;
-        towerType = towerTurret.value;
+        if (changingTowerType)
+        {
+            baseType = 0;
+            towerBarrelType = 0;
+        } else
+        {
+            baseType = towerBase.value;
+            towerBarrelType = towerBarrel.value;
+        }
+
+        print("3 Base:" + towerBase.value + " Barrel:" + towerBarrel.value);
+
 
         string tower = list[towerTurret.value].text;//towerTurret.options(towerTurret.value).text;
 
         if (tower.Equals("RifledTower"))
         {
-            print("Rifled Tower selected");
-            FocusRifledTowers(ref turretBase, ref towerHead);
+            //print("Rifled Tower selected");
+            FocusRifledTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
         if (tower.Equals("AssaultTower"))
         {
-            print("AssaultTower Turret selected");
-            FocusAssaultTowers(ref turretBase, ref towerHead);
+            //print("AssaultTower Turret selected");
+            FocusAssaultTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
         if (tower.Equals("FlameTower"))
         {
-            print("Flame Turret selected");
-            FocusFireTowers(ref turretBase, ref towerHead);
+            //print("Flame Turret selected");
+            FocusFireTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
             //PickFireTower();
         }
         if (tower.Equals("LighteningTower"))
         {
-            print("Light Turret selected");
-            FocusLighteningTowers(ref turretBase, ref towerHead);
+            //print("Light Turret selected");
+            FocusLighteningTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
         if (tower.Equals("PlasmaTower"))
         {
-            print("PlasmaTower Turret selected");
-            FocusPlasmaTowers(ref turretBase, ref towerHead);
+            //print("PlasmaTower Turret selected");
+            FocusPlasmaTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
         if (tower.Equals("SlowTower"))
         {
-            print("SlowTower Turret selected");
-            FocusSlowTowers(ref turretBase, ref towerHead);
+            //print("SlowTower Turret selected");
+            FocusSlowTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
 
         return decidedTower;
     }
 
 
-    private void FocusFireTowers(ref Tower turretBase, ref GameObject turretHead)
+    private void FocusFireTowers(ref Tower turretBase, ref GameObject turretHead, int barrelVal, int baseVal)
     {
-        switch (towerBarrel.value)
+        switch (barrelVal)
         {
             case (int)FlameHead.Basic:
                 turretHead = basicFlameTowerHead;
+                break;
+            case (int)FlameHead.FlameThrower:
+                turretHead = flameThrowerFlameTowerHead;
                 break;
             default:
                 print("Error with selecting fire Barrel, value is appearing as : " + towerBarrel.value);
@@ -409,9 +470,36 @@ public class TowerSelecter : MonoBehaviour
         }
     }
 
-    private void FocusRifledTowers(ref Tower turretBase, ref GameObject turretHead)
+    private void FocusRifledTowers(ref Tower turretBase, ref GameObject turretHead, int barrelVal, int baseVal)
     {
-        switch (towerBarrel.value)
+        print("4 Base:" + towerBase.value + " Barrel:" + towerBarrel.value);
+
+        switch (barrelVal)
+        {
+            case (int)RifledHead.Basic:
+                turretHead = basicRifledTowerHead;
+                break;
+            default:
+                turretHead = basicRifledTowerHead;
+
+                print("Error with selecting Barrel, value is appearing as : " + towerBarrel.value);
+                break;
+        }
+
+        switch (baseVal)
+        {
+            case (int)RifledBase.Basic:
+                turretBase = basicRifledTowerBase;
+                break;
+            default:
+                print("Error with selecting  Base, value is appearing as : " + towerBase.value);
+                break;
+        }
+    }
+
+    private void FocusAssaultTowers(ref Tower turretBase, ref GameObject turretHead, int barrelVal, int baseVal)
+    {
+        switch (barrelVal)
         {
             case (int)RifledHead.Basic:
                 turretHead = basicRifledTowerHead;
@@ -421,7 +509,7 @@ public class TowerSelecter : MonoBehaviour
                 break;
         }
 
-        switch (towerBase.value)
+        switch (baseVal)
         {
             case (int)RifledBase.Basic:
                 turretBase = basicRifledTowerBase;
@@ -432,94 +520,71 @@ public class TowerSelecter : MonoBehaviour
         }
     }
 
-    private void FocusAssaultTowers(ref Tower turretBase, ref GameObject turretHead)
+    private void FocusLighteningTowers(ref Tower turretBase, ref GameObject turretHead, int barrelVal, int baseVal)
     {
-        switch (towerBarrel.value)
-        {
-            case (int)RifledHead.Basic:
-                turretHead = basicRifledTowerHead;
-                break;
-            default:
-                print("Error with selecting fire Barrel, value is appearing as : " + towerBarrel.value);
-                break;
-        }
-
-        switch (towerBase.value)
-        {
-            case (int)RifledBase.Basic:
-                turretBase = basicRifledTowerBase;
-                break;
-            default:
-                print("Error with selecting fire Base, value is appearing as : " + towerBase.value);
-                break;
-        }
-    }
-
-    private void FocusLighteningTowers(ref Tower turretBase, ref GameObject turretHead)
-    {
-        switch (towerBarrel.value)
+        switch (barrelVal)
         {
             case (int)LightningHead.Basic:
                 turretHead = new GameObject();
                 break;
             default:
-                print("Error with selecting fire Barrel, value is appearing as : " + towerBarrel.value);
+                print("Error with selecting  Barrel, value is appearing as : " + towerBarrel.value);
                 break;
         }
 
-        switch (towerBase.value)
+        switch (baseVal)
         {
             case (int)LightningBase.Basic:
                 turretBase = basicLightTowerBase;
                 break;
             default:
-                print("Error with selecting fire Base, value is appearing as : " + towerBase.value);
+                print("Error with selecting  Base, value is appearing as : " + towerBase.value);
                 break;
         }
     }
 
-    private void FocusSlowTowers(ref Tower turretBase, ref GameObject turretHead)
+    private void FocusSlowTowers(ref Tower turretBase, ref GameObject turretHead, int barrelVal, int baseVal)
     {
-        switch (towerBarrel.value)
+        switch (barrelVal)
         {
             case (int)IceHead.Basic:
                 turretHead = new GameObject();
                 break;
             default:
-                print("Error with selecting fire Barrel, value is appearing as : " + towerBarrel.value);
+                print("Error with selecting  Barrel, value is appearing as : " + towerBarrel.value);
                 break;
         }
 
-        switch (towerBase.value)
+        switch (baseVal)
         {
             case (int)IceBase.Basic:
                 turretBase = basicIceTowerBase;
                 break;
             default:
-                print("Error with selecting fire Base, value is appearing as : " + towerBase.value);
+                print("Error with selecting  Base, value is appearing as : " + towerBase.value);
                 break;
         }
     }
 
-    private void FocusPlasmaTowers(ref Tower turretBase, ref GameObject turretHead)
+    private void FocusPlasmaTowers(ref Tower turretBase, ref GameObject turretHead, int barrelVal, int baseVal)
     {
-        switch (towerBarrel.value)
+        switch (barrelVal)
         {
             case (int)PlasmaHead.Basic:
                 turretHead = basicPlasmaTowerHead;
                 break;
             default:
-                print("Error with selecting fire Barrel, value is appearing as : " + towerBarrel.value);
+                print("Error with selecting  Barrel, value is appearing as : " + towerBarrel.value);
                 break;
         }
 
-        switch (towerBase.value)
+        switch (baseVal)
         {
             case (int)PlasmaBase.Basic:
                 turretBase = basicPlasmaTowerBase;
                 break;
             default:
-                print("Error with selecting fire Base, value is appearing as : " + towerBase.value);
+                print("Error with selecting  Base, value is appearing as : " + towerBase.value);
                 break;
         }
     }

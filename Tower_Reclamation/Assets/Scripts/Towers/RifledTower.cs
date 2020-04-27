@@ -10,13 +10,13 @@ public class RifledTower : Tower {
     //[SerializeField] float attackRange = 32f;
     //public new int goldCost = 50;
 
-    [SerializeField] ParticleSystem projectileParticle;
+    ParticleSystem projectileParticle = null;
     Singleton singleton;
     //[SerializeField] float towerDmg = 12;
     //[SerializeField] private float currentTowerDmg = 12;
     // State of tower
 
-
+    
     // Buff info
     //bool keepBuffed = false;
     readonly new bool canSilverWiring = true;
@@ -39,6 +39,11 @@ public class RifledTower : Tower {
         currentTowerDmg = towerDmg;
         currentAttackRange = attackRange;
 	}
+
+    override public void DelayedStart()
+    {
+        projectileParticle = GetComponentInChildren<ParticleSystem>();
+    }
 
 
     //todo  check towerBuffs - is it in start? does it need a method? sync light tower, Tower.cs and others so its consistent.
@@ -70,6 +75,12 @@ public class RifledTower : Tower {
     // Update is called once per frame
     void Update () {
         // add in here about having a priority target or something
+        if (projectileParticle == null)
+        {
+            return; // not initiallized yet
+        }
+
+
         if (preferedEnemyBody != null && preferedEnemyBody != targetEnemyBody)
         {
             float distanceToPreferedEnemy = Vector3.Distance(preferedEnemyBody.gameObject.transform.position, gameObject.transform.position);

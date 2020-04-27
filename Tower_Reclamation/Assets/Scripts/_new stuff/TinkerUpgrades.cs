@@ -43,7 +43,6 @@ public class TinkerUpgrades : MonoBehaviour {
             learnableUpgrades = new List<int>() { 0, 1, 2, 3, 4 };
             currentUpgradeLevels = new List<int>() { 0, 0, 0, 0, 0 };
             // not completely true, but to make sure it doesnt loop
-            print("I am default loaded!");
             loadMeOnce = false;
             hasPicked = false;
             //print(" only once!!!");
@@ -144,7 +143,7 @@ public class TinkerUpgrades : MonoBehaviour {
                 selectedDescription = "Nothing new could be found.";
                 // KYLE TODO do better than simply not exist/  Maybe disable or put in that selecting them does a different action andl iterally is a waste.
                 GetComponent<Button>().interactable = false;
-                print("nothing new");
+                //print("nothing new");
                 return;
             }
 

@@ -125,14 +125,12 @@ public class SaveAndLoad : MonoBehaviour {
 
                 //if (!loadingBase.isDone)
                 //{
-                print("Curious again, " + loadingBase.progress);
                 //}
 
                 GetReferences();
 
                 var x = GameObject.FindGameObjectWithTag("TowerInfo");
                 towerListObj = x.GetComponentInChildren<PlayerTowerLog>();
-                print(x.GetComponentInChildren<PlayerTowerLog>());
 
                 BinaryFormatter bf = new BinaryFormatter();
                 // ?????????????????????????????? openWrite?

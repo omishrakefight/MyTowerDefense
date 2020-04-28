@@ -13,11 +13,11 @@ public class SaveAndLoad : MonoBehaviour {
 
     bool finishedLoading = false;
     SaveSerializedObject saver;
-    PlayerTowerLog towerListObj;
-    Singleton singleton;
-    TinkerUpgrades tinkerUpgrades;
+    PlayerTowerLog _towerListObj;
+    Singleton _singleton;
+    TinkerUpgrades _tinkerUpgrades;
     //[SerializeField] ChooseNextMissionPath missionChoice;
-    ChooseNextMissionPath missionChoice;
+    ChooseNextMissionPath _missionChoice;
 
     // create a new serializable object and then just import / export into it THEN serialize it here.
     // Use this for initialization
@@ -35,37 +35,39 @@ public class SaveAndLoad : MonoBehaviour {
 
     private void GetReferences()
     {
-        missionChoice = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<ChooseNextMissionPath>();
-        towerListObj = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<PlayerTowerLog>();// FindObjectOfType<PlayerTowerLog>();
-        singleton = FindObjectOfType<Singleton>();
-        tinkerUpgrades = FindObjectOfType<TinkerUpgrades>();
-        //print(GameObject.FindGameObjectWithTag("TowerInfo"));
+        _missionChoice = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<ChooseNextMissionPath>();
+        _towerListObj = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<PlayerTowerLog>();// FindObjectOfType<PlayerTowerLog>();
+        _singleton = FindObjectOfType<Singleton>();
+        _tinkerUpgrades = FindObjectOfType<TinkerUpgrades>();
+    }
 
-        towerList = towerListObj.SaveTowers();
+    private void FillInSaveObject()
+    {
+        towerList = _towerListObj.SaveTowers();
 
         saver = new SaveSerializedObject();
 
-        saver.SaveTowers(towerListObj.SaveTowers());
-        saver.IsHasChosenATower(singleton.isHasLearnedATower);
+        saver.SaveTowers(_towerListObj.SaveTowers());
+        saver.IsHasChosenATower(_singleton.isHasLearnedATower);
         // need to convert back to a list when reading in. ?
         // ERROR IS BEACAUSE THE SCRIPT IS DISABLED IN SAVE WINDOW, THE CANVASSES ARE ALL DISABLED EXCEPT USED ONE.
-        saver.SaveEnemyOptions(missionChoice.firstEnemySet.ToArray(), missionChoice.secondEnemySet.ToArray());
+        saver.SaveEnemyOptions(_missionChoice.firstEnemySet.ToArray(), _missionChoice.secondEnemySet.ToArray());
 
-        saver.SaveTinkerRoomInfo(tinkerUpgrades.SaveCurrentUpgradeLevels(), tinkerUpgrades.SaveLearnableUpgrades(), tinkerUpgrades.SavePossibleOptions(), tinkerUpgrades.SaveHasPicked());  
+        saver.SaveTinkerRoomInfo(_tinkerUpgrades.SaveCurrentUpgradeLevels(), _tinkerUpgrades.SaveLearnableUpgrades(), _tinkerUpgrades.SavePossibleOptions(), _tinkerUpgrades.SaveHasPicked());
 
-        if (missionChoice.isHasChosen)
+        if (_missionChoice.isHasChosen)
         {
             saver.IsHasChosenEnemies(true);
-            saver.SaveEnemiesChosen(singleton.enemyList.ToArray());
+            saver.SaveEnemiesChosen(_singleton.enemyList.ToArray());
         }
-        //saver = GetComponent<SaveSerializedObject>();
 
-        saver.towerList = towerListObj.SaveTowers();
-
+        saver.towerList = _towerListObj.SaveTowers();
     }
+
     public void Save()
     {
         GetReferences();
+        FillInSaveObject();
 
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/TowerInformation.dat");
@@ -121,7 +123,7 @@ public class SaveAndLoad : MonoBehaviour {
 
             if (!newBase)
             {
-                singleton.isHasLearnedATower = savedFile.hasChosenATower;
+                _singleton.isHasLearnedATower = savedFile.hasChosenATower;
             }
             
         }
@@ -140,47 +142,31 @@ public class SaveAndLoad : MonoBehaviour {
 
         while (!loadingBase.isDone)
         {
-            yield return new WaitForSeconds(.75f);
+            yield return new WaitForSeconds(.50f);
         }
 
 
+        // set everything that needs an active base.  
         try
         {           
             try
             {
+                // need the references of base objects AFTER load
                 GetReferences();
 
                 var x = GameObject.FindGameObjectWithTag("TowerInfo");
-                towerListObj = x.GetComponentInChildren<PlayerTowerLog>();
+                _towerListObj = x.GetComponentInChildren<PlayerTowerLog>();
 
+                _towerListObj.LoadTowers(savedFile.towerList);
 
-                //print(towerListObj);
-                towerListObj.LoadTowers(savedFile.towerList);
-
-                //if it is loading onld base, load these, if not get new ones.
+                //if it is loading old base, load these, if not get new ones.
                 if (!newBase)
                 {
-                    missionChoice.LoadPathChoices(savedFile.enemyOption1List, savedFile.enemyOption2List);
-
-                    // base is already loaded by this point.  Need to move this up or move the other down, by now it has already initialized the buttons on a 'not picked'
-                    //setting.
+                    _missionChoice.LoadPathChoices(savedFile.enemyOption1List, savedFile.enemyOption2List);
                     
-
-                    tinkerUpgrades.LoadInfo(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked);
-                    tinkerUpgrades.AddToBackupList();
+                    _tinkerUpgrades.LoadInfo(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked);
+                    _tinkerUpgrades.AddToBackupList();
                 }
-
-                // ---- they can choose new path each time for now.
-                //if (f.hasChosenEnemies)
-                //{
-                //    singleton.LoadEnemyList(f.enemyList);
-                //    //missionChoice.   set the has chosen a path variable
-                //    //-----------^^^^^^^^
-                //}
-
-                //towerList = towerLog.towerList; // initializing off of new object.
-
-                // initialize or create whatever wiht information now.
 
             }
             catch (Exception e)
@@ -190,7 +176,6 @@ public class SaveAndLoad : MonoBehaviour {
             finally
             {
                 
-
             }
         }
         catch(Exception z)

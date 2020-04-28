@@ -61,7 +61,6 @@ public class TowerFactory : MonoBehaviour {
             {
                 buffTower = true;
             }
-            //var newTower = Instantiate(tower, lastWaypoint.transform.position, Quaternion.identity);
             GameObject newTower = StackTower(towerBase, towerHead, baseType, headType, buffTower);
             newTower.transform.parent = towerParentTransform;
             lastWaypoint.isAvailable = false;
@@ -141,28 +140,6 @@ public class TowerFactory : MonoBehaviour {
 
         cost = cost * percentToPay;
         return cost;
-        //if (tower.buttonName.Contains("Rifled"))
-        //{
-        //    return (int)TowerCosts.RifledTowerCost;
-        //}
-        //else if (tower.buttonName.Contains("Assault"))
-        //{
-        //    return (int)TowerCosts.AssaultTowerCost;
-        //}
-        //else if (tower.buttonName.Contains("Flame"))
-        //{
-        //    return (int)TowerCosts.FlameTowerCost;
-        //}
-        //else if (tower.buttonName.Contains("Lightning"))
-        //{
-        //    return (int)TowerCosts.LighteningTowerCost;
-        //}
-        //else if (tower.buttonName.Contains("Slow"))
-        //{
-        //    return (int)TowerCosts.SlowTowerCost;
-        //}
-
-        return 999;
     }
 
     public void AddRifledTower()
@@ -170,8 +147,6 @@ public class TowerFactory : MonoBehaviour {
         int currentGold = FindObjectOfType<GoldManagement>().CurrentGold();
 
         // this was used to get access to inactive game objects, but upon load it was working correctly anyways.... w/e
-        //rifledTowerPrefab.GetComponentsInChildren<>(true)
-        //GetComponentInChildren<RifledTower>(true).goldCost
         if (lastWaypoint.isAvailable && currentGold >= rifledTowerPrefab.goldCost)
         {
             var newTower = Instantiate(rifledTowerPrefab, lastWaypoint.transform.position, Quaternion.identity);

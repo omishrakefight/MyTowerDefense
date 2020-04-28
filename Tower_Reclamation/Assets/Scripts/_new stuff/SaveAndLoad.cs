@@ -107,6 +107,34 @@ public class SaveAndLoad : MonoBehaviour {
 
     public IEnumerator LoadFromFile(bool newBase)
     {
+        // This is done in 3 steps, first, load file and initialize the singleton.
+        // 2nd is to load base (singleton already has loaded the setting base needs)
+        // 3rd is to do all the loading that requires the base active.
+
+        SaveSerializedObject savedFile = null;
+        FileStream file = null;
+        try
+        {
+            file = File.Open(Application.persistentDataPath + "/TowerInformation.dat", FileMode.Open);
+            BinaryFormatter bf = new BinaryFormatter();
+            savedFile = (SaveSerializedObject)bf.Deserialize(file);
+
+            if (!newBase)
+            {
+                singleton.isHasLearnedATower = savedFile.hasChosenATower;
+            }
+            
+        }
+        catch (Exception e1)
+        {
+            print(e1.Message);
+        }
+        finally
+        {
+            file.Close();
+        }
+
+        // Loading the base.
         AsyncOperation loadingBase;
         loadingBase = SceneManager.LoadSceneAsync("_Scenes/_Base");
 
@@ -114,42 +142,31 @@ public class SaveAndLoad : MonoBehaviour {
         {
             yield return new WaitForSeconds(.75f);
         }
-        try
-        {
 
-            FileStream file = File.Open(Application.persistentDataPath + "/TowerInformation.dat", FileMode.Open);
+
+        try
+        {           
             try
             {
-
-                // load base location
-
-                //if (!loadingBase.isDone)
-                //{
-                //}
-
                 GetReferences();
 
                 var x = GameObject.FindGameObjectWithTag("TowerInfo");
                 towerListObj = x.GetComponentInChildren<PlayerTowerLog>();
 
-                BinaryFormatter bf = new BinaryFormatter();
-                // ?????????????????????????????? openWrite?
-                
-
-                SaveSerializedObject f = (SaveSerializedObject)bf.Deserialize(file);
-
-
 
                 //print(towerListObj);
-                towerListObj.LoadTowers(f.towerList);
+                towerListObj.LoadTowers(savedFile.towerList);
 
                 //if it is loading onld base, load these, if not get new ones.
                 if (!newBase)
                 {
-                    missionChoice.LoadPathChoices(f.enemyOption1List, f.enemyOption2List);
-                    singleton.isHasLearnedATower = f.hasChosenATower;
+                    missionChoice.LoadPathChoices(savedFile.enemyOption1List, savedFile.enemyOption2List);
 
-                    tinkerUpgrades.LoadInfo(f.currentUpgradeLevels, f.learnableUpgrades, f.possibleOptions, f.hasPicked);
+                    // base is already loaded by this point.  Need to move this up or move the other down, by now it has already initialized the buttons on a 'not picked'
+                    //setting.
+                    
+
+                    tinkerUpgrades.LoadInfo(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked);
                     tinkerUpgrades.AddToBackupList();
                 }
 
@@ -160,7 +177,6 @@ public class SaveAndLoad : MonoBehaviour {
                 //    //missionChoice.   set the has chosen a path variable
                 //    //-----------^^^^^^^^
                 //}
-
 
                 //towerList = towerLog.towerList; // initializing off of new object.
 
@@ -173,7 +189,7 @@ public class SaveAndLoad : MonoBehaviour {
             }
             finally
             {
-                file.Close();
+                
 
             }
         }

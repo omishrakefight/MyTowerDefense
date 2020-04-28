@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class TowerSelecter : MonoBehaviour
 {
+    #region obsolete
     [Header("Tower Blueprint")]
     [SerializeField] Dropdown towerBarrel;
     [SerializeField] Dropdown towerTurret;
@@ -13,7 +14,6 @@ public class TowerSelecter : MonoBehaviour
 
     Tower newTower;
     Tower decidedTower;
-    GameObject tower = null;
 
     [Header("Rifle Towers")]
     [SerializeField] Tower basicRifledTower;
@@ -36,7 +36,11 @@ public class TowerSelecter : MonoBehaviour
     [Header("Ice Towers")]
     [SerializeField] Tower basicIceTower;
 
+    #endregion
+
+    #region
     float turnSpeed = 6f;
+    GameObject tower = null;
 
     [SerializeField] GameObject towerPlaceholder;
     Vector3 towerPosition;
@@ -73,7 +77,7 @@ public class TowerSelecter : MonoBehaviour
     [SerializeField] Tower basicIceTowerBase;
 
     private bool changingTowerType = false;
-    
+    #endregion
 
     Singleton singleton;
     // Use this for initialization
@@ -84,7 +88,6 @@ public class TowerSelecter : MonoBehaviour
 
         //this value is for the base turret room.
         towerPosition = towerPlaceholder.transform.position;
-        //towerPosition = new Vector3(50.0f, 76f, -123.0f);
 
         towerBase.value = 0;
         towerTurret.value = 0;
@@ -93,10 +96,6 @@ public class TowerSelecter : MonoBehaviour
 
         if (towerBarrel.value == 0 && towerTurret.value == 0 && towerBase.value == 0)
         {
-            //print("reading dropdown");
-            //newTower = Instantiate(basicRifledTower, towerPosition, Quaternion.identity);
-            //newTower.transform.localScale = new Vector3(.3f, .3f, .3f);
-            //tower = new GameObject();
             ResetTowerPicture();
 
         }
@@ -111,8 +110,6 @@ public class TowerSelecter : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            //newTower = FindObjectOfType<Tower>();
-
             //newTower.transform.Rotate(new Vector3(Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0) * Time.deltaTime * speed);
             var dtx = Input.GetAxis("Mouse X") * turnSpeed;
             // var dty = Input.GetAxis("Mouse Y") * turnSpeed;
@@ -126,7 +123,6 @@ public class TowerSelecter : MonoBehaviour
                 newTower.transform.RotateAround(pivot, Vector3.up, dtx);
             }
 
-            // newTower.transform.RotateAround(pivot, Vector3.right, dty);
         }
     }
 
@@ -139,31 +135,14 @@ public class TowerSelecter : MonoBehaviour
         SetTowerBaseAndHead();
         ResetTowerPicture();
         changingTowerType = false;
-
-        //test();
     }
-
-    //private IEnumerator test()
-    //{
-    //    changingTowerType = true;
-    //    SetTowerBaseAndHead();
-    //    ResetTowerPicture();
-    //    changingTowerType = false;
-
-    //    yield return null;
-    //}
 
     // Sent from RandomTowerBlueprints.  it calls this function.
     public void UpdateTowersAvailable(List<string> towersKnown)
     {
         towerTurret.ClearOptions();
-        //foreach (string t in towersKnown)
-        //{
-        //    print(t + "You should see me!!");
-        //}
-        towerTurret.AddOptions(towersKnown);
 
-        //print("I worked and " + towersKnown.Count);
+        towerTurret.AddOptions(towersKnown);
     }
 
     public void ResetTowerPicture()
@@ -225,10 +204,7 @@ public class TowerSelecter : MonoBehaviour
         string tower = list[towerTurret.value].text;//towerTurret.options(towerTurret.value).text;
         if (tower.Equals("RifledTower"))
         {
-            //print("Rifled Tower selected");
             FocusRifledTowers();
-            //StartCoroutine(FocusRifledTowerss());
-            //decidedTower = basicRifledTower;
         }
         if (tower.Equals("AssaultTower"))
         {
@@ -254,6 +230,10 @@ public class TowerSelecter : MonoBehaviour
         return decidedTower;
     }
 
+    /// <summary>
+    /// Make a dictionary or something.  Needs a way to keep track of these and associate them with the value of their enums.  Need it to not be linked
+    /// to the order in which they are added, that way if they unlock 'alien' and 'basic', alien is value 4, but position 2 on dropdown.
+    /// </summary>
 
     private void FocusFireTowers()
     {
@@ -269,8 +249,6 @@ public class TowerSelecter : MonoBehaviour
 
     private void FocusRifledTowers()
     {
-        //towerBarrel.value = 0;
-        //towerBase.value = 0;
         towerBase.ClearOptions();
         towerBarrel.ClearOptions();
         List<string> Barrels = new List<string> { "Basic Barrel" };
@@ -280,40 +258,6 @@ public class TowerSelecter : MonoBehaviour
         towerBase.AddOptions(rifledBases);
         towerBase.RefreshShownValue();
     }
-    //private IEnumerator FocusRifledTowerss()
-    //{
-    //    //towerBarrel.value = 0;
-    //    //towerBase.value = 0;
-    //    try
-    //    {
-    //        towerBarrel.ClearOptions();
-    //        List<string> Barrels = new List<string> { "Basic Barrel" };
-    //        towerBarrel.AddOptions(Barrels);
-    //        towerBarrel.value = 0;
-    //        towerBarrel.Select();
-    //        //towerBarrel.RefreshShownValue();
-
-    //    } catch(Exception e)
-    //    {
-    //        print(e.Message);
-    //    }
-
-
-    //    towerBase.ClearOptions();
-
-    //    //yield return new WaitForSeconds(.15f);
-    //    //print("Waited the .15!");
-    //    //yield return new WaitForEndOfFrame();
-    //    List<string> rifledBases = new List<string> { "Basic Base" };
-    //    towerBase.AddOptions(rifledBases);
-    //    towerBase.value = 0;
-    //    towerBase.Select();
-    //    //towerBase.RefreshShownValue();
-    //    towerBarrel.value = 0;
-    //    towerBase.value = 0;
-    //    print("finished resetting");
-    //    yield return null;
-    //}
 
     private void FocusAssaultTowers() 
     {
@@ -379,8 +323,7 @@ public class TowerSelecter : MonoBehaviour
     public Tower PickTower(ref Tower turretBase, ref GameObject towerHead, ref int baseType, ref int towerBarrelType)
     {
         List<Dropdown.OptionData> list = towerTurret.options;
-        //for (int i = 0; i < list.Count; i++)
-        //{
+
         if (changingTowerType)
         {
             baseType = 0;
@@ -391,40 +334,31 @@ public class TowerSelecter : MonoBehaviour
             towerBarrelType = towerBarrel.value;
         }
 
-        print("3 Base:" + towerBase.value + " Barrel:" + towerBarrel.value);
-
 
         string tower = list[towerTurret.value].text;//towerTurret.options(towerTurret.value).text;
 
         if (tower.Equals("RifledTower"))
         {
-            //print("Rifled Tower selected");
             FocusRifledTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
         if (tower.Equals("AssaultTower"))
         {
-            //print("AssaultTower Turret selected");
             FocusAssaultTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
         if (tower.Equals("FlameTower"))
         {
-            //print("Flame Turret selected");
             FocusFireTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
-            //PickFireTower();
         }
         if (tower.Equals("LighteningTower"))
         {
-            //print("Light Turret selected");
             FocusLighteningTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
         if (tower.Equals("PlasmaTower"))
         {
-            //print("PlasmaTower Turret selected");
             FocusPlasmaTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
         if (tower.Equals("SlowTower"))
         {
-            //print("SlowTower Turret selected");
             FocusSlowTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
 
@@ -472,8 +406,6 @@ public class TowerSelecter : MonoBehaviour
 
     private void FocusRifledTowers(ref Tower turretBase, ref GameObject turretHead, int barrelVal, int baseVal)
     {
-        print("4 Base:" + towerBase.value + " Barrel:" + towerBarrel.value);
-
         switch (barrelVal)
         {
             case (int)RifledHead.Basic:
@@ -590,4 +522,3 @@ public class TowerSelecter : MonoBehaviour
     }
 
 }
-//towerBarrel.options.Clear();

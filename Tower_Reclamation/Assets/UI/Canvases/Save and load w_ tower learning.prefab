@@ -123,7 +123,6 @@ GameObject:
   - component: {fileID: 223326160587928020}
   - component: {fileID: 114570193376814950}
   - component: {fileID: 114484343156092006}
-  - component: {fileID: 114429227000347860}
   - component: {fileID: 114649153780540040}
   - component: {fileID: 114583547187823110}
   - component: {fileID: 114834293988804752}
@@ -1810,19 +1809,6 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: I love to eat tacos, I want another taco right now , but I am resisting
     well.  Good on me, im not even going to wawa right now. BLEHHHH
---- !u!114 &114429227000347860
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1178407642838832}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c7a8a90d400458499ad1fa51e665f5d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  towerList: 
-  missionChoice: {fileID: 0}
 --- !u!114 &114433757358336236
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2114,7 +2100,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114429227000347860}
+      - m_Target: {fileID: 0}
         m_MethodName: Load
         m_Mode: 1
         m_Arguments:
@@ -2442,7 +2428,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114429227000347860}
+      - m_Target: {fileID: 0}
         m_MethodName: Save
         m_Mode: 1
         m_Arguments:

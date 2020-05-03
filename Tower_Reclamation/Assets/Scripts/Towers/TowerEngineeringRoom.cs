@@ -11,6 +11,8 @@ public class TowerEngineeringRoom : MonoBehaviour {
     [SerializeField] Dropdown towerTurretTwo;
     [SerializeField] Dropdown towerPartTwo;
 
+    private Dictionary<string, int> flameVariantsLearnable;
+    public 
 
     // Use this for initialization
     void Start () {
@@ -25,6 +27,12 @@ public class TowerEngineeringRoom : MonoBehaviour {
         List<string> partOptions = new List<string> { "Barrel", "Base" };
         towerPartOne.AddOptions(partOptions);
         towerPartTwo.AddOptions(partOptions);
+    }
+
+
+    public void AddToDictionary()
+    {
+        flameVariantsLearnable.Add("FlameThrower", (int)FlameHead.FlameThrower);
     }
 
     // Update is called once per frame

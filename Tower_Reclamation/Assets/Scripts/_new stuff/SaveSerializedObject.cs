@@ -25,7 +25,11 @@ public class SaveSerializedObject  {
     public bool hasPicked;
     // add the bool
 
-
+        /// <summary>
+        /// I need to make more parts.  I am going to assimilate them into a single dictionary of learned ones string int,
+        ///  then I need to make the keys strings that have tower type at front (flame), and end with other type (base) and name in middle.\
+        ///  could change enums to be spaced every 20, and then have a big bool array for towers parts known.
+        /// </summary>
 
     public SaveSerializedObject()
     {

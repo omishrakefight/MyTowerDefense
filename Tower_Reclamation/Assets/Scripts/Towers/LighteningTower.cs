@@ -169,13 +169,20 @@ public class LighteningTower : Tower {
             //var sceneEnemies = FindObjectsOfType<EnemyMovement>();
             for (int i = 0; i < targets.Count; i++)
             {
-                //print("POW");
-                targets[i].GetComponent<EnemyHealth>().hitPoints -= towerDmg;
-                if (targets[i].GetComponent<EnemyHealth>().hitPoints < 1)
+                try
                 {
-                    targets[i].GetComponent<EnemyHealth>().KillsEnemyandAddsGold();
-                }
+                    //print("POW");
+                    targets[i].GetComponent<EnemyHealth>().hitPoints -= towerDmg;
+                    targets[i].GetComponent<EnemyHealth>().RefreshHealthBar();
 
+                    if (targets[i].GetComponent<EnemyHealth>().hitPoints < 1)
+                    {
+                        targets[i].GetComponent<EnemyHealth>().KillsEnemyandAddsGold();
+                    }
+                } catch (Exception e)
+                {
+                    //Do nothing, enemy may have died in this time (cant find it)
+                }
             }
             currentChargeTime = 0;
             isCharged = false;
@@ -189,7 +196,7 @@ public class LighteningTower : Tower {
         if (currentChargeTime < chargeTime)
         {
             currentChargeTime += Time.deltaTime;
-            charge.intensity = currentChargeTime / 6.33f;
+            charge.intensity = currentChargeTime / chargeTime;
         }
         else
         {

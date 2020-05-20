@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4066230776274318}
   - component: {fileID: 114358188498118118}
-  - component: {fileID: 65394785270816944}
   - component: {fileID: 114078197882030082}
   - component: {fileID: 135991062907235084}
   m_Layer: 2
@@ -41,6 +40,7 @@ GameObject:
   - component: {fileID: 33919225729078676}
   - component: {fileID: 23238961360269364}
   - component: {fileID: 65127728006215678}
+  - component: {fileID: 65171829389836614}
   m_Layer: 8
   m_Name: Lightning_Standard
   m_TagString: Untagged
@@ -70,15 +70,15 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1087647114204398}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 9.709031, y: -0.000000017795134, z: -30.149284}
+  m_LocalRotation: {x: 0.0031244261, y: 0.6980337, z: 0.0030458064, w: -0.71605164}
+  m_LocalPosition: {x: -19.6, y: 0.04, z: -29.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4275277754809944}
   - {fileID: 4485597431013818}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.5, y: -448.54, z: 0}
 --- !u!4 &4275277754809944
 Transform:
   m_ObjectHideFlags: 1
@@ -154,16 +154,16 @@ BoxCollider:
   m_GameObject: {fileID: 1304937300918440}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 18, y: 3.7, z: 17.8}
   m_Center: {x: 0, y: 2, z: 0}
---- !u!65 &65394785270816944
+--- !u!65 &65171829389836614
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1087647114204398}
+  m_GameObject: {fileID: 1304937300918440}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1

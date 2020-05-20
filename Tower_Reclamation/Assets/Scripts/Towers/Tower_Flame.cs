@@ -83,11 +83,14 @@ public class Tower_Flame : Tower {
                 //nothing, normal settings?
                 break;
             case (int)FlameBase.Alien:
+                // alien base is +10%?
                 print("Im doing alien base");
-                head.currentTowerDmg = 20f;
+                head.currentTowerDmg += (head.currentTowerDmg * .10f);
                 break;
             case (int)FlameBase.Tall:
+                // double range at 60% dmg.
                 head.BuffRange(2.0f);
+                head.currentTowerDmg -= (head.currentTowerDmg * .40f);
                 break;
             default:
                 print("Default base, I am towerint of : " + towerInt);

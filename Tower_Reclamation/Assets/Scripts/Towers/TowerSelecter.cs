@@ -38,7 +38,8 @@ public class TowerSelecter : MonoBehaviour
 
     #endregion
 
-    #region
+    #region TowerParts
+    //#TowerParts
     float turnSpeed = 6f;
     GameObject tower = null;
 
@@ -46,6 +47,8 @@ public class TowerSelecter : MonoBehaviour
     Vector3 towerPosition;
     Bounds bound;
     BoxCollider collider;
+
+    [SerializeField] GameObject empty;
 
     [Header("Flame Base")]
     [SerializeField] Tower basicFlameTowerBase;
@@ -457,7 +460,7 @@ public class TowerSelecter : MonoBehaviour
         switch (barrelVal)
         {
             case (int)LightningHead.Basic:
-                turretHead = new GameObject();
+                turretHead = empty;
                 break;
             default:
                 print("Error with selecting  Barrel, value is appearing as : " + towerBarrel.value);
@@ -480,7 +483,7 @@ public class TowerSelecter : MonoBehaviour
         switch (barrelVal)
         {
             case (int)IceHead.Basic:
-                turretHead = new GameObject();
+                turretHead = empty;
                 break;
             default:
                 print("Error with selecting  Barrel, value is appearing as : " + towerBarrel.value);

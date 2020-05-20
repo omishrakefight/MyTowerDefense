@@ -70,6 +70,11 @@ public abstract class EnemyHealth : MonoBehaviour {
         }
     }
 
+    public void RefreshHealthBar()
+    {
+        healthImage.fillAmount = (hitPoints / hitPointsMax);
+    }
+
     public virtual IEnumerator Burning(float fireDmg)
     {
         if (hitPoints < 1)

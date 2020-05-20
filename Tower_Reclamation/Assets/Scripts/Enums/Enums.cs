@@ -114,5 +114,6 @@ public enum LightningHead
 
 public enum LightningBase
 {
-    Basic = 0
+    Basic = 0,
+    Rapid = 1
 }

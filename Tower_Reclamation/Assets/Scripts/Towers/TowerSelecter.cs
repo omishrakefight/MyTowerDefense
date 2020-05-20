@@ -75,6 +75,8 @@ public class TowerSelecter : MonoBehaviour
 
     [Header("Lightening Tower Base")]
     [SerializeField] Tower basicLightTowerBase;
+    [SerializeField] Tower rapidLightTowerBase;
+
 
     [Header("Ice Tower Base")]
     [SerializeField] Tower basicIceTowerBase;
@@ -279,7 +281,7 @@ public class TowerSelecter : MonoBehaviour
         towerBase.ClearOptions();
         towerBarrel.ClearOptions();
         List<string> Barrels = new List<string> { "Basic Barrel" };
-        List<string> lighteningBases = new List<string> { "Basic Base" };
+        List<string> lighteningBases = new List<string> { "Basic Base", "Rapid Base" };
         towerBarrel.AddOptions(Barrels);
         towerBarrel.RefreshShownValue();
         towerBase.AddOptions(lighteningBases);
@@ -471,6 +473,9 @@ public class TowerSelecter : MonoBehaviour
         {
             case (int)LightningBase.Basic:
                 turretBase = basicLightTowerBase;
+                break;
+            case (int)LightningBase.Rapid:
+                turretBase = rapidLightTowerBase;
                 break;
             default:
                 print("Error with selecting  Base, value is appearing as : " + towerBase.value);

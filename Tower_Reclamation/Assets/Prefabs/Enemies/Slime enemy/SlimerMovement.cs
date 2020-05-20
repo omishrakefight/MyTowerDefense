@@ -13,6 +13,12 @@ public class SlimerMovement : EnemyMovement {
     // Update is called once per frame
     override protected void Update () {
 
+        if (punchingBase)
+        {
+            //if iv'e made it to base, stop trying to move and just hit it.
+            return;
+        }
+
         if (chilled)
         {
             StartCoroutine(Chilled(chilledMultiplier));

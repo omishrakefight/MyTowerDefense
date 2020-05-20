@@ -16,6 +16,7 @@ public class LighteningTower : Tower {
 
     [SerializeField] protected Light charge;
     [SerializeField] protected ParticleSystem projectileParticle;
+    [SerializeField] protected SphereCollider AOERange;
 
     //paramteres of each tower
     //SphereCollider attackAOE;
@@ -42,18 +43,24 @@ public class LighteningTower : Tower {
 
     protected override void Start()
     {
+
+    }
+
+    public override void DelayedStart()
+    {
+        chargeTime = 9f;
         singleton = FindObjectOfType<Singleton>();
         if (singleton.silverWiring)
         {
             reducedCost = true;
         }
-        attackRange = 10;
+        attackRange = 18;
 
         // i neeed the initialization to ge tthe turret specific stats, just make another function in here that checks and modifies, it doesnth ave to be in towerfactory.
-        towerDmg = 30;
+        towerDmg = 25;
         goldCost = (int)TowerCosts.LighteningTowerCost;
 
-        if (!keepBuffed)   {    }
+        if (!keepBuffed) { }
 
 
         if (keepBuffed)
@@ -65,84 +72,35 @@ public class LighteningTower : Tower {
         }
         base.CheckWhichUpgradesAreApplicable(ref towerDmg, ref attackRange);
         currentTowerDmg = towerDmg;
+        AOERange.radius = (attackRange * .60f);
     }
 
-    //readonly bool canSilverWiring = true;
-    //readonly bool canAlloyReasearch = true;
-    //readonly bool canSturdyTank = true;
-    //readonly bool canHeavyShelling = false;
-    //readonly bool canTowerEngineer = true;
-    //private void CheckWhichUpgradesAreApplicable(ref float towerDmg, ref float attackRange)
-    //{
-    //    float percentModifier = 1.0f;
-    //    if (canHeavyShelling)
-    //    {
-    //        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.heavyShelling);
-    //        //since most are a reduction and this is a dmg buff, i mius from 2 and multiply by difference.
-    //        float multiplyFodder = 2.0f;
-    //        percentModifier = multiplyFodder - percentModifier;
-    //        float amountToAdd = (percentModifier * towerDmg);
-    //        towerDmg += amountToAdd;
-    //    }
-    //    if(canSturdyTank)
-    //    {
-    //        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.pressurizedTank);
-    //        //since most are a reduction and this is a  buff, i mius from 2 and multiply by difference.
-    //        float multiplyFodder = 2.0f;
-    //        percentModifier = multiplyFodder - percentModifier;
-    //        float amountToAdd = (percentModifier * attackRange);
-    //        //do overlap sphere and range is the diameter?  then attack range could work easily.
-    //        attackRange += amountToAdd;
-    //    }
-    //    //throw new NotImplementedException();
-    //}
 
-    /// <summary>
-    ///  *****************************************Change layer to ignore raycast fixes targetting bug.   ***************************** need to make sure i can click children though for tower upgrades.
-    /// </summary>
-    /// <param buttonName="targets"></param>
+    public override void DetermineTowerTypeBase(int towerInt)
+    {
 
+        switch (towerInt)
+        {
+            case (int)LightningBase.Basic:
+                //nothing, normal settings?
+                break;
+            case (int)LightningBase.Rapid:
+                // alien base is +10%?
+                print("Im doing rapid base");
+                towerDmg = (towerDmg * .35f);
+                currentTowerDmg = (currentTowerDmg * .35f);
+                chargeTime = (chargeTime * .30f);
+                //AOERange.radius = (AOERange.radius * .75f);
+                attackRange = attackRange * .80f;
+                break;
+            default:
+                print("Default base, I am towerint of : " + towerInt);
+                //nothing
+                break;
+        }
+        AOERange.radius = (attackRange * .60f);
 
-    //Waypoint baseWaypoint    For if i pass it here
-
-    //void ExplosionDamage()
-    //{
-    //    //  10 is the enemy layer
-    //    Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, attackRange, 11);
-    //    int i = 0;
-    //    while (i < hitColliders.Length && hitColliders.Length > 0)
-    //    {
-    //        try
-    //        {
-    //            EnemyHealth enemyHealth = null;
-    //            print("new collider goes pow");
-    //            i++;
-    //            currentChargeTime = 0f;
-    //            isCharged = false;
-    //            if (hitColliders[i].GetComponentInParent<EnemyHealth>() != null)
-    //            {
-    //                enemyHealth = hitColliders[i].GetComponentInParent<EnemyHealth>();
-    //            }
-    //            else if (hitColliders[i].GetComponentInChildren<EnemyHealth>() != null)
-    //            {
-    //                enemyHealth = hitColliders[i].GetComponentInChildren<EnemyHealth>();
-    //            }
-    //            else
-    //            {
-    //                print(hitColliders[i].name);
-    //                continue;
-    //            }
-    //            enemyHealth.HitByNonProjectile(towerDmg);
-    //            if (enemyHealth.hitPoints < 1)
-    //            {
-    //                enemyHealth.KillsEnemyandAddsGold();
-    //            }
-    //        } catch(Exception e)
-    //        {
-    //            // nothing, the enemy may have died in the list.
-    //        }
-    //    }
-    //}
+    }
 
     private void CheckEnemyRange(List<EnemyMovement> targets)
     {
@@ -225,6 +183,36 @@ public class LighteningTower : Tower {
     {
         //Do nothing, this tower doesnt have a swivelHead so doesnt matter
     }
+
+    //readonly bool canSilverWiring = true;
+    //readonly bool canAlloyReasearch = true;
+    //readonly bool canSturdyTank = true;
+    //readonly bool canHeavyShelling = false;
+    //readonly bool canTowerEngineer = true;
+    //private void CheckWhichUpgradesAreApplicable(ref float towerDmg, ref float attackRange)
+    //{
+    //    float percentModifier = 1.0f;
+    //    if (canHeavyShelling)
+    //    {
+    //        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.heavyShelling);
+    //        //since most are a reduction and this is a dmg buff, i mius from 2 and multiply by difference.
+    //        float multiplyFodder = 2.0f;
+    //        percentModifier = multiplyFodder - percentModifier;
+    //        float amountToAdd = (percentModifier * towerDmg);
+    //        towerDmg += amountToAdd;
+    //    }
+    //    if(canSturdyTank)
+    //    {
+    //        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.pressurizedTank);
+    //        //since most are a reduction and this is a  buff, i mius from 2 and multiply by difference.
+    //        float multiplyFodder = 2.0f;
+    //        percentModifier = multiplyFodder - percentModifier;
+    //        float amountToAdd = (percentModifier * attackRange);
+    //        //do overlap sphere and range is the diameter?  then attack range could work easily.
+    //        attackRange += amountToAdd;
+    //    }
+    //    //throw new NotImplementedException();
+    //}
 
 
     /*

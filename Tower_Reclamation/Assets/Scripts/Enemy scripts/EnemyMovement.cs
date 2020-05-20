@@ -62,6 +62,12 @@ public abstract class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+        if (punchingBase)
+        {
+            //if iv'e made it to base, stop trying to move and just hit it.
+            return;
+        }
+
         if (chilled)
         {
             StartCoroutine(Chilled(chilledMultiplier));

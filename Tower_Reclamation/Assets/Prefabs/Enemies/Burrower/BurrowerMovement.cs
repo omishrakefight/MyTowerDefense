@@ -76,7 +76,9 @@ public class BurrowerMovement : EnemyMovement {
                 myHealth.Burrowed();
                 UntargetMeFools();
             }
-            
+
+            if (punchingBase)
+                return;
             transform.position = Vector3.MoveTowards(transform.position, (new Vector3(transform.position.x, (currentDigSite.y - distanceToBurrow - distanceToBurrow), transform.position.z) + heightOffset), trialSpeedForDigging);
 
         }
@@ -100,8 +102,14 @@ public class BurrowerMovement : EnemyMovement {
                 myHealth.Unburrowed();
 
             }
+            if (punchingBase)
+                return;
             transform.position = Vector3.MoveTowards(transform.position, (new Vector3(transform.position.x, (currentDigSite.y + distanceToBurrow + distanceToBurrow), transform.position.z) + heightOffset), trialSpeedForDigging);
 
+        }
+        else if (punchingBase)
+        {
+            return;
         }
         else {
             transform.position = Vector3.MoveTowards(transform.position, (path[currentPathNode + 1].transform.position + heightOffset), enemySpeedASecond);

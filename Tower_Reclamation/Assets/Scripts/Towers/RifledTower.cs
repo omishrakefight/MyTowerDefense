@@ -27,7 +27,7 @@ public class RifledTower : Tower {
 
     protected float notATankTower = 0f;
 
-
+    // minrange = 0, set it if sniper?
     override protected void Start () {
         base.Start();
         towerDmg = 9f;

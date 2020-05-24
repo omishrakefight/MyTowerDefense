@@ -80,7 +80,10 @@ public class TowerSelecter : MonoBehaviour
 
     [Header("Ice Tower Base")]
     [SerializeField] Tower basicIceTowerBase;
+    [SerializeField] Tower industrialIceTowerBase;
 
+    [Header("Ice Tower Head")]
+    [SerializeField] GameObject basicIceTowerHead;
     private bool changingTowerType = false;
     #endregion
 
@@ -293,7 +296,7 @@ public class TowerSelecter : MonoBehaviour
         towerBase.ClearOptions();
         towerBarrel.ClearOptions();
         List<string> Barrels = new List<string> { "Basic Barrel" };
-        List<string> slowBases = new List<string> { "Basic Base" };
+        List<string> slowBases = new List<string> { "Basic Base", "Industrial Base" };
         towerBarrel.AddOptions(Barrels);
         towerBarrel.RefreshShownValue();
         towerBase.AddOptions(slowBases);
@@ -488,7 +491,7 @@ public class TowerSelecter : MonoBehaviour
         switch (barrelVal)
         {
             case (int)IceHead.Basic:
-                turretHead = empty;
+                turretHead = basicIceTowerHead;
                 break;
             default:
                 print("Error with selecting  Barrel, value is appearing as : " + towerBarrel.value);
@@ -499,6 +502,9 @@ public class TowerSelecter : MonoBehaviour
         {
             case (int)IceBase.Basic:
                 turretBase = basicIceTowerBase;
+                break;
+            case (int)IceBase.Industrial:
+                turretBase = industrialIceTowerBase;
                 break;
             default:
                 print("Error with selecting  Base, value is appearing as : " + towerBase.value);

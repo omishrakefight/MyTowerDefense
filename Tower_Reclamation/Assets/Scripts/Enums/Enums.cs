@@ -104,7 +104,8 @@ public enum IceHead
 
 public enum IceBase
 {
-    Basic = 0
+    Basic = 0,
+    Industrial = 1
 }
 
 public enum LightningHead

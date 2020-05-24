@@ -2375,7 +2375,11 @@ MonoBehaviour:
     type: 2}
   rapidLightTowerBase: {fileID: 114392214568109032, guid: 97d9d275647f9814aba212f90e828c7c,
     type: 2}
-  basicIceTowerBase: {fileID: 114470172631351910, guid: f7b52aa762816ab4d95427f056391df2,
+  basicIceTowerBase: {fileID: 114105923518641360, guid: 04cf0c48a688fd14088c570098c2a837,
+    type: 2}
+  industrialIceTowerBase: {fileID: 114470172631351910, guid: f7b52aa762816ab4d95427f056391df2,
+    type: 2}
+  basicIceTowerHead: {fileID: 1907343131001750, guid: d8ff5c0458d97934bb109463102d2465,
     type: 2}
 --- !u!114 &114726297846820894
 MonoBehaviour:

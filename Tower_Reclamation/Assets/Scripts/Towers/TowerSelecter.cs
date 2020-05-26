@@ -63,9 +63,11 @@ public class TowerSelecter : MonoBehaviour
 
     [Header("Rifle Tower Base")]
     [SerializeField] Tower basicRifledTowerBase;
+    [SerializeField] Tower rapidRifledTowerBase;
 
     [Header("Rifle Tower Head")]
     [SerializeField] GameObject basicRifledTowerHead;
+    [SerializeField] GameObject sniperRifledTowerHead;
 
     [Header("Plasma Tower Base")]
     [SerializeField] Tower basicPlasmaTowerBase;
@@ -105,7 +107,7 @@ public class TowerSelecter : MonoBehaviour
         if (towerBarrel.value == 0 && towerTurret.value == 0 && towerBase.value == 0)
         {
             ResetTowerPicture();
-
+            FocusRifledTowers();
         }
         collider = tower.GetComponentInChildren<BoxCollider>();
         bound = collider.bounds;
@@ -259,8 +261,8 @@ public class TowerSelecter : MonoBehaviour
     {
         towerBase.ClearOptions();
         towerBarrel.ClearOptions();
-        List<string> Barrels = new List<string> { "Basic Barrel" };
-        List<string> rifledBases = new List<string> { "Basic Base" };
+        List<string> Barrels = new List<string> { "Basic Barrel" , "Sniper Barrel" };
+        List<string> rifledBases = new List<string> { "Basic Base", "Rapid Base" };// we removed some of the supports inside the turret, it allows for easier bullet managment, but comes at the cost of resistance.  We increase rate of fire but lower impact.
         towerBarrel.AddOptions(Barrels);
         towerBarrel.RefreshShownValue();
         towerBase.AddOptions(rifledBases);
@@ -419,6 +421,9 @@ public class TowerSelecter : MonoBehaviour
             case (int)RifledHead.Basic:
                 turretHead = basicRifledTowerHead;
                 break;
+            case (int)RifledHead.Sniper:
+                turretHead = sniperRifledTowerHead;
+                break;
             default:
                 turretHead = basicRifledTowerHead;
 
@@ -430,6 +435,9 @@ public class TowerSelecter : MonoBehaviour
         {
             case (int)RifledBase.Basic:
                 turretBase = basicRifledTowerBase;
+                break;
+            case (int)RifledBase.Rapid:
+                turretBase = rapidRifledTowerBase;
                 break;
             default:
                 print("Error with selecting  Base, value is appearing as : " + towerBase.value);

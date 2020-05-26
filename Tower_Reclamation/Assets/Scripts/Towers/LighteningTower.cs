@@ -78,7 +78,6 @@ public class LighteningTower : Tower {
 
     public override void DetermineTowerTypeBase(int towerInt)
     {
-
         switch (towerInt)
         {
             case (int)LightningBase.Basic:

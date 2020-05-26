@@ -79,12 +79,14 @@ public enum FlameBase //"Basic Base", "Tall Base", "Heavy Base", "Light Base", "
 
 public enum RifledHead
 {
-    Basic = 0
+    Basic = 0,
+    Sniper = 1
 }
 
 public enum RifledBase
 {
-    Basic = 0
+    Basic = 0,
+    Rapid = 1
 }
 
 public enum PlasmaHead

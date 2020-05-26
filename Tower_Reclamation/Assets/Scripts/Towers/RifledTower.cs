@@ -11,6 +11,7 @@ public class RifledTower : Tower {
     //public new int goldCost = 50;
 
     ParticleSystem projectileParticle = null;
+    ParticleSystem.EmissionModule emission;
     Singleton singleton;
     //[SerializeField] float towerDmg = 12;
     //[SerializeField] private float currentTowerDmg = 12;
@@ -26,26 +27,77 @@ public class RifledTower : Tower {
     readonly new bool canTowerEngineer = true;
 
     protected float notATankTower = 0f;
+    protected float minRange = 0f;
 
     // minrange = 0, set it if sniper?
     override protected void Start () {
-        base.Start();
-        towerDmg = 9f;
-        currentTowerDmg = 9f;
-        currentAttackRange = attackRange;
+
         goldCost = (int)TowerCosts.RifledTowerCost;
-        base.CheckWhichUpgradesAreApplicable(ref towerDmg, ref notATankTower);
-        CheckAndApplyBuff();
-        currentTowerDmg = towerDmg;
-        currentAttackRange = attackRange;
+       
 	}
 
     override public void DelayedStart()
     {
+        base.Start();
+        minRange = 0f;
+        towerDmg = 5f;
+        currentTowerDmg = 5f;
+        currentAttackRange = attackRange;
+        base.CheckWhichUpgradesAreApplicable(ref towerDmg, ref notATankTower);
+        CheckAndApplyBuff();
+        currentTowerDmg = towerDmg;
+        currentAttackRange = attackRange;
         projectileParticle = GetComponentInChildren<ParticleSystem>();
+        emission = projectileParticle.emission;
     }
 
+    public override void DetermineTowerTypeBase(int towerInt)
+    {
 
+        switch (towerInt)
+        {
+            case (int)RifledBase.Basic:
+                //nothing, normal settings?
+                break;
+            case (int)RifledBase.Rapid:
+                // alien base is +10%?
+                print("Im doing rapid base");
+                float changeAmount = 0;
+                changeAmount = towerDmg * .15f;
+                currentTowerDmg -= changeAmount;
+
+                changeAmount = attackRange * .05f;
+                currentAttackRange -= changeAmount;
+
+                emission.rateOverTime = (emission.rateOverTime.constant * 1.3f);
+                break;
+            default:
+                print("Default base, I am towerint of : " + towerInt);
+                //nothing
+                break;
+        }
+    }
+
+    public override void DetermineTowerHeadType(int towerInt)
+    {
+        // base emissio nrate of 1 second
+        switch (towerInt)
+        {
+            case (int)RifledHead.Basic:
+                emission.rateOverTime = (emission.rateOverTime.constant * 2f);
+                //nothing;
+                break;
+            case (int)RifledHead.Sniper:
+                currentAttackRange = attackRange * 1.75f;
+                minRange = attackRange / 3;
+                emission.rateOverTime = (emission.rateOverTime.constant / 3.5f);
+                towerDmg = towerDmg * 5;
+                currentTowerDmg = towerDmg;
+                break;
+            default:
+                break;
+        }
+    }
     //todo  check towerBuffs - is it in start? does it need a method? sync light tower, Tower.cs and others so its consistent.
 
     //Waypoint baseWaypoint    For if i pass it here
@@ -84,7 +136,7 @@ public class RifledTower : Tower {
         if (preferedEnemyBody != null && preferedEnemyBody != targetEnemyBody)
         {
             float distanceToPreferedEnemy = Vector3.Distance(preferedEnemyBody.gameObject.transform.position, gameObject.transform.position);
-            if (distanceToPreferedEnemy <= attackRange && targetEnemyBody.isTargetable)
+            if ((distanceToPreferedEnemy <= currentAttackRange && targetEnemyBody.isTargetable) && (distanceToPreferedEnemy >= minRange))
             {
                 print(preferedEnemyBody.gameObject.name);
                 targetEnemyBody = preferedEnemyBody;
@@ -104,14 +156,37 @@ public class RifledTower : Tower {
         }
 	}
 
+    override protected Transform GetClosest(Transform transformA, Transform transformB)
+    {
+        var distanceToA = Vector3.Distance(transform.position, transformA.position);
+        var distanceToB = Vector3.Distance(transform.position, transformB.position);
+
+        // Before testing, if the current closest is too close, always forfeit it.
+        if (distanceToA < minRange)
+        {
+            return transformB;
+        }
+        if (distanceToB < minRange)
+        {
+            return transformA;
+        }
+
+        // test ranges and get closest.
+        if (distanceToA <= distanceToB)
+        {
+            return transformA;
+        }
+        else
+        {
+            return transformB;
+        }
+    }
 
     private void FireAtEnemy()
     {
-
-
         float distanceToEnemy = Vector3.Distance(targetEnemy.transform.position, gameObject.transform.position);
 
-        if (distanceToEnemy <= attackRange && targetEnemyBody.isTargetable)
+        if (distanceToEnemy <= currentAttackRange && targetEnemyBody.isTargetable && distanceToEnemy >= minRange)
         {
             Shoot(true);
         }

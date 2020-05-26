@@ -2365,7 +2365,11 @@ MonoBehaviour:
     type: 2}
   basicRifledTowerBase: {fileID: 114224958929666816, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
     type: 2}
+  rapidRifledTowerBase: {fileID: 114038456962776852, guid: 77379413027baf341b219586412e8aa5,
+    type: 2}
   basicRifledTowerHead: {fileID: 1568905355939266, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
+    type: 2}
+  sniperRifledTowerHead: {fileID: 1183133832736814, guid: 3a942ad83bf0a8f49941623e72334d69,
     type: 2}
   basicPlasmaTowerBase: {fileID: 114801057434098164, guid: f72abd8f9bb4b7241a0489966bb39d06,
     type: 2}

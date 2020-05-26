@@ -105,7 +105,7 @@ public abstract class Tower : MonoBehaviour {
         targetEnemy = closestEnemy;
     }
 
-    protected Transform GetClosest(Transform transformA, Transform transformB)
+    protected virtual Transform GetClosest(Transform transformA, Transform transformB)
     {
         var distanceToA = Vector3.Distance(transform.position, transformA.position);
         var distanceToB = Vector3.Distance(transform.position, transformB.position);

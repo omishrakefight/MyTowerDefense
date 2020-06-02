@@ -89,7 +89,7 @@ public class Tower_Flame : Tower {
                 break;
             case (int)FlameBase.Tall:
                 // double range at 60% dmg.
-                head.BuffRange(2.0f);
+                head.BuffRange(1.80f);
                 head.currentTowerDmg -= (head.currentTowerDmg * .40f);
                 break;
             default:

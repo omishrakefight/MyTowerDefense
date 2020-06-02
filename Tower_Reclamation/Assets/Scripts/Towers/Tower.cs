@@ -130,6 +130,56 @@ public abstract class Tower : MonoBehaviour {
 		
 	}
 
+
+    public void CheckUpgradesForTankTower(ref float towerDmg, ref float TankAOERange)
+    {
+        Singleton singleton = FindObjectOfType<Singleton>();
+        float percentModifier = 1.0f;
+        float multiplyFodder = 1.0f;
+        float amountToAdd = 0f;
+
+        float baseTowerDmg = towerDmg;
+        float baseTankAOERange = TankAOERange;
+
+        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.pressurizedTank);
+
+        // Pressurized tank is 75% dmg 25% range.  AOE towers get more AOE than dmg.
+        percentModifier = multiplyFodder - percentModifier;
+        amountToAdd = ((percentModifier * baseTowerDmg) * .75f);
+        towerDmg += amountToAdd;
+
+        amountToAdd = ((percentModifier * baseTankAOERange) * .25f);
+        TankAOERange += amountToAdd;
+
+        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.silverWiring);
+        percentModifier = multiplyFodder - percentModifier;
+        amountToAdd = (percentModifier * baseTankAOERange);
+        TankAOERange += amountToAdd;
+    }
+
+    public void CheckUpgradesForRifledTower(ref float towerDmg, ref float towerRange)
+    {
+        Singleton singleton = FindObjectOfType<Singleton>();
+        float percentModifier = 1.0f;
+        float multiplyFodder = 1.0f;
+        float amountToAdd = 0f;
+
+        float baseTowerDmg = towerDmg;
+        float baseTowerRange = towerRange;
+
+        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.heavyShelling);
+
+        // Heavy shelling is more dmg oriented and gets full value.
+        percentModifier = multiplyFodder - percentModifier;
+        amountToAdd = (percentModifier * baseTowerDmg);
+        towerDmg += amountToAdd;
+
+        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.silverWiring);
+        percentModifier = multiplyFodder - percentModifier;
+        amountToAdd = (percentModifier * baseTowerRange);
+        towerRange += amountToAdd;
+    }
+
     // split this into 2, one for rifled towers and one for tank towers.
     // increase this, tanks increase dmg, shelling increases dmg for bullets, and silver wiring can do range?
     public void CheckWhichUpgradesAreApplicable(ref float towerDmg, ref float TankAOERange)

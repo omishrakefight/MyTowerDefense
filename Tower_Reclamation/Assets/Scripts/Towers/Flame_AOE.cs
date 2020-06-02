@@ -33,10 +33,12 @@ public class Flame_AOE : MonoBehaviour {
 
     public void DelayedStart(bool keepBuffed)
     {
-        float doesntUse = 0f;
         float rangeModifier = 1.0f;
         // 1 is shelling, 2 is tank.
-        GetComponentInParent<Tower_Flame>().CheckWhichUpgradesAreApplicable(ref doesntUse, ref rangeModifier);
+        print(towerDmg + "  prebuff    " + rangeModifier);
+        GetComponentInParent<Tower_Flame>().CheckUpgradesForTankTower(ref towerDmg, ref rangeModifier);
+        print(towerDmg + "  postbuff    " + rangeModifier);
+
 
         currentAttackRange = flameAOE.radius;
         baseAttackRange = flameAOE.radius;
@@ -60,7 +62,7 @@ public class Flame_AOE : MonoBehaviour {
 
         if (!keepBuffed)
         {
-            currentAttackRange = flameAOE.radius;
+            //currentAttackRange = flameAOE.radius;
         }
         else
         {
@@ -69,9 +71,11 @@ public class Flame_AOE : MonoBehaviour {
             currentAttackRange += baseAttackRange * .3f;
             currentAttackWidth += baseAttackWidth * .3f;
             currentTowerDmg = currentTowerDmg * 1.2f;
-            flameAOE.height = currentAttackWidth;
-            flameAOE.radius = currentAttackRange;
         }
+
+        flameAOE.height = currentAttackWidth;
+        flameAOE.radius = currentAttackRange;
+
         //after initial setup bonuses, set them equal at a 'base value' this way ingame values and resets work easily.
         baseAttackRange = currentAttackRange;
         baseAttackWidth = currentAttackWidth;

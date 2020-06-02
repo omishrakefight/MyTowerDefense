@@ -130,6 +130,8 @@ public abstract class Tower : MonoBehaviour {
 		
 	}
 
+    // split this into 2, one for rifled towers and one for tank towers.
+    // increase this, tanks increase dmg, shelling increases dmg for bullets, and silver wiring can do range?
     public void CheckWhichUpgradesAreApplicable(ref float towerDmg, ref float TankAOERange)
     {
         Singleton singleton = FindObjectOfType<Singleton>();

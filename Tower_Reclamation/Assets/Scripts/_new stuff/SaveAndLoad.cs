@@ -77,7 +77,22 @@ public class SaveAndLoad : MonoBehaviour {
 
         bf.Serialize(file, saver); // this is whats serialized.
         file.Close();
+    }
 
+    public void ContinueGame()
+    {
+        if (File.Exists(Application.persistentDataPath + "/TowerInformation.dat"))
+        {
+            LoadSavedBase();
+        } else
+        {
+            SceneManager.LoadSceneAsync("_Scenes/Base Exit Doorway");
+        }
+    }
+    
+    public void GameStart()
+    {
+        SceneManager.LoadSceneAsync("_Scenes/Base Exit Doorway");
     }
 
     public void LoadSavedBase()

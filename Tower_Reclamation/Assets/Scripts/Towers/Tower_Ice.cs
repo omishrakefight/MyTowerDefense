@@ -6,10 +6,12 @@ public class Tower_Ice : Tower {
 
     [SerializeField] Light blueLight;
     public float range;
+    protected float preFlippedChillAmount = 0f;
+    protected float chillAmount = 0f;
     Singleton singleton;
     // Use this for initialization
 
-    readonly new bool canSilverWiring = true;
+    readonly new bool cantargettingModule = true;
     readonly new bool canAlloyReasearch = true;
     readonly new bool canSturdyTank = true;
     readonly new bool canHeavyShelling = false;
@@ -19,9 +21,7 @@ public class Tower_Ice : Tower {
 
     override protected void Start()
     {
-        range = blueLight.range;
-        goldCost = (int)TowerCosts.SlowTowerCost;
-        base.CheckWhichUpgradesAreApplicable(ref notAProjectileTurret, ref range);
+
     }
 
     // Update is called once per frame
@@ -29,6 +29,16 @@ public class Tower_Ice : Tower {
     {
         // maybe hard code it? try wihtout the 1/2
         ChillAura(this.transform.position, range);
+    }
+
+    public override void DelayedStart()
+    {
+        preFlippedChillAmount = .33f;
+        range = blueLight.range;
+        goldCost = (int)TowerCosts.SlowTowerCost;
+        base.CheckUpgradesForTankTower(ref chillAmount, ref range);
+
+        chillAmount = 1f - preFlippedChillAmount;
     }
 
 
@@ -41,7 +51,7 @@ public class Tower_Ice : Tower {
             if (hitColliders[i].gameObject.GetComponentInParent<EnemyHealth>())
             {
                 //hitColliders[i].SendMessage("AddDamage");
-                hitColliders[i].gameObject.GetComponentInParent<EnemyMovement>().gotChilled(.5f);
+                hitColliders[i].gameObject.GetComponentInParent<EnemyMovement>().gotChilled(chillAmount);
                 print("ive got something in my sights.");
             }
             i++;
@@ -49,17 +59,16 @@ public class Tower_Ice : Tower {
     }
 
 
-    public override int GetTowerCost()
+    public override float GetTowerCost()
     {
-        int towerCost = 0;
-
-        towerCost = (int)TowerCosts.SlowTowerCost;
+        float towerCost = 0;
         singleton = FindObjectOfType<Singleton>();
 
-        if (singleton.silverWiring)
-        {
-            towerCost = Mathf.RoundToInt(towerCost * (float)((int)TinkerUpgradePercent.mark1 / 100f));
-        }
+        towerCost = (int)TowerCosts.SlowTowerCost;
+
+        float percentToPay = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.alloyResearch);
+
+        towerCost = towerCost * percentToPay;
 
         return towerCost;
     }

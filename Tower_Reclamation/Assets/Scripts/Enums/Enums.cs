@@ -55,7 +55,7 @@ public enum TinkerUpgradePercent
 
 public enum TinkerUpgradeNumbers //silver o, alloy 1, pressurized tank 2, heavy shelling 3, tower engineer 4
 {
-    silverWiring = 0,
+    targettingModule = 0,
     alloyResearch = 1,
     pressurizedTank = 2,
     heavyShelling = 3,

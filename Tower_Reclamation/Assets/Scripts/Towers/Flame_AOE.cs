@@ -18,7 +18,7 @@ public class Flame_AOE : MonoBehaviour {
     [SerializeField] ParticleSystem projectileParticleTwo;
     [SerializeField] ParticleSystem projectileParticleThree;
 
-    readonly new bool canSilverWiring = true;
+    readonly new bool cantargettingModule = true;
     readonly new bool canAlloyReasearch = true;
     readonly new bool canSturdyTank = true;
     readonly new bool canHeavyShelling = false;

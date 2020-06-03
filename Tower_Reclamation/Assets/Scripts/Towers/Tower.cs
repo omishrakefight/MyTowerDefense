@@ -22,7 +22,7 @@ public abstract class Tower : MonoBehaviour {
     public EnemyHealth preferedEnemyBody = null;
 
     // for tinker upgrades
-    public bool canSilverWiring = false;
+    public bool cantargettingModule = false;
     public bool canAlloyReasearch = false;
     public bool canSturdyTank = false;
     public bool canHeavyShelling = false;
@@ -120,9 +120,9 @@ public abstract class Tower : MonoBehaviour {
         }
     }
 
-    public virtual int GetTowerCost()
+    public virtual float GetTowerCost()
     {
-        return 1000;
+        return 1000f;
     }
 
     // Update is called once per frame
@@ -151,7 +151,7 @@ public abstract class Tower : MonoBehaviour {
         amountToAdd = ((percentModifier * baseTankAOERange) * .25f);
         TankAOERange += amountToAdd;
 
-        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.silverWiring);
+        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.targettingModule);
         percentModifier = multiplyFodder - percentModifier;
         amountToAdd = (percentModifier * baseTankAOERange);
         TankAOERange += amountToAdd;
@@ -174,7 +174,7 @@ public abstract class Tower : MonoBehaviour {
         amountToAdd = (percentModifier * baseTowerDmg);
         towerDmg += amountToAdd;
 
-        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.silverWiring);
+        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.targettingModule);
         percentModifier = multiplyFodder - percentModifier;
         amountToAdd = (percentModifier * baseTowerRange);
         towerRange += amountToAdd;

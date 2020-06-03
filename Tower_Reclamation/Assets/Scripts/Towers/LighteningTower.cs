@@ -26,7 +26,7 @@ public class LighteningTower : Tower {
     //bool isCharged = false;
 
     //For tinker upgrades
-    readonly new bool canSilverWiring = true;
+    readonly new bool cantargettingModule = true;
     readonly new bool canAlloyReasearch = true;
     readonly new bool canSturdyTank = true;
     readonly new bool canHeavyShelling = false;
@@ -50,15 +50,12 @@ public class LighteningTower : Tower {
     {
         chargeTime = 9f;
         singleton = FindObjectOfType<Singleton>();
-        if (singleton.silverWiring)
-        {
-            reducedCost = true;
-        }
+
         attackRange = 18;
 
         // i neeed the initialization to ge tthe turret specific stats, just make another function in here that checks and modifies, it doesnth ave to be in towerfactory.
         towerDmg = 25;
-        goldCost = (int)TowerCosts.LighteningTowerCost;
+        //goldCost = (int)TowerCosts.LighteningTowerCost;
 
         if (!keepBuffed) { }
 
@@ -70,7 +67,7 @@ public class LighteningTower : Tower {
             towerDmg = towerDmg * 1.2f;
             //attackAOE.radius = attackAOE.radius * 1.4f;
         }
-        base.CheckWhichUpgradesAreApplicable(ref towerDmg, ref attackRange);
+        base.CheckUpgradesForTankTower(ref towerDmg, ref attackRange);
         currentTowerDmg = towerDmg;
         AOERange.radius = (attackRange * .60f);
     }
@@ -163,17 +160,16 @@ public class LighteningTower : Tower {
 
     }
 
-    public override int GetTowerCost()
+    public override float GetTowerCost()
     {
-        int towerCost = 0;
-
-        towerCost = (int)TowerCosts.LighteningTowerCost;
+        float towerCost = 0;
         singleton = FindObjectOfType<Singleton>();
 
-        if (singleton.silverWiring)
-        {
-            towerCost = Mathf.RoundToInt(towerCost * (float)((int)TinkerUpgradePercent.mark1 / 100f));
-        }
+        towerCost = (int)TowerCosts.LighteningTowerCost;
+
+        float percentToPay = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.alloyResearch);
+
+        towerCost = towerCost * percentToPay;
 
         return towerCost;
     }
@@ -183,7 +179,7 @@ public class LighteningTower : Tower {
         //Do nothing, this tower doesnt have a swivelHead so doesnt matter
     }
 
-    //readonly bool canSilverWiring = true;
+    //readonly bool cantargettingModule = true;
     //readonly bool canAlloyReasearch = true;
     //readonly bool canSturdyTank = true;
     //readonly bool canHeavyShelling = false;

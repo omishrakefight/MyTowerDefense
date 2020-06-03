@@ -9,7 +9,7 @@ public class Tower_Plasma : Tower
     public float distanceToEnemyTest;
     public CapsuleCollider laser;
     [SerializeField] ParticleSystem spray;
-    List<EnemyHealth> targets = new List<EnemyHealth>();
+    List<EnemyHealth> targetsList = new List<EnemyHealth>();
     Tower_PlasmaHead plasmaTargeter;
 
     float maxCharge;
@@ -27,12 +27,18 @@ public class Tower_Plasma : Tower
     override protected void Start()
     {
         base.Start();
+
+        //laser = transform.GetComponentInChildren<CapsuleCollider>();
+    }
+
+    public override void DelayedStart()
+    {
         maxCharge = 4f;
         goldCost = (int)TowerCosts.PlasmaTowerCost;
         attackRange = 30;
         towerDmg = 18;
+        base.CheckUpgradesForRifledTower(ref towerDmg, ref attackRange);
         CheckAndApplyBuff();
-        //laser = transform.GetComponentInChildren<CapsuleCollider>();
     }
 
 
@@ -67,7 +73,7 @@ public class Tower_Plasma : Tower
 
                 HitEnemies();
                 // hit then clear them
-                targets.Clear();
+                targetsList.Clear();
                 plasmaTargeter.ClearEnemies();
                 laser.gameObject.SetActive(false);
             }
@@ -98,8 +104,8 @@ public class Tower_Plasma : Tower
 
     public void HitEnemies()
     {
-        print(targets.Count + " enemies in list");
-        foreach (EnemyHealth enemy in targets)
+        print(targetsList.Count + " enemies in list");
+        foreach (EnemyHealth enemy in targetsList)
         {
             try
             {
@@ -117,8 +123,8 @@ public class Tower_Plasma : Tower
     {
         plasmaTargeter = GetComponentInChildren<Tower_PlasmaHead>();
 
-        targets = plasmaTargeter.getEnemies();
-        print("targets " + targets.Count);
+        targetsList = plasmaTargeter.getEnemies();
+        print("targets " + targetsList.Count);
     }
 
 
@@ -147,17 +153,17 @@ public class Tower_Plasma : Tower
         }
     }
 
-    public override int GetTowerCost()
+    public override float GetTowerCost()
     {
-        int towerCost = 0;
-
-        towerCost = (int)TowerCosts.PlasmaTowerCost;
+        float towerCost = 0;
         singleton = FindObjectOfType<Singleton>();
 
-        if (singleton.silverWiring)
-        {
-            towerCost = Mathf.RoundToInt(towerCost * (float)((int)TinkerUpgradePercent.mark1 / 100f));
-        }
+        towerCost = (int)TowerCosts.PlasmaTowerCost;
+
+        float percentToPay = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.alloyResearch);
+
+        towerCost = towerCost * percentToPay;
+
         return towerCost;
     }
 }

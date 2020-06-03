@@ -193,20 +193,20 @@ public class TinkerUpgrades : MonoBehaviour {
         switch (chosenNumber)
         {
             case 0:
-                buttonName.text = "Silver Wiring: Mark " + version.ToString();
+                buttonName.text = "Targetting Module: Mark " + version.ToString();
                 switch (version)
                 {
                     case 1:
-                        selectedDescription = silverWiringI;
+                        selectedDescription = targettingModuleI;
                         break;
                     case 2:
-                        selectedDescription = silverWiringII;
+                        selectedDescription = targettingModuleII;
                         break;
                     case 3:
-                        selectedDescription = silverWiringIII;
+                        selectedDescription = targettingModuleIII;
                         break;
                     case 4:
-                        selectedDescription = silverWiringIV;
+                        selectedDescription = targettingModuleIV;
                         break;
                 }
                 break;
@@ -359,27 +359,27 @@ public class TinkerUpgrades : MonoBehaviour {
     string hintPick2 = "Pick two of the options and select";
     string outOfResearch = "You have no new options to research";
 
-    string silverWiringI = "With a more conductive wiring, faster processes are enabled.  The tower can acquire targets and shoot at them faster.";
+    string targettingModuleI = "With an updated sensor kit, the tower can now target units further away.";
     string alloyReasearchI = "By studying the art of alloy smelting, one can produce more quantity of the metals.  Increasing supply has lowered the cost.";
-    string sturdyTankI = "With research into more compressed tanks, we can put the product inside under more pressure, spraying in a farthur area.";
+    string sturdyTankI = "With research into more compressed tanks, we can put the product inside under more pressure, primarily increasing its effectiveness, but also slightly its range.";
     string heavyShellingI = "With study into the carpaces of the aliens, we have found out how to make the ballistics penetrate them more easily.";
     string towerEngineerI = "Through a better study of towers, the ramping cost of continuous upgrades is cheaper.";
 
-    string silverWiringII = "With a more conductive wiring, faster processes are enabled.  The tower can acquire targets and shoot at them faster. Mark II";
+    string targettingModuleII = "With an updated sensor kit, the tower can now target units even further away. Mark II";
     string alloyReasearchII = "By studying the art of alloy smelting, one can produce more quantity of the metals.  Increasing supply has lowered the cost.  Mark II";
-    string sturdyTankII = "With research into more compressed tanks, we can put the product inside under more pressure, spraying in a farthur area.  Mark II";
+    string sturdyTankII = "With research into more compressed tanks, we can put the product inside under more pressure, primarily increasing its effectiveness, but also slightly its range.  Mark II";
     string heavyShellingII = "With study into the carpaces of the aliens, we have found out how to make the ballistics penetrate them more easily.  Mark II";
     string towerEngineerII = "Through a better study of towers, the ramping cost of continuous upgrades is cheaper.  Mark II";
 
-    string silverWiringIII = "With a more conductive wiring, faster processes are enabled.  The tower can acquire targets and shoot at them faster.   Mark III";
+    string targettingModuleIII = "With an updated sensor kit, the tower can now target units even further away.  Mark III";
     string alloyReasearchIII = "By studying the art of alloy smelting, one can produce more quantity of the metals.  Increasing supply has lowered the cost.   Mark III";
-    string sturdyTankIII = "With research into more compressed tanks, we can put the product inside under more pressure, spraying in a farthur area.   Mark III";
+    string sturdyTankIII = "With research into more compressed tanks, we can put the product inside under more pressure, primarily increasing its effectiveness, but also slightly its range.   Mark III";
     string heavyShellingIII = "With study into the carpaces of the aliens, we have found out how to make the ballistics penetrate them more easily.  Mark III";
     string towerEngineerIII = "Through a better study of towers, the ramping cost of continuous upgrades is cheaper.   Mark III";
 
-    string silverWiringIV = "With a more conductive wiring, faster processes are enabled.  The tower can acquire targets and shoot at them faster.   Mark IV";
+    string targettingModuleIV = "With an updated sensor kit, the tower can now target units even further away.  Mark IV";
     string alloyReasearchIV = "By studying the art of alloy smelting, one can produce more quantity of the metals.  Increasing supply has lowered the cost.   Mark IV";
-    string sturdyTankIV = "With research into more compressed tanks, we can put the product inside under more pressure, spraying in a farthur area.   Mark IV";
+    string sturdyTankIV = "With research into more compressed tanks, we can put the product inside under more pressure, primarily increasing its effectiveness, but also slightly its range.   Mark IV";
     string heavyShellingIV = "With study into the carpaces of the aliens, we have found out how to make the ballistics penetrate them more easily.   Mark IV";
     string towerEngineerIV = "Through a better study of towers, the ramping cost of continuous upgrades is cheaper.   Mark IV";
     //string x = "";

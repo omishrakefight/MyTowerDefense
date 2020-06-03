@@ -21,7 +21,7 @@ public class Tower_Flame : Tower {
     // State of tower
     //[SerializeField] Transform targetEnemy;
 
-    readonly new bool canSilverWiring = true;
+    readonly new bool cantargettingModule = true;
     readonly new bool canAlloyReasearch = true;
     readonly new bool canSturdyTank = true;
     readonly new bool canHeavyShelling = false;
@@ -226,17 +226,16 @@ public class Tower_Flame : Tower {
     }
 
 
-    public override int GetTowerCost()
+    public override float GetTowerCost()
     {
-        int towerCost = 0;
-
-        towerCost = (int)TowerCosts.FlameTowerCost;
+        float towerCost = 0;
         singleton = FindObjectOfType<Singleton>();
 
-        if (singleton.silverWiring)
-        {
-            towerCost = Mathf.RoundToInt(towerCost * (float)((int)TinkerUpgradePercent.mark1 / 100f));
-        }
+        towerCost = (int)TowerCosts.FlameTowerCost;
+
+        float percentToPay = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.alloyResearch);
+
+        towerCost = towerCost * percentToPay;
 
         return towerCost;
     }

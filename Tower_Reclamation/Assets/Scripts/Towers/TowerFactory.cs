@@ -109,36 +109,36 @@ public class TowerFactory : MonoBehaviour {
 
         // *************************I could generalize this, it doesnt matter really what upgrade it is as the output is a percent.***********************
         // put this in singleton call singleton . get percent BA M i know what any upgrade is, pass in the main thing like alloyresearch
-        alloyResearchLevel = singleton.GetResearchLevel((int)TinkerUpgradeNumbers.alloyResearch);
-        switch (alloyResearchLevel)
-        {
-            case 0:
-                //this is nothing, havent researched yet
-                break;
-            case 1:
-                percentToPay = (float)TinkerUpgradePercent.mark1;
-                break;
-            case 2:
-                percentToPay = (float)TinkerUpgradePercent.mark2;
-                break;
-            case 3:
-                percentToPay = (float)TinkerUpgradePercent.mark3;
-                break;
-            case 4:
-                percentToPay = (float)TinkerUpgradePercent.mark4;
-                break;
-            default:
-                Debug.Log("Error, case exceeded expected");
-                print("Error, case exceeded expected");
-                percentToPay = 1.0f;
-                break;
-        }
+
+        //DONT need this TODO delete, just leaving here in case.  I do the calculations in singleton, redundant in here.
+
+
+        //switch (alloyResearchLevel)
+        //{
+        //    case 0:
+        //        //this is nothing, havent researched yet
+        //        break;
+        //    case 1:
+        //        percentToPay = (float)TinkerUpgradePercent.mark1;
+        //        break;
+        //    case 2:
+        //        percentToPay = (float)TinkerUpgradePercent.mark2;
+        //        break;
+        //    case 3:
+        //        percentToPay = (float)TinkerUpgradePercent.mark3;
+        //        break;
+        //    case 4:
+        //        percentToPay = (float)TinkerUpgradePercent.mark4;
+        //        break;
+        //    default:
+        //        Debug.Log("Error, case exceeded expected");
+        //        print("Error, case exceeded expected");
+        //        percentToPay = 1.0f;
+        //        break;
+        //}
         //print("Percent to pay from local function" + percentToPay);
-
-        percentToPay = singleton.GetPercentageModifier(alloyResearchLevel);
-        //print("Percent to pay from singleton function" + percentToPay);
-
-        cost = cost * percentToPay;
+        //alloyResearchLevel = singleton.GetResearchLevel((int)TinkerUpgradeNumbers.alloyResearch);
+        
         return cost;
     }
 

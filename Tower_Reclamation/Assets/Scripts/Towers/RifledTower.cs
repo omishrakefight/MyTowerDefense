@@ -20,7 +20,7 @@ public class RifledTower : Tower {
     
     // Buff info
     //bool keepBuffed = false;
-    readonly new bool canSilverWiring = true;
+    readonly new bool cantargettingModule = true;
     readonly new bool canAlloyReasearch = true;
     readonly new bool canSturdyTank = false;
     readonly new bool canHeavyShelling = true;
@@ -43,7 +43,7 @@ public class RifledTower : Tower {
         towerDmg = 5f;
         currentTowerDmg = 5f;
         currentAttackRange = attackRange;
-        base.CheckWhichUpgradesAreApplicable(ref towerDmg, ref notATankTower);
+        base.CheckUpgradesForRifledTower(ref towerDmg, ref attackRange);
         CheckAndApplyBuff();
         currentTowerDmg = towerDmg;
         currentAttackRange = attackRange;
@@ -203,17 +203,16 @@ public class RifledTower : Tower {
         emissionModule.enabled = isActive;
     }
 
-    public override int GetTowerCost()
+    public override float GetTowerCost()
     {
-        int towerCost = 0;
-
-        towerCost = (int)TowerCosts.RifledTowerCost;
+        float towerCost = 0;
         singleton = FindObjectOfType<Singleton>();
 
-        if (singleton.silverWiring)
-        {
-            towerCost = Mathf.RoundToInt(towerCost * (float)((int)TinkerUpgradePercent.mark1 / 100f));
-        }
+        towerCost = (int)TowerCosts.RifledTowerCost;
+
+        float percentToPay = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.alloyResearch);
+
+        towerCost = towerCost * percentToPay;
 
         return towerCost;
     }

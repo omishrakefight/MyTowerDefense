@@ -66,7 +66,6 @@ public sealed class Singleton : MonoBehaviour {
 
         level = 2;
         levelText.text = "Level : " + level.ToString();
-        silverWiring = true;
     }
 
     private void Awake()
@@ -287,6 +286,12 @@ public sealed class Singleton : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// This is a generic function to fetch the percentage (high end decimal) of change.  IE mark one will return .92.
+    /// You pass in the Tinker upgrade number, and this gets the version then percent.
+    /// </summary>
+    /// <param name="tinkerUpgrade"></param>
+    /// <returns></returns>
     public float GetPercentageModifier(int tinkerUpgrade)
     {
         CheckIfNeedList();
@@ -328,7 +333,7 @@ public sealed class Singleton : MonoBehaviour {
         return returnPercentModifier;
     }
 
-    public bool silverWiring = false;
+    public bool targettingModule = false;
     public bool goldWiring = false;
     public bool platinumWiring = false;
     public bool diamondWiring = false;

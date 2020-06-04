@@ -61,16 +61,17 @@ public class PauseMenu : MonoBehaviour {
 
     public void LoadMenu()
     {
+        SceneManager.LoadSceneAsync("_Scenes/TitleScene");
         print("loading the menu...");
         Resume();
     }
 
     public void QuitGame()
     {
-        if(UnityEditor.EditorApplication.isPlaying == true)
-        {
-            UnityEditor.EditorApplication.isPlaying = false;
-        }
+        //if(UnityEditor.EditorApplication.isPlaying == true)
+        //{
+        //    UnityEditor.EditorApplication.isPlaying = false;
+        //}
         Application.Quit();
         print("Quitting the game...");
     }

@@ -24,7 +24,9 @@ public class TowerButton1 : MonoBehaviour {
             buttonName1.text = (singleton.towerOneBase.name + "   cost: " + singleton.towerOneBase.GetTowerCost().ToString());
         } else
         {
-            buttonName1.text = "Unassigned";
+            // first button defaults to rifled tower
+            buttonName1.text = "Basic Rifled Tower: 50";
+            //buttonName1.text = "Unassigned";
         }
     }
 

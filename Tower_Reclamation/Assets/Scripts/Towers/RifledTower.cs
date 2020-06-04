@@ -95,6 +95,7 @@ public class RifledTower : Tower {
                 currentTowerDmg = towerDmg;
                 break;
             default:
+                emission.rateOverTime = (emission.rateOverTime.constant * 2f);
                 break;
         }
     }

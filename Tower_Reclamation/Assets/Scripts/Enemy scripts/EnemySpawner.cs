@@ -66,24 +66,25 @@ public class EnemySpawner : MonoBehaviour
 
     public IEnumerator SpawnSpecificEnemies() //List<int> enemyList
     {
+        //check for boss
+        if (checkForBoss)
+        {
+            try
+            {
+                BossEnemy boss = FindObjectOfType<BossEnemy>();
+                boss.SpawnBoss();
+                boss.BuffBossMob();
+            }
+            catch (Exception e)
+            {
+                // nothing,  I failed to find and spawn boss, all good he doesnt exist.
+            }
+            checkForBoss = false;
+        }
+
         // get on stsart the neemy list from singleton.
         foreach (int x in enemyList)
         {
-            //check for boss
-            if (checkForBoss)
-            {
-                try
-                {
-                    BossEnemy boss = FindObjectOfType<BossEnemy>();
-                    boss.SpawnBoss();
-                    boss.BuffBossMob();
-                }
-                catch (Exception e)
-                {
-                    // nothing,  I failed to find and spawn boss, all good he doesnt exist.
-                }
-                checkForBoss = false;
-            }
 
             //print("Here comes a specific enemy!");
             CheckArray(x);

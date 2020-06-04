@@ -49,6 +49,10 @@ public sealed class Singleton : MonoBehaviour {
     public bool isHasPickedAPath = false;
     public bool isHasLearnedATower = false;
 
+    [Header("Rifle Tower")]
+    [SerializeField] Tower basicRifledTowerBase;
+    [SerializeField] GameObject basicRifledTowerHead;
+
     public void TowerOne()
     { 
         towerFactory = new TowerFactory();
@@ -63,8 +67,12 @@ public sealed class Singleton : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-
-        level = 2;
+        if (towerOneBase == null)
+        {
+            towerOneBase = basicRifledTowerBase;
+            towerOneHead = basicRifledTowerHead;
+        }
+    level = 2;
         levelText.text = "Level : " + level.ToString();
     }
 
@@ -294,8 +302,13 @@ public sealed class Singleton : MonoBehaviour {
     /// <returns></returns>
     public float GetPercentageModifier(int tinkerUpgrade)
     {
-        CheckIfNeedList();
-
+        try
+        {
+            CheckIfNeedList();
+        } catch (Exception e)
+        {
+            // to see if this will throw an exception below, or hit default.
+        }
         float returnPercentModifier = 1.0f;
         try
         {

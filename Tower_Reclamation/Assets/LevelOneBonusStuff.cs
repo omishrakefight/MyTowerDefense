@@ -8,8 +8,10 @@ public class LevelOneBonusStuff : MonoBehaviour {
 	void Start () {
         EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
         Singleton singleton = FindObjectOfType<Singleton>();
-        singleton.enemyList = new List<int> { 1, 1, -1, 1, 1, 1 };
-        enemySpawner.enemyList = new List<int>{ 1, 1, -1, 1, 1, 1};
+        singleton.enemyList = new List<int> {  1, 1, 1, -1, 1, -1, 1 };
+        //enemySpawner.enemyList = new List<int> { 1, 1, -1, 1, 1, 1};
+
+
 	}
 	
 	// Update is called once per frame

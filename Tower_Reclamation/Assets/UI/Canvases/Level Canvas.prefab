@@ -796,6 +796,10 @@ MonoBehaviour:
   level: 1
   isHasPickedAPath: 0
   isHasLearnedATower: 0
+  basicRifledTowerBase: {fileID: 114224958929666816, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
+    type: 2}
+  basicRifledTowerHead: {fileID: 1568905355939266, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
+    type: 2}
   targettingModule: 0
   goldWiring: 0
   platinumWiring: 0
@@ -876,7 +880,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114555522775592060}
         m_MethodName: LoadMenu
         m_Mode: 1
         m_Arguments:

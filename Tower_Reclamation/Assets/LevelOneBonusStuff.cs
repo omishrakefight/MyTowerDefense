@@ -1,0 +1,19 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class LevelOneBonusStuff : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+        EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
+        Singleton singleton = FindObjectOfType<Singleton>();
+        singleton.enemyList = new List<int> { 1, 1, -1, 1, 1, 1 };
+        enemySpawner.enemyList = new List<int>{ 1, 1, -1, 1, 1, 1};
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+}

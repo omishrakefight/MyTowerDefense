@@ -615,7 +615,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 114555522775592060}
         m_MethodName: QuitGame
         m_Mode: 1
         m_Arguments:
@@ -779,12 +779,24 @@ MonoBehaviour:
   towerOne: {fileID: 0}
   towerTwo: {fileID: 0}
   towerThree: {fileID: 0}
+  towerOneBase: {fileID: 0}
+  towerOneHead: {fileID: 0}
+  towerOneBaseType: -1
+  towerOneHeadType: -1
+  towerTwoBase: {fileID: 0}
+  towerTwoHead: {fileID: 0}
+  towerTwoBaseType: -1
+  towerTwoHeadType: -1
+  towerThreeBase: {fileID: 0}
+  towerThreeHead: {fileID: 0}
+  towerThreeBaseType: -1
+  towerThreeHeadType: -1
   preferedTargetEnemy: {fileID: 0}
   scenesChanged: 0
   level: 1
   isHasPickedAPath: 0
   isHasLearnedATower: 0
-  silverWiring: 0
+  targettingModule: 0
   goldWiring: 0
   platinumWiring: 0
   diamondWiring: 0

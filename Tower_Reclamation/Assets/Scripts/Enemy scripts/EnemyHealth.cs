@@ -14,7 +14,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     [SerializeField] protected AudioClip enemyHitAudio;
     [SerializeField] protected AudioClip enemyDiedAudio;
 
-    [SerializeField] public float hitPoints = 40;
+    [SerializeField] public float hitPoints = 35;
     [SerializeField] public float hitPointsMax;
     [SerializeField] public Canvas enemyHealthBar;
     protected Image healthImage;
@@ -38,8 +38,8 @@ public abstract class EnemyHealth : MonoBehaviour {
     {
         if (noSpecialHealthThings)
         {
-            hitPoints = 40;
-            float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 10;
+            hitPoints = 35;
+            float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 9;
             hitPoints += healthModifier;
             hitPointsMax = hitPoints;
             healthImage = enemyHealthBar.gameObject.GetComponentInChildren<Image>();

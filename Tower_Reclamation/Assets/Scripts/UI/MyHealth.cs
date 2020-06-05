@@ -22,7 +22,6 @@ public class MyHealth : MonoBehaviour {
         defeat.enabled = false;
         defeat.enabled = false;
         
-
     }
 	
 	// Update is called once per frame

@@ -50,8 +50,8 @@ public sealed class Singleton : MonoBehaviour {
     public bool isHasLearnedATower = false;
 
     [Header("Rifle Tower")]
-    [SerializeField] Tower basicRifledTowerBase;
-    [SerializeField] GameObject basicRifledTowerHead;
+    [SerializeField] public Tower basicRifledTowerBase;
+    [SerializeField] public GameObject basicRifledTowerHead;
 
     public void TowerOne()
     { 
@@ -71,6 +71,8 @@ public sealed class Singleton : MonoBehaviour {
         {
             towerOneBase = basicRifledTowerBase;
             towerOneHead = basicRifledTowerHead;
+            towerOneBaseType = (int)RifledBase.Basic;
+            towerOneHeadType = (int)RifledHead.Basic;
         }
     level = 2;
         levelText.text = "Level : " + level.ToString();
@@ -302,17 +304,19 @@ public sealed class Singleton : MonoBehaviour {
     /// <returns></returns>
     public float GetPercentageModifier(int tinkerUpgrade)
     {
+        int version = -1;
         try
         {
             CheckIfNeedList();
+            version = tinkerUpgrades[tinkerUpgrade];
         } catch (Exception e)
         {
+            version = -1;
             // to see if this will throw an exception below, or hit default.
         }
         float returnPercentModifier = 1.0f;
         try
         {
-            int version = tinkerUpgrades[tinkerUpgrade];
             switch (version)
             {
                 case 0:
@@ -334,7 +338,7 @@ public sealed class Singleton : MonoBehaviour {
                 default:
                     Debug.Log("Error, case exceeded expected");
                     print("Error, case exceeded expected");
-                    returnPercentModifier = 1.0f;
+                    returnPercentModifier = 100.0f;
                     break;
             }
             returnPercentModifier = returnPercentModifier / 100f;

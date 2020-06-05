@@ -47,7 +47,7 @@ public class LoadNextArea : MonoBehaviour {
     {
         // add singleton reset here**
         singleton.LevelCleared();
-        Singleton.Instance.isHasLearnedATower = false;
+        singleton.isHasLearnedATower = false;
 
         save.LoadNewBase();
         //SceneManager.LoadSceneAsync("_Scenes/_Base");
@@ -57,12 +57,12 @@ public class LoadNextArea : MonoBehaviour {
     {
         //save on next wave start, that way they have the updated towers list saved for next base section.  Otherwise it wont treat them as learned.
         save.Save();
-
+        //singleton = FindObjectOfType<Singleton>();
         nextPath = FindObjectOfType<ChooseNextMissionPath>();
         pickedPath = nextPath.isHasChosen;
 
         singleton.GetUpdateTinkerUpgrades();
-        if (Singleton.Instance.isHasPickedAPath)
+        if (singleton.isHasPickedAPath)
         {
             //print("level is currently: " + FindObjectOfType<LevelTracker>().currentLevel);
             //FindObjectOfType<LevelTracker>().IncreaseLevel();

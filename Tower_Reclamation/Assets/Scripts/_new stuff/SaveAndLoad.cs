@@ -89,10 +89,62 @@ public class SaveAndLoad : MonoBehaviour {
             SceneManager.LoadSceneAsync("_Scenes/Base Exit Doorway");
         }
     }
-    
-    public void GameStart()
+
+    public void test()
     {
-        SceneManager.LoadSceneAsync("_Scenes/Base Exit Doorway");
+        finishedLoading = false;
+        IEnumerator start;
+        start = testInu();
+
+        StartCoroutine(start);
+        if (finishedLoading)
+        {
+            StopCoroutine(start);
+            print("Loaded!!");
+        }
+    }
+
+    private IEnumerator testInu()
+    {
+        AsyncOperation loadingBase;
+        loadingBase = SceneManager.LoadSceneAsync("_Scenes/Level_ 1");
+
+        while (!loadingBase.isDone)
+        {
+            yield return new WaitForSeconds(.50f);
+        }
+        yield return new WaitForSeconds(10.0f);
+        print("FinishedLoading! TESTTTT");
+        //SceneManager.LoadSceneAsync("_Scenes/Base Exit Doorway");
+    }
+
+
+    public void GameStartShell()
+    {
+        finishedLoading = false;
+        IEnumerator start;
+        start = GameStart();
+
+        StartCoroutine(start);
+        if (finishedLoading)
+        {
+            StopCoroutine(start);
+            print("Loaded!!");
+        }
+    }
+
+    private IEnumerator GameStart()
+    {
+        AsyncOperation loadingBase;
+        loadingBase = SceneManager.LoadSceneAsync("_Scenes/Base Exit Doorway");
+
+        while (!loadingBase.isDone)
+        {
+            yield return new WaitForSeconds(.50f);
+        }
+        yield return new WaitForSeconds(.50f);
+        print("FinishedLoading!");
+        //SceneManager.LoadSceneAsync("_Scenes/Base Exit Doorway");
     }
 
     public void LoadSavedBase()

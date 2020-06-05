@@ -75,7 +75,17 @@ public class StoryGateExit1 : MonoBehaviour {
             conversationLimit = 2;
             if (t1_sceneSwapTime)
             {
-                SceneManager.LoadSceneAsync("_Scenes/Level_ 1");  
+                //FindObjectOfType<SaveAndLoad>().test();
+                //AsyncOperation loadingBase;
+                //loadingBase = SceneManager.LoadSceneAsync("_Scenes/Level_ 1");
+
+                //while (!loadingBase.isDone)
+                //{
+                //    yield return new WaitForSeconds(.50f);
+                //}
+                //yield return new WaitForSeconds(2.0f);
+                //print("I waited?");
+                SceneManager.LoadSceneAsync("_Scenes/Level_ 1");
             }
             t1_sceneSwapTime = true;
         }

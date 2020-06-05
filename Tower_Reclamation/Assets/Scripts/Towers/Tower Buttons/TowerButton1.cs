@@ -32,6 +32,7 @@ public class TowerButton1 : MonoBehaviour {
 
     public void BuildTower()
     {
+        //singleton = FindObjectOfType<Singleton>();
         //towerFactory.AddTower(singleton.towerOne);
         towerFactory.CreateAndStackTower(singleton.towerOneBase, singleton.towerOneHead, singleton.towerOneBaseType, singleton.towerOneHeadType);
 

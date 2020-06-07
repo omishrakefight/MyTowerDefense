@@ -23,6 +23,7 @@ public class CanvasManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
         // Only have 1 Canvas going at a time
         turretFactory.gameObject.SetActive(true);
         computerBase.gameObject.SetActive(true);
@@ -46,8 +47,45 @@ public class CanvasManager : MonoBehaviour {
         currentActiveCanvas = meetingRoom;
         currentScreenFader = meetingRoomFader;
 
+        //IEnumerator start;
+        //start = DelayedStart();
+
+        //StartCoroutine(start);
+        //StopCoroutine(start);
+
         //StartupLoad();
-	}
+    }
+
+    public IEnumerator DelayedStart()
+    {
+
+        yield return new WaitForFixedUpdate();
+
+        // Only have 1 Canvas going at a time
+        turretFactory.gameObject.SetActive(true);
+        computerBase.gameObject.SetActive(true);
+        engineerer.gameObject.SetActive(true);
+        Tinker.gameObject.SetActive(true);
+        meetingRoom.gameObject.SetActive(true);
+
+        // UI being turned off but the object is on (just canvas part).
+        turretFactory.GetComponent<Canvas>().enabled = false;
+        computerBase.GetComponent<Canvas>().enabled = false;
+        engineerer.GetComponent<Canvas>().enabled = false;
+        Tinker.GetComponent<Canvas>().enabled = false;
+
+
+        computerFader.SetActive(true);
+        engineerFader.SetActive(true);
+        tinkerFader.SetActive(true);
+        turretFader.SetActive(true);
+        meetingRoomFader.SetActive(true);
+
+        currentActiveCanvas = meetingRoom;
+        currentScreenFader = meetingRoomFader;
+
+        yield return null;
+    }
 	
     void FadeIn_DisableOldCanvas()
     {

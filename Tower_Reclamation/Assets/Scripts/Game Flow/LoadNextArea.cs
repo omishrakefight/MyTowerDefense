@@ -23,7 +23,7 @@ public class LoadNextArea : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         enemySpawner = FindObjectOfType<EnemySpawner>();
-        singleton = FindObjectOfType<Singleton>();
+        singleton = Singleton.Instance;// FindObjectOfType<Singleton>().Ins;
         save = FindObjectOfType<SaveAndLoad>();
         try
         {
@@ -57,6 +57,7 @@ public class LoadNextArea : MonoBehaviour {
     {
         //save on next wave start, that way they have the updated towers list saved for next base section.  Otherwise it wont treat them as learned.
         save.Save();
+
         //singleton = FindObjectOfType<Singleton>();
         nextPath = FindObjectOfType<ChooseNextMissionPath>();
         pickedPath = nextPath.isHasChosen;

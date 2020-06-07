@@ -25,7 +25,7 @@ public class ChooseNextMissionPath : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        singleton = FindObjectOfType<Singleton>();
+        singleton = Singleton.Instance;
 
         GetEnemyPathChoices();
         isHasChosen = false;

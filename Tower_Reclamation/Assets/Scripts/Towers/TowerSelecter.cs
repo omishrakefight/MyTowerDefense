@@ -325,7 +325,7 @@ public class TowerSelecter : MonoBehaviour
     /// more precisely, The button references the new singleton which kills itself on spawning in, then this is a blnak reference.
     public void ProxyFindTower()
     {
-        singleton = FindObjectOfType<Singleton>();
+        singleton = Singleton.Instance;
         singleton.FindTower();
     }
 

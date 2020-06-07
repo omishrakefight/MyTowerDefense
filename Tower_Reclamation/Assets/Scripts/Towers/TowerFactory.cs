@@ -20,7 +20,7 @@ public class TowerFactory : MonoBehaviour {
 
     private void Start()
     {
-        singleton = FindObjectOfType<Singleton>();
+        singleton = Singleton.Instance;
         // this is how I will change the tower summons.
     }
 

@@ -207,7 +207,7 @@ public class RifledTower : Tower {
     public override float GetTowerCost()
     {
         float towerCost = 0;
-        singleton = FindObjectOfType<Singleton>();
+        singleton = Singleton.Instance;
 
         towerCost = (int)TowerCosts.RifledTowerCost;
 

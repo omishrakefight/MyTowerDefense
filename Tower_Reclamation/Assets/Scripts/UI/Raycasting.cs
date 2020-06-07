@@ -32,7 +32,7 @@ public class Raycasting : MonoBehaviour {
 
     private void Start()
     {
-        singleton = FindObjectOfType<Singleton>();
+        singleton = Singleton.Instance;
         viewCamera = Camera.main;
     }
 

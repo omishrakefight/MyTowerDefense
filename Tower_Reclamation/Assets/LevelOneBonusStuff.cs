@@ -7,11 +7,11 @@ public class LevelOneBonusStuff : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
-        Singleton singleton = FindObjectOfType<Singleton>();
+        Singleton singleton = Singleton.Instance;
         singleton.enemyList = new List<int> {  1, 1, 1, -1, 1, -1, 1 };
         //enemySpawner.enemyList = new List<int> { 1, 1, -1, 1, 1, 1};
 
-
+        singleton.SetLevel(1);
 	}
 	
 	// Update is called once per frame

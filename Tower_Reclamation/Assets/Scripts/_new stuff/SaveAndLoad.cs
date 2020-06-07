@@ -37,7 +37,7 @@ public class SaveAndLoad : MonoBehaviour {
     {
         _missionChoice = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<ChooseNextMissionPath>();
         _towerListObj = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<PlayerTowerLog>();// FindObjectOfType<PlayerTowerLog>();
-        _singleton = FindObjectOfType<Singleton>();
+        _singleton = Singleton.Instance;
         _tinkerUpgrades = FindObjectOfType<TinkerUpgrades>();
     }
 

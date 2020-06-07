@@ -43,7 +43,7 @@ public sealed class Singleton : MonoBehaviour {
     public static Singleton Instance { get; private set; }
 
     [SerializeField] public int scenesChanged;
-    public int level = 1;
+    public int level = 2;
     private int waveEnemyDifficultyChecker = 0;
 
     public bool isHasPickedAPath = false;
@@ -74,7 +74,7 @@ public sealed class Singleton : MonoBehaviour {
             towerOneBaseType = (int)RifledBase.Basic;
             towerOneHeadType = (int)RifledHead.Basic;
         }
-    level = 2;
+
         levelText.text = "Level : " + level.ToString();
     }
 
@@ -87,7 +87,8 @@ public sealed class Singleton : MonoBehaviour {
         }
         else
         {
-            Destroy(gameObject);
+            Destroy(this.gameObject);
+            
         }
     }
 
@@ -154,6 +155,11 @@ public sealed class Singleton : MonoBehaviour {
         levelText.text = "Level : " + level.ToString();
     }
 
+    public void SetLevel(int level)
+    {
+        this.level = level;
+        levelText.text = "Level : " + level.ToString();
+    }
 
 
     // Update is called once per frame

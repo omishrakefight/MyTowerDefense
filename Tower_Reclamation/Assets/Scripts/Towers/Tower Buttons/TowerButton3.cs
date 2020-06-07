@@ -18,7 +18,7 @@ public class TowerButton3 : MonoBehaviour {
     void Start()
     {
         towerFactory = FindObjectOfType<TowerFactory>();
-        singleton = FindObjectOfType<Singleton>();
+        singleton = Singleton.Instance;
         //try
         //{
         //    buttonName3.text = singleton.towerThree.buttonName;

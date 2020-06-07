@@ -102,7 +102,7 @@ public class TinkerUpgrades : MonoBehaviour {
                     learnableUpgrades.Add(upgrades.chosenNumber);
                 }
             }
-            FindObjectOfType<Singleton>().SendUpdateTinkerUpgrades(currentUpgradeLevels);
+            Singleton.Instance.SendUpdateTinkerUpgrades(currentUpgradeLevels);
         }
     }
 
@@ -347,7 +347,7 @@ public class TinkerUpgrades : MonoBehaviour {
         }
 
         //give singleton the upgrades
-        FindObjectOfType<Singleton>().SendUpdateTinkerUpgrades(currentUpgradeLevels);
+        Singleton.Instance.SendUpdateTinkerUpgrades(currentUpgradeLevels);
     }
 
     public List<int> GetTinkerUpgrades()

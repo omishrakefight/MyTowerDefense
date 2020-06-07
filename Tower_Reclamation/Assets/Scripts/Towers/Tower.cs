@@ -133,7 +133,7 @@ public abstract class Tower : MonoBehaviour {
 
     public void CheckUpgradesForTankTower(ref float towerDmg, ref float TankAOERange)
     {
-        Singleton singleton = FindObjectOfType<Singleton>();
+        Singleton singleton = Singleton.Instance;
         float percentModifier = 1.0f;
         float multiplyFodder = 1.0f;
         float amountToAdd = 0f;
@@ -159,7 +159,7 @@ public abstract class Tower : MonoBehaviour {
 
     public void CheckUpgradesForRifledTower(ref float towerDmg, ref float towerRange)
     {
-        Singleton singleton = FindObjectOfType<Singleton>();
+        Singleton singleton = Singleton.Instance;
         float percentModifier = 1.0f;
         float multiplyFodder = 1.0f;
         float amountToAdd = 0f;
@@ -184,7 +184,7 @@ public abstract class Tower : MonoBehaviour {
     // increase this, tanks increase dmg, shelling increases dmg for bullets, and silver wiring can do range?
     public void CheckWhichUpgradesAreApplicable(ref float towerDmg, ref float TankAOERange)
     {
-        Singleton singleton = FindObjectOfType<Singleton>();
+        Singleton singleton = Singleton.Instance;
         float percentModifier = 1.0f;
         float multiplyFodder = 1.0f;
         float amountToAdd = 0f;

@@ -23,7 +23,7 @@ public class TowerButton2 : MonoBehaviour {
     void Start()
     {
         towerFactory = FindObjectOfType<TowerFactory>();
-        singleton = FindObjectOfType<Singleton>();
+        singleton = Singleton.Instance;
         if (singleton.towerTwoBase != null)
         {
             buttonName2.text = (singleton.towerTwoBase.name + "   cost: " + singleton.towerTwoBase.GetTowerCost().ToString());

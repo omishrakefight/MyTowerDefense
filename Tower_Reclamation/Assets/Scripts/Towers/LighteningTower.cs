@@ -49,7 +49,7 @@ public class LighteningTower : Tower {
     public override void DelayedStart()
     {
         chargeTime = 9f;
-        singleton = FindObjectOfType<Singleton>();
+        singleton = Singleton.Instance;
 
         attackRange = 18;
 
@@ -163,7 +163,7 @@ public class LighteningTower : Tower {
     public override float GetTowerCost()
     {
         float towerCost = 0;
-        singleton = FindObjectOfType<Singleton>();
+        singleton = Singleton.Instance;
 
         towerCost = (int)TowerCosts.LighteningTowerCost;
 

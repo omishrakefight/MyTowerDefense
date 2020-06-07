@@ -75,7 +75,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
     public void ManualStart()
     {
         towerLog = GetComponent<PlayerTowerLog>();
-        singleton = FindObjectOfType<Singleton>();
+        singleton = Singleton.Instance;
         //print(towerLog+ "I am tower log!");
         towers = towerLog.towers1;
         amountOfTowers = towers.Length;

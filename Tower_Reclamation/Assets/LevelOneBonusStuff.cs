@@ -14,6 +14,8 @@ public class LevelOneBonusStuff : MonoBehaviour {
         singleton.SetLevel(1);
 	}
 	
+    // TODO make this maybe do a different lvl one?  Instead I load NEW base and then save immediately?
+
 	// Update is called once per frame
 	void Update () {
 		

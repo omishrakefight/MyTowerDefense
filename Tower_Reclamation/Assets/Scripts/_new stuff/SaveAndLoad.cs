@@ -220,15 +220,17 @@ public class SaveAndLoad : MonoBehaviour {
             {
                 // need the references of base objects AFTER load
                 GetReferences();
-
-                var x = GameObject.FindGameObjectWithTag("TowerInfo");
-                _towerListObj = x.GetComponentInChildren<PlayerTowerLog>();
-
-                _towerListObj.LoadTowers(savedFile.towerList);
-
+                
                 //if it is loading old base, load these, if not get new ones.
                 if (!newBase)
                 {
+                    // moved these inside this ------
+                    var x = GameObject.FindGameObjectWithTag("TowerInfo");
+                    _towerListObj = x.GetComponentInChildren<PlayerTowerLog>();
+
+                    _towerListObj.LoadTowers(savedFile.towerList);
+                    /// --------------------
+                    /// Not entirely sure if this is right.. I need to verify how I load stuff.
                     _missionChoice.LoadPathChoices(savedFile.enemyOption1List, savedFile.enemyOption2List);
                     
                     _tinkerUpgrades.LoadInfo(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked);

@@ -34,6 +34,13 @@ public enum Layer
 
 }
 
+public enum LoadBase
+{
+    NewGame = 0,
+    LoadANewBase = 1,
+    LoadInUseBase = 2
+}
+
 
 public enum TowerCosts
 {

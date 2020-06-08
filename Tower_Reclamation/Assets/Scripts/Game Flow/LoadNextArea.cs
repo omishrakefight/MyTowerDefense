@@ -43,17 +43,26 @@ public class LoadNextArea : MonoBehaviour {
         //}
 	}
     
-    public void LoadBase()
+    public void LoadNextAreaPostBattle(int level)
     {
-        // add singleton reset here**
         singleton.LevelCleared();
-        singleton.isHasLearnedATower = false;
+        
+        switch (level)
+        {
+            case 1:
+                save.LoadNewGameBase();
+                break;
 
-        save.LoadNewBase();
+            default:               
+                singleton.isHasLearnedATower = false;
+                save.LoadNewBase();
+                break;
+        }
+
         //SceneManager.LoadSceneAsync("_Scenes/_Base");
     }
 
-    public void LoadNextLevel() // checks next level / wave HAS been chosen first.
+    public void LoadNextLevelFromBase() // checks next level / wave HAS been chosen first.
     {
         //save on next wave start, that way they have the updated towers list saved for next base section.  Otherwise it wont treat them as learned.
         save.Save();

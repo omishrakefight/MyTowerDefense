@@ -196,7 +196,7 @@ public class EnemySpawner : MonoBehaviour
         }
 
         yield return new WaitForSeconds(4);
-        FindObjectOfType<LoadNextArea>().LoadBase();
+        FindObjectOfType<LoadNextArea>().LoadNextAreaPostBattle(Singleton.Instance.level);
 
         //yield return StartCoroutine(WaitBetweenWaves());
         //yield return new WaitWhile(() => waveTimer > timeBetweenWaves);
@@ -353,7 +353,7 @@ public class EnemySpawner : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            FindObjectOfType<LoadNextArea>().LoadBase();
+            FindObjectOfType<LoadNextArea>().LoadNextAreaPostBattle(Singleton.Instance.level);
         }
 
     }

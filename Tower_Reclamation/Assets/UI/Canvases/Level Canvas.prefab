@@ -793,7 +793,7 @@ MonoBehaviour:
   towerThreeHeadType: -1
   preferedTargetEnemy: {fileID: 0}
   scenesChanged: 0
-  level: 1
+  level: 2
   isHasPickedAPath: 0
   isHasLearnedATower: 0
   basicRifledTowerBase: {fileID: 114224958929666816, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,

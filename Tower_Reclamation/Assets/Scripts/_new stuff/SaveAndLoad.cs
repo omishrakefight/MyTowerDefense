@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public class SaveAndLoad : MonoBehaviour {
     private const string TagForBase = "Base Rooms Obj";
+    private const string savedDataFileName = "/TowerInformation.dat";
     public bool[] towerList;
 
     bool finishedLoading = false;
@@ -62,6 +63,7 @@ public class SaveAndLoad : MonoBehaviour {
         }
 
         saver.towerList = _towerListObj.SaveTowers();
+        saver.currentLevel = _singleton.level;
     }
 
     public void Save()
@@ -70,9 +72,8 @@ public class SaveAndLoad : MonoBehaviour {
         FillInSaveObject();
 
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/TowerInformation.dat");
+        FileStream file = File.Create(Application.persistentDataPath + savedDataFileName);
 
-        //PlayerTowerLog towersAvailable = new PlayerTowerLog();
         // initialize or w/e i want to do be4 sving
 
         bf.Serialize(file, saver); // this is whats serialized.
@@ -81,7 +82,7 @@ public class SaveAndLoad : MonoBehaviour {
 
     public void ContinueGame()
     {
-        if (File.Exists(Application.persistentDataPath + "/TowerInformation.dat"))
+        if (File.Exists(Application.persistentDataPath + savedDataFileName))
         {
             LoadSavedBase();
         } else
@@ -90,37 +91,11 @@ public class SaveAndLoad : MonoBehaviour {
         }
     }
 
-    public void test()
-    {
-        finishedLoading = false;
-        IEnumerator start;
-        start = testInu();
-
-        StartCoroutine(start);
-        if (finishedLoading)
-        {
-            StopCoroutine(start);
-            print("Loaded!!");
-        }
-    }
-
-    private IEnumerator testInu()
-    {
-        AsyncOperation loadingBase;
-        loadingBase = SceneManager.LoadSceneAsync("_Scenes/Level_ 1");
-
-        while (!loadingBase.isDone)
-        {
-            yield return new WaitForSeconds(.50f);
-        }
-        yield return new WaitForSeconds(10.0f);
-        print("FinishedLoading! TESTTTT");
-        //SceneManager.LoadSceneAsync("_Scenes/Base Exit Doorway");
-    }
 
 
     public void GameStartShell()
     {
+        ClearGameInfo();
         finishedLoading = false;
         IEnumerator start;
         start = GameStart();
@@ -147,11 +122,27 @@ public class SaveAndLoad : MonoBehaviour {
         //SceneManager.LoadSceneAsync("_Scenes/Base Exit Doorway");
     }
 
+    public void LoadNewGameBase()
+    {
+
+        AsyncOperation loadingBase;
+        loadingBase = SceneManager.LoadSceneAsync("_Scenes/_Base");
+        //finishedLoading = false;
+        //IEnumerator load;
+        //load = LoadFromFile((int)LoadBase.NewGame);
+
+        //StartCoroutine(load);
+        //if (finishedLoading)
+        //{
+        //    StopCoroutine(load);
+        //    print("shutdown!");
+    }
+
     public void LoadSavedBase()
     {
         finishedLoading = false;
         IEnumerator load;
-        load = LoadFromFile(false);
+        load = LoadFromFile(true);  //(int)LoadBase.LoadInUseBase);
 
         StartCoroutine(load);
         if (finishedLoading) {
@@ -164,7 +155,7 @@ public class SaveAndLoad : MonoBehaviour {
     {
         finishedLoading = false;
         IEnumerator load;
-        load = LoadFromFile(true);
+        load = LoadFromFile(false);  //(int)LoadBase.LoadANewBase);
 
         StartCoroutine(load);
         if (finishedLoading)
@@ -174,25 +165,38 @@ public class SaveAndLoad : MonoBehaviour {
         }
     }
 
-    public IEnumerator LoadFromFile(bool newBase)
+    /// <summary>
+    /// This clears the saved game information, readying it for a new game.
+    /// </summary>
+    public void ClearGameInfo()
+    {
+        if (File.Exists(Application.persistentDataPath + savedDataFileName))
+        {
+            File.Delete(Application.persistentDataPath + savedDataFileName);
+        }
+    }
+
+    public IEnumerator LoadFromFile(bool isLoadingFromFile)
     {
         // This is done in 3 steps, first, load file and initialize the singleton.
         // 2nd is to load base (singleton already has loaded the setting base needs)
         // 3rd is to do all the loading that requires the base active.
 
         SaveSerializedObject savedFile = null;
+        _singleton = Singleton.Instance;
         FileStream file = null;
         try
         {
-            file = File.Open(Application.persistentDataPath + "/TowerInformation.dat", FileMode.Open);
+            file = File.Open(Application.persistentDataPath + savedDataFileName, FileMode.Open);
             BinaryFormatter bf = new BinaryFormatter();
             savedFile = (SaveSerializedObject)bf.Deserialize(file);
 
-            if (!newBase)
+            // Singleton is loaded FIRST, that way it is initialized to what I need at the time of the other files loading.
+            if (isLoadingFromFile)
             {
                 _singleton.isHasLearnedATower = savedFile.hasChosenATower;
-            }
-            
+                _singleton.SetLevel(savedFile.currentLevel);
+            }           
         }
         catch (Exception e1)
         {
@@ -200,7 +204,14 @@ public class SaveAndLoad : MonoBehaviour {
         }
         finally
         {
-            file.Close();
+            try
+            {
+                file.Close();
+            }
+            catch (Exception e2)
+            {
+                // Do nothing, in this case the file may not exist to be closed.
+            }
         }
 
         // Loading the base.
@@ -220,21 +231,24 @@ public class SaveAndLoad : MonoBehaviour {
             {
                 // need the references of base objects AFTER load
                 GetReferences();
-                
-                //if it is loading old base, load these, if not get new ones.
-                if (!newBase)
-                {
-                    // moved these inside this ------
-                    var x = GameObject.FindGameObjectWithTag("TowerInfo");
-                    _towerListObj = x.GetComponentInChildren<PlayerTowerLog>();
 
-                    _towerListObj.LoadTowers(savedFile.towerList);
-                    /// --------------------
-                    /// Not entirely sure if this is right.. I need to verify how I load stuff.
+                // This is outside because I want to load all learned towers on return, but RESET that things are learned, so I can again for new base.
+                var x = GameObject.FindGameObjectWithTag("TowerInfo");
+                _towerListObj = x.GetComponentInChildren<PlayerTowerLog>();
+
+                _towerListObj.LoadTowers(savedFile.towerList);
+                //_tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked, true);
+                _tinkerUpgrades.AddToBackupList();
+
+                //if it is loading old base, load these, if not get new ones.
+                if (isLoadingFromFile)
+                {
                     _missionChoice.LoadPathChoices(savedFile.enemyOption1List, savedFile.enemyOption2List);
-                    
-                    _tinkerUpgrades.LoadInfo(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked);
-                    _tinkerUpgrades.AddToBackupList();
+                    _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked, true);
+                }  else
+                {
+                    // this function is the 'reset' of the above.  It sets false to 'has picked' and 'hasRolled', while setting empty to the sotred options.
+                    _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, new int[] { }, false, false);
                 }
 
             }

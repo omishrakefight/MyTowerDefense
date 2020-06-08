@@ -45,11 +45,21 @@ public class TinkerUpgrades : MonoBehaviour {
             // not completely true, but to make sure it doesnt loop
             loadMeOnce = false;
             hasPicked = false;
-            //print(" only once!!!");
             Hint.text = hintPick2;
+
+            // since i stop this from happening twice, loop all immediately.
+            Transform parent = transform.parent;
+            TinkerUpgrades[] tinkerBtns = parent.GetComponentsInChildren<TinkerUpgrades>();
+            foreach (TinkerUpgrades upgrades in tinkerBtns)
+            {
+                upgrades.PickTower();
+            }
+            //PickTower();
+            //print(" only once!!!");
+            
         }
 
-        PickTower();
+        
         baseColor = buttonName.GetComponentInParent<Button>().GetComponent<Image>().color;
     }
 
@@ -148,7 +158,7 @@ public class TinkerUpgrades : MonoBehaviour {
             }
 
             // if it is a loaded base, special load.
-            if (isLoaded)
+            if (possibleOptionsFromSave.Count > 0)
             {
                 // if first loop after instantiation changes false, need a 2nd round reset
                 GetComponent<Button>().interactable = true;
@@ -167,7 +177,12 @@ public class TinkerUpgrades : MonoBehaviour {
 
             } // else do a normal new load.
             else
-            { 
+            {
+                // rework this,  Make it use the second  array.
+                //Problem here, is riddled with.  If I dont select, or other crap they dont get removed.  I think it would be easier to instead
+                // use the second list like when I load.  Then who cares if that list gets botched.
+
+                GetComponent<Button>().interactable = true;
                 randomPick = UnityEngine.Random.Range(0, learnableUpgrades.Count);
                 chosenNumber = learnableUpgrades[randomPick];
                 possibleOptions.Add(chosenNumber);
@@ -308,20 +323,30 @@ public class TinkerUpgrades : MonoBehaviour {
         return hasPicked;
     }
 
-    public void LoadInfo(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasPicked)
+    /// <summary>
+    /// This loads the upgrades saved information (whats learned / can be leared ect...  This excludes if one has already learned something.
+    /// </summary>
+    /// <param name="_currentUpgradeLevels"></param>
+    /// <param name="_learnableUpgrades"></param>
+    /// <param name="_possibleOptions"></param>
+    /// <param name="_hasPicked"></param>
+    /// <param name="_hasAlreadyRolledForUpgrades"></param>
+    public void LoadInfoAndSavedOptions(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasPicked, bool _hasAlreadyRolledForUpgrades)
     {
-        isLoaded = true;
+        isLoaded = true;// _hasAlreadyRolledForUpgrades;
+        hasPicked = _hasPicked;
         currentUpgradeLevels.Clear();
         learnableUpgrades.Clear();
         possibleOptions.Clear();
         possibleOptionsFromSave.Clear();
 
         numSelected =  0;
-        hasPicked = _hasPicked;
-        if(hasPicked)
+
+        if (hasPicked)
         {
             Hint.text = outOfResearch;
-        } else
+        }
+        else
         {
             Hint.text = hintPick2;
         }

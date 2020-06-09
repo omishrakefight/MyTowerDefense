@@ -10,6 +10,8 @@ public class TinkerUpgrades : MonoBehaviour {
     public static List<int> learnableUpgrades = new List<int>();
     public static List<int> possibleOptions = new List<int>();
     public static List<int> possibleOptionsFromSave = new List<int>();
+    public static List<int> possibleOptionsFromNewBase = new List<int>();
+
 
     protected static List<int> pickedUpgrades = new List<int>();
     public static bool hasPicked;
@@ -108,8 +110,8 @@ public class TinkerUpgrades : MonoBehaviour {
                 }
                 else
                 {
-                    print("select not Saved");
-                    learnableUpgrades.Add(upgrades.chosenNumber);
+                    //print("select not Saved");
+                    //learnableUpgrades.Add(upgrades.chosenNumber);
                 }
             }
             Singleton.Instance.SendUpdateTinkerUpgrades(currentUpgradeLevels);
@@ -125,9 +127,9 @@ public class TinkerUpgrades : MonoBehaviour {
             case 2:
             case 3:
             case 4:
-                if(currentUpgradeLevels[position] < 4)
+                if(currentUpgradeLevels[position] >= 4)
                 {
-                    learnableUpgrades.Add(position);
+                    learnableUpgrades.Remove(position);
                 }
                 break;
             default:
@@ -181,13 +183,31 @@ public class TinkerUpgrades : MonoBehaviour {
                 // rework this,  Make it use the second  array.
                 //Problem here, is riddled with.  If I dont select, or other crap they dont get removed.  I think it would be easier to instead
                 // use the second list like when I load.  Then who cares if that list gets botched.
+                possibleOptionsFromNewBase.Clear();
+                possibleOptionsFromSave.Clear();
 
-                GetComponent<Button>().interactable = true;
-                randomPick = UnityEngine.Random.Range(0, learnableUpgrades.Count);
-                chosenNumber = learnableUpgrades[randomPick];
-                possibleOptions.Add(chosenNumber);
-                //print("Rando pick is " + randomPick + "   And learnable count is: " + (learnableUpgrades.Count));
-                learnableUpgrades.RemoveAt(randomPick);
+                foreach (int possibleOption in learnableUpgrades)
+                {
+                    possibleOptionsFromNewBase.Add(possibleOption);
+                }
+
+                for(int i = 0; i < 4; i++)
+                {
+                    randomPick = UnityEngine.Random.Range(0, possibleOptionsFromNewBase.Count);
+                    chosenNumber = possibleOptionsFromNewBase[randomPick];
+                    possibleOptionsFromSave.Add(chosenNumber);
+                    //print("Rando pick is " + randomPick + "   And learnable count is: " + (learnableUpgrades.Count));
+                    possibleOptionsFromNewBase.RemoveAt(randomPick);
+                }
+
+                this.PickTower();
+                return;
+                //GetComponent<Button>().interactable = true;
+                //randomPick = UnityEngine.Random.Range(0, learnableUpgrades.Count);
+                //chosenNumber = learnableUpgrades[randomPick];
+                //possibleOptions.Add(chosenNumber);
+                ////print("Rando pick is " + randomPick + "   And learnable count is: " + (learnableUpgrades.Count));
+                //learnableUpgrades.RemoveAt(randomPick);
             }
 
             version = currentUpgradeLevels[chosenNumber] + 1;

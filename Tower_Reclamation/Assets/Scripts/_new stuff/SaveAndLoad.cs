@@ -236,9 +236,7 @@ public class SaveAndLoad : MonoBehaviour {
                 var x = GameObject.FindGameObjectWithTag("TowerInfo");
                 _towerListObj = x.GetComponentInChildren<PlayerTowerLog>();
 
-                _towerListObj.LoadTowers(savedFile.towerList);
-                //_tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked, true);
-                _tinkerUpgrades.AddToBackupList();
+                _towerListObj.LoadTowers(savedFile.towerList);                
 
                 //if it is loading old base, load these, if not get new ones.
                 if (isLoadingFromFile)
@@ -250,6 +248,7 @@ public class SaveAndLoad : MonoBehaviour {
                     // this function is the 'reset' of the above.  It sets false to 'has picked' and 'hasRolled', while setting empty to the sotred options.
                     _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, new int[] { }, false, false);
                 }
+                _tinkerUpgrades.AddToBackupList();
 
             }
             catch (Exception e)

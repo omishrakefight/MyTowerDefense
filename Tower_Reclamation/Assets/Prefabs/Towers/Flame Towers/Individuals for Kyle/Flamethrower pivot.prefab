@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4643545293604536}
   - component: {fileID: 114520737290588448}
   - component: {fileID: 136140819848252686}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flamethrower pivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 4380766199315126}
   - component: {fileID: 33432951979263570}
   - component: {fileID: 23898889490177572}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Flamethrower head
   m_TagString: Untagged
   m_Icon: {fileID: 0}

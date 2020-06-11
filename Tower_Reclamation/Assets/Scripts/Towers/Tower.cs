@@ -50,7 +50,7 @@ public abstract class Tower : MonoBehaviour {
         else
         {
             print(towerDmg + " = towerdmg, current = " + currentTowerDmg);
-            attackRange += (currentAttackRange * .3f);
+            attackRange += (currentAttackRange * .2f);
             towerDmg += (currentTowerDmg * .2f);
             print("towerDMG after 2nd buff " + towerDmg);
         }

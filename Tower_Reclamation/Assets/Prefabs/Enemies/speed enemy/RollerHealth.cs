@@ -10,7 +10,7 @@ public class RollerHealth : EnemyHealth {
 	override protected void Start () {
         base.Start();
         canDodge = true;
-        hitPointsMax = hitPointsMax * .6f;
+        hitPointsMax = hitPointsMax * .65f;
         hitPoints = hitPointsMax;
 	}
 	

@@ -91,6 +91,7 @@ public class Tower_Flame : Tower {
                 // double range at 60% dmg.
                 head.BuffRange(1.80f);
                 head.currentTowerDmg -= (head.currentTowerDmg * .40f);
+                head.towerDmg -= (head.currentTowerDmg * .40f);
                 break;
             default:
                 print("Default base, I am towerint of : " + towerInt);

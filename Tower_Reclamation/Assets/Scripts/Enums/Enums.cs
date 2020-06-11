@@ -44,7 +44,7 @@ public enum LoadBase
 
 public enum TowerCosts
 {
-    RifledTowerCost = 50,
+    RifledTowerCost = 55,
     AssaultTowerCost = 50,
     FlameTowerCost = 60,
     LighteningTowerCost = 80,

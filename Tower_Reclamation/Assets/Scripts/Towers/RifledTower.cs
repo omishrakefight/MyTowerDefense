@@ -41,6 +41,7 @@ public class RifledTower : Tower {
         base.Start();
         minRange = 0f;
         towerDmg = 5f;
+        attackRange = 24f;
         currentTowerDmg = 5f;
         currentAttackRange = attackRange;
         base.CheckUpgradesForRifledTower(ref towerDmg, ref attackRange);
@@ -84,7 +85,7 @@ public class RifledTower : Tower {
         switch (towerInt)
         {
             case (int)RifledHead.Basic:
-                emission.rateOverTime = (emission.rateOverTime.constant * 2f);
+                emission.rateOverTime = (emission.rateOverTime.constant * 1.9f);
                 //nothing;
                 break;
             case (int)RifledHead.Sniper:

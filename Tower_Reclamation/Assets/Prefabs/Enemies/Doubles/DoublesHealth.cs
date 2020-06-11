@@ -7,7 +7,7 @@ public class DoublesHealth : EnemyHealth {
 	// Use this for initialization
 	override protected void Start () {
         base.Start();
-        hitPoints = (.55f * hitPoints);
+        hitPoints = (.70f * hitPoints);
         hitPointsMax = hitPoints;
 	}
 	

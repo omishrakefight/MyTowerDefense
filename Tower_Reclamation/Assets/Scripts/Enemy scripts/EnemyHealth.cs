@@ -38,8 +38,10 @@ public abstract class EnemyHealth : MonoBehaviour {
     {
         if (noSpecialHealthThings)
         {
-            hitPoints = 35;
-            float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 9;
+            // for each WAVE hit points go up a set amount.  In addition, for each level you are on, health ramps up.  Just base HP for now.
+            hitPoints = 34;
+            hitPoints += (3 * Singleton.Instance.level);
+            float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 11;
             hitPoints += healthModifier;
             hitPointsMax = hitPoints;
             healthImage = enemyHealthBar.gameObject.GetComponentInChildren<Image>();

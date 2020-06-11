@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 public class Raycasting : MonoBehaviour {
 
@@ -40,36 +41,50 @@ public class Raycasting : MonoBehaviour {
     {
         // on raycasting, if the click is on an enemy send it to the singleton to disperse to the towers.
         // hsould be after the foreach, but i had trouble and it will be rare someone will click the same frame.
+        //TODO move all my click crap somehow here? consolidate code.  Waypoint clicks maybe.
         if (Input.GetMouseButtonDown(0))
         {
             //print(layerHit);
-
-            
-            if (raycastHit.collider.GetComponentInChildren<EnemyHealth>() != null)
+            try
             {
-                //print(raycastHit.collider.name);
 
-                singleton.SetPreferedEnemy(raycastHit.collider.GetComponentInChildren<EnemyHealth>());
+                if (raycastHit.collider.GetComponentInChildren<EnemyHealth>() != null)
+                {
+                    //print(raycastHit.collider.name);
 
+                    singleton.SetPreferedEnemy(raycastHit.collider.GetComponentInChildren<EnemyHealth>());
+
+                }
+            }
+            catch (Exception clickError)
+            {
+                print("Error when clicking : " + clickError.Message);
             }
             //preferedTargetEnemy = raycastHit.collider.GetComponentInChildren<EnemyHealth>();
         }
 
         // Look for and return priority layer hit
-        foreach (Layer layer in layerPriorities)
+        try
         {
-            var hit = RaycastForLayer(layer);
-            if (hit.HasValue)
+            foreach (Layer layer in layerPriorities)
             {
-                raycastHit = hit.Value;
-                if (layerHit != layer) // if layer has changed
+                var hit = RaycastForLayer(layer);
+                if (hit.HasValue)
                 {
+                    raycastHit = hit.Value;
+                    if (layerHit != layer) // if layer has changed
+                    {
+                        layerHit = layer;
+                        layerChangeObservers(); // call the delegates
+                    }
                     layerHit = layer;
-                    layerChangeObservers(); // call the delegates
+                    return;
                 }
-                layerHit = layer;
-                return;
             }
+        }
+        catch (Exception raycastEx)
+        {
+            print("Error with raycast (moving mouse): " + raycastEx.Message);
         }
 
         //FindObjectOfType<CursorIcons>().PrintLayerHit();

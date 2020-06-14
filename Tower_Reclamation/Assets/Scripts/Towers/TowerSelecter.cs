@@ -38,6 +38,11 @@ public class TowerSelecter : MonoBehaviour
 
     #endregion
 
+    [SerializeField] public Text TowerTypeDescription;
+    [SerializeField] public Text TowerAugmentDescription;
+    [SerializeField] public Text TowerBaseDescription;
+
+
     #region TowerParts
     //#TowerParts
     float turnSpeed = 6f;
@@ -543,4 +548,18 @@ public class TowerSelecter : MonoBehaviour
         }
     }
 
+    public void UpdateTowerType()
+    {
+        TowerTypeDescription.text = FindObjectOfType<Tower>().GetTypeExplanation();
+    }
+
+    public void UpdateTowerAugment()
+    {
+        TowerAugmentDescription.text = FindObjectOfType<Tower>().GetAugmentExplanation();
+    }
+
+    public void UpdateTowerBase()
+    {
+        TowerBaseDescription.text = FindObjectOfType<Tower>().GetBaseExplanation();
+    }
 }

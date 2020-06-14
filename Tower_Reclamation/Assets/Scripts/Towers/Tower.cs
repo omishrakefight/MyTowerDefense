@@ -9,7 +9,10 @@ public abstract class Tower : MonoBehaviour {
     // paramteres of each tower
     [SerializeField] public float attackRange = 9f;
     protected float currentAttackRange = 0;
-    
+
+    private const string TowerTypeExplanation = "";
+    private const string TowerAugmentExplanation = "";
+    private const string TowerBaseExplanation = "";
 
 
     [SerializeField] public float towerDmg = 30;
@@ -211,6 +214,20 @@ public abstract class Tower : MonoBehaviour {
             TankAOERange += amountToAdd;
         //}
         //throw new NotImplementedException();
+    }
+
+
+    public string GetTypeExplanation()
+    {
+        return TowerTypeExplanation;
+    }
+    public string GetAugmentExplanation()
+    {
+        return TowerAugmentExplanation;
+    }
+    public string GetBaseExplanation()
+    {
+        return TowerBaseExplanation;
     }
 
     public void SetHead(Transform towerHead)

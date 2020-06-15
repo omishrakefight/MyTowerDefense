@@ -10,9 +10,9 @@ public abstract class Tower : MonoBehaviour {
     [SerializeField] public float attackRange = 9f;
     protected float currentAttackRange = 0;
 
-    private const string TowerTypeExplanation = "";
-    private const string TowerAugmentExplanation = "";
-    private const string TowerBaseExplanation = "";
+    protected string TowerTypeExplanation = "";
+    protected string TowerAugmentExplanation = "";
+    protected string TowerBaseExplanation = "";
 
 
     [SerializeField] public float towerDmg = 30;

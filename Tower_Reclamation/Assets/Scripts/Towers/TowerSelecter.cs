@@ -42,6 +42,7 @@ public class TowerSelecter : MonoBehaviour
     [SerializeField] public Text TowerAugmentDescription;
     [SerializeField] public Text TowerBaseDescription;
 
+    
 
     #region TowerParts
     //#TowerParts
@@ -108,7 +109,7 @@ public class TowerSelecter : MonoBehaviour
         towerTurret.value = 0;
         towerBarrel.value = 0;
 
-
+        
         if (towerBarrel.value == 0 && towerTurret.value == 0 && towerBase.value == 0)
         {
             ResetTowerPicture();

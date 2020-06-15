@@ -58,6 +58,7 @@ public class RifledTower : Tower {
         switch (towerInt)
         {
             case (int)RifledBase.Basic:
+                TowerBaseExplanation = "";
                 //nothing, normal settings?
                 break;
             case (int)RifledBase.Rapid:

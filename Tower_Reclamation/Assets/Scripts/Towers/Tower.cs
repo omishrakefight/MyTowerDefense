@@ -227,6 +227,7 @@ public abstract class Tower : MonoBehaviour {
     }
     public string GetBaseExplanation()
     {
+        print("I am in the tower. name: " + gameObject.name);
         return TowerBaseExplanation;
     }
 

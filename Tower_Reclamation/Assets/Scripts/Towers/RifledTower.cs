@@ -54,24 +54,33 @@ public class RifledTower : Tower {
 
     public override void DetermineTowerTypeBase(int towerInt)
     {
+        float towerDmgModifierPercent;
+        float towerAttackRangeModifierPercent;
+        float towerAttackSpeedModifierPercent;
 
         switch (towerInt)
         {
             case (int)RifledBase.Basic:
-                TowerBaseExplanation = "";
+                TowerBaseExplanation = "The default base, with no modifiers.";
                 //nothing, normal settings?
                 break;
             case (int)RifledBase.Rapid:
                 // alien base is +10%?
-                print("Im doing rapid base");
+                towerDmgModifierPercent = .15f;
+                towerAttackRangeModifierPercent = .05f;
+                towerAttackSpeedModifierPercent = .3f;
+                TowerBaseExplanation = "Tower damage -" + (int)(towerDmgModifierPercent * 100f) + '%';
+                TowerBaseExplanation += "\nTower attack range -" + (int)(towerAttackRangeModifierPercent * 100f) + '%';
+                TowerBaseExplanation += "\nTower attack speed +" + (int)(towerAttackSpeedModifierPercent * 100f) + '%';
+
                 float changeAmount = 0;
-                changeAmount = towerDmg * .15f;
+                changeAmount = towerDmg * towerDmgModifierPercent;
                 currentTowerDmg -= changeAmount;
 
-                changeAmount = attackRange * .05f;
+                changeAmount = attackRange * towerAttackRangeModifierPercent;
                 currentAttackRange -= changeAmount;
 
-                emission.rateOverTime = (emission.rateOverTime.constant * 1.3f);
+                emission.rateOverTime = (emission.rateOverTime.constant * (1.0f + towerAttackSpeedModifierPercent));
                 break;
             default:
                 print("Default base, I am towerint of : " + towerInt);
@@ -82,18 +91,34 @@ public class RifledTower : Tower {
 
     public override void DetermineTowerHeadType(int towerInt)
     {
+        float towerDmgModifierPercent;
+        float towerAttackRangeModifierPercent;
+        float towerAttackSpeedModifierPercent;
+
         // base emissio nrate of 1 second
         switch (towerInt)
         {
             case (int)RifledHead.Basic:
-                emission.rateOverTime = (emission.rateOverTime.constant * 1.9f);
+                towerAttackSpeedModifierPercent = 1.9f;
+                TowerAugmentExplanation = "Tower attack speed +" + (int)((1f - towerAttackSpeedModifierPercent) * 100f) + '%'; 
+                emission.rateOverTime = (emission.rateOverTime.constant * towerAttackSpeedModifierPercent);
                 //nothing;
                 break;
             case (int)RifledHead.Sniper:
-                currentAttackRange = attackRange * 1.75f;
-                minRange = attackRange / 3;
-                emission.rateOverTime = (emission.rateOverTime.constant / 3.5f);
-                towerDmg = towerDmg * 5;
+                towerDmgModifierPercent = 5f;
+                towerAttackRangeModifierPercent = 1.75f;
+                towerAttackSpeedModifierPercent = .35f;
+                float towerMinRange = .33f;
+
+                TowerAugmentExplanation = "Tower damage +" + (int)(towerDmgModifierPercent * 100f) + '%';
+                TowerAugmentExplanation += "\nTower attack range +" + (int)((towerAttackRangeModifierPercent -1) * 100f) + '%';
+                TowerAugmentExplanation += "\nTower attack speed -" + (int)((1 - towerAttackSpeedModifierPercent) * 100f) + '%';
+                TowerAugmentExplanation += "\nNEW* tower minimum range = " + (int)(towerMinRange * 100f) + "% of max range";
+
+                currentAttackRange = attackRange * towerAttackRangeModifierPercent;
+                minRange = attackRange / towerMinRange;
+                emission.rateOverTime = (emission.rateOverTime.constant * towerAttackSpeedModifierPercent);
+                towerDmg = towerDmg * towerDmgModifierPercent;
                 currentTowerDmg = towerDmg;
                 break;
             default:

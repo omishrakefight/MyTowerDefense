@@ -161,11 +161,26 @@ public class TowerSelecter : MonoBehaviour
         towerTurret.AddOptions(towersKnown);
     }
 
+    public void UpdateTowerType()
+    {
+        TowerTypeDescription.text = FindObjectOfType<Tower>().GetTypeExplanation();
+    }
+
+    public void UpdateTowerAugment()
+    {
+        TowerAugmentDescription.text = FindObjectOfType<Tower>().GetAugmentExplanation();
+    }
+
+    public void UpdateTowerBase()
+    {
+        TowerBaseDescription.text = FindObjectOfType<Tower>().GetBaseExplanation();
+    }
+
     public void ResetTowerPicture()
     {
         Tower towerBase = null;
         GameObject towerHead = null;
-        int fodder1 = 0, fodder2 = 0;
+        int baseInt = 0, AugmentInt = 0;
 
         if (tower == null)
         {
@@ -175,11 +190,22 @@ public class TowerSelecter : MonoBehaviour
             DestroyObject(tower.gameObject);
         }
 
-        decidedTower = PickTower(ref towerBase, ref towerHead, ref fodder1, ref fodder2);
+        decidedTower = PickTower(ref towerBase, ref towerHead, ref baseInt, ref AugmentInt);
 
         SpawnTowerForViewing(towerPosition, towerBase, towerHead);
 
+        tower.GetComponentInChildren<Tower>().DelayedStart();
+        tower.GetComponentInChildren<Tower>().DetermineTowerTypeBase(baseInt);
+        tower.GetComponentInChildren<Tower>().DetermineTowerHeadType(AugmentInt);
+        // it never goes in and fetches the type....
+        // i am never seeing what kinda tower it is for the update to the words.
+
         tower.transform.localScale = new Vector3(.3f, .3f, .3f);
+
+        TowerTypeDescription.text = tower.GetComponentInChildren<Tower>().GetTypeExplanation();
+        TowerAugmentDescription.text = tower.GetComponentInChildren<Tower>().GetAugmentExplanation();
+        TowerBaseDescription.text = tower.GetComponentInChildren<Tower>().GetBaseExplanation();
+
     }
 
     // plug this into the vector 3 for position, instead of the defaulted 0,0,0
@@ -549,18 +575,18 @@ public class TowerSelecter : MonoBehaviour
         }
     }
 
-    public void UpdateTowerType()
-    {
-        TowerTypeDescription.text = FindObjectOfType<Tower>().GetTypeExplanation();
-    }
+    //public void UpdateTowerType()
+    //{
+    //    TowerTypeDescription.text = FindObjectOfType<Tower>().GetTypeExplanation();
+    //}
 
-    public void UpdateTowerAugment()
-    {
-        TowerAugmentDescription.text = FindObjectOfType<Tower>().GetAugmentExplanation();
-    }
+    //public void UpdateTowerAugment()
+    //{
+    //    TowerAugmentDescription.text = FindObjectOfType<Tower>().GetAugmentExplanation();
+    //}
 
-    public void UpdateTowerBase()
-    {
-        TowerBaseDescription.text = FindObjectOfType<Tower>().GetBaseExplanation();
-    }
+    //public void UpdateTowerBase()
+    //{
+    //    TowerBaseDescription.text = FindObjectOfType<Tower>().GetBaseExplanation();
+    //}
 }

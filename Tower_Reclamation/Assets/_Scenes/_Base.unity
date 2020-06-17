@@ -1807,6 +1807,31 @@ Prefab:
       propertyPath: towerPlaceholder
       value: 
       objectReference: {fileID: 223473339}
+    - target: {fileID: 224684728572423352, guid: 0dda80d1a3480b246ae2a6121eb27390,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224684728572423352, guid: 0dda80d1a3480b246ae2a6121eb27390,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224601429906168828, guid: 0dda80d1a3480b246ae2a6121eb27390,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224601429906168828, guid: 0dda80d1a3480b246ae2a6121eb27390,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224825510150359540, guid: 0dda80d1a3480b246ae2a6121eb27390,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 152.91336
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0dda80d1a3480b246ae2a6121eb27390, type: 2}
   m_IsPrefabParent: 0

@@ -29,6 +29,7 @@ public class Tower_Flame : Tower {
 
     // Buff info
     //bool keepBuffed = false;
+   
 
     override protected void Start()
     {
@@ -61,6 +62,12 @@ public class Tower_Flame : Tower {
 
     public override void DelayedStart()
     {
+        TowerTypeExplanation = "The flame tower spews and ignites flammable material.  ";
+        TowerTypeExplanation += "This causes burning damage over time, with both the severity and duration dependent on the material burning.  ";
+        TowerTypeExplanation += "Unfortunately, something is either on fire or it is not, and stacking these debuffs can be wasteful.  ";
+
+
+
         head = GetComponentInChildren<Flame_AOE>();
         if (!keepBuffed) { }
         else
@@ -76,22 +83,37 @@ public class Tower_Flame : Tower {
 
     public override void DetermineTowerTypeBase(int towerInt)
     {
+        float towerDmgModifierPercent;
+        float towerAttackRangeModifierPercent;
+        float towerAttackSpeedModifierPercent;
 
         switch (towerInt)
         {
             case (int)FlameBase.Basic:
+                TowerBaseExplanation = "The default base, with no modifiers.";
                 //nothing, normal settings?
                 break;
             case (int)FlameBase.Alien:
-                // alien base is +10%?
-                print("Im doing alien base");
-                head.currentTowerDmg += (head.currentTowerDmg * .10f);
+                towerDmgModifierPercent = .05f;
+                towerAttackRangeModifierPercent = .05f;
+                head.currentTowerDmg += (head.currentTowerDmg * towerDmgModifierPercent);
+                head.BuffRange(towerAttackRangeModifierPercent);
+
+                TowerBaseExplanation = "Tower damage +" + (int)(towerDmgModifierPercent * 100f) + '%';
+                TowerBaseExplanation += "\nTower Area of Effect +" + (int)(towerDmgModifierPercent * 100f) + '%';
+                //The aliens who helped build this were never good on the idea of 'compramise'.  
+                //Where other towers would give a powerful mechanical trade-off, this simply improves slightly on the basic tower.
                 break;
             case (int)FlameBase.Tall:
                 // double range at 60% dmg.
-                head.BuffRange(1.80f);
+                towerDmgModifierPercent = .40f;
+                towerAttackRangeModifierPercent = .80f;
+                head.BuffRange(towerAttackRangeModifierPercent);
                 head.currentTowerDmg -= (head.currentTowerDmg * .40f);
                 head.towerDmg -= (head.currentTowerDmg * .40f);
+
+                TowerBaseExplanation = "Tower damage -" + (int)(towerDmgModifierPercent * 100f) + '%';
+                TowerBaseExplanation += "\nTower Area of Effect +" + (int)(towerAttackRangeModifierPercent * 100f) + '%';
                 break;
             default:
                 print("Default base, I am towerint of : " + towerInt);
@@ -106,9 +128,12 @@ public class Tower_Flame : Tower {
         switch (towerInt)
         {
             case (int)FlameHead.Basic:
+                TowerAugmentExplanation = "The default tower head, with no modifiers.  The attack is a wide cone.";
                 //nothing;
                 break;
             case (int)FlameHead.FlameThrower:
+                TowerAugmentExplanation = "The flamethrower head, changes the attack area.  This version turns it, making it a long cone rather than wide cone.";
+
                 head.ChangeParticleTime(1.5f);
                 attackRange = head.SetTowerTypeFlameThrower();
                 break;

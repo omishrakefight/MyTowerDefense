@@ -38,6 +38,11 @@ public class RifledTower : Tower {
 
     override public void DelayedStart()
     {
+        TowerTypeExplanation = "The rifled tower is a basic tower that fires bullets at a single enemy.  ";
+        TowerTypeExplanation += "The damage it causes is mediocre and has no splash, but it has decent range and rate of fire.  ";
+        TowerTypeExplanation += "This basic tower gets the job done, so long as it is not firing on swarms of enemies.  ";
+
+
         base.Start();
         minRange = 0f;
         towerDmg = 5f;
@@ -73,6 +78,9 @@ public class RifledTower : Tower {
                 TowerBaseExplanation += "\nTower attack range -" + (int)(towerAttackRangeModifierPercent * 100f) + '%';
                 TowerBaseExplanation += "\nTower attack speed +" + (int)(towerAttackSpeedModifierPercent * 100f) + '%';
 
+                TowerBaseFlavorTxt = "The rapid base has better bullet feed for faster firing, however, " +
+                    "the bullets needed to be smaller to keep the tower from breaking down.  This necessitates a weaker hit and shorter range.";
+
                 float changeAmount = 0;
                 changeAmount = towerDmg * towerDmgModifierPercent;
                 currentTowerDmg -= changeAmount;
@@ -100,7 +108,7 @@ public class RifledTower : Tower {
         {
             case (int)RifledHead.Basic:
                 towerAttackSpeedModifierPercent = 1.9f;
-                TowerAugmentExplanation = "Tower attack speed +" + (int)((1f - towerAttackSpeedModifierPercent) * 100f) + '%'; 
+                TowerAugmentExplanation = "Tower attack speed +" + (int)((towerAttackSpeedModifierPercent - 1f) * 100f) + '%'; 
                 emission.rateOverTime = (emission.rateOverTime.constant * towerAttackSpeedModifierPercent);
                 //nothing;
                 break;

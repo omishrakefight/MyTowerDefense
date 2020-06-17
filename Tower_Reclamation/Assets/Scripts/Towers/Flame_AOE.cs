@@ -89,12 +89,12 @@ public class Flame_AOE : MonoBehaviour {
         baseAttackRange = flameAOE.radius;
         currentAttackWidth = flameAOE.height;
         baseAttackWidth = flameAOE.height;
-
+        // CHANGE THIS TO +=? that way .30 works instead of = *x.  then the others is more consistent.
         //logic test
         print("buff Range: The base range is " + currentAttackRange + " and the modifier bonus is " + rangeBuff);
-        currentAttackRange = (currentAttackRange * rangeBuff);
+        currentAttackRange += (currentAttackRange * rangeBuff);
         print("buff Range: After buff the range is " + currentAttackRange);
-        currentAttackWidth = (currentAttackWidth * rangeBuff);
+        currentAttackWidth += (currentAttackWidth * rangeBuff);
         flameAOE.height = currentAttackWidth;
         flameAOE.radius = currentAttackRange;
 

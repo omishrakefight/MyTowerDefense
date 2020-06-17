@@ -41,8 +41,8 @@ public class TowerSelecter : MonoBehaviour
     [SerializeField] public Text TowerTypeDescription;
     [SerializeField] public Text TowerAugmentDescription;
     [SerializeField] public Text TowerBaseDescription;
+    [SerializeField] public Text TowerBaseFlavorTxt;
 
-    
 
     #region TowerParts
     //#TowerParts
@@ -174,6 +174,10 @@ public class TowerSelecter : MonoBehaviour
     public void UpdateTowerBase()
     {
         TowerBaseDescription.text = FindObjectOfType<Tower>().GetBaseExplanation();
+        TowerBaseFlavorTxt.text = FindObjectOfType<Tower>().GetBaseFlavorTxt();
+        float length = LayoutUtility.GetPreferredHeight(TowerBaseDescription.rectTransform);
+        print(length);
+        TowerBaseFlavorTxt.transform.Translate(new Vector3(0f, -length, 0f));
     }
 
     public void ResetTowerPicture()

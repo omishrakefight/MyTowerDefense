@@ -13,6 +13,7 @@ public abstract class Tower : MonoBehaviour {
     protected string TowerTypeExplanation = "";
     protected string TowerAugmentExplanation = "";
     protected string TowerBaseExplanation = "";
+    protected string TowerBaseFlavorTxt = "";
 
 
     [SerializeField] public float towerDmg = 30;
@@ -229,6 +230,10 @@ public abstract class Tower : MonoBehaviour {
     {
         print("I am in the tower. name: " + gameObject.name);
         return TowerBaseExplanation;
+    }
+    public string GetBaseFlavorTxt()
+    {
+        return TowerBaseFlavorTxt;
     }
 
     public void SetHead(Transform towerHead)

@@ -14,6 +14,7 @@ public abstract class Tower : MonoBehaviour {
     protected string TowerAugmentExplanation = "";
     protected string TowerBaseExplanation = "";
     protected string TowerBaseFlavorTxt = "";
+    protected string TowerStatsTxt = "";
 
 
     [SerializeField] public float towerDmg = 30;
@@ -217,7 +218,16 @@ public abstract class Tower : MonoBehaviour {
         //throw new NotImplementedException();
     }
 
+    public virtual void GetStringStats()
+    {
+        // this is overriden in each tower.
+        TowerStatsTxt = "";
+    }
 
+    public string GetTowerStatsExplanation()
+    {
+        return TowerStatsTxt;
+    }
     public string GetTypeExplanation()
     {
         return TowerTypeExplanation;

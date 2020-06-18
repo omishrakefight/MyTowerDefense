@@ -793,6 +793,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1677489221500092
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 224748049297346058}
+  - component: {fileID: 222291525930060418}
+  - component: {fileID: 114553122743466692}
+  m_Layer: 5
+  m_Name: Tower Stats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1706941468139740
 GameObject:
   m_ObjectHideFlags: 1
@@ -1388,8 +1405,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114128474109720062}
   m_HandleRect: {fileID: 224601429906168828}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.4906666
+  m_Value: 0.0000007988893
+  m_Size: 0.4905818
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2674,6 +2691,39 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114553122743466692
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1677489221500092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 2
+    m_MaxSize: 40
+    m_Alignment: 0
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: New Text
 --- !u!114 &114555563106191030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3134,6 +3184,7 @@ MonoBehaviour:
   TowerAugmentDescription: {fileID: 114381637357817372}
   TowerBaseDescription: {fileID: 114565788534702370}
   TowerBaseFlavorTxt: {fileID: 114811618084601302}
+  TowerStatsTxt: {fileID: 114553122743466692}
   towerPlaceholder: {fileID: 0}
   empty: {fileID: 1255252889417456, guid: 6802e15e9bccc6a4e9b3c2b8fc13e7ac, type: 2}
   basicFlameTowerBase: {fileID: 114953501215125282, guid: fa1bd93eafb114548a926cc53ef41c12,
@@ -4128,6 +4179,12 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1497811876158820}
+--- !u!222 &222291525930060418
+CanvasRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1677489221500092}
 --- !u!222 &222330089965854064
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -4471,6 +4528,7 @@ RectTransform:
   - {fileID: 224893663146501580}
   - {fileID: 224718857426628426}
   - {fileID: 224783040027218076}
+  - {fileID: 224748049297346058}
   m_Father: {fileID: 224538154417879362}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5296,6 +5354,24 @@ RectTransform:
   m_AnchoredPosition: {x: -0.00012207031, y: -149.9}
   m_SizeDelta: {x: 287.02, y: 147.2}
   m_Pivot: {x: 0.5, y: 1}
+--- !u!224 &224748049297346058
+RectTransform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1677489221500092}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 224027022316927216}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 11.364939, y: -201.57}
+  m_SizeDelta: {x: -22.730122, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224752844176371890
 RectTransform:
   m_ObjectHideFlags: 1
@@ -5459,7 +5535,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000027394879, y: 152.8}
+  m_AnchoredPosition: {x: 0.000027394879, y: 152.79997}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224828789000065292

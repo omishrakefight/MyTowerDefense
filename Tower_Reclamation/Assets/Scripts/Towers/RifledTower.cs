@@ -124,7 +124,7 @@ public class RifledTower : Tower {
                 TowerAugmentExplanation += "\nNEW* tower minimum range = " + (int)(towerMinRange * 100f) + "% of max range";
 
                 currentAttackRange = attackRange * towerAttackRangeModifierPercent;
-                minRange = attackRange / towerMinRange;
+                minRange = attackRange * towerMinRange;
                 emission.rateOverTime = (emission.rateOverTime.constant * towerAttackSpeedModifierPercent);
                 towerDmg = towerDmg * towerDmgModifierPercent;
                 currentTowerDmg = towerDmg;
@@ -133,6 +133,17 @@ public class RifledTower : Tower {
                 emission.rateOverTime = (emission.rateOverTime.constant * 2f);
                 break;
         }
+    }
+
+    public override void GetStringStats()
+    {
+        TowerStatsTxt = "Rifled Tower Stats \n" +
+            "Attack Range = " + currentAttackRange + "\n" +
+            "Minimum Attack Range = " + minRange + "\n" +
+            "Attack Damage = " + currentTowerDmg + "\n" +
+            "Attack speed = " + (emission.rateOverTime.constant).ToString() + "/s \n" +
+            "Damage Type = Projectile \n" +
+            "Targetting = Single Enemy";
     }
     //todo  check towerBuffs - is it in start? does it need a method? sync light tower, Tower.cs and others so its consistent.
 

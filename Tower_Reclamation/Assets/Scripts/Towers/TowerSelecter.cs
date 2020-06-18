@@ -42,6 +42,7 @@ public class TowerSelecter : MonoBehaviour
     [SerializeField] public Text TowerAugmentDescription;
     [SerializeField] public Text TowerBaseDescription;
     [SerializeField] public Text TowerBaseFlavorTxt;
+    [SerializeField] public Text TowerStatsTxt;
 
 
     #region TowerParts
@@ -177,7 +178,13 @@ public class TowerSelecter : MonoBehaviour
         TowerBaseFlavorTxt.text = FindObjectOfType<Tower>().GetBaseFlavorTxt();
         float length = LayoutUtility.GetPreferredHeight(TowerBaseDescription.rectTransform);
         print(length);
-        TowerBaseFlavorTxt.transform.Translate(new Vector3(0f, -length, 0f));
+        TowerBaseFlavorTxt.transform.position = (TowerBaseDescription.transform.position - (new Vector3(0f, length, 0f)));
+        //TowerBaseFlavorTxt.transform.Translate(new Vector3(0f, -length, 0f));
+    }
+
+    public void UpdateTowerStats()
+    {
+        TowerStatsTxt.text = FindObjectOfType<Tower>().GetTowerStatsExplanation();
     }
 
     public void ResetTowerPicture()
@@ -209,6 +216,10 @@ public class TowerSelecter : MonoBehaviour
         TowerTypeDescription.text = tower.GetComponentInChildren<Tower>().GetTypeExplanation();
         TowerAugmentDescription.text = tower.GetComponentInChildren<Tower>().GetAugmentExplanation();
         TowerBaseDescription.text = tower.GetComponentInChildren<Tower>().GetBaseExplanation();
+        TowerBaseFlavorTxt.text = tower.GetComponentInChildren<Tower>().GetBaseFlavorTxt();
+        // maybe add this to the end of all the others? it will be called on any change.
+        tower.GetComponentInChildren<Tower>().GetStringStats();
+        TowerStatsTxt.text = tower.GetComponentInChildren<Tower>().GetTowerStatsExplanation();
 
     }
 

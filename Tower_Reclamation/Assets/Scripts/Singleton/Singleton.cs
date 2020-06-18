@@ -342,8 +342,9 @@ public sealed class Singleton : MonoBehaviour {
                     returnPercentModifier = (float)TinkerUpgradePercent.mark4;
                     break;
                 default:
-                    Debug.Log("Error, case exceeded expected");
-                    print("Error, case exceeded expected");
+                    // this is probably a 0, sent as -1, first run things are unlearned.
+                    //Debug.Log("Error, case exceeded expected");
+                    //print("Error, case exceeded expected");
                     returnPercentModifier = 100.0f;
                     break;
             }

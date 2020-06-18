@@ -87,6 +87,7 @@ public class RifledTower : Tower {
 
                 changeAmount = attackRange * towerAttackRangeModifierPercent;
                 currentAttackRange -= changeAmount;
+                attackRange = currentAttackRange;
 
                 emission.rateOverTime = (emission.rateOverTime.constant * (1.0f + towerAttackSpeedModifierPercent));
                 break;
@@ -124,7 +125,8 @@ public class RifledTower : Tower {
                 TowerAugmentExplanation += "\nNEW* tower minimum range = " + (int)(towerMinRange * 100f) + "% of max range";
 
                 currentAttackRange = attackRange * towerAttackRangeModifierPercent;
-                minRange = attackRange * towerMinRange;
+                attackRange = currentAttackRange;
+                minRange = currentAttackRange * towerMinRange;
                 emission.rateOverTime = (emission.rateOverTime.constant * towerAttackSpeedModifierPercent);
                 towerDmg = towerDmg * towerDmgModifierPercent;
                 currentTowerDmg = towerDmg;

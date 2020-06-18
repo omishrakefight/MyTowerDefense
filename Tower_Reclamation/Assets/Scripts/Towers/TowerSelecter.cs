@@ -176,7 +176,7 @@ public class TowerSelecter : MonoBehaviour
     {
         TowerBaseDescription.text = FindObjectOfType<Tower>().GetBaseExplanation();
         TowerBaseFlavorTxt.text = FindObjectOfType<Tower>().GetBaseFlavorTxt();
-        float length = LayoutUtility.GetPreferredHeight(TowerBaseDescription.rectTransform);
+        float length = LayoutUtility.GetPreferredHeight(TowerBaseDescription.rectTransform) + 20f;
         print(length);
         TowerBaseFlavorTxt.transform.position = (TowerBaseDescription.transform.position - (new Vector3(0f, length, 0f)));
         //TowerBaseFlavorTxt.transform.Translate(new Vector3(0f, -length, 0f));

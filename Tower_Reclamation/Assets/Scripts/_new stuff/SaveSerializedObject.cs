@@ -23,18 +23,45 @@ public class SaveSerializedObject  {
     public int[] learnableUpgrades;
     public int[] possibleOptions;
     public bool hasPicked;
+
+    public List<int> List;
+    public Dictionary<string, int> dic;
+    public Dictionary<string, Dictionary<string, int>> dics;
     // add the bool
 
-        /// <summary>
-        /// I need to make more parts.  I am going to assimilate them into a single dictionary of learned ones string int,
-        ///  then I need to make the keys strings that have tower type at front (flame), and end with other type (base) and name in middle.\
-        ///  could change enums to be spaced every 20, and then have a big bool array for towers parts known.
-        /// </summary>
+    /// <summary>
+    /// I need to make more parts.  I am going to assimilate them into a single dictionary of learned ones string int,
+    ///  then I need to make the keys strings that have tower type at front (flame), and end with other type (base) and name in middle.\
+    ///  could change enums to be spaced every 20, and then have a big bool array for towers parts known.
+    /// </summary>
 
     public SaveSerializedObject()
     {
     }
 
+    public void SaveList(List<int> list)
+    {
+        List = list;
+    }
+    public List<int> LoadList()
+    {
+        return List;
+    }
+    public void SaveDic()
+    {
+        dic = new Dictionary<string, int>();
+        dic.Add("f", 1);
+        dic.Add("z", 2);
+        dic.Add("a", 3);
+        dics = new Dictionary<string, Dictionary<string, int>>();
+        dics.Add("Rifled Tower", dic);
+        dic.Remove("z");
+        dics.Add("Slow Tower", dic);
+    }
+    public Dictionary<string, Dictionary<string, int>> LoadDic()
+    {
+        return dics;
+    }
     public void SaveTinkerRoomInfo(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasPicked)
     {
         currentUpgradeLevels = _currentUpgradeLevels;

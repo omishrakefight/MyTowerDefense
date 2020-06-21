@@ -56,6 +56,8 @@ public class SaveAndLoad : MonoBehaviour {
 
         saver.SaveTinkerRoomInfo(_tinkerUpgrades.SaveCurrentUpgradeLevels(), _tinkerUpgrades.SaveLearnableUpgrades(), _tinkerUpgrades.SavePossibleOptions(), _tinkerUpgrades.SaveHasPicked());
 
+        saver.SaveList(_missionChoice.firstEnemySet);
+        saver.SaveDic();
         if (_missionChoice.isHasChosen)
         {
             saver.IsHasChosenEnemies(true);
@@ -241,6 +243,9 @@ public class SaveAndLoad : MonoBehaviour {
                 //if it is loading old base, load these, if not get new ones.
                 if (isLoadingFromFile)
                 {
+                    Dictionary<string, Dictionary<string, int>> dics = savedFile.LoadDic();
+                    List<int> test = savedFile.LoadList();
+                    List<int> l = new List<int>(savedFile.enemyOption1List);
                     _missionChoice.LoadPathChoices(savedFile.enemyOption1List, savedFile.enemyOption2List);
                     _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked, true);
                 }  else

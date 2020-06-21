@@ -143,6 +143,12 @@ public class TowerSelecter : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Dictionary string name value is the int.  Match it on the name, see how i get the name to add to the towers.  O i get it from teh focus function
+    /// So change focus.  Ill need to get it from somewhere and make sure names match.  Then i can use that dictionary to fetch numbers without them haveing to be 
+    /// in a specific order.  Then i can pass that to thte function to form the towers.
+    /// </summary>
+
     public void ResetNumbersOnBaseChange()
     {
         changingTowerType = true;

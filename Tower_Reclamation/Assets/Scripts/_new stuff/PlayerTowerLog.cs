@@ -11,6 +11,11 @@ public class PlayerTowerLog : MonoBehaviour {
     //Dictionary<string, bool> towers;
     public bool[] towers1 = null;
     bool startNew = true;
+
+    public Dictionary<string, int> towerParts;
+    public Dictionary<string, Dictionary<string, int>> knownTowerTypes;
+    public Dictionary<string, Dictionary<string, int>> learnableTowerTypes;
+    public Dictionary<string, Dictionary<string, int>> lockedTowerTypes;
     //int numberOfTowers = 6;
 
     //basic starting tower
@@ -36,7 +41,56 @@ public class PlayerTowerLog : MonoBehaviour {
             false, // Plasma Tower
             false  // Slow Tower
             };
+
+            knownTowerTypes = new Dictionary<string, Dictionary<string, int>>();
+
+            towerParts = new Dictionary<string, int>() {
+                { "Basic Augment", (int)RifledHead.Basic },
+                { "Sniper Augment", (int)RifledHead.Sniper },
+                { "Basic Base", (int)RifledBase.Basic },
+                { "Rapid Base", (int)RifledBase.Rapid }
+            };
+
+            
+            knownTowerTypes.Add("Rifled Towers", towerParts);
+
+            towerParts = new Dictionary<string, int>() {
+                { "Basic Augment", (int)FlameHead.Basic },
+                { "FlameThrower Augment", (int)FlameHead.FlameThrower },
+                { "Basic Base", (int)FlameBase.Basic },
+                { "Tall Base", (int)FlameBase.Tall }
+            };
+            knownTowerTypes.Add("Flame Towers", towerParts);
+
+            towerParts = new Dictionary<string, int>() {
+                { "Basic Augment", (int)IceHead.Basic }, 
+                //{ "Industrial Augment", (int)FlameHead.FlameThrower },
+                { "Basic Base", (int)IceBase.Basic },
+                { "Industrial Base", (int)IceBase.Industrial }
+            };
+            knownTowerTypes.Add("Frost Tower", towerParts);
+
+            /////=================continue here
+            towerParts = new Dictionary<string, int>() {
+                { "Basic Augment", (int)LightningHead.Basic },
+                //{ "Industrial Augment", (int)FlameHead.FlameThrower },
+                { "Basic Base", (int)LightningBase.Basic },
+                { "Rapid Base", (int)LightningBase.Rapid }
+            };
+            knownTowerTypes.Add("Lightning Tower", towerParts);
+
+            towerParts = new Dictionary<string, int>() {
+                { "Basic Augment", (int)PlasmaHead.Basic },
+                //{ "Industrial Augment", (int)FlameHead.FlameThrower },
+                { "Basic Base", (int)PlasmaBase.Basic },
+                { "Rapid Base", (int)PlasmaBase.Basic }
+            };
+            knownTowerTypes.Add("Plasma Tower", towerParts);
+
         }
+
+
+
         //print("loaded " + towers1.Length + " towers");
         GetComponent<RandomTowerBlueprints>().ManualStart();
         //gana pull this from saved file hopefully.

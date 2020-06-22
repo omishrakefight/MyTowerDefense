@@ -18,6 +18,7 @@ public class LighteningTower : Tower {
     [SerializeField] protected ParticleSystem projectileParticle;
     [SerializeField] protected SphereCollider AOERange;
 
+    List<EnemyMovement> targets;
     //paramteres of each tower
     //SphereCollider attackAOE;
     //float attackRange;
@@ -35,10 +36,11 @@ public class LighteningTower : Tower {
 
     private GameObject target;
     private LineRenderer lineRend;
-    private float arcLength = 1.0f;
-    private float arcVariation = 1.0f;
-    private float inaccuracy = 0.5f;
-    private float timeOfZap = 0.25f;
+    private float arcLength = 1.25f;
+    private float arcVariation = 1.25f;
+    private float inaccuracy = 0.75f;
+    private float timeOfZap = 0.35f;
+    private float delayBetweenTargetJump = .10f;
     private float zapTimer;
     //Light charge;
     //ParticleSystem projectileParticle;
@@ -128,7 +130,8 @@ public class LighteningTower : Tower {
     {
         if (isCharged)
         {
-            List<EnemyMovement> targets = new List<EnemyMovement>();
+            //targets.Clear();
+            targets = new List<EnemyMovement>();
             print("I am charged and enemies are nearby!!");
             CheckEnemyRange(targets);
             //var sceneEnemies = FindObjectsOfType<EnemyMovement>();
@@ -153,7 +156,7 @@ public class LighteningTower : Tower {
             }
             currentChargeTime = 0;
             isCharged = false;
-            targets.Clear();
+            
         }
     }
 
@@ -173,29 +176,39 @@ public class LighteningTower : Tower {
 
         // Lightning line renderer
 
-        ZapTarget(FindObjectOfType<EnemyMovement>().gameObject);
+        //ZapTarget(FindObjectOfType<EnemyMovement>().gameObject);
 
         if (zapTimer > 0)
         {
             Vector3 lastPoint = transform.position;
             int i = 1;
             lineRend.SetPosition(0, transform.position);//make the origin of the LR the same as the transform
-            while (Vector3.Distance(target.transform.position, lastPoint) > 3.0f)
-            {//was the last arc not touching the target?
-                lineRend.SetVertexCount(i + 1);//then we need a new vertex in our line renderer
-                Vector3 fwd = target.transform.position - lastPoint;//gives the direction to our target from the end of the last arc
-                fwd.Normalize();//makes the direction to scale
-                fwd = Randomize(fwd, inaccuracy);//we don't want a straight line to the target though
-                fwd *= UnityEngine.Random.Range(arcLength * arcVariation, arcLength);//nature is never too uniform
-                fwd += lastPoint;//point + distance * direction = new point. this is where our new arc ends
-                lineRend.SetPosition(i, fwd);//this tells the line renderer where to draw to
-                i++;
-                lastPoint = fwd;//so we know where we are starting from for the next arc
+            foreach (EnemyMovement target in targets)
+            {
+                try
+                {
+                    while (Vector3.Distance(target.transform.position, lastPoint) > 3.0f)
+                    {//was the last arc not touching the target?
+                        lineRend.SetVertexCount(i + 1);//then we need a new vertex in our line renderer
+                        Vector3 fwd = target.transform.position - lastPoint;//gives the direction to our target from the end of the last arc
+                        fwd.Normalize();//makes the direction to scale
+                        fwd = Randomize(fwd, inaccuracy);//we don't want a straight line to the target though
+                        fwd *= UnityEngine.Random.Range(arcLength * arcVariation, arcLength);//nature is never too uniform
+                        fwd += lastPoint;//point + distance * direction = new point. this is where our new arc ends
+                        lineRend.SetPosition(i, fwd);//this tells the line renderer where to draw to
+                        i++;
+                        lastPoint = fwd;//so we know where we are starting from for the next arc
+                    }
+                    lineRend.SetVertexCount(i + 1);
+                    lineRend.SetPosition(i, target.transform.position);
+                    //lightTrace.TraceLight(gameObject.transform.position, target.transform.position);
+                    zapTimer = zapTimer - Time.deltaTime;
+                }
+                catch (Exception)
+                {
+                    // nothing, enemy maybe died while bolt is still being drawn.
+                }
             }
-            lineRend.SetVertexCount(i + 1);
-            lineRend.SetPosition(i, target.transform.position);
-            //lightTrace.TraceLight(gameObject.transform.position, target.transform.position);
-            zapTimer = zapTimer - Time.deltaTime;
         }
         else
             lineRend.SetVertexCount(1);

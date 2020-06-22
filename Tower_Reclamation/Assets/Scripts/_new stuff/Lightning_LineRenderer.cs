@@ -66,7 +66,5 @@ public class Lightning_LineRenderer : MonoBehaviour {
         print ("zap called");
         target = newTarget;
         zapTimer = timeOfZap;
-
-
     }
 }

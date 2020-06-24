@@ -87,6 +87,22 @@ public class RandomTowerBlueprints : MonoBehaviour {
 
     }
 
+    public void ManualStart2(Dictionary<string, Dictionary<string, int>> knownTowerTypes, Dictionary<string, Dictionary<string, int>> learnableTowerTypes)
+    {
+        //towerLog = GetComponent<PlayerTowerLog>();
+        singleton = Singleton.Instance;
+        //print(towerLog+ "I am tower log!");
+        //towers = towerLog.towers1;
+        amountOfTowers = knownTowerTypes.Keys.Count;
+        amountOfUndiscoveredTowers = learnableTowerTypes.Keys.Count;
+        //GetAmountOfUndiscoveredTowers();
+        //this populates the buttons and checks if you can learn
+        CheckIfCanLearnMoreTowers();
+        List<string> discoveredTowers = new List<string>(knownTowerTypes.Keys);
+        turretTypes.UpdateTowersAvailable(discoveredTowers);
+
+    }
+
     public void CheckIfCanLearnMoreTowers()
     {
         //TODO change to a specific towers lost pic or something.

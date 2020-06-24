@@ -42,6 +42,7 @@ public class PlayerTowerLog : MonoBehaviour {
             false  // Slow Tower
             };
 
+            // Rifled tower is basic tower to start with.
             knownTowerTypes = new Dictionary<string, Dictionary<string, int>>();
 
             towerParts = new Dictionary<string, int>() {
@@ -51,8 +52,11 @@ public class PlayerTowerLog : MonoBehaviour {
                 { "Rapid Base", (int)RifledBase.Rapid }
             };
 
-            
             knownTowerTypes.Add("Rifled Towers", towerParts);
+
+
+            //  Towers we need to learn, all besides rifled.
+            learnableTowerTypes = new Dictionary<string, Dictionary<string, int>>();
 
             towerParts = new Dictionary<string, int>() {
                 { "Basic Augment", (int)FlameHead.Basic },
@@ -60,7 +64,7 @@ public class PlayerTowerLog : MonoBehaviour {
                 { "Basic Base", (int)FlameBase.Basic },
                 { "Tall Base", (int)FlameBase.Tall }
             };
-            knownTowerTypes.Add("Flame Towers", towerParts);
+            learnableTowerTypes.Add("Flame Towers", towerParts);
 
             towerParts = new Dictionary<string, int>() {
                 { "Basic Augment", (int)IceHead.Basic }, 
@@ -68,7 +72,7 @@ public class PlayerTowerLog : MonoBehaviour {
                 { "Basic Base", (int)IceBase.Basic },
                 { "Industrial Base", (int)IceBase.Industrial }
             };
-            knownTowerTypes.Add("Frost Tower", towerParts);
+            learnableTowerTypes.Add("Frost Tower", towerParts);
 
             /////=================continue here
             towerParts = new Dictionary<string, int>() {
@@ -77,7 +81,7 @@ public class PlayerTowerLog : MonoBehaviour {
                 { "Basic Base", (int)LightningBase.Basic },
                 { "Rapid Base", (int)LightningBase.Rapid }
             };
-            knownTowerTypes.Add("Lightning Tower", towerParts);
+            learnableTowerTypes.Add("Lightning Tower", towerParts);
 
             towerParts = new Dictionary<string, int>() {
                 { "Basic Augment", (int)PlasmaHead.Basic },
@@ -85,7 +89,7 @@ public class PlayerTowerLog : MonoBehaviour {
                 { "Basic Base", (int)PlasmaBase.Basic },
                 { "Rapid Base", (int)PlasmaBase.Basic }
             };
-            knownTowerTypes.Add("Plasma Tower", towerParts);
+            learnableTowerTypes.Add("Plasma Tower", towerParts);
 
         }
 
@@ -93,6 +97,7 @@ public class PlayerTowerLog : MonoBehaviour {
 
         //print("loaded " + towers1.Length + " towers");
         GetComponent<RandomTowerBlueprints>().ManualStart();
+       // GetComponent<RandomTowerBlueprints>().ManualStart2(knownTowerTypes, learnableTowerTypes);
         //gana pull this from saved file hopefully.
         //towers.Add("hasRifled", true);
         //towers.Add("hasFlameTower", false);

@@ -97,7 +97,7 @@ public class PlayerTowerLog : MonoBehaviour {
 
         //print("loaded " + towers1.Length + " towers");
         GetComponent<RandomTowerBlueprints>().ManualStart();
-       // GetComponent<RandomTowerBlueprints>().ManualStart2(knownTowerTypes, learnableTowerTypes);
+        GetComponent<RandomTowerBlueprints>().ManualStart2(knownTowerTypes, learnableTowerTypes);
         //gana pull this from saved file hopefully.
         //towers.Add("hasRifled", true);
         //towers.Add("hasFlameTower", false);

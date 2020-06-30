@@ -94,6 +94,8 @@ public class RandomTowerBlueprints : MonoBehaviour {
         //print(towerLog+ "I am tower log!");
         //towers = towerLog.towers1;
         amountOfTowers = knownTowerTypes.Keys.Count;
+
+        GetAmountOfUndiscoveredTowers2(knownTowerTypes, learnableTowerTypes);
         amountOfUndiscoveredTowers = learnableTowerTypes.Keys.Count;
         //GetAmountOfUndiscoveredTowers();
         //this populates the buttons and checks if you can learn
@@ -102,6 +104,58 @@ public class RandomTowerBlueprints : MonoBehaviour {
         turretTypes.UpdateTowersAvailable(discoveredTowers);
 
     }
+
+    /// <summary>
+    /// This loops through the known towers and the learnable towers.  If it finds a match it removes it.  Only the learnable towers that are NOT in known towers
+    /// will be passed back to be 'learned' in computer room.  This is because learnable also constitutes the parts, not just the towers.
+    /// </summary>
+    /// <param name="knownTowerTypes"></param>
+    /// <param name="learnableTowerTypes"></param>
+    /// <returns></returns>
+    private List<String> GetAmountOfUndiscoveredTowers2(Dictionary<string, Dictionary<string, int>> knownTowerTypes, Dictionary<string, Dictionary<string, int>> learnableTowerTypes)
+    {
+        List<string> towersICanLearn = new List<string>(learnableTowerTypes.Keys);
+
+        foreach (string potentialTower in towersICanLearn)
+        {
+            //if (knownTowerTypes.ContainsKey)
+            //{
+
+            //}5
+        }
+
+        foreach (KeyValuePair<string, Dictionary<string, int>> towerNamesStillLearnable in learnableTowerTypes)
+        {
+            towersICanLearn.Add(towerNamesStillLearnable.ToString());
+        }
+
+        foreach (var towerNameKnown in knownTowerTypes)//int x = 0; x < knownTowerTypes.Keys.Count; x++)// KeyValuePair<string, Dictionary<string, int>> towerNameKnown
+        {
+
+            if (!learnableTowerTypes.ContainsKey(towerNameKnown.ToString()))
+            {
+                towersICanLearn.Add(towerNameKnown.ToString());
+            }
+
+            if (learnableTowerTypes.ContainsKey(towerNameKnown.ToString()))
+            {
+                learnableTowerTypes.Remove(towerNameKnown.ToString());
+            }
+
+
+            //foreach(string towerNameInQuestion in learnableTowerTypes.Keys)
+            //{
+            //    if (towerNameKnown.Equals(towerNameInQuestion))
+            //    {
+            //        learnableTowerTypes.Remove(towerNameInQuestion);
+            //        break;
+            //    }
+            //}
+        }
+
+        return towersICanLearn;
+    }
+
 
     public void CheckIfCanLearnMoreTowers()
     {

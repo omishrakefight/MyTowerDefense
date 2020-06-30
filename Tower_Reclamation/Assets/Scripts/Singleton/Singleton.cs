@@ -304,8 +304,8 @@ public sealed class Singleton : MonoBehaviour {
 
     /// <summary>
     /// This is a generic function to fetch the percentage (high end decimal) of change.  IE mark one will return .92.
-    /// You pass in the Tinker upgrade number, and this gets the version then percent.
-    /// </summary>
+    /// You pass in the Tinker upgrade number, and this gets the version then percent.snippingsertserpow
+    /// </summary>  tester
     /// <param name="tinkerUpgrade"></param>
     /// <returns></returns>
     public float GetPercentageModifier(int tinkerUpgrade)

@@ -54,6 +54,16 @@ public class PlayerTowerLog : MonoBehaviour {
 
             knownTowerTypes.Add("Rifled Towers", towerParts);
 
+            towerParts = new Dictionary<string, int>() {
+                { "Basic Augment", (int)FlameHead.Basic },
+                { "FlameThrower Augment", (int)FlameHead.FlameThrower },
+                { "Basic Base", (int)FlameBase.Basic },
+                { "Tall Base", (int)FlameBase.Tall }
+            };
+            knownTowerTypes.Add("Flame Towers", towerParts);
+
+
+
 
             //  Towers we need to learn, all besides rifled.
             learnableTowerTypes = new Dictionary<string, Dictionary<string, int>>();

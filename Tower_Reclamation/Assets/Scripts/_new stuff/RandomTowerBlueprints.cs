@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -89,20 +90,109 @@ public class RandomTowerBlueprints : MonoBehaviour {
 
     public void ManualStart2(Dictionary<string, Dictionary<string, int>> knownTowerTypes, Dictionary<string, Dictionary<string, int>> learnableTowerTypes)
     {
-        //towerLog = GetComponent<PlayerTowerLog>();
-        singleton = Singleton.Instance;
-        //print(towerLog+ "I am tower log!");
-        //towers = towerLog.towers1;
-        amountOfTowers = knownTowerTypes.Keys.Count;
 
-        GetAmountOfUndiscoveredTowers2(knownTowerTypes, learnableTowerTypes);
-        amountOfUndiscoveredTowers = learnableTowerTypes.Keys.Count;
+        singleton = Singleton.Instance;
+        amountOfTowers = knownTowerTypes.Keys.Count;
+        List<string> towersICanLearn = GetAmountOfUndiscoveredTowers2(knownTowerTypes, learnableTowerTypes);
+        //amountOfUndiscoveredTowers = learnableTowerTypes.Keys.Count;
         //GetAmountOfUndiscoveredTowers();
         //this populates the buttons and checks if you can learn
-        CheckIfCanLearnMoreTowers();
+        CheckIfCanLearnMoreTowers2(towersICanLearn);
         List<string> discoveredTowers = new List<string>(knownTowerTypes.Keys);
         turretTypes.UpdateTowersAvailable(discoveredTowers);
 
+    }
+
+    private void CheckIfCanLearnMoreTowers2(List<string> towersICanLearn)
+    {
+        //TODO change to a specific towers lost pic or something.
+        if (singleton.isHasLearnedATower)
+        {
+            PickTowers2(towersICanLearn);
+            towerButtonOne.interactable = false;
+            towerButtonTwo.interactable = false;
+            towerButtonThree.interactable = false;
+        }
+        else
+        {
+            PickTowers2(towersICanLearn);
+        }
+    }
+
+    private void PickTowers2(List<string> towersICanLearn)
+    {
+        towerOneInUse = false;
+        towerTwoInUse = false;
+        towerThreeInUse = false;
+        int limit = 3;
+        //if(amountOfUndiscoveredTowers < 3)
+        //{
+        //    limit = amountOfUndiscoveredTowers;
+        //}
+        for (int x = 0; x < limit; x++)
+        {
+            int rando = UnityEngine.Random.Range(0, towersICanLearn.Count);
+            if (x == 0)
+            {
+                if (amountOfUndiscoveredTowers == 0)
+                {
+                    towerButtonOne.GetComponentInChildren<Text>().text = "LOCKED";
+                    buttonOneText.text = SetupNewButton("no new towers", ref buttonOneImage);
+
+                }
+                else
+                {
+                    towerButtonOne.GetComponentInChildren<Text>().text = undiscoveredTowers[rando];
+                    buttonOneText.text = SetupNewButton(undiscoveredTowers[rando], ref buttonOneImage);
+                    //SetupNewButton(buttonOneText.text, ref buttonOneImage);
+
+                    undiscoveredTowers.RemoveAt(rando);
+                    amountOfUndiscoveredTowers--;
+                    towerOneInUse = true;
+                    //print("x was 0");
+                }
+            }
+            if (x == 1)
+            {
+                if (amountOfUndiscoveredTowers == 0)
+                {
+                    towerButtonTwo.GetComponentInChildren<Text>().text = "LOCKED";
+                    buttonTwoText.text = SetupNewButton("no new towers", ref buttonTwoImage);
+                }
+                else
+                {
+                    towerButtonTwo.GetComponentInChildren<Text>().text = undiscoveredTowers[rando];
+                    buttonTwoText.text = SetupNewButton(undiscoveredTowers[rando], ref buttonTwoImage);
+                    //SetupNewButton(buttonTwoText.text, ref buttonTwoImage);
+
+                    undiscoveredTowers.RemoveAt(rando);
+                    amountOfUndiscoveredTowers--;
+                    towerTwoInUse = true;
+                    //print("x was 1");
+                }
+            }
+            if (x == 2)
+            {
+                if (amountOfUndiscoveredTowers == 0)
+                {
+                    towerButtonThree.GetComponentInChildren<Text>().text = "LOCKED";
+                    buttonThreeText.text = SetupNewButton("no new towers", ref buttonThreeImage);
+                }
+                else
+                {
+                    towerButtonThree.GetComponentInChildren<Text>().text = undiscoveredTowers[rando];
+                    buttonThreeText.text = SetupNewButton(undiscoveredTowers[rando], ref buttonThreeImage);
+                    //SetupNewButton(buttonThreeText.text, ref buttonThreeImage);
+
+                    undiscoveredTowers.RemoveAt(rando);
+                    amountOfUndiscoveredTowers--;
+                    towerThreeInUse = true;
+                    //print("x was 2");
+                }
+            }
+            //print(rando + " is rando number");
+            //print(amountOfUndiscoveredTowers + " is undiscovered towers");
+        }
     }
 
     /// <summary>
@@ -114,47 +204,22 @@ public class RandomTowerBlueprints : MonoBehaviour {
     /// <returns></returns>
     private List<String> GetAmountOfUndiscoveredTowers2(Dictionary<string, Dictionary<string, int>> knownTowerTypes, Dictionary<string, Dictionary<string, int>> learnableTowerTypes)
     {
-        List<string> towersICanLearn = new List<string>(learnableTowerTypes.Keys);
+        // this is a list made from the LEARNABLE towers, i then check what towers I know for dupes and delete them from list.
+        List<string> towersFromLearnable = new List<string>(learnableTowerTypes.Keys);
+        List<string> towersICanLearn = new List<string>();
 
-        foreach (string potentialTower in towersICanLearn)
+
+        for(int x = 0; x < towersFromLearnable.Count; x++)
         {
-            //if (knownTowerTypes.ContainsKey)
-            //{
-
-            //}5
-        }
-
-        foreach (KeyValuePair<string, Dictionary<string, int>> towerNamesStillLearnable in learnableTowerTypes)
-        {
-            towersICanLearn.Add(towerNamesStillLearnable.ToString());
-        }
-
-        foreach (var towerNameKnown in knownTowerTypes)//int x = 0; x < knownTowerTypes.Keys.Count; x++)// KeyValuePair<string, Dictionary<string, int>> towerNameKnown
-        {
-
-            if (!learnableTowerTypes.ContainsKey(towerNameKnown.ToString()))
+            if (!knownTowerTypes.ContainsKey(towersFromLearnable[x]))
             {
-                towersICanLearn.Add(towerNameKnown.ToString());
+                towersICanLearn.Add(towersFromLearnable[x]);
             }
-
-            if (learnableTowerTypes.ContainsKey(towerNameKnown.ToString()))
-            {
-                learnableTowerTypes.Remove(towerNameKnown.ToString());
-            }
-
-
-            //foreach(string towerNameInQuestion in learnableTowerTypes.Keys)
-            //{
-            //    if (towerNameKnown.Equals(towerNameInQuestion))
-            //    {
-            //        learnableTowerTypes.Remove(towerNameInQuestion);
-            //        break;
-            //    }
-            //}
         }
-
         return towersICanLearn;
+        
     }
+
 
 
     public void CheckIfCanLearnMoreTowers()
@@ -346,35 +411,35 @@ public class RandomTowerBlueprints : MonoBehaviour {
     {
         // since it is a pain to pass a reference to button.text, im just going to return the string i want.
         string towerDescription = "";
-        if (towerTextDescription.Equals("RifledTower"))
+        if (towerTextDescription.Contains("Rifled"))
         {
             towerLog.towers1[(int)Towers.RifledTower] = true;
             print("tower[ " + (int)Towers.RifledTower + "] should be true");
         }
-        else if (towerTextDescription.Equals("AssaultTower"))
-        {
-            towerDescription = AssaultTower;
-            image.sprite = AssaultTowerPic;
+        //else if (towerTextDescription.Equals("AssaultTower"))
+        //{
+        //    towerDescription = AssaultTower;
+        //    image.sprite = AssaultTowerPic;
 
-        }
-        else if (towerTextDescription.Equals("FlameTower"))
+        //}
+        else if (towerTextDescription.Contains("Flame"))
         {
             towerDescription = FlameTower;
             image.sprite = FlameTowerPic;
         }
-        else if (towerTextDescription.Equals("LighteningTower"))
+        else if (towerTextDescription.Contains("Light"))
         {
             towerDescription = LightningTower;
             image.sprite = LightningTowerPic;
 
         }
-        else if (towerTextDescription.Equals("PlasmaTower"))
+        else if (towerTextDescription.Contains("Plasma"))
         {
             towerDescription = PlasmaTower;
             image.sprite = PlasmaTowerPic;
 
         }
-        else if (towerTextDescription.Equals("SlowTower"))
+        else if (towerTextDescription.Contains("Frost"))
         {
             towerDescription = SlowTower;
             image.sprite = SlowTowerPic;
@@ -385,6 +450,48 @@ public class RandomTowerBlueprints : MonoBehaviour {
             towerDescription = "Already known.";
             image.sprite = AlreadyKnown;
         }
+
+        //// since it is a pain to pass a reference to button.text, im just going to return the string i want.
+        //string towerDescription = "";
+        //if (towerTextDescription.Equals("RifledTower"))
+        //{
+        //    towerLog.towers1[(int)Towers.RifledTower] = true;
+        //    print("tower[ " + (int)Towers.RifledTower + "] should be true");
+        //}
+        //else if (towerTextDescription.Equals("AssaultTower"))
+        //{
+        //    towerDescription = AssaultTower;
+        //    image.sprite = AssaultTowerPic;
+
+        //}
+        //else if (towerTextDescription.Equals("FlameTower"))
+        //{
+        //    towerDescription = FlameTower;
+        //    image.sprite = FlameTowerPic;
+        //}
+        //else if (towerTextDescription.Equals("LighteningTower"))
+        //{
+        //    towerDescription = LightningTower;
+        //    image.sprite = LightningTowerPic;
+
+        //}
+        //else if (towerTextDescription.Equals("PlasmaTower"))
+        //{
+        //    towerDescription = PlasmaTower;
+        //    image.sprite = PlasmaTowerPic;
+
+        //}
+        //else if (towerTextDescription.Equals("SlowTower"))
+        //{
+        //    towerDescription = SlowTower;
+        //    image.sprite = SlowTowerPic;
+
+        //}
+        //else
+        //{
+        //    towerDescription = "Already known.";
+        //    image.sprite = AlreadyKnown;
+        //}
 
         return towerDescription;
     }

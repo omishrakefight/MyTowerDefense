@@ -118,6 +118,18 @@ public class PlayerTowerLog : MonoBehaviour {
 
     }
 
+    public Dictionary<string, int> GetTowerParts(string towerKey) //Dictionary<string, int> GetTowerParts(string towerKey)
+    {
+        return knownTowerTypes[towerKey]; //Dictionary<string, int> towerParts = 
+    }
+
+    public void GetKnownAndLearnableTowerRef(ref Dictionary<string, Dictionary<string, int>> knownTowerTypesRef, ref Dictionary<string, Dictionary<string, int>> learnableTowerTypesRef)
+    {
+        knownTowerTypesRef = knownTowerTypes;
+        learnableTowerTypesRef = learnableTowerTypes;
+
+    }
+
     public void GetTowersFromGame()
     {
         // pull them in instead of just having the dumb bools above.

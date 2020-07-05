@@ -125,10 +125,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
         towerTwoInUse = false;
         towerThreeInUse = false;
         int limit = 3;
-        //if(amountOfUndiscoveredTowers < 3)
-        //{
-        //    limit = amountOfUndiscoveredTowers;
-        //}
+
         for (int x = 0; x < limit; x++)
         {
             int rando = UnityEngine.Random.Range(0, towersICanLearn.Count);
@@ -142,12 +139,12 @@ public class RandomTowerBlueprints : MonoBehaviour {
                 }
                 else
                 {
-                    towerButtonOne.GetComponentInChildren<Text>().text = undiscoveredTowers[rando];
-                    buttonOneText.text = SetupNewButton(undiscoveredTowers[rando], ref buttonOneImage);
+                    towerButtonOne.GetComponentInChildren<Text>().text = towersICanLearn[rando];
+                    buttonOneText.text = SetupNewButton(towersICanLearn[rando], ref buttonOneImage);
                     //SetupNewButton(buttonOneText.text, ref buttonOneImage);
 
-                    undiscoveredTowers.RemoveAt(rando);
-                    amountOfUndiscoveredTowers--;
+                    towersICanLearn.RemoveAt(rando);
+                   //amountOfUndiscoveredTowers--;
                     towerOneInUse = true;
                     //print("x was 0");
                 }
@@ -161,12 +158,12 @@ public class RandomTowerBlueprints : MonoBehaviour {
                 }
                 else
                 {
-                    towerButtonTwo.GetComponentInChildren<Text>().text = undiscoveredTowers[rando];
-                    buttonTwoText.text = SetupNewButton(undiscoveredTowers[rando], ref buttonTwoImage);
+                    towerButtonTwo.GetComponentInChildren<Text>().text = towersICanLearn[rando];
+                    buttonTwoText.text = SetupNewButton(towersICanLearn[rando], ref buttonTwoImage);
                     //SetupNewButton(buttonTwoText.text, ref buttonTwoImage);
 
-                    undiscoveredTowers.RemoveAt(rando);
-                    amountOfUndiscoveredTowers--;
+                    towersICanLearn.RemoveAt(rando);
+                    //amountOfUndiscoveredTowers--;
                     towerTwoInUse = true;
                     //print("x was 1");
                 }
@@ -180,12 +177,12 @@ public class RandomTowerBlueprints : MonoBehaviour {
                 }
                 else
                 {
-                    towerButtonThree.GetComponentInChildren<Text>().text = undiscoveredTowers[rando];
-                    buttonThreeText.text = SetupNewButton(undiscoveredTowers[rando], ref buttonThreeImage);
+                    towerButtonThree.GetComponentInChildren<Text>().text = towersICanLearn[rando];
+                    buttonThreeText.text = SetupNewButton(towersICanLearn[rando], ref buttonThreeImage);
                     //SetupNewButton(buttonThreeText.text, ref buttonThreeImage);
 
-                    undiscoveredTowers.RemoveAt(rando);
-                    amountOfUndiscoveredTowers--;
+                    towersICanLearn.RemoveAt(rando);
+                    //amountOfUndiscoveredTowers--;
                     towerThreeInUse = true;
                     //print("x was 2");
                 }
@@ -241,17 +238,17 @@ public class RandomTowerBlueprints : MonoBehaviour {
     public void ButtonOne()
     {
         // how to get the reference to a booleanspot by a string buttonName
-        LearnedANewTower(towerButtonOne.GetComponentInChildren<Text>().text);
-        if (towerTwoInUse)
-        {
-            undiscoveredTowers.Add(towerButtonTwo.GetComponentInChildren<Text>().text);
-            amountOfUndiscoveredTowers++;
-        }
-        if (towerThreeInUse)
-        {
-            undiscoveredTowers.Add(towerButtonThree.GetComponentInChildren<Text>().text);
-            amountOfUndiscoveredTowers++;
-        }
+        LearnedANewTower2(towerButtonOne.GetComponentInChildren<Text>().text);
+        //if (towerTwoInUse)
+        //{
+        //    undiscoveredTowers.Add(towerButtonTwo.GetComponentInChildren<Text>().text);
+        //    amountOfUndiscoveredTowers++;
+        //}
+        //if (towerThreeInUse)
+        //{
+        //    undiscoveredTowers.Add(towerButtonThree.GetComponentInChildren<Text>().text);
+        //    amountOfUndiscoveredTowers++;
+        //}
         //PickTowers();
         singleton.isHasLearnedATower = true;
 
@@ -404,6 +401,34 @@ public class RandomTowerBlueprints : MonoBehaviour {
 
         turretTypes.UpdateTowersAvailable(GetDiscoveredTowers());
         
+    }
+
+    /// <summary>
+    /// This function takes in the button name of a learned tower, and then pulls it from LEARNABLE to KNOWN.
+    /// </summary>
+    /// <param name="buttonName"></param>
+    public void LearnedANewTower2(string buttonName)
+    {
+        Dictionary<string, Dictionary<string, int>> knownTowerTypes = new Dictionary<string, Dictionary<string, int>>();
+        Dictionary<string, Dictionary<string, int>> learnableTowerTypes = new Dictionary<string, Dictionary<string, int>>();
+        Dictionary<string, int> towerParts = new Dictionary<string, int>();
+
+        if(towerLog == null)
+        {
+            towerLog = FindObjectOfType<PlayerTowerLog>();
+        }
+
+        // here I will add in both references, minus and add
+        towerLog.GetKnownAndLearnableTowerRef(ref knownTowerTypes, ref learnableTowerTypes);
+
+        // this is where I get it and delete, LATER TODO I will come in here and take slect parts out.
+        towerParts = learnableTowerTypes[buttonName];
+        knownTowerTypes.Add(buttonName, towerParts);
+        learnableTowerTypes.Remove(buttonName);
+
+        List<string> knownTowerNameList = new List<string>(knownTowerTypes.Keys);
+
+        turretTypes.UpdateTowersAvailable(knownTowerNameList);
     }
 
     // is passed in towerButtonOne.GetComponentInChildren<Text>().text

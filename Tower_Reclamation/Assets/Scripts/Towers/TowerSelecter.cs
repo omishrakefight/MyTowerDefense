@@ -43,7 +43,7 @@ public class TowerSelecter : MonoBehaviour
     [SerializeField] public Text TowerBaseDescription;
     [SerializeField] public Text TowerBaseFlavorTxt;
     [SerializeField] public Text TowerStatsTxt;
-
+    PlayerTowerLog towerLog = null;
 
     #region TowerParts
     //#TowerParts
@@ -259,7 +259,49 @@ public class TowerSelecter : MonoBehaviour
     }
 
 
+    private void FocusDynamicTowerType(Dictionary<string, int> towerParts)
+    {
+        towerBase.ClearOptions();
+        towerBarrel.ClearOptions();
+        List<string> towerPartsList = new List<string>(towerParts.Keys);
+        List<string> augments = new List<string>(); //{ "Basic Barrel", "Sniper Barrel" };
+        List<string> bases = new List<string>(); //{ "Basic Base", "Rapid Base" };// we removed some of the supports inside the turret, it allows for easier bullet managment, but comes at the cost of resistance.  We increase rate of fire but lower impact.
 
+        foreach(string s in towerPartsList)
+        {
+            if (s.Contains("base"))
+            {
+                bases.Add(s);
+            } else
+            {
+                augments.Add(s);
+            }
+        }
+
+        towerBarrel.AddOptions(augments);
+        towerBarrel.RefreshShownValue();
+        towerBase.AddOptions(bases);
+        towerBase.RefreshShownValue(); 
+    }
+
+    public Tower SetTowerBaseAndHead2()
+    {
+        if (towerLog == null)
+        {
+            towerLog = FindObjectOfType<PlayerTowerLog>();
+        }
+        Dictionary<string, int> knownTowerParts = new Dictionary<string, int>();
+        List<Dropdown.OptionData> list = towerTurret.options;
+
+        string tower = list[towerTurret.value].text;//towerTurret.options(towserTurret.value).text;
+        knownTowerParts = towerLog.GetTowerParts(tower);
+        FocusDynamicTowerType(knownTowerParts);
+
+        return decidedTower;
+    }
+
+    // Need to change this so it is also if contains, then also pull the values out of the functions.
+    // scrap what I said, just plug in the select, its gotten from the list so should match perfectly.  Then get the stuff inside that dictionary and populate and filters. 
     public Tower SetTowerBaseAndHead()
     {
         List<Dropdown.OptionData> list = towerTurret.options;
@@ -400,27 +442,27 @@ public class TowerSelecter : MonoBehaviour
 
         string tower = list[towerTurret.value].text;//towerTurret.options(towerTurret.value).text;
 
-        if (tower.Equals("RifledTower"))
+        if (tower.Contains("Rifled"))
         {
             FocusRifledTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
-        if (tower.Equals("AssaultTower"))
-        {
-            FocusAssaultTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
-        }
-        if (tower.Equals("FlameTower"))
+        //if (tower.Contains("AssaultTower"))
+        //{
+        //    FocusAssaultTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
+        //}
+        if (tower.Contains("Flame"))
         {
             FocusFireTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
-        if (tower.Equals("LighteningTower"))
+        if (tower.Contains("Light"))
         {
             FocusLighteningTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
-        if (tower.Equals("PlasmaTower"))
+        if (tower.Contains("Plasma"))
         {
             FocusPlasmaTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
-        if (tower.Equals("SlowTower"))
+        if (tower.Contains("frost"))
         {
             FocusSlowTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }

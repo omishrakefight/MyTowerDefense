@@ -127,7 +127,6 @@ public class PlayerTowerLog : MonoBehaviour {
     {
         knownTowerTypesRef = knownTowerTypes;
         learnableTowerTypesRef = learnableTowerTypes;
-
     }
 
     public void GetTowersFromGame()
@@ -139,6 +138,8 @@ public class PlayerTowerLog : MonoBehaviour {
     {
         return towers1;
     }
+    
+    public 
 
     public void LoadTowers(bool[] loadedTowers)
     {

@@ -259,18 +259,8 @@ public class RandomTowerBlueprints : MonoBehaviour {
     public void ButtonTwo()
     {
         // how to get the reference to a booleanspot by a string buttonName
-        LearnedANewTower(towerButtonTwo.GetComponentInChildren<Text>().text);
-        if (towerOneInUse)
-        {
-            undiscoveredTowers.Add(towerButtonOne.GetComponentInChildren<Text>().text);
-            amountOfUndiscoveredTowers++;
-        }
-        if (towerThreeInUse)
-        {
-            undiscoveredTowers.Add(towerButtonThree.GetComponentInChildren<Text>().text);
-            amountOfUndiscoveredTowers++;
-        }
-        //PickTowers();
+        LearnedANewTower2(towerButtonTwo.GetComponentInChildren<Text>().text);
+
         singleton.isHasLearnedATower = true;
 
         towerButtonOne.interactable = false;
@@ -280,18 +270,8 @@ public class RandomTowerBlueprints : MonoBehaviour {
     public void ButtonThree()
     {
         // how to get the reference to a booleanspot by a string buttonName
-        LearnedANewTower(towerButtonThree.GetComponentInChildren<Text>().text);
-        if (towerTwoInUse)
-        {
-            undiscoveredTowers.Add(towerButtonTwo.GetComponentInChildren<Text>().text);
-            amountOfUndiscoveredTowers++;
-        }
-        if (towerOneInUse)
-        {
-            undiscoveredTowers.Add(towerButtonOne.GetComponentInChildren<Text>().text);
-            amountOfUndiscoveredTowers++;
-        }
-        //PickTowers();
+        LearnedANewTower2(towerButtonThree.GetComponentInChildren<Text>().text);
+
         singleton.isHasLearnedATower = true;
 
         towerButtonOne.interactable = false;

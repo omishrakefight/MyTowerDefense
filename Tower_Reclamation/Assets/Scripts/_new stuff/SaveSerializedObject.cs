@@ -26,7 +26,9 @@ public class SaveSerializedObject  {
 
     public List<int> List;
     public Dictionary<string, int> dic;
-    public Dictionary<string, Dictionary<string, int>> dics;
+    public Dictionary<string, Dictionary<string, int>> knownTowersAndParts;
+    public Dictionary<string, Dictionary<string, int>> learnableTowersAndParts;
+    public Dictionary<string, Dictionary<string, int>> unlearnableTowersAndParts;
     // add the bool
 
     /// <summary>
@@ -47,21 +49,21 @@ public class SaveSerializedObject  {
     {
         return List;
     }
-    public void SaveDic()
-    {
-        dic = new Dictionary<string, int>();
-        dic.Add("f", 1);
-        dic.Add("z", 2);
-        dic.Add("a", 3);
-        dics = new Dictionary<string, Dictionary<string, int>>();
-        dics.Add("Rifled Tower", dic);
-        dic.Remove("z");
-        dics.Add("Slow Tower", dic);
-    }
-    public Dictionary<string, Dictionary<string, int>> LoadDic()
-    {
-        return dics;
-    }
+    //public void SaveDic()
+    //{
+    //    dic = new Dictionary<string, int>();
+    //    dic.Add("f", 1);
+    //    dic.Add("z", 2);
+    //    dic.Add("a", 3);
+    //    dics = new Dictionary<string, Dictionary<string, int>>();
+    //    dics.Add("Rifled Tower", dic);
+    //    dic.Remove("z");
+    //    dics.Add("Slow Tower", dic);
+    //}
+    //public Dictionary<string, Dictionary<string, int>> LoadDic()
+    //{
+    //    return dics;
+    //}
     public void SaveTinkerRoomInfo(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasPicked)
     {
         currentUpgradeLevels = _currentUpgradeLevels;
@@ -78,6 +80,13 @@ public class SaveSerializedObject  {
     public void SaveTowers(bool[] towerListSaves)
     {
         towerList = towerListSaves;
+    }
+
+    public void SaveTowersAndParts(Dictionary<string, Dictionary<string, int>> _knownTowersAndParts, Dictionary<string, Dictionary<string, int>> _learnableTowersAndParts, Dictionary<string, Dictionary<string, int>> _unlearnableTowersAndParts)
+    {
+        knownTowersAndParts = _knownTowersAndParts;
+        learnableTowersAndParts = _learnableTowersAndParts;
+        unlearnableTowersAndParts = _unlearnableTowersAndParts;
     }
 
 

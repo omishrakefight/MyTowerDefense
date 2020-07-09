@@ -45,6 +45,7 @@ public class TowerSelecter : MonoBehaviour
     [SerializeField] public Text TowerStatsTxt;
     PlayerTowerLog towerLog = null;
 
+    Dictionary<string, int> knownTowerParts;
     #region TowerParts
     //#TowerParts
     float turnSpeed = 6f;
@@ -113,6 +114,7 @@ public class TowerSelecter : MonoBehaviour
         
         if (towerBarrel.value == 0 && towerTurret.value == 0 && towerBase.value == 0)
         {
+            changingTowerType = true;
             ResetTowerPicture();
             FocusRifledTowers();
         }
@@ -155,7 +157,8 @@ public class TowerSelecter : MonoBehaviour
         towerBarrel.value = 0;
         towerBase.value = 0;
 
-        SetTowerBaseAndHead();
+        //SetTowerBaseAndHead();
+        SetTowerBaseAndHead2();
         ResetTowerPicture();
         changingTowerType = false;
     }
@@ -211,6 +214,7 @@ public class TowerSelecter : MonoBehaviour
 
         SpawnTowerForViewing(towerPosition, towerBase, towerHead);
 
+        // delayed start and determine types pass in the enum for its TYPE and it initiallizes it specially. ** this is needed in base so it can display its stats.
         tower.GetComponentInChildren<Tower>().DelayedStart();
         tower.GetComponentInChildren<Tower>().DetermineTowerTypeBase(baseInt);
         tower.GetComponentInChildren<Tower>().DetermineTowerHeadType(AugmentInt);
@@ -247,10 +251,20 @@ public class TowerSelecter : MonoBehaviour
         print(towerBase.name);
         float headHeight = ((towerBase.GetComponentInChildren<MeshFilter>().sharedMesh.bounds.extents.y) * .94f); //This is to account for bigger meshes    // + (obj2.GetComponent<MeshFilter>().sharedMesh.bounds.extents.y));
         var tBase = Instantiate(towerBase, position, Quaternion.identity);
+        tBase.GetComponentInChildren<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+
         // use this for the placement
         var tHead = Instantiate(towerHead, (position + new Vector3(0, headHeight, 0)), Quaternion.identity); //new Vector3(0, headHeight, 0)
         tBase.transform.parent = container.transform;
         tHead.transform.parent = tBase.transform;
+        try
+        {
+            tHead.GetComponentInChildren<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        }
+        catch (NullReferenceException noTowerHead)
+        {
+            // nothing, not all towers have a head.
+        }
 
         //not needed in base but w/e
         tBase.SetHead(tHead.transform);
@@ -269,7 +283,7 @@ public class TowerSelecter : MonoBehaviour
 
         foreach(string s in towerPartsList)
         {
-            if (s.Contains("base"))
+            if (s.ToLower().Contains("base"))
             {
                 bases.Add(s);
             } else
@@ -290,7 +304,7 @@ public class TowerSelecter : MonoBehaviour
         {
             towerLog = FindObjectOfType<PlayerTowerLog>();
         }
-        Dictionary<string, int> knownTowerParts = new Dictionary<string, int>();
+        knownTowerParts = new Dictionary<string, int>();
         List<Dropdown.OptionData> list = towerTurret.options;
 
         string tower = list[towerTurret.value].text;//towerTurret.options(towserTurret.value).text;
@@ -428,19 +442,29 @@ public class TowerSelecter : MonoBehaviour
     public Tower PickTower(ref Tower turretBase, ref GameObject towerHead, ref int baseType, ref int towerBarrelType)
     {
         List<Dropdown.OptionData> list = towerTurret.options;
+        string tower = list[towerTurret.value].text;
+
+        if (towerLog == null)
+        {
+            towerLog = FindObjectOfType<PlayerTowerLog>();
+        }
 
         if (changingTowerType)
         {
-            baseType = 0;
+            baseType = 0; 
             towerBarrelType = 0;
+            // I only enter it once per 'change'
+            changingTowerType = false;
         } else
         {
-            baseType = towerBase.value;
-            towerBarrelType = towerBarrel.value;
+            knownTowerParts = towerLog.GetTowerParts(tower);
+            // knownTowerParts is my list of parts for this given tower type., i pass in the name of the dropdown to access its enum int.
+            baseType =  knownTowerParts[towerBase.options[towerBase.value].text];
+            towerBarrelType = knownTowerParts[towerBarrel.options[towerBarrel.value].text];
         }
 
 
-        string tower = list[towerTurret.value].text;//towerTurret.options(towerTurret.value).text;
+        //towerTurret.options(towerTurret.value).text;
 
         if (tower.Contains("Rifled"))
         {

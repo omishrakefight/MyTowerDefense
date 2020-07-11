@@ -173,7 +173,7 @@ public class PlayerTowerLog : MonoBehaviour {
         learnableTowersAndParts = _learnableTowersAndParts;
         unlearnableTowersAndParts = _unlearnableTowersAndParts;
 
-        GetComponent<RandomTowerBlueprints>().ManualStart();
+        GetComponent<RandomTowerBlueprints>().ManualStart2(knownTowersAndParts, learnableTowersAndParts);
         startNew = false;
     }
 

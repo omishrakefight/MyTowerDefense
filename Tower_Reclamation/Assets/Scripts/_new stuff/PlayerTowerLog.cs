@@ -12,10 +12,14 @@ public class PlayerTowerLog : MonoBehaviour {
     public bool[] towers1 = null;
     bool startNew = true;
 
+    //knownTowersAndParts = _knownTowersAndParts;
+    //    learnableTowersAndParts = _learnableTowersAndParts;
+    //    unlearnableTowersAndParts
+
     public Dictionary<string, int> towerParts;
-    public Dictionary<string, Dictionary<string, int>> knownTowerTypes;
-    public Dictionary<string, Dictionary<string, int>> learnableTowerTypes;
-    public Dictionary<string, Dictionary<string, int>> lockedTowerTypes;
+    public Dictionary<string, Dictionary<string, int>> knownTowersAndParts;
+    public Dictionary<string, Dictionary<string, int>> learnableTowersAndParts;
+    public Dictionary<string, Dictionary<string, int>> unlearnableTowersAndParts;
     //int numberOfTowers = 6;
 
     //basic starting tower
@@ -43,7 +47,7 @@ public class PlayerTowerLog : MonoBehaviour {
             };
 
             // Rifled tower is basic tower to start with.
-            knownTowerTypes = new Dictionary<string, Dictionary<string, int>>();
+            knownTowersAndParts = new Dictionary<string, Dictionary<string, int>>();
 
             towerParts = new Dictionary<string, int>() {
                 { "Basic Augment", (int)RifledHead.Basic },
@@ -52,7 +56,7 @@ public class PlayerTowerLog : MonoBehaviour {
                 { "Rapid Base", (int)RifledBase.Rapid }
             };
 
-            knownTowerTypes.Add("Rifled Towers", towerParts);
+            knownTowersAndParts.Add("Rifled Towers", towerParts);
 
             towerParts = new Dictionary<string, int>() {
                 { "Basic Augment", (int)FlameHead.Basic },
@@ -60,13 +64,13 @@ public class PlayerTowerLog : MonoBehaviour {
                 { "Basic Base", (int)FlameBase.Basic },
                 { "Tall Base", (int)FlameBase.Tall }
             };
-            knownTowerTypes.Add("Flame Towers", towerParts);
+            knownTowersAndParts.Add("Flame Towers", towerParts);
 
 
 
 
             //  Towers we need to learn, all besides rifled.
-            learnableTowerTypes = new Dictionary<string, Dictionary<string, int>>();
+            learnableTowersAndParts = new Dictionary<string, Dictionary<string, int>>();
 
             towerParts = new Dictionary<string, int>() {
                 { "Basic Augment", (int)FlameHead.Basic },
@@ -74,7 +78,7 @@ public class PlayerTowerLog : MonoBehaviour {
                 { "Basic Base", (int)FlameBase.Basic },
                 { "Tall Base", (int)FlameBase.Tall }
             };
-            learnableTowerTypes.Add("Flame Towers", towerParts);
+            learnableTowersAndParts.Add("Flame Towers", towerParts);
 
             towerParts = new Dictionary<string, int>() {
                 { "Basic Augment", (int)IceHead.Basic }, 
@@ -82,7 +86,7 @@ public class PlayerTowerLog : MonoBehaviour {
                 { "Basic Base", (int)IceBase.Basic },
                 { "Industrial Base", (int)IceBase.Industrial }
             };
-            learnableTowerTypes.Add("Frost Tower", towerParts);
+            learnableTowersAndParts.Add("Frost Tower", towerParts);
 
             /////=================continue here
             towerParts = new Dictionary<string, int>() {
@@ -91,7 +95,7 @@ public class PlayerTowerLog : MonoBehaviour {
                 { "Basic Base", (int)LightningBase.Basic },
                 { "Rapid Base", (int)LightningBase.Rapid }
             };
-            learnableTowerTypes.Add("Lightning Tower", towerParts);
+            learnableTowersAndParts.Add("Lightning Tower", towerParts);
 
             towerParts = new Dictionary<string, int>() {
                 { "Basic Augment", (int)PlasmaHead.Basic },
@@ -99,15 +103,17 @@ public class PlayerTowerLog : MonoBehaviour {
                 { "Basic Base", (int)PlasmaBase.Basic },
                 { "Rapid Base", (int)PlasmaBase.Basic }
             };
-            learnableTowerTypes.Add("Plasma Tower", towerParts);
+            learnableTowersAndParts.Add("Plasma Tower", towerParts);
 
         }
 
 
 
         //print("loaded " + towers1.Length + " towers");
-        GetComponent<RandomTowerBlueprints>().ManualStart();
-        GetComponent<RandomTowerBlueprints>().ManualStart2(knownTowerTypes, learnableTowerTypes);
+
+        //GetComponent<RandomTowerBlueprints>().ManualStart();
+        GetComponent<RandomTowerBlueprints>().ManualStart2(knownTowersAndParts, learnableTowersAndParts);
+
         //gana pull this from saved file hopefully.
         //towers.Add("hasRifled", true);
         //towers.Add("hasFlameTower", false);
@@ -120,14 +126,35 @@ public class PlayerTowerLog : MonoBehaviour {
 
     public Dictionary<string, int> GetTowerParts(string towerKey) //Dictionary<string, int> GetTowerParts(string towerKey)
     {
-        return knownTowerTypes[towerKey]; //Dictionary<string, int> towerParts = 
+        return knownTowersAndParts[towerKey]; //Dictionary<string, int> towerParts = 
     }
 
     public void GetKnownAndLearnableTowerRef(ref Dictionary<string, Dictionary<string, int>> knownTowerTypesRef, ref Dictionary<string, Dictionary<string, int>> learnableTowerTypesRef)
     {
-        knownTowerTypesRef = knownTowerTypes;
-        learnableTowerTypesRef = learnableTowerTypes;
+        knownTowerTypesRef = knownTowersAndParts;
+        learnableTowerTypesRef = learnableTowersAndParts;
     }
+
+    //I do it in seperate parts here so that I can call the functions as parameters, the Save object will hodl reference, but not the Load / Save script.
+    public Dictionary<string, Dictionary<string, int>> SaveKnownTowersAndParts()
+    {
+        return knownTowersAndParts;
+    }
+    public Dictionary<string, Dictionary<string, int>> SaveLearnableTowersAndParts()
+    {
+        return learnableTowersAndParts;
+    }
+    public Dictionary<string, Dictionary<string, int>> SaveUnlearnableTowersAndParts()
+    {
+        return unlearnableTowersAndParts;
+    }
+
+    //public void SaveTowersAndParts(ref Dictionary<string, Dictionary<string, int>> knownTowerTypesRef, ref Dictionary<string, Dictionary<string, int>> learnableTowerTypesRef, ref Dictionary<string, Dictionary<string, int>> unlearnableTowerTypesRef)
+    //{
+    //    knownTowerTypesRef = knownTowersAndParts;
+    //    learnableTowerTypesRef = learnableTowersAndParts;
+    //    unlearnableTowerTypesRef = unlearnableTowersAndParts;
+    //}
 
     public void GetTowersFromGame()
     {
@@ -138,8 +165,17 @@ public class PlayerTowerLog : MonoBehaviour {
     {
         return towers1;
     }
-    
-    public 
+
+
+    public void LoadTowersAndParts(Dictionary<string, Dictionary<string, int>> _knownTowersAndParts, Dictionary<string, Dictionary<string, int>> _learnableTowersAndParts, Dictionary<string, Dictionary<string, int>> _unlearnableTowersAndParts)
+    {
+        knownTowersAndParts = _knownTowersAndParts;
+        learnableTowersAndParts = _learnableTowersAndParts;
+        unlearnableTowersAndParts = _unlearnableTowersAndParts;
+
+        GetComponent<RandomTowerBlueprints>().ManualStart();
+        startNew = false;
+    }
 
     public void LoadTowers(bool[] loadedTowers)
     {

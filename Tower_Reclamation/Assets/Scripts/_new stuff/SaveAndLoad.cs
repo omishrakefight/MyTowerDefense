@@ -14,7 +14,7 @@ public class SaveAndLoad : MonoBehaviour {
 
     bool finishedLoading = false;
     SaveSerializedObject saver;
-    PlayerTowerLog _towerListObj;
+    PlayerTowerLog _playerTowerLog;
     Singleton _singleton;
     TinkerUpgrades _tinkerUpgrades;
     //[SerializeField] ChooseNextMissionPath missionChoice;
@@ -37,34 +37,36 @@ public class SaveAndLoad : MonoBehaviour {
     private void GetReferences()
     {
         _missionChoice = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<ChooseNextMissionPath>();
-        _towerListObj = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<PlayerTowerLog>();// FindObjectOfType<PlayerTowerLog>();
+        _playerTowerLog = GameObject.FindGameObjectWithTag(TagForBase).GetComponentInChildren<PlayerTowerLog>();// FindObjectOfType<PlayerTowerLog>();
         _singleton = Singleton.Instance;
         _tinkerUpgrades = FindObjectOfType<TinkerUpgrades>();
+        _playerTowerLog = FindObjectOfType<PlayerTowerLog>();
     }
 
     private void FillInSaveObject()
     {
-        towerList = _towerListObj.SaveTowers();
+        towerList = _playerTowerLog.SaveTowers();
 
         saver = new SaveSerializedObject();
 
-        saver.SaveTowers(_towerListObj.SaveTowers());
+        //saver.SaveTowers(_playerTowerLog.SaveTowers());
         saver.IsHasChosenATower(_singleton.isHasLearnedATower);
         // need to convert back to a list when reading in. ?
         // ERROR IS BEACAUSE THE SCRIPT IS DISABLED IN SAVE WINDOW, THE CANVASSES ARE ALL DISABLED EXCEPT USED ONE.
         saver.SaveEnemyOptions(_missionChoice.firstEnemySet.ToArray(), _missionChoice.secondEnemySet.ToArray());
-
+        saver.SaveTowersAndParts(_playerTowerLog.SaveKnownTowersAndParts(), _playerTowerLog.SaveLearnableTowersAndParts(), _playerTowerLog.SaveUnlearnableTowersAndParts());
         saver.SaveTinkerRoomInfo(_tinkerUpgrades.SaveCurrentUpgradeLevels(), _tinkerUpgrades.SaveLearnableUpgrades(), _tinkerUpgrades.SavePossibleOptions(), _tinkerUpgrades.SaveHasPicked());
 
-        saver.SaveList(_missionChoice.firstEnemySet);
-        saver.SaveDic();
+        //TODO just save as a list instead of going to [];
+        //saver.SaveList(_missionChoice.firstEnemySet);
+        //saver.SaveDic();
         if (_missionChoice.isHasChosen)
         {
             saver.IsHasChosenEnemies(true);
             saver.SaveEnemiesChosen(_singleton.enemyList.ToArray());
         }
 
-        saver.towerList = _towerListObj.SaveTowers();
+        saver.towerList = _playerTowerLog.SaveTowers();
         saver.currentLevel = _singleton.level;
     }
 
@@ -236,18 +238,20 @@ public class SaveAndLoad : MonoBehaviour {
 
                 // This is outside because I want to load all learned towers on return, but RESET that things are learned, so I can again for new base.
                 var x = GameObject.FindGameObjectWithTag("TowerInfo");
-                _towerListObj = x.GetComponentInChildren<PlayerTowerLog>();
+                //TODO move this into getReferences().
+                _playerTowerLog = x.GetComponentInChildren<PlayerTowerLog>();
 
-                _towerListObj.LoadTowers(savedFile.towerList);                
+                //_playerTowerLog.LoadTowers(savedFile.towerList);                
 
                 //if it is loading old base, load these, if not get new ones.
                 if (isLoadingFromFile)
                 {
-                    Dictionary<string, Dictionary<string, int>> dics = savedFile.LoadDic();
-                    List<int> test = savedFile.LoadList();
+                    //Dictionary<string, Dictionary<string, int>> dics = savedFile.LoadDic();
+                    //List<int> test = savedFile.LoadList();
                     List<int> l = new List<int>(savedFile.enemyOption1List);
                     _missionChoice.LoadPathChoices(savedFile.enemyOption1List, savedFile.enemyOption2List);
                     _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked, true);
+                    _playerTowerLog.LoadTowersAndParts(savedFile.knownTowersAndParts, savedFile.learnableTowersAndParts, savedFile.unlearnableTowersAndParts);
                 }  else
                 {
                     // this function is the 'reset' of the above.  It sets false to 'has picked' and 'hasRolled', while setting empty to the sotred options.

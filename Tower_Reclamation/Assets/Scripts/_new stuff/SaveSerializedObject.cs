@@ -41,14 +41,14 @@ public class SaveSerializedObject  {
     {
     }
 
-    public void SaveList(List<int> list)
-    {
-        List = list;
-    }
-    public List<int> LoadList()
-    {
-        return List;
-    }
+    //public void SaveList(List<int> list)
+    //{
+    //    List = list;
+    //}
+    //public List<int> LoadList()
+    //{
+    //    return List;
+    //}
     //public void SaveDic()
     //{
     //    dic = new Dictionary<string, int>();

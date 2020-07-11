@@ -90,10 +90,13 @@ public class RandomTowerBlueprints : MonoBehaviour {
 
     public void ManualStart2(Dictionary<string, Dictionary<string, int>> knownTowerTypes, Dictionary<string, Dictionary<string, int>> learnableTowerTypes)
     {
-
+        towerLog = GetComponent<PlayerTowerLog>();
         singleton = Singleton.Instance;
         amountOfTowers = knownTowerTypes.Keys.Count;
         List<string> towersICanLearn = GetAmountOfUndiscoveredTowers2(knownTowerTypes, learnableTowerTypes);
+        //This here is the problem, when i check if i can learn more towers, i check amount of undiscovered towers.
+        //Right below I commented out where I initialize that variable.  Find out why i even need it.  Maybe set limit to 3 or amountdiscovered
+
         //amountOfUndiscoveredTowers = learnableTowerTypes.Keys.Count;
         //GetAmountOfUndiscoveredTowers();
         //this populates the buttons and checks if you can learn
@@ -125,6 +128,8 @@ public class RandomTowerBlueprints : MonoBehaviour {
         towerTwoInUse = false;
         towerThreeInUse = false;
         int limit = 3;
+        // limit = btn count, amount is how many are new?
+        amountOfUndiscoveredTowers = towersICanLearn.Count;
 
         for (int x = 0; x < limit; x++)
         {
@@ -144,7 +149,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
                     //SetupNewButton(buttonOneText.text, ref buttonOneImage);
 
                     towersICanLearn.RemoveAt(rando);
-                   //amountOfUndiscoveredTowers--;
+                   amountOfUndiscoveredTowers--;
                     towerOneInUse = true;
                     //print("x was 0");
                 }
@@ -163,7 +168,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
                     //SetupNewButton(buttonTwoText.text, ref buttonTwoImage);
 
                     towersICanLearn.RemoveAt(rando);
-                    //amountOfUndiscoveredTowers--;
+                    amountOfUndiscoveredTowers--;
                     towerTwoInUse = true;
                     //print("x was 1");
                 }
@@ -182,7 +187,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
                     //SetupNewButton(buttonThreeText.text, ref buttonThreeImage);
 
                     towersICanLearn.RemoveAt(rando);
-                    //amountOfUndiscoveredTowers--;
+                    amountOfUndiscoveredTowers--;
                     towerThreeInUse = true;
                     //print("x was 2");
                 }

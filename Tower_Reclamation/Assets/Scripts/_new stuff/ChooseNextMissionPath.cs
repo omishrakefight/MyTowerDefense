@@ -38,21 +38,20 @@ public class ChooseNextMissionPath : MonoBehaviour {
 
     public void LoadPathChoices(int[] firstPath, int[] secondPath)
     {
-        firstEnemySet.Clear();
-        secondEnemySet.Clear();
-        foreach (int enemy in firstPath)
-        {
-            firstEnemySet.Add(enemy);
-        }
+        //firstEnemySet.Clear();
+        //secondEnemySet.Clear();
+
+        firstEnemySet = new List<int>(firstPath);
+        secondEnemySet = new List<int>(secondPath);
         // setup the button now.
         CalculateMostCommonEnemy(firstEnemySet);
         choiceOneDescription.text = "We are seeing a lot of " + DetermineEnemyType(mostCommonEnemy)
             + ".  They comprise about " + percentOfEnemies.ToString() + "% of the enemies.";
 
-        foreach (int enemy in secondPath)
-        {
-            secondEnemySet.Add(enemy);
-        }
+        //foreach (int enemy in secondPath)
+        //{
+        //    secondEnemySet.Add(enemy);
+        //}
         // button informations.
         CalculateMostCommonEnemy(secondEnemySet);
         choiceTwoDescription.text = "We are seeing a lot of " + DetermineEnemyType(mostCommonEnemy)

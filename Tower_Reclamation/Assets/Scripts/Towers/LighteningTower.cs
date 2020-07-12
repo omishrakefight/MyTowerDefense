@@ -95,8 +95,10 @@ public class LighteningTower : Tower {
                 TowerBaseExplanation = "Basic base.";
                 break;
             case (int)LightningBase.Rapid:
+                float speedModifier
                 // alien base is +10%?
                 TowerBaseExplanation = "Charge Speed = ";
+
                 print("Im doing rapid base");
                 towerDmg = (towerDmg * .35f);
                 currentTowerDmg = (currentTowerDmg * .35f);

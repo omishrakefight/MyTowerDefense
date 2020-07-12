@@ -95,14 +95,16 @@ public class LighteningTower : Tower {
                 TowerBaseExplanation = "Basic base.";
                 break;
             case (int)LightningBase.Rapid:
-                float speedModifier
-                // alien base is +10%?
-                TowerBaseExplanation = "Charge Speed = ";
+                float speedDecimalModifier = .30f;
+                float damageDeimalModifier = .35f;
+                // also add minimum range and max hit.
+                TowerBaseExplanation = "Charge Speed = +" + speedDecimalModifier.ToString() + "% \n";
+                TowerBaseExplanation += "Damage = -" + speedDecimalModifier.ToString() + "% \n";
 
                 print("Im doing rapid base");
                 towerDmg = (towerDmg * .35f);
-                currentTowerDmg = (currentTowerDmg * .35f);
-                chargeTime = (chargeTime * .30f);
+                currentTowerDmg = (currentTowerDmg * damageDeimalModifier);
+                chargeTime = (chargeTime * speedDecimalModifier);
                 //AOERange.radius = (AOERange.radius * .75f);
                 attackRange = attackRange * .80f;
                 break;

@@ -92,9 +92,11 @@ public class LighteningTower : Tower {
         {
             case (int)LightningBase.Basic:
                 //nothing, normal settings?
+                TowerBaseExplanation = "Basic base.";
                 break;
             case (int)LightningBase.Rapid:
                 // alien base is +10%?
+                TowerBaseExplanation = "Charge Speed = ";
                 print("Im doing rapid base");
                 towerDmg = (towerDmg * .35f);
                 currentTowerDmg = (currentTowerDmg * .35f);
@@ -212,8 +214,16 @@ public class LighteningTower : Tower {
         }
         else
             lineRend.SetVertexCount(1);
+    }
 
-
+    public override void GetStringStats()
+    {
+        TowerStatsTxt = "Lightning Tower Stats \n" +
+            "Attack Range = " + attackRange + "\n" +
+            "Attack Damage = " + currentTowerDmg + "\n" +
+            "Attack speed = " + chargeTime.ToString() + " second charge. \n" +
+            "Damage Type = Lightning, instant. \n" +
+            "Targetting = AOE centered on tower.";
     }
 
     public override float GetTowerCost()

@@ -27,6 +27,8 @@ public class Tower_Flame : Tower {
     readonly new bool canHeavyShelling = false;
     readonly new bool canTowerEngineer = true;
 
+    private string attackAreaType = "Wide";
+
     // Buff info
     //bool keepBuffed = false;
    
@@ -131,9 +133,11 @@ public class Tower_Flame : Tower {
         {
             case (int)FlameHead.Basic:
                 TowerAugmentExplanation = "The default tower head, with no modifiers.  The attack is a wide cone.";
+                attackAreaType = "Wide";
                 //nothing;
                 break;
             case (int)FlameHead.FlameThrower:
+                attackAreaType = "Long";
                 TowerAugmentExplanation = "The flamethrower head, changes the attack area.  This version turns it, making it a long cone rather than wide cone.";
 
                 head.ChangeParticleTime(1.5f);
@@ -251,6 +255,17 @@ public class Tower_Flame : Tower {
         //emissionModuleTwo.enabled = isActive;
         //var emissionModuleThree = projectileParticleThree.emission;
         //emissionModuleThree.enabled = isActive;
+    }
+
+    public override void GetStringStats()
+    {
+        TowerStatsTxt = "Flame Tower Stats \n" +
+            "Attack Range = " + currentAttackRange + "\n" +
+            "Attack cone type = " + attackAreaType + "\n" +
+            "Attack Damage = " + head.currentTowerDmg + "\n" +
+            "Attack speed = " + "Constant, Damage per sercond. \n" +
+            "Damage Type = Spray \n" +
+            "Targetting = Area Damage, centered on target.";
     }
 
 

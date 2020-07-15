@@ -486,7 +486,7 @@ public class TowerSelecter : MonoBehaviour
         {
             FocusPlasmaTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }
-        if (tower.Contains("frost"))
+        if (tower.Contains("Frost"))
         {
             FocusSlowTowers(ref turretBase, ref towerHead, towerBarrelType, baseType);
         }

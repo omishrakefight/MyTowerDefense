@@ -33,6 +33,10 @@ public class Tower_Plasma : Tower
 
     public override void DelayedStart()
     {
+        TowerTypeExplanation = "The plasma tower is the only turret that has a strong enough hit to pierce the target completely.  " +
+            "This heavy shot comes at a slight cost to accuracy: not enough to entirely miss the target, but it does make it a gamble on where you hit them, " +
+            "and in direct correlation, how much damage the shot causes.";
+
         maxCharge = 4f;
         goldCost = (int)TowerCosts.PlasmaTowerCost;
         attackRange = 30;
@@ -125,6 +129,47 @@ public class Tower_Plasma : Tower
 
         targetsList = plasmaTargeter.getEnemies();
         print("targets " + targetsList.Count);
+    }
+
+    public override void DetermineTowerTypeBase(int towerInt)
+    {
+        switch (towerInt)
+        {
+            case (int)PlasmaBase.Basic:
+                //nothing, normal settings?
+                TowerBaseExplanation = "Basic base.";
+                break;
+            //case (int)PlasmaBase.:
+            //    TowerBaseExplanation = "Industrial base.";
+            //    break;
+            default:
+                print("Default base, I am towerint of : " + towerInt);
+                //nothing
+                break;
+        }
+    }
+
+    public override void DetermineTowerHeadType(int towerInt)
+    {
+        switch (towerInt)
+        {
+            case (int)PlasmaHead.Basic:
+                TowerAugmentExplanation = "The default head of the Plasma Turret.  Hits in a line for randomised damage.";
+                //nothing;
+                break;
+            default:
+                TowerAugmentExplanation = "The default head of the Plasma Turret.  Hits in a line for randomised damage.";
+                break;
+        }
+    }
+
+    public override void GetStringStats()
+    {
+        TowerStatsTxt = "Plasma Tower Stats \n" +
+            "Attack Range = " + attackRange + "\n" +
+            "Attack Damage = " + towerDmg + " \n" +
+            "Attack Speed = This Tower charges over " + maxCharge  + " seconds \n" +
+            "Targetting = Piercing shot through target.";
     }
 
 

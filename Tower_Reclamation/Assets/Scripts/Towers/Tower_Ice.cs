@@ -33,6 +33,10 @@ public class Tower_Ice : Tower {
 
     public override void DelayedStart()
     {
+        TowerTypeExplanation = "The Ice Tower works off the research of Jack Kvate, proving that the Xenos were cold blooded. " +
+                    "The base holds compartmentalized fluids, while the propellers at the top spin to both mix and disperse the slush, chilling " +
+                    "the immediate area.  This should slow the Xeno that travel too close.";
+
         preFlippedChillAmount = .33f;
         range = blueLight.range;
         goldCost = (int)TowerCosts.SlowTowerCost;
@@ -56,6 +60,61 @@ public class Tower_Ice : Tower {
             }
             i++;
         }
+    }
+
+    //TODO -- Maybe have beam towers do 50% effect every second ramps up to 3 (150%)
+    //This is shared 50% around the main target (while focusing beam).  Stacks fall off 1 sec at a time.
+    public override void DetermineTowerTypeBase(int towerInt)
+    {
+        switch (towerInt)
+        {
+            case (int)IceBase.Basic:
+                //nothing, normal settings?
+                TowerBaseExplanation = "Basic base.";
+                break;
+            case (int)IceBase.Industrial:
+                TowerBaseExplanation = "Industrial base.";
+                //TowerBaseExplanation = "Slow amount Speed = -" + (Mathf.RoundToInt((1 - speedDecimalModifier) * 100)).ToString() + "% \n";
+                //TowerBaseExplanation += "Trigger Range = " + (AOERange.radius).ToString() + " \n";
+                //TowerBaseExplanation += "Damage Range = -" + (Mathf.RoundToInt((1 - attackRangeDeimalModifier) * 100)).ToString() + "% \n";
+                //TowerBaseExplanation += "Damage = -" + (Mathf.RoundToInt((1 - damageDeimalModifier) * 100)).ToString() + "% \n";
+                break;
+            default:
+                print("Default base, I am towerint of : " + towerInt);
+                //nothing
+                break;
+        }
+    }
+
+    public override void DetermineTowerHeadType(int towerInt)
+    {
+        switch (towerInt)
+        {
+            case (int)IceHead.Basic:
+                TowerAugmentExplanation = "The default tower blades, with no modifiers.  Mixes and sprays the chemicals in a decent area";
+                //nothing;
+                break;
+            //case (int)LightningHead.Basic:
+            //    attackAreaType = "Long";
+            //    TowerAugmentExplanation = "The flamethrower head, changes the attack area.  This version turns it, making it a long cone rather than wide cone.";
+
+            //    head.ChangeParticleTime(1.5f);
+            //    attackRange = head.SetTowerTypeFlameThrower();
+            //    break;
+            default:
+                TowerAugmentExplanation = "The default tower blades, with no modifiers.  Mixes and sprays the chemicals in a decent area";
+                break;
+        }
+    }
+
+    public override void GetStringStats()
+    {
+        TowerStatsTxt = "Ice Tower Stats \n" +
+            "Area Range = " + range + "\n" +
+            "Attack Damage = 0 \n" +
+            "Attack Speed = This Tower has a constant effect \n" +
+            "Slow Amount = " + Mathf.RoundToInt(preFlippedChillAmount).ToString() + "% \n" +
+            "Targetting = AOE centered on tower.";
     }
 
 

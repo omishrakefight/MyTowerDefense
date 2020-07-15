@@ -61,6 +61,10 @@ public class LighteningTower : Tower {
 
     public override void DelayedStart()
     {
+        TowerTypeExplanation = "The Lightning tower takes time storing ions.  When it is completely full, it starts sensing for nearby enemies. " +
+            "Upon trigger, it releases the energy which arcs between all nearby enemies (which are oppositely charged) for massvie damage";
+
+
         chargeTime = 9f;
         singleton = Singleton.Instance;
 
@@ -97,16 +101,24 @@ public class LighteningTower : Tower {
             case (int)LightningBase.Rapid:
                 float speedDecimalModifier = .30f;
                 float damageDeimalModifier = .35f;
-                // also add minimum range and max hit.
-                TowerBaseExplanation = "Charge Speed = +" + speedDecimalModifier.ToString() + "% \n";
-                TowerBaseExplanation += "Damage = -" + speedDecimalModifier.ToString() + "% \n";
+                float attackRangeDeimalModifier = .80f;
+
 
                 print("Im doing rapid base");
                 towerDmg = (towerDmg * .35f);
                 currentTowerDmg = (currentTowerDmg * damageDeimalModifier);
                 chargeTime = (chargeTime * speedDecimalModifier);
                 //AOERange.radius = (AOERange.radius * .75f);
-                attackRange = attackRange * .80f;
+                attackRange = attackRange * attackRangeDeimalModifier;
+
+                //TowerBaseExplanation = "Charge Speed = +" + ((int)((1 / speedDecimalModifier) * 100)).ToString() + "% \n";
+                //TowerBaseExplanation = "Trigger Range = " + (AOERange.radius).ToString() + " \n";
+                //TowerBaseExplanation = "Damage Range = -" + ((int)((1 - attackRange).ToString() + " \n";
+                //TowerBaseExplanation += "Damage = -" + ((int)((1 - damageDeimalModifier) * 100)).ToString() + "% \n";
+                TowerBaseExplanation = "Charge Speed = -" + (Mathf.RoundToInt((1 - speedDecimalModifier) * 100)).ToString() + "% \n";
+                TowerBaseExplanation += "Trigger Range = " + (AOERange.radius).ToString() + " \n";
+                TowerBaseExplanation += "Damage Range = -" + (Mathf.RoundToInt((1 - attackRangeDeimalModifier) * 100)).ToString() + "% \n";
+                TowerBaseExplanation += "Damage = -" + (Mathf.RoundToInt((1 - damageDeimalModifier) * 100)).ToString() + "% \n";
                 break;
             default:
                 print("Default base, I am towerint of : " + towerInt);
@@ -219,6 +231,29 @@ public class LighteningTower : Tower {
         else
             lineRend.SetVertexCount(1);
     }
+
+    public override void DetermineTowerHeadType(int towerInt)
+    {
+        switch (towerInt)
+        {
+            case (int)LightningHead.Basic:
+                TowerAugmentExplanation = "The default tower module, with no modifiers.";
+                //nothing;
+                break;
+            //case (int)LightningHead.Basic:
+            //    attackAreaType = "Long";
+            //    TowerAugmentExplanation = "The flamethrower head, changes the attack area.  This version turns it, making it a long cone rather than wide cone.";
+
+            //    head.ChangeParticleTime(1.5f);
+            //    attackRange = head.SetTowerTypeFlameThrower();
+            //    break;
+            default:
+                TowerAugmentExplanation = "The default tower module, with no modifiers.";
+                break;
+
+        }
+    }
+
 
     public override void GetStringStats()
     {

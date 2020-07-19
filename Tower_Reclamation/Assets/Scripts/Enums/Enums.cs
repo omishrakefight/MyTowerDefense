@@ -119,7 +119,9 @@ public enum IceBase
 
 public enum LightningHead
 {
-    Basic = 0
+    Basic = 0,
+    Static = 1
+
 }
 
 public enum LightningBase

@@ -89,6 +89,27 @@ public class LighteningTower : Tower {
         AOERange.radius = (attackRange * .60f);
     }
 
+    public override void DetermineTowerHeadType(int towerInt)
+    {
+        switch (towerInt)
+        {
+            case (int)LightningHead.Basic:
+                TowerAugmentExplanation = "The default tower module, with no modifiers.";
+                //nothing;
+                break;
+            case (int)LightningHead.Static:
+
+                TowerAugmentExplanation = "Tank time to max charge = +50% slower \n" +
+                    "Tank charge bonus = +20% charge speed for each enemy nearby." +
+                    "The Static augment puts less focus on storing electrical ions, and instead tries to harness it from the enemies.";
+
+                break;
+            default:
+                TowerAugmentExplanation = "The default tower module, with no modifiers.";
+                break;
+
+        }
+    }
 
     public override void DetermineTowerTypeBase(int towerInt)
     {
@@ -232,27 +253,7 @@ public class LighteningTower : Tower {
             lineRend.SetVertexCount(1);
     }
 
-    public override void DetermineTowerHeadType(int towerInt)
-    {
-        switch (towerInt)
-        {
-            case (int)LightningHead.Basic:
-                TowerAugmentExplanation = "The default tower module, with no modifiers.";
-                //nothing;
-                break;
-            //case (int)LightningHead.Basic:
-            //    attackAreaType = "Long";
-            //    TowerAugmentExplanation = "The flamethrower head, changes the attack area.  This version turns it, making it a long cone rather than wide cone.";
 
-            //    head.ChangeParticleTime(1.5f);
-            //    attackRange = head.SetTowerTypeFlameThrower();
-            //    break;
-            default:
-                TowerAugmentExplanation = "The default tower module, with no modifiers.";
-                break;
-
-        }
-    }
 
 
     public override void GetStringStats()

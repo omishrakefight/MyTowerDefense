@@ -5031,7 +5031,7 @@ MonoBehaviour:
   objectToPan: {fileID: 4283133959932560}
   targetEnemyBody: {fileID: 0}
   preferedEnemyBody: {fileID: 0}
-  canSilverWiring: 0
+  cantargettingModule: 0
   canAlloyReasearch: 0
   canSturdyTank: 0
   canHeavyShelling: 0

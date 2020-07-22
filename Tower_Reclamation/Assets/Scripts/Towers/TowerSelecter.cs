@@ -82,6 +82,7 @@ public class TowerSelecter : MonoBehaviour
 
     [Header("Plasma Tower Head")]
     [SerializeField] GameObject basicPlasmaTowerHead;
+    [SerializeField] GameObject crystalPlasmaTowerHead;
 
     [Header("Lightening Tower Base")]
     [SerializeField] Tower basicLightTowerBase;
@@ -645,6 +646,9 @@ public class TowerSelecter : MonoBehaviour
         {
             case (int)PlasmaHead.Basic:
                 turretHead = basicPlasmaTowerHead;
+                break;
+            case (int)PlasmaHead.Crystal:
+                turretHead = crystalPlasmaTowerHead;
                 break;
             default:
                 print("Error with selecting  Barrel, value is appearing as : " + towerBarrel.value);

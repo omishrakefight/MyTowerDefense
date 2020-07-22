@@ -1605,7 +1605,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114899755206661632}
   m_HandleRect: {fileID: 224434553206699744}
   m_Direction: 2
-  m_Value: 0.9999999
+  m_Value: 0.9999996
   m_Size: 0.31096667
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1754,7 +1754,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224601429906168828}
   m_Direction: 2
   m_Value: 0.9999998
-  m_Size: 0.36763337
+  m_Size: 0.36763325
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2352,7 +2352,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224684728572423352}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3492,7 +3492,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 224262274674117966}
   m_Direction: 2
   m_Value: 0.9999996
-  m_Size: 0.31096667
+  m_Size: 0.31096664
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3910,9 +3910,11 @@ MonoBehaviour:
     type: 2}
   sniperRifledTowerHead: {fileID: 1183133832736814, guid: 3a942ad83bf0a8f49941623e72334d69,
     type: 2}
-  basicPlasmaTowerBase: {fileID: 114801057434098164, guid: f72abd8f9bb4b7241a0489966bb39d06,
+  basicPlasmaTowerBase: {fileID: 114340658418398028, guid: 97f0077af1a6d0a41917fd4ae6fb262e,
     type: 2}
   basicPlasmaTowerHead: {fileID: 1867615240620330, guid: d7389261726238b45989e37bc2b33ce0,
+    type: 2}
+  crystalPlasmaTowerHead: {fileID: 1576972910900926, guid: 7889aea90fa31ec429949150a6bf6e58,
     type: 2}
   basicLightTowerBase: {fileID: 114078197882030082, guid: a1c22a29f73f70444806c15d320ffb5a,
     type: 2}
@@ -4055,8 +4057,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114276302880076296}
   m_HandleRect: {fileID: 224974454641640508}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 0.9999999
+  m_Value: 0
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5520,7 +5522,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00006652156, y: -0.000030517578}
+  m_AnchoredPosition: {x: 0.00006652156, y: 0.000060438768}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224060225185695906
@@ -6789,7 +6791,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00036621094, y: 0.000024319972}
+  m_AnchoredPosition: {x: 0.00036621094, y: 0.000038894454}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224828789000065292

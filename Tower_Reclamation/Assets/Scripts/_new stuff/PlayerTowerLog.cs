@@ -99,9 +99,10 @@ public class PlayerTowerLog : MonoBehaviour {
 
             towerParts = new Dictionary<string, int>() {
                 { "Basic Augment", (int)PlasmaHead.Basic },
+                { "Crystal Augment", (int)PlasmaHead.Crystal },
                 //{ "Industrial Augment", (int)FlameHead.FlameThrower },
-                { "Basic Base", (int)PlasmaBase.Basic },
-                { "Rapid Base", (int)PlasmaBase.Basic }
+                { "Basic Base", (int)PlasmaBase.Basic }
+                //{ "Rapid Base", (int)PlasmaBase.Basic }
             };
             learnableTowersAndParts.Add("Plasma Tower", towerParts);
 

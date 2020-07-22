@@ -98,7 +98,8 @@ public enum RifledBase
 
 public enum PlasmaHead
 {
-    Basic = 0
+    Basic = 0,
+    Crystal = 1
 }
 
 public enum PlasmaBase

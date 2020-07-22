@@ -12,6 +12,9 @@ public class Tower_Plasma : Tower
     List<EnemyHealth> targetsList = new List<EnemyHealth>();
     Tower_PlasmaHead plasmaTargeter;
 
+    float minTowerDmg = 15;
+    float maxTowerDmg = 30f;
+
     float maxCharge;
     float currentChargeTime = 0f;
     bool canFire = false;
@@ -30,6 +33,7 @@ public class Tower_Plasma : Tower
 
         //laser = transform.GetComponentInChildren<CapsuleCollider>();
     }
+
 
     public override void DelayedStart()
     {
@@ -106,6 +110,7 @@ public class Tower_Plasma : Tower
         }
     }
 
+
     public void HitEnemies()
     {
         print(targetsList.Count + " enemies in list");
@@ -123,6 +128,7 @@ public class Tower_Plasma : Tower
         }
     }
 
+
     public void GetListOfEnemies()
     {
         plasmaTargeter = GetComponentInChildren<Tower_PlasmaHead>();
@@ -130,6 +136,7 @@ public class Tower_Plasma : Tower
         targetsList = plasmaTargeter.getEnemies();
         print("targets " + targetsList.Count);
     }
+
 
     public override void DetermineTowerTypeBase(int towerInt)
     {
@@ -149,6 +156,7 @@ public class Tower_Plasma : Tower
         }
     }
 
+
     public override void DetermineTowerHeadType(int towerInt)
     {
         switch (towerInt)
@@ -157,11 +165,21 @@ public class Tower_Plasma : Tower
                 TowerAugmentExplanation = "The default head of the Plasma Turret.  Hits in a line for randomised damage.";
                 //nothing;
                 break;
+            case (int)PlasmaHead.Crystal:
+                // base is .25 ats so 4-12 DPS, maybe add 1 max per channel buff, ends at 4-20 dmg.  which is 8, 10, 12 DPS  but bad at target swapps.
+                //Sounds balanced, avg is 12 DPS. but considering the ramp-up time and randomness, i think its good.
+                // maybe make these a co-routine for stacks falling off.
+                TowerAugmentExplanation = "The crystal head of the Plasma Turret.  Amplifies the effects for a single target.";
+                minTowerDmg = 1f;
+                maxTowerDmg = 3f;
+                //nothing;
+                break;
             default:
                 TowerAugmentExplanation = "The default head of the Plasma Turret.  Hits in a line for randomised damage.";
                 break;
         }
     }
+
 
     public override void GetStringStats()
     {
@@ -189,6 +207,7 @@ public class Tower_Plasma : Tower
         distanceToEnemyTest = distanceToEnemy;
     }
 
+
     private void Shoot(bool isActive)
     {
         if (canFire && isActive)
@@ -197,6 +216,7 @@ public class Tower_Plasma : Tower
             laserIsOn = true;
         }
     }
+
 
     public override float GetTowerCost()
     {

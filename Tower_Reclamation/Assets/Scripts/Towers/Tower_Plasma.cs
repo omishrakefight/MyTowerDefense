@@ -12,6 +12,7 @@ public class Tower_Plasma : Tower
     List<EnemyHealth> targetsList = new List<EnemyHealth>();
     Tower_PlasmaHead plasmaTargeter;
 
+
     float minTowerDmg = 15;
     float maxTowerDmg = 30f;
 
@@ -23,6 +24,8 @@ public class Tower_Plasma : Tower
     float laserOnTime = .25f;
     float laserCurrentTime = 0f;
     bool laserIsOn = false;
+
+    private int headType = 0;
 
     Singleton singleton;
 
@@ -52,6 +55,42 @@ public class Tower_Plasma : Tower
 
     // Update is called once per frame
     void Update()
+    {
+
+        if (preferedEnemyBody != null && preferedEnemyBody != targetEnemyBody)
+        {
+            float distanceToPreferedEnemy = Vector3.Distance(preferedEnemyBody.gameObject.transform.position, gameObject.transform.position);
+            if (distanceToPreferedEnemy <= attackRange && targetEnemyBody.isTargetable)
+            {
+                print(preferedEnemyBody.gameObject.name);
+                targetEnemyBody = preferedEnemyBody;
+                targetEnemy = preferedEnemyBody.gameObject.transform;
+            }
+        }
+        switch (headType)
+        {
+            case (int)PlasmaHead.Basic:
+                TowerChargedShotAttacks();
+                break;
+            case (int)PlasmaHead.Crystal:
+                if (targetEnemy)
+                {
+                    objectToPan.LookAt(targetEnemy);
+                    FireAtEnemy();
+                }
+                else
+                {
+                    Shoot(false);
+                    SetTargetEnemy();
+                }
+
+
+                break;
+        }
+        
+    }
+
+    private void TowerChargedShotAttacks()
     {
         if (!canFire)
         {
@@ -87,17 +126,6 @@ public class Tower_Plasma : Tower
             }
         }
 
-        if (preferedEnemyBody != null && preferedEnemyBody != targetEnemyBody)
-        {
-            float distanceToPreferedEnemy = Vector3.Distance(preferedEnemyBody.gameObject.transform.position, gameObject.transform.position);
-            if (distanceToPreferedEnemy <= attackRange && targetEnemyBody.isTargetable)
-            {
-                print(preferedEnemyBody.gameObject.name);
-                targetEnemyBody = preferedEnemyBody;
-                targetEnemy = preferedEnemyBody.gameObject.transform;
-            }
-        }
-
         if (targetEnemy)
         {
             objectToPan.LookAt(targetEnemy);
@@ -109,7 +137,6 @@ public class Tower_Plasma : Tower
             SetTargetEnemy();
         }
     }
-
 
     public void HitEnemies()
     {
@@ -162,13 +189,17 @@ public class Tower_Plasma : Tower
         switch (towerInt)
         {
             case (int)PlasmaHead.Basic:
+                headType = (int)PlasmaHead.Basic;
                 TowerAugmentExplanation = "The default head of the Plasma Turret.  Hits in a line for randomised damage.";
+                minTowerDmg = 10;
+                maxTowerDmg = 30;
                 //nothing;
                 break;
             case (int)PlasmaHead.Crystal:
                 // base is .25 ats so 4-12 DPS, maybe add 1 max per channel buff, ends at 4-20 dmg.  which is 8, 10, 12 DPS  but bad at target swapps.
                 //Sounds balanced, avg is 12 DPS. but considering the ramp-up time and randomness, i think its good.
                 // maybe make these a co-routine for stacks falling off.
+                headType = (int)PlasmaHead.Crystal;
                 TowerAugmentExplanation = "The crystal head of the Plasma Turret.  Amplifies the effects for a single target.";
                 minTowerDmg = 1f;
                 maxTowerDmg = 3f;
@@ -207,6 +238,34 @@ public class Tower_Plasma : Tower
         distanceToEnemyTest = distanceToEnemy;
     }
 
+    private void FireAtEnemyWithCrystal()
+    {
+
+        float distanceToEnemy = Vector3.Distance(targetEnemy.transform.position, gameObject.transform.position);
+        if (distanceToEnemy <= attackRange)
+        {
+            ShootWithCrystal(true);
+        }
+        else
+        {
+            ShootWithCrystal(false);
+            SetTargetEnemy();
+        }
+        distanceToEnemyTest = distanceToEnemy;
+    }
+
+    // a better way to swap this? so not setting true every frame?
+    private void ShootWithCrystal(bool isActive)
+    {
+        if (isActive)
+        {
+            laser.gameObject.SetActive(true);
+            laserIsOn = true;
+        } else
+        {
+
+        }
+    }
 
     private void Shoot(bool isActive)
     {

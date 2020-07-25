@@ -11,8 +11,10 @@ public class Tower_Plasma : Tower
     [SerializeField] ParticleSystem spray;
     List<EnemyHealth> targetsList = new List<EnemyHealth>();
     Tower_PlasmaHead plasmaTargeter;
+    LineRenderer lineRenderer;
 
-
+    float crystalDmgInterval = .25f;
+    float crystalCurrentBeamTime = 0f;
     float minTowerDmg = 15;
     float maxTowerDmg = 30f;
 
@@ -76,7 +78,7 @@ public class Tower_Plasma : Tower
                 if (targetEnemy)
                 {
                     objectToPan.LookAt(targetEnemy);
-                    FireAtEnemy();
+                    FireAtEnemyWithCrystal();
                 }
                 else
                 {
@@ -200,6 +202,8 @@ public class Tower_Plasma : Tower
                 //Sounds balanced, avg is 12 DPS. but considering the ramp-up time and randomness, i think its good.
                 // maybe make these a co-routine for stacks falling off.
                 headType = (int)PlasmaHead.Crystal;
+                crystalDmgInterval = .25f;
+                lineRenderer = GetComponentInChildren<LineRenderer>();
                 TowerAugmentExplanation = "The crystal head of the Plasma Turret.  Amplifies the effects for a single target.";
                 minTowerDmg = 1f;
                 maxTowerDmg = 3f;
@@ -238,6 +242,7 @@ public class Tower_Plasma : Tower
         distanceToEnemyTest = distanceToEnemy;
     }
 
+
     private void FireAtEnemyWithCrystal()
     {
 
@@ -259,10 +264,25 @@ public class Tower_Plasma : Tower
     {
         if (isActive)
         {
-            laser.gameObject.SetActive(true);
-            laserIsOn = true;
+            crystalCurrentBeamTime += (1 * Time.deltaTime);
+            if (crystalCurrentBeamTime > .25f)
+            {
+                crystalCurrentBeamTime = (crystalCurrentBeamTime % .25f);
+                float towerDmg = UnityEngine.Random.Range(1, maxTowerDmg);
+                //TODO NEED TO CHANGE this needs to only get the enemy health on TARGET CHANGE way too process intensive to get 4 times a second.
+                targetEnemyBody.hitPoints -= towerDmg;
+                targetEnemyBody.RefreshHealthBar();
+                if (targetEnemyBody.hitPoints < 1)
+                {
+                    targetEnemyBody.KillsEnemyandAddsGold();
+                }
+            }
+            //laser.gameObject.SetActive(true);
+            lineRenderer.enabled = true;
+            lineRenderer.SetPosition(1, targetEnemy.transform.position);
         } else
         {
+            lineRenderer.enabled = false;
 
         }
     }

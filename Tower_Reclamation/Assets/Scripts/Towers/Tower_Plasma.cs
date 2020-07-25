@@ -204,6 +204,8 @@ public class Tower_Plasma : Tower
                 headType = (int)PlasmaHead.Crystal;
                 crystalDmgInterval = .25f;
                 lineRenderer = GetComponentInChildren<LineRenderer>();
+                lineRenderer.SetPosition(0, (gameObject.transform.position + new Vector3(0, 5.5f, 0)));
+                lineRenderer.useWorldSpace = true;
                 TowerAugmentExplanation = "The crystal head of the Plasma Turret.  Amplifies the effects for a single target.";
                 minTowerDmg = 1f;
                 maxTowerDmg = 3f;
@@ -279,7 +281,7 @@ public class Tower_Plasma : Tower
             }
             //laser.gameObject.SetActive(true);
             lineRenderer.enabled = true;
-            lineRenderer.SetPosition(1, targetEnemy.transform.position);
+            lineRenderer.SetPosition(1, (targetEnemy.transform.position));
         } else
         {
             lineRenderer.enabled = false;

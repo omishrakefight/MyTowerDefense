@@ -44,6 +44,7 @@ public class PauseMenu : MonoBehaviour {
     {
         pauseMenu.SetActive(true);
         isPaused = true;
+        Time.timeScale = 0f;
         //print(SceneManager.GetActiveScene().buttonName.ToString());
         if (!SceneManager.GetActiveScene().name.Equals("_Base"))
         {
@@ -53,7 +54,6 @@ public class PauseMenu : MonoBehaviour {
         }
         else
         {
-            Time.timeScale = 0f;
             save.gameObject.SetActive(true);
             load.gameObject.SetActive(true);
         }

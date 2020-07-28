@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
-public class TextStoryStart : MonoBehaviour {
+public class TutorialMissionStart : MonoBehaviour {
     [SerializeField] Text text;
     [SerializeField] string talking;
     List<string> conversations;
@@ -20,13 +20,11 @@ public class TextStoryStart : MonoBehaviour {
     [SerializeField] float typingSpeed = .02f;
 
     [Header("Soldier")]
-    [SerializeField]
-    Texture soldierNeutral;
+    [SerializeField] Texture soldierNeutral;
     [SerializeField] Texture soldierScared;
 
     [Header("General")]
-    [SerializeField]
-    Texture general;
+    [SerializeField] Texture general;
     [SerializeField] Texture generalShouting;
 
 
@@ -41,6 +39,14 @@ public class TextStoryStart : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
+        enemySpawner.SetDelayedSpawnTime(25f);
+        Singleton singleton = Singleton.Instance;
+        singleton.enemyList = new List<int> { 1, 1, 1, -1, 1, -1, 1 };
+        //enemySpawner.enemyList = new List<int> { 1, 1, -1, 1, 1, 1};
+
+        singleton.SetLevel(1);
+
         // initializing strings
         text.text = "";
 
@@ -58,47 +64,12 @@ public class TextStoryStart : MonoBehaviour {
     }
 
 
-    IEnumerator ConversationPicker()
-    {
-        if (conversationTracker == 0)
-        {
-            typingSpeed = .5f;
-            personTalking.texture = soldierNeutral;
-            talking = conversations[conversationTracker];
-        }
-        if (conversationTracker == 1)
-        {
-            typingSpeed = .02f;
-            personTalking.texture = soldierNeutral;
-            talking = conversations[conversationTracker];
-        }
-        if (conversationTracker == 2)
-        {
-            personTalking.texture = soldierNeutral;
-            talking = conversations[conversationTracker];
-        }
-        if (conversationTracker == 3)
-        {
-            personTalking.texture = generalShouting;
-            talking = conversations[conversationTracker];
-        }
-        if (conversationTracker == 4)
-        {
-            // To make the character run in scene
-            timeToRun = true;
 
-            personTalking.texture = soldierScared;
-            talking = conversations[conversationTracker];
-        }
-
-        conversationTracker++;
-        yield break;
-    }
     IEnumerator SlowMessageTyping()
     {
         StartCoroutine(ConversationPicker());
         text.text = "";
-        SpawnTheEnemiesAtScreem();
+        //SpawnTheEnemiesAtScreem();  NOPE want more control here, removing the if and spawning on demand.
         // Loop the converstation 1 char at a time.
         for (int i = 0; i < talking.Length; i++)
         {
@@ -114,19 +85,84 @@ public class TextStoryStart : MonoBehaviour {
             yield return StartCoroutine(SlowMessageTyping());
         }
 
-
-
         StartCoroutine(DisableText());
+    }
+
+    IEnumerator ConversationPicker()
+    {
+
+        switch (conversationTracker)
+        {
+            case 0:
+                typingSpeed = .5f;
+                personTalking.texture = soldierNeutral;
+                talking = conversations[conversationTracker];
+                break;
+            case 1:
+                typingSpeed = .02f;
+                personTalking.texture = soldierNeutral;
+                talking = conversations[conversationTracker];
+                break;
+            case 2:
+                personTalking.texture = soldierNeutral;
+                talking = conversations[conversationTracker];
+                break;
+            case 3:
+                personTalking.texture = generalShouting;
+                talking = conversations[conversationTracker];
+                break;
+            case 4:
+                // To make the character run in scene
+                timeToRun = true;
+                SpawnTheEnemiesAtScreem();
+
+                personTalking.texture = soldierScared;
+                talking = conversations[conversationTracker];
+                break;
+            case 5:
+                break;
+            case 6:
+                break;
+            case 7:
+                break;
+            case 8:
+                break;
+        }
+        //if (conversationTracker == 0)
+        //{
+
+        //}
+        //if (conversationTracker == 1)
+        //{
+
+        //}
+        //if (conversationTracker == 2)
+        //{
+
+        //}
+        //if (conversationTracker == 3)
+        //{
+
+        //}
+        //if (conversationTracker == 4)
+        //{
+
+        //}
+
+        // NEW Stuff//
+
+        conversationTracker++;
+        yield break;
     }
 
     private void SpawnTheEnemiesAtScreem()
     {
-        if (conversationTracker == conversations.Count && spawnEnemies)
-        {
+        //if (conversationTracker == conversations.Count && spawnEnemies)
+        //{
             //StartCoroutine(FindObjectOfType<EnemySpawner>().ContinualSpawnEnemies());
             FindObjectOfType<EnemySpawner>().StartBattle();
             spawnEnemies = false;
-        }
+        //}
     }
 
     private IEnumerator DisableText()

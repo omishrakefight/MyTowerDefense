@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Text win;
 
     public bool stillAlive = true;
-    bool currentlySpawning = true;
+    bool currentlySpawning = false;
     CurrentWave level;
     //public int level = 1;
     int monstersSpawned = 0;
@@ -265,6 +265,7 @@ public class EnemySpawner : MonoBehaviour
         //print("talks over time to fight!");
         if (!currentlySpawning)
         {
+            begin = true;
             waveTimer = 1;
             StartCoroutine(SpawnSpecificEnemies());
         }
@@ -332,10 +333,11 @@ public class EnemySpawner : MonoBehaviour
                 //print("You hsould see me only once");
                 StartCoroutine(SpawnSpecificEnemies());
                 begin = true;
+                slider.value = startSetupTime / startupTimer;
             }
         }
 
-        if (stillAlive && !currentlySpawning)
+        if (stillAlive && !currentlySpawning && begin)
         {
             waveTimer += 1 * Time.deltaTime;
         }
@@ -356,6 +358,12 @@ public class EnemySpawner : MonoBehaviour
             FindObjectOfType<LoadNextArea>().LoadNextAreaPostBattle(Singleton.Instance.level);
         }
 
+    }
+
+
+    public void SetDelayedSpawnTime(float delyedTime)
+    {
+        startSetupTime = delyedTime;
     }
 
 }

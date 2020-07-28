@@ -15,6 +15,9 @@ public class Tower_Plasma : Tower
 
     float crystalDmgInterval = .25f;
     float crystalCurrentBeamTime = 0f;
+    float crystalCurrentChargeTime = 0f;
+    int crystalBaseMaxDmg = 3;
+    int crystalBeamLevel = 0;
     float minTowerDmg = 15;
     float maxTowerDmg = 30f;
 
@@ -84,6 +87,11 @@ public class Tower_Plasma : Tower
                 {
                     Shoot(false);
                     SetTargetEnemy();
+                    // split tower, i have this same code twice...
+                    crystalBeamLevel = 0;
+                    crystalCurrentChargeTime = 0f;
+                    maxTowerDmg = crystalBaseMaxDmg;
+                    lineRenderer.widthMultiplier = 1.00f;
                 }
 
 
@@ -208,7 +216,7 @@ public class Tower_Plasma : Tower
                 lineRenderer.useWorldSpace = true;
                 TowerAugmentExplanation = "The crystal head of the Plasma Turret.  Amplifies the effects for a single target.";
                 minTowerDmg = 1f;
-                maxTowerDmg = 3f;
+                maxTowerDmg = crystalBaseMaxDmg; //3
                 //nothing;
                 break;
             default:
@@ -257,6 +265,11 @@ public class Tower_Plasma : Tower
         {
             ShootWithCrystal(false);
             SetTargetEnemy();
+            // reset focus bonus
+            crystalBeamLevel = 0;
+            maxTowerDmg = crystalBaseMaxDmg;
+            crystalCurrentChargeTime = 0f;
+            lineRenderer.widthMultiplier = 1.00f;
         }
         distanceToEnemyTest = distanceToEnemy;
     }
@@ -266,22 +279,55 @@ public class Tower_Plasma : Tower
     {
         if (isActive)
         {
+            lineRenderer.enabled = true;
+            lineRenderer.SetPosition(1, (targetEnemy.transform.position));
+
             crystalCurrentBeamTime += (1 * Time.deltaTime);
+
+            // 0, 1, 2;
+            if(crystalBeamLevel < 2)
+            {
+                crystalCurrentChargeTime += (1 * Time.deltaTime);
+
+                if ((int)crystalCurrentChargeTime != crystalBeamLevel)
+                {
+                    if (crystalCurrentChargeTime < 2.0f)
+                    {
+                        crystalBeamLevel++;
+                        maxTowerDmg += 1;
+                        lineRenderer.widthMultiplier = 1.30f;
+                        // add in dmg increase, and in the target swap function restet both the beam level and the charge timer.
+                    } else
+                    {
+                        crystalBeamLevel++;
+                        maxTowerDmg += 1;
+                        lineRenderer.widthMultiplier = 1.60f;
+                    }
+                }
+            }
             if (crystalCurrentBeamTime > .25f)
             {
                 crystalCurrentBeamTime = (crystalCurrentBeamTime % .25f);
                 float towerDmg = UnityEngine.Random.Range(1, maxTowerDmg);
+                print("Plasma beam dmg = " + towerDmg);
                 //TODO NEED TO CHANGE this needs to only get the enemy health on TARGET CHANGE way too process intensive to get 4 times a second.
                 targetEnemyBody.hitPoints -= towerDmg;
                 targetEnemyBody.RefreshHealthBar();
                 if (targetEnemyBody.hitPoints < 1)
                 {
-                    targetEnemyBody.KillsEnemyandAddsGold();
+                    try
+                    {
+                        targetEnemyBody.KillsEnemyandAddsGold();
+                    }
+                    catch (Exception ex)
+                    {
+                        print("Exception killing enemy  skipping now");
+                    }
+                    
                 }
             }
             //laser.gameObject.SetActive(true);
-            lineRenderer.enabled = true;
-            lineRenderer.SetPosition(1, (targetEnemy.transform.position));
+
         } else
         {
             lineRenderer.enabled = false;

@@ -46,12 +46,12 @@ public class MainCharacterMovement : MonoBehaviour {
             StartCoroutine(SearchingForMetal());
         } 
         //else
-        if (FindObjectOfType<TextStoryStart>().timeToRun && !stoppedSearching)
+        if (FindObjectOfType<TutorialMissionStart>().timeToRun && !stoppedSearching)
         {
             StopCoroutine(SearchingForMetal());
             stoppedSearching = true;
         }
-        if (FindObjectOfType<TextStoryStart>().timeToRun)
+        if (FindObjectOfType<TutorialMissionStart>().timeToRun)
         {
             List<Waypoint> path = FindNextNode();
             float enemySpeedASecond = enemySpeed * Time.deltaTime * 8;

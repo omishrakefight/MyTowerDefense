@@ -103,11 +103,11 @@ public abstract class Tower : MonoBehaviour {
                 }
 
                 closestEnemy = GetClosest(closestEnemy, testEnemy.transform);
-                targetEnemyBody = testEnemy;
             }
         }
 
         targetEnemy = closestEnemy;
+        targetEnemyBody = targetEnemy.GetComponentInChildren<EnemyHealth>();
     }
 
     protected virtual Transform GetClosest(Transform transformA, Transform transformB)

@@ -34,7 +34,9 @@ public class TutorialMissionStart : MonoBehaviour {
     string string2;
     string string3;
     string string4;
-    string string5;
+    string string5 = "NO!! no, we WILL save him, it will have to be enough... ";
+    string string6 = "Throw the last tower!   ";
+    string string7 = "He WILL make it back.";
 
     // Use this for initialization
     void Start()
@@ -55,8 +57,9 @@ public class TutorialMissionStart : MonoBehaviour {
         string2 = "Sir!!!  There's almost nothing left! I can only find one good piece, we’ve already scavenged most of the metal here.";
         string3 = "SHUT UP! THE BUGS ARE BACK, GET BACK HERE NOW!!";
         string4 = "?!?!?!?? HNNGGG";
+        
         conversations = new List<string>();
-        conversations.AddRange(new string[] { string0, string1, string2, string3, string4 });
+        conversations.AddRange(new string[] { string0, string1, string2, string3, string4, string5, string6, string7 });
         conversationTracker = 0;
 
 
@@ -67,6 +70,7 @@ public class TutorialMissionStart : MonoBehaviour {
 
     IEnumerator SlowMessageTyping()
     {
+        // TODO maybe put this in a while loop instead of calling itself?
         StartCoroutine(ConversationPicker());
         text.text = "";
         //SpawnTheEnemiesAtScreem();  NOPE want more control here, removing the if and spawning on demand.
@@ -75,10 +79,10 @@ public class TutorialMissionStart : MonoBehaviour {
         {
             var letter = talking.ToCharArray(i, 1);
             text.text += new string(letter);
-            yield return new WaitForSeconds(typingSpeed);
+            yield return new WaitForSecondsRealtime(typingSpeed);
         }
 
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSecondsRealtime(2);
         if (conversationTracker < conversations.Count)
         {
             //print(conversationTracker);
@@ -120,36 +124,23 @@ public class TutorialMissionStart : MonoBehaviour {
                 talking = conversations[conversationTracker];
                 break;
             case 5:
+                personTalking.texture = general;
+                talking = conversations[conversationTracker];
+                Time.timeScale = .15f;
                 break;
             case 6:
+                personTalking.texture = generalShouting;
+                talking = conversations[conversationTracker];
                 break;
             case 7:
+                personTalking.texture = general;
+                talking = conversations[conversationTracker];
+                Time.timeScale = 1.0f;
                 break;
             case 8:
                 break;
         }
-        //if (conversationTracker == 0)
-        //{
 
-        //}
-        //if (conversationTracker == 1)
-        //{
-
-        //}
-        //if (conversationTracker == 2)
-        //{
-
-        //}
-        //if (conversationTracker == 3)
-        //{
-
-        //}
-        //if (conversationTracker == 4)
-        //{
-
-        //}
-
-        // NEW Stuff//
 
         conversationTracker++;
         yield break;

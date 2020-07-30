@@ -54,7 +54,7 @@ public class MainCharacterMovement : MonoBehaviour {
         if (FindObjectOfType<TutorialMissionStart>().timeToRun)
         {
             List<Waypoint> path = FindNextNode();
-            float enemySpeedASecond = enemySpeed * Time.deltaTime * 8;
+            float enemySpeedASecond = enemySpeed * Time.deltaTime * 5;
             transform.position = Vector3.MoveTowards(transform.position, path[currentPathNode + 1].transform.position, enemySpeedASecond);
 
             if (transform.position == path[currentPathNode + 1].transform.position)

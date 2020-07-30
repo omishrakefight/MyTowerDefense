@@ -250,13 +250,14 @@ public class SaveAndLoad : MonoBehaviour {
                     //List<int> test = savedFile.LoadList();
                     List<int> l = new List<int>(savedFile.enemyOption1List);
                     _missionChoice.LoadPathChoices(savedFile.enemyOption1List, savedFile.enemyOption2List);
-                    _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked, true);
-                    _playerTowerLog.LoadTowersAndParts(savedFile.knownTowersAndParts, savedFile.learnableTowersAndParts, savedFile.unlearnableTowersAndParts);
+                    _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked, true);                   
                 }  else
                 {
                     // this function is the 'reset' of the above.  It sets false to 'has picked' and 'hasRolled', while setting empty to the sotred options.
                     _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, new int[] { }, false, false);
                 }
+                // LOAD REGARDLESS we load what towers we know regardless of loading saved or new base.  The IF a tower is learned is checked above with singleton
+                _playerTowerLog.LoadTowersAndParts(savedFile.knownTowersAndParts, savedFile.learnableTowersAndParts, savedFile.unlearnableTowersAndParts);
                 _tinkerUpgrades.AddToBackupList();
 
             }

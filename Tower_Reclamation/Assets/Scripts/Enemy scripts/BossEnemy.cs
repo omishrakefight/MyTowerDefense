@@ -30,7 +30,7 @@ public class BossEnemy : MonoBehaviour {
     {
         boss.transform.localScale = (new Vector3(2f, 2f, 2f));
 
-        boss.enemyBaseSpeed = (bossEnemy.enemySpeed / 2f);
+        boss.enemyBaseSpeed = (bossEnemy.enemySpeed / 3f);
         boss.enemySpeed = boss.enemyBaseSpeed;
 
         var enemyhealth = boss.GetComponent<EnemyHealth>();

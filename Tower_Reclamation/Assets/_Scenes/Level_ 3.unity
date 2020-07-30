@@ -303,14 +303,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb3c0d4e07b25ff48a67765aaca803e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rifledTowerPrefab: {fileID: 114298003256897080, guid: 86d91e9d5e8d1e044bc0f9ef50af9096,
-    type: 2}
+  rifledTowerPrefab: {fileID: 0}
   assaultTowerPrefab: {fileID: 114298003256897080, guid: 1836db111551ce448b548d20199ce23c,
     type: 2}
   flameTowerPrefab: {fileID: 114262617888070472, guid: 9b88788f1af26d945a3ec20203b67002,
     type: 2}
   lighteningTowerPrefab: {fileID: 114078197882030082, guid: a1c22a29f73f70444806c15d320ffb5a,
     type: 2}
+  plasmaTowerPrefab: {fileID: 0}
   towerParentTransform: {fileID: 2023514800}
   lastWaypoint: {fileID: 0}
 --- !u!114 &47542413
@@ -2474,6 +2474,11 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224302923489851782, guid: c75d683a57da05b46abfab717912e227,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c75d683a57da05b46abfab717912e227, type: 2}
   m_IsPrefabParent: 0
@@ -3212,9 +3217,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   regularCursor: {fileID: 0}
-  enemyCursor: {fileID: 0}
-  towerCursor: {fileID: 0}
-  waypointCursor: {fileID: 0}
+  enemyCursor: {fileID: 2800000, guid: d45de9d5a1cd17347bb71c9e5f737cef, type: 3}
+  towerCursor: {fileID: 2800000, guid: a442c5579ed842f4e828356f322c2fbd, type: 3}
+  waypointCursor: {fileID: 2800000, guid: c8070cdc326c5a2438c6a41ad603e0e6, type: 3}
   cursorHotspot: {x: 96, y: 96}
 --- !u!114 &1781535419
 MonoBehaviour:

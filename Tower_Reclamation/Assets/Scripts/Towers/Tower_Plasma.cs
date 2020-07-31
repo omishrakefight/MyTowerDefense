@@ -18,6 +18,7 @@ public class Tower_Plasma : Tower
     float crystalCurrentChargeTime = 0f;
     int crystalBaseMaxDmg = 3;
     int crystalBeamLevel = 0;
+    ParticleSystem beamParticles;
     float minTowerDmg = 15;
     float maxTowerDmg = 30f;
 
@@ -82,6 +83,7 @@ public class Tower_Plasma : Tower
                 {
                     objectToPan.LookAt(targetEnemy);
                     FireAtEnemyWithCrystal();
+
                 }
                 else
                 {
@@ -92,6 +94,7 @@ public class Tower_Plasma : Tower
                     crystalCurrentChargeTime = 0f;
                     maxTowerDmg = crystalBaseMaxDmg;
                     lineRenderer.widthMultiplier = 1.00f;
+                    beamParticles.enableEmission = false;
                 }
 
 
@@ -214,6 +217,9 @@ public class Tower_Plasma : Tower
                 lineRenderer = GetComponentInChildren<LineRenderer>();
                 lineRenderer.SetPosition(0, (gameObject.transform.position + new Vector3(0, 5.5f, 0)));
                 lineRenderer.useWorldSpace = true;
+                beamParticles = GetComponentInChildren<ParticleSystem>();
+                beamParticles.enableEmission = false;
+                lineRenderer.enabled = false;
                 TowerAugmentExplanation = "The crystal head of the Plasma Turret.  Amplifies the effects for a single target.";
                 minTowerDmg = 1f;
                 maxTowerDmg = crystalBaseMaxDmg; //3
@@ -270,6 +276,7 @@ public class Tower_Plasma : Tower
             maxTowerDmg = crystalBaseMaxDmg;
             crystalCurrentChargeTime = 0f;
             lineRenderer.widthMultiplier = 1.00f;
+            beamParticles.enableEmission = false;
         }
         distanceToEnemyTest = distanceToEnemy;
     }
@@ -326,12 +333,16 @@ public class Tower_Plasma : Tower
                     
                 }
             }
+            //finally look at the last point
+            beamParticles.enableEmission = true;
+            beamParticles.transform.position = targetEnemyBody.transform.position;
+            beamParticles.transform.LookAt(this.transform);
             //laser.gameObject.SetActive(true);
 
         } else
         {
             lineRenderer.enabled = false;
-
+            beamParticles.enableEmission = false;
         }
     }
 

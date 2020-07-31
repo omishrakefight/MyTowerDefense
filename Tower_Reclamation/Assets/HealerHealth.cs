@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimerHealth : EnemyHealth {
+public class HealerHealth : EnemyHealth {
 
 	// Use this for initialization
-	override protected void Start () {
+	void Start () {
         base.Start();
-        hitPoints = hitPoints * 1.2f;
+        hitPoints = hitPoints * 1.1f;
         hitPointsMax = hitPoints;
         goldForMyHead = goldForMyHead * 2.1f;
-	}
+    }
 	
 	// Update is called once per frame
-	override protected void Update () {
-        base.Update();
+	void Update () {
+		
 	}
 }

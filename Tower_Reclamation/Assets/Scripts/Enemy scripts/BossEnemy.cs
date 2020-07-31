@@ -22,7 +22,7 @@ public class BossEnemy : MonoBehaviour {
     {
         boss = Instantiate(bossEnemy, transform.position, Quaternion.identity);
         boss.transform.parent = enemiesLocation;
-
+        boss.GetComponentInChildren<EnemyHealth>().IsBoss();
 
     }
 

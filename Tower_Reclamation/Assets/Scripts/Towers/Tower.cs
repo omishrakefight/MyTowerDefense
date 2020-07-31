@@ -106,6 +106,7 @@ public abstract class Tower : MonoBehaviour {
             }
         }
 
+
         targetEnemy = closestEnemy;
         targetEnemyBody = targetEnemy.GetComponentInChildren<EnemyHealth>();
     }

@@ -21,9 +21,11 @@ public class GoldManagement : MonoBehaviour {
         //GoldCounter();
     }
 
-    public void AddGold()
+    public void AddGold(float money)
     {
-        goldCount = goldCount + 10;
+        // maybe do this so that goldcount is float, but onyl displays int? round to 2?
+
+        goldCount = goldCount + (int)money;
         GoldCounter();
     }
 

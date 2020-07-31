@@ -28,28 +28,43 @@ public abstract class EnemyHealth : MonoBehaviour {
     protected float healTimer = 1f;
     protected float healTime = 0f;
     protected float healPercent;
+    protected float goldForMyHead = 8;
+    float healPerTick = 0f;
 
     public bool isTargetable = true;
+    public bool isBoss = false;
 
     protected bool noSpecialHealthThings = true;
 
     // Use this for initialization
     protected virtual void Start()
     {
+
         if (noSpecialHealthThings)
         {
             // for each WAVE hit points go up a set amount.  In addition, for each level you are on, health ramps up.  Just base HP for now.
             hitPoints = 34;
-            hitPoints += (3 * Singleton.Instance.level);
-            float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 11;
+            hitPoints += (2 * Singleton.Instance.level);
+            float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 12;
             hitPoints += healthModifier;
             hitPointsMax = hitPoints;
             healthImage = enemyHealthBar.gameObject.GetComponentInChildren<Image>();
             healthImage.fillAmount = 1.0f;
         }
 
+        //only need to calculate once.  And if enemy is boss, reduce healing so its fair.
+        healPerTick = (healPercent * hitPointsMax);
+        if (isBoss)
+        {
+            healPerTick = healPerTick / 10f;
+        }
     }
 
+    public void IsBoss()
+    {
+        isBoss = true;
+    }
+     
     public float getHPPercent()
     {
         return healthImage.fillAmount;
@@ -120,7 +135,7 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     public void KillsEnemyandAddsGold()
     {
-        FindObjectOfType<GoldManagement>().AddGold();
+        FindObjectOfType<GoldManagement>().AddGold(goldForMyHead);
 
         Instantiate(deathPrefab, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(enemyDiedAudio, Camera.main.transform.position);
@@ -169,14 +184,14 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     }
 
-        public IEnumerator Healing(float healPercent)
+    public IEnumerator Healing(float healPercent)
     {
         float healPerTick = (healPercent * hitPointsMax);
         //print("HPT: " + healPerTick + " HPerc: " + healPercent + " HPM: " + hitPointsMax);
 
         if (healing && healTime < healTimer)
         {
-            time += 1 * Time.deltaTime;
+            healTime += 1 * Time.deltaTime;
             // if he is full or more its hald effective as armor, otherwise full heal.
             if (hitPoints >= hitPointsMax)
             {

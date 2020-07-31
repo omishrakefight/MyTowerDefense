@@ -9,6 +9,9 @@ public class DoublesHealth : EnemyHealth {
         base.Start();
         hitPoints = (.70f * hitPoints);
         hitPointsMax = hitPoints;
+
+        // They spawn 2 at once, get half the gold.
+        goldForMyHead = goldForMyHead * .5f;
 	}
 	
 	// Update is called once per frame

@@ -18,6 +18,7 @@ public class Tower_Plasma : Tower
     float crystalCurrentChargeTime = 0f;
     int crystalBaseMaxDmg = 3;
     int crystalBeamLevel = 0;
+    Transform targetLastShot = null;
     ParticleSystem beamParticles;
     float minTowerDmg = 15;
     float maxTowerDmg = 30f;
@@ -83,18 +84,17 @@ public class Tower_Plasma : Tower
                 {
                     objectToPan.LookAt(targetEnemy);
                     FireAtEnemyWithCrystal();
-
                 }
                 else
                 {
                     Shoot(false);
                     SetTargetEnemy();
                     // split tower, i have this same code twice...
-                    crystalBeamLevel = 0;
-                    crystalCurrentChargeTime = 0f;
-                    maxTowerDmg = crystalBaseMaxDmg;
-                    lineRenderer.widthMultiplier = 1.00f;
-                    beamParticles.enableEmission = false;
+                    //crystalBeamLevel = 0;
+                    //crystalCurrentChargeTime = 0f;
+                    //maxTowerDmg = crystalBaseMaxDmg;
+                    //lineRenderer.widthMultiplier = 1.00f;
+                    //beamParticles.enableEmission = false;
                 }
 
 
@@ -265,18 +265,26 @@ public class Tower_Plasma : Tower
         float distanceToEnemy = Vector3.Distance(targetEnemy.transform.position, gameObject.transform.position);
         if (distanceToEnemy <= attackRange)
         {
+            //Check if this is the same target as before.
+            if (targetEnemy != targetLastShot)
+            {
+                targetLastShot = targetEnemy;
+
+                //if I target swap, reset dmg and timers.
+                crystalBeamLevel = 0;
+                maxTowerDmg = crystalBaseMaxDmg;
+                crystalCurrentChargeTime = 0f;
+                lineRenderer.widthMultiplier = 1.00f;
+                beamParticles.enableEmission = false;
+            }
+
+            //Shoot now
             ShootWithCrystal(true);
         }
         else
         {
             ShootWithCrystal(false);
             SetTargetEnemy();
-            // reset focus bonus
-            crystalBeamLevel = 0;
-            maxTowerDmg = crystalBaseMaxDmg;
-            crystalCurrentChargeTime = 0f;
-            lineRenderer.widthMultiplier = 1.00f;
-            beamParticles.enableEmission = false;
         }
         distanceToEnemyTest = distanceToEnemy;
     }
@@ -369,4 +377,5 @@ public class Tower_Plasma : Tower
 
         return towerCost;
     }
+
 }

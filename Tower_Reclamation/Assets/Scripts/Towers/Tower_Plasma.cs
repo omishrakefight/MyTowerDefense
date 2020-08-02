@@ -16,7 +16,8 @@ public class Tower_Plasma : Tower
     float crystalDmgInterval = .25f;
     float crystalCurrentBeamTime = 0f;
     float crystalCurrentChargeTime = 0f;
-    int crystalBaseMaxDmg = 3;
+    private int crystalDMGPerStage = 3;
+    int crystalBaseMaxDmg = 9;
     int crystalBeamLevel = 0;
     Transform targetLastShot = null;
     ParticleSystem beamParticles;
@@ -204,8 +205,8 @@ public class Tower_Plasma : Tower
             case (int)PlasmaHead.Basic:
                 headType = (int)PlasmaHead.Basic;
                 TowerAugmentExplanation = "The default head of the Plasma Turret.  Hits in a line for randomised damage.";
-                minTowerDmg = 10;
-                maxTowerDmg = 30;
+                minTowerDmg = 30;
+                maxTowerDmg = 90;
                 //nothing;
                 break;
             case (int)PlasmaHead.Crystal:
@@ -221,7 +222,7 @@ public class Tower_Plasma : Tower
                 beamParticles.enableEmission = false;
                 lineRenderer.enabled = false;
                 TowerAugmentExplanation = "The crystal head of the Plasma Turret.  Amplifies the effects for a single target.";
-                minTowerDmg = 1f;
+                minTowerDmg = 3f;
                 maxTowerDmg = crystalBaseMaxDmg; //3
                 //nothing;
                 break;
@@ -309,13 +310,13 @@ public class Tower_Plasma : Tower
                     if (crystalCurrentChargeTime < 2.0f)
                     {
                         crystalBeamLevel++;
-                        maxTowerDmg += 1;
+                        maxTowerDmg += crystalDMGPerStage;
                         lineRenderer.widthMultiplier = 1.30f;
                         // add in dmg increase, and in the target swap function restet both the beam level and the charge timer.
                     } else
                     {
                         crystalBeamLevel++;
-                        maxTowerDmg += 1;
+                        maxTowerDmg += crystalDMGPerStage;
                         lineRenderer.widthMultiplier = 1.60f;
                     }
                 }

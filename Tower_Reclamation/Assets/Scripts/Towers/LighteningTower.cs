@@ -71,7 +71,7 @@ public class LighteningTower : Tower {
         attackRange = 18;
 
         // i neeed the initialization to ge tthe turret specific stats, just make another function in here that checks and modifies, it doesnth ave to be in towerfactory.
-        towerDmg = 25;
+        towerDmg = 75;
         //goldCost = (int)TowerCosts.LighteningTowerCost;
 
         if (!keepBuffed) { }

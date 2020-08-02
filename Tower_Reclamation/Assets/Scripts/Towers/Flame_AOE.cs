@@ -33,6 +33,8 @@ public class Flame_AOE : MonoBehaviour {
 
     public void DelayedStart(bool keepBuffed)
     {
+        towerDmg = 12;
+        currentTowerDmg = 12;
         float rangeModifier = 1.0f;
         // 1 is shelling, 2 is tank.
         print(towerDmg + "  prebuff    " + rangeModifier);

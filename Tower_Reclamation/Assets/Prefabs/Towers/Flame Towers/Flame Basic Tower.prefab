@@ -291,8 +291,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 8.57, z: 6.43}
-  m_Center: {x: 0, y: 4.72, z: 0}
+  m_Size: {x: 8, y: 2, z: 8}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &114262617888070472
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -312,7 +312,7 @@ MonoBehaviour:
   objectToPan: {fileID: 4695589155867020}
   targetEnemyBody: {fileID: 0}
   preferedEnemyBody: {fileID: 0}
-  canSilverWiring: 0
+  cantargettingModule: 0
   canAlloyReasearch: 0
   canSturdyTank: 0
   canHeavyShelling: 0

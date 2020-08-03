@@ -95,8 +95,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6, y: 8.57, z: 6.43}
-  m_Center: {x: 0, y: 4.72, z: 0}
+  m_Size: {x: 8, y: 2, z: 8}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &114036213664897604
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,15 +129,9 @@ MonoBehaviour:
     type: 2}
   targetEnemyBody: {fileID: 0}
   preferedEnemyBody: {fileID: 0}
-  canSilverWiring: 0
+  cantargettingModule: 0
   canAlloyReasearch: 0
   canSturdyTank: 0
   canHeavyShelling: 0
   canTowerEngineer: 0
   keepBuffed: 0
-  projectileParticle: {fileID: 198292466415716428, guid: 9b88788f1af26d945a3ec20203b67002,
-    type: 2}
-  projectileParticleTwo: {fileID: 198849436724297864, guid: 9b88788f1af26d945a3ec20203b67002,
-    type: 2}
-  projectileParticleThree: {fileID: 198527551074869486, guid: 9b88788f1af26d945a3ec20203b67002,
-    type: 2}

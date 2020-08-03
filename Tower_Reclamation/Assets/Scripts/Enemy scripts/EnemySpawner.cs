@@ -66,22 +66,6 @@ public class EnemySpawner : MonoBehaviour
 
     public IEnumerator SpawnSpecificEnemies() //List<int> enemyList
     {
-        //check for boss
-        if (checkForBoss)
-        {
-            try
-            {
-                BossEnemy boss = FindObjectOfType<BossEnemy>();
-                boss.SpawnBoss();
-                boss.BuffBossMob();
-            }
-            catch (Exception e)
-            {
-                // nothing,  I failed to find and spawn boss, all good he doesnt exist.
-            }
-            checkForBoss = false;
-        }
-
         // get on stsart the neemy list from singleton.
         foreach (int x in enemyList)
         {
@@ -144,6 +128,13 @@ public class EnemySpawner : MonoBehaviour
                     print("I am past it! lets see, " + waveTimer + ", > " + timeBetweenWaves);
                     betweenWaves = false;
                     waveTimer = 0;
+
+                    //check for boss
+                    if (checkForBoss)
+                    {
+                        CheckForBoss();
+                        checkForBoss = false;
+                    }
                 }
                 //if (x == -1)
                 //{
@@ -203,6 +194,19 @@ public class EnemySpawner : MonoBehaviour
         //waveTimer = 0;
     }
 
+    private void CheckForBoss()
+    {
+        try
+        {
+            BossEnemy boss = FindObjectOfType<BossEnemy>();
+            boss.SpawnBoss();
+            boss.BuffBossMob();
+        }
+        catch (Exception e)
+        {
+            // nothing,  I failed to find and spawn boss, all good he doesnt exist.
+        }
+    }
 
     public void SpawnAppropriateEnemy(int enemy)
     {
@@ -262,7 +266,6 @@ public class EnemySpawner : MonoBehaviour
 
     public void StartBattle()
     {
-        //print("talks over time to fight!");
         if (!currentlySpawning)
         {
             begin = true;
@@ -271,43 +274,7 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-
-
-    //Get path on start so that you cant build towers wrongly
-    //public IEnumerator ContinualSpawnEnemies()
-    //{
-    //    // resets the timer when a wave is spawned.
-    //    waveTimer = 0;
-
-    //    while (monstersSpawned < 6 && stillAlive && level.waveCount < 5)
-    //    {
-    //        currentlySpawning = true;
-    //        var enemySpawnLoc = Instantiate(enemyPrefab1, transform.position, Quaternion.identity);
-    //        enemySpawnLoc.transform.parent = enemiesLocation;
-    //        monstersSpawned++;
-    //        GetComponent<AudioSource>().PlayOneShot(enemySpawnAudio);
-    //        yield return new WaitForSeconds(secondsBetweenSpawns);
-    //    }
-    //    FindObjectOfType<CurrentWave>().WaveUpOne();
-    //    currentlySpawning = false;
-    //    monstersSpawned = 0;
-
-    //    // If on Last wave, check enemy number for win.
-    //    if (level.waveCount == 5)
-    //    {
-    //        while(FindObjectsOfType<EnemyMovement>().Length > 0)
-    //        {
-    //            yield return new WaitForSeconds(1);
-    //        }
-    //        if(stillAlive)
-    //            win.enabled = true;
-    //        yield return new WaitForSeconds(4);
-    //        FindObjectOfType<LoadNextArea>().LoadBase();
-    //    }
-
-    //    yield return StartCoroutine(WaitBetweenWaves());
-    //}
-
+    
     IEnumerator WaitBetweenWaves()
     {
         //yield return new WaitForSeconds(timeBetweenWaves);
@@ -348,10 +315,6 @@ public class EnemySpawner : MonoBehaviour
         {
             waveTimer = timeBetweenWaves;
             startupTimer = startSetupTime;
-            //currentlySpawning = true;
-            //betweenWaves = false;
-            //StartCoroutine(ContinualSpawnEnemies());
-            //StartCoroutine(SpawnSpecificEnemies());
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
@@ -367,11 +330,3 @@ public class EnemySpawner : MonoBehaviour
     }
 
 }
-
-// continue seperation add HP back to serialized field.
-
-
-
-
-// bad for loop
-//  monstersSpawned = 0; monstersSpawned < 5; monstersSpawned ++

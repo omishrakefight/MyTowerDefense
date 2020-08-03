@@ -3217,9 +3217,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   regularCursor: {fileID: 0}
-  enemyCursor: {fileID: 2800000, guid: d45de9d5a1cd17347bb71c9e5f737cef, type: 3}
-  towerCursor: {fileID: 2800000, guid: a442c5579ed842f4e828356f322c2fbd, type: 3}
-  waypointCursor: {fileID: 2800000, guid: c8070cdc326c5a2438c6a41ad603e0e6, type: 3}
+  enemyCursor: {fileID: 2800000, guid: 625db122ae7fa7a448f91654b213b1e7, type: 3}
+  towerCursor: {fileID: 2800000, guid: 180f8bd36f91c454cb908b475dfe4e28, type: 3}
+  waypointCursor: {fileID: 2800000, guid: 63de755c7fa80204a8584ac282446ef8, type: 3}
   cursorHotspot: {x: 96, y: 96}
 --- !u!114 &1781535419
 MonoBehaviour:

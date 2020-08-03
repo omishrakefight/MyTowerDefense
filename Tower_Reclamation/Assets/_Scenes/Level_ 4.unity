@@ -173,6 +173,11 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 224302923489851782, guid: c75d683a57da05b46abfab717912e227,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c75d683a57da05b46abfab717912e227, type: 2}
   m_IsPrefabParent: 0
@@ -2882,9 +2887,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   regularCursor: {fileID: 0}
-  enemyCursor: {fileID: 0}
-  towerCursor: {fileID: 0}
-  waypointCursor: {fileID: 0}
+  enemyCursor: {fileID: 2800000, guid: 625db122ae7fa7a448f91654b213b1e7, type: 3}
+  towerCursor: {fileID: 2800000, guid: 180f8bd36f91c454cb908b475dfe4e28, type: 3}
+  waypointCursor: {fileID: 2800000, guid: 63de755c7fa80204a8584ac282446ef8, type: 3}
   cursorHotspot: {x: 96, y: 96}
 --- !u!114 &1781535419
 MonoBehaviour:

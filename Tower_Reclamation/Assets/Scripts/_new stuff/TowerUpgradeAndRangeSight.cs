@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(LineRenderer))]
 public class TowerUpgradeAndRangeSight : MonoBehaviour {
 
+    Pro
     [Range(0, 50)]
     public int segments = 50;
     [Range(0, 5)]

@@ -36,6 +36,7 @@ public class LighteningTower : Tower {
 
     private GameObject target;
     private LineRenderer lineRend;
+
     private float arcLength = 1.25f;
     private float arcVariation = 1.25f;
     private float inaccuracy = 0.75f;

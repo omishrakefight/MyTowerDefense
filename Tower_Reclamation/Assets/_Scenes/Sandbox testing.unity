@@ -452,6 +452,44 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114184847915309006, guid: 8f6fb56e485ffd146a7afa3d0377ce4a,
+        type: 2}
+      propertyPath: m_text
+      value: '<sprite index=0>
+
+        <sprite="Soldier_Neutral" name="Soldier_Neutral">New Text New Text New Text
+        New Text New Text New Text New Text New Text'
+      objectReference: {fileID: 0}
+    - target: {fileID: 114184847915309006, guid: 8f6fb56e485ffd146a7afa3d0377ce4a,
+        type: 2}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 109
+      objectReference: {fileID: 0}
+    - target: {fileID: 114184847915309006, guid: 8f6fb56e485ffd146a7afa3d0377ce4a,
+        type: 2}
+      propertyPath: m_textInfo.characterCount
+      value: 122
+      objectReference: {fileID: 0}
+    - target: {fileID: 114184847915309006, guid: 8f6fb56e485ffd146a7afa3d0377ce4a,
+        type: 2}
+      propertyPath: m_textInfo.spaceCount
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 114184847915309006, guid: 8f6fb56e485ffd146a7afa3d0377ce4a,
+        type: 2}
+      propertyPath: m_textInfo.lineCount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 114184847915309006, guid: 8f6fb56e485ffd146a7afa3d0377ce4a,
+        type: 2}
+      propertyPath: m_textInfo.wordCount
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 114184847915309006, guid: 8f6fb56e485ffd146a7afa3d0377ce4a,
+        type: 2}
+      propertyPath: m_textInfo.materialCount
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8f6fb56e485ffd146a7afa3d0377ce4a, type: 2}
   m_IsPrefabParent: 0

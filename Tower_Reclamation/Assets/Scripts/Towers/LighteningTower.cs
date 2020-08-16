@@ -17,7 +17,7 @@ public class LighteningTower : Tower {
     [SerializeField] protected Light charge;
     [SerializeField] protected ParticleSystem projectileParticle;
     [SerializeField] protected SphereCollider AOERange;
-    [SerializeField] protected LineRenderer secondLightning;
+    protected LineRenderer secondLightning;
 
     List<EnemyMovement> targets;
     //paramteres of each tower
@@ -59,6 +59,8 @@ public class LighteningTower : Tower {
         lineRend = gameObject.GetComponent<LineRenderer>();
         zapTimer = 0;
         lineRend.SetVertexCount(1);
+        GetSecondLineRender();
+        secondLightning.SetVertexCount(1);
     }
 
     public override void DelayedStart()
@@ -90,12 +92,27 @@ public class LighteningTower : Tower {
         currentTowerDmg = towerDmg;
         AOERange.radius = (attackRange * .60f);
 
-        GetSecondLineRender();
+        
     }
 
+    /// <summary>
+    /// gets the children of this gameobject, then cycles
+    /// </summary>
     private void GetSecondLineRender()
     {
-        Transform[] children = this.gameObject.GetComponentsInChildren<Transform>();
+        Transform[] children = GetComponentsInChildren<Transform>();
+
+        foreach(Transform obj in children)
+        {
+            if (obj != this.transform)
+            {
+                secondLightning = obj.GetComponentInChildren<LineRenderer>();
+                if (!(secondLightning == null))
+                {
+                    break;
+                }
+            }
+        }
     }
 
     public override void DetermineTowerHeadType(int towerInt)
@@ -261,7 +278,7 @@ public class LighteningTower : Tower {
             //Second Beam drawing
             Vector3 lastPoint2 = transform.position;
             int i2 = 1;
-            lineRend.SetPosition(0, transform.position);//make the origin of the LR the same as the transform
+            secondLightning.SetPosition(0, transform.position);//make the origin of the LR the same as the transform
             foreach (EnemyMovement target in targets)
             {
                 try

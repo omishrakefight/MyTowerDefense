@@ -17,6 +17,7 @@ public class LighteningTower : Tower {
     [SerializeField] protected Light charge;
     [SerializeField] protected ParticleSystem projectileParticle;
     [SerializeField] protected SphereCollider AOERange;
+    protected LineRenderer secondLightning;
 
     List<EnemyMovement> targets;
     //paramteres of each tower
@@ -58,6 +59,8 @@ public class LighteningTower : Tower {
         lineRend = gameObject.GetComponent<LineRenderer>();
         zapTimer = 0;
         lineRend.SetVertexCount(1);
+        GetSecondLineRender();
+        secondLightning.SetVertexCount(1);
     }
 
     public override void DelayedStart()
@@ -88,6 +91,28 @@ public class LighteningTower : Tower {
         base.CheckUpgradesForTankTower(ref towerDmg, ref attackRange);
         currentTowerDmg = towerDmg;
         AOERange.radius = (attackRange * .60f);
+
+        
+    }
+
+    /// <summary>
+    /// gets the children of this gameobject, then cycles
+    /// </summary>
+    private void GetSecondLineRender()
+    {
+        Transform[] children = GetComponentsInChildren<Transform>();
+
+        foreach(Transform obj in children)
+        {
+            if (obj != this.transform)
+            {
+                secondLightning = obj.GetComponentInChildren<LineRenderer>();
+                if (!(secondLightning == null))
+                {
+                    break;
+                }
+            }
+        }
     }
 
     public override void DetermineTowerHeadType(int towerInt)
@@ -250,9 +275,44 @@ public class LighteningTower : Tower {
                     // nothing, enemy maybe died while bolt is still being drawn.
                 }
             }
+
+            //Second Beam drawing
+            Vector3 lastPoint2 = transform.position;
+            int i2 = 1;
+            secondLightning.SetPosition(0, transform.position);//make the origin of the LR the same as the transform
+            foreach (EnemyMovement target in targets)
+            {
+                try
+                {
+                    while (Vector3.Distance(target.transform.position, lastPoint2) > 3.0f)
+                    {//was the last arc not touching the target?
+                        secondLightning.SetVertexCount(i2 + 1);//then we need a new vertex in our line renderer
+                        Vector3 fwd = target.transform.position - lastPoint2;//gives the direction to our target from the end of the last arc
+                        fwd.Normalize();//makes the direction to scale
+                        fwd = Randomize(fwd, inaccuracy);//we don't want a straight line to the target though
+                        fwd *= UnityEngine.Random.Range(arcLength * arcVariation, arcLength);//nature is never too uniform
+                        fwd += lastPoint2;//point + distance * direction = new point. this is where our new arc ends
+                        secondLightning.SetPosition(i2, fwd);//this tells the line renderer where to draw to
+                        i2++;
+                        lastPoint2 = fwd;//so we know where we are starting from for the next arc
+                    }
+                    secondLightning.SetVertexCount(i2 + 1);
+                    secondLightning.SetPosition(i2, target.transform.position);
+                    //lightTrace.TraceLight(gameObject.transform.position, target.transform.position);
+                    zapTimer = zapTimer - Time.deltaTime;
+                }
+                catch (Exception)
+                {
+                    // nothing, enemy maybe died while bolt is still being drawn.
+                }
+            }
         }
         else
+        {
             lineRend.SetVertexCount(1);
+            secondLightning.SetVertexCount(1);
+        }
+            
     }
 
 

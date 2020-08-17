@@ -98,8 +98,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: <sprite="Soldier_Neutral" name="Soldier_Neutral">New Text New Text New Text
-    New Text New Text New Text New Text New Text
+  m_text: <sprite index=0> New Text New Text New Text New Text New Text New Text New
+    Text New Text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 715b80e429c437e40867928a4e1fc975, type: 2}
@@ -167,14 +167,14 @@ MonoBehaviour:
   m_margin: {x: -101.359406, y: 0, z: -32.262146, w: -90.3703}
   m_textInfo:
     textComponent: {fileID: 114184847915309006}
-    characterCount: 120
+    characterCount: 73
     spriteCount: 0
     spaceCount: 16
-    wordCount: 23
+    wordCount: 17
     linkCount: 0
-    lineCount: 5
+    lineCount: 3
     pageCount: 1
-    materialCount: 1
+    materialCount: 2
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0

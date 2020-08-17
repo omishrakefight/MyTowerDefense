@@ -38,8 +38,7 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     // Use this for initialization
     protected virtual void Start()
-    {
-
+    {       
         if (noSpecialHealthThings)
         {
             // for each WAVE hit points go up a set amount.  In addition, for each level you are on, health ramps up.  Just base HP for now.
@@ -59,6 +58,14 @@ public abstract class EnemyHealth : MonoBehaviour {
         {
             healPerTick = healPerTick / 10f;
         }
+        RegisterToEnemyList();
+    }
+
+    public void RegisterToEnemyList()
+    {
+        int amountPreAdd = EnemySpawner.EnemyAliveList.Count;
+        EnemySpawner.EnemyAliveList.Add(GetComponentInChildren<EnemyMovement>());
+        print("Amount of enemies before me = " + amountPreAdd + "  |||  Enemies after = " + EnemySpawner.EnemyAliveList.Count.ToString());
     }
 
     public void IsBoss()
@@ -140,6 +147,8 @@ public abstract class EnemyHealth : MonoBehaviour {
 
         Instantiate(deathPrefab, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(enemyDiedAudio, Camera.main.transform.position);
+        EnemySpawner.EnemyAliveList.Remove(GetComponentInChildren<EnemyMovement>());
+
         KillEnemy();
     }
 

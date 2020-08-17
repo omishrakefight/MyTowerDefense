@@ -42,6 +42,8 @@ public class EnemySpawner : MonoBehaviour
     float waveTimer;
     [SerializeField] Slider slider;
     public int enemyCounter = 0;
+
+    public static List<EnemyMovement> EnemyAliveList = new List<EnemyMovement>();
     // Use this for initialization
     /*
      * I Need THESE FOR INJECTION

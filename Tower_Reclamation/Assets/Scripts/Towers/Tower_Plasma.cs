@@ -327,20 +327,28 @@ public class Tower_Plasma : Tower
                 float towerDmg = UnityEngine.Random.Range(1, maxTowerDmg);
                 print("Plasma beam dmg = " + towerDmg);
                 //TODO NEED TO CHANGE this needs to only get the enemy health on TARGET CHANGE way too process intensive to get 4 times a second.
-                targetEnemyBody.hitPoints -= towerDmg;
-                targetEnemyBody.RefreshHealthBar();
-                if (targetEnemyBody.hitPoints < 1)
+                try
                 {
-                    try
-                    {
-                        targetEnemyBody.KillsEnemyandAddsGold();
-                    }
-                    catch (Exception ex)
-                    {
-                        print("Exception killing enemy  skipping now");
-                    }
-                    
+                    targetEnemyBody.HitByNonProjectile(towerDmg); // .hitPoints -= towerDmg;
                 }
+                catch (Exception e)
+                {
+                    //Enemy died during sending dmg, no problem.
+                }
+                //Shifted this to the enemy to refresh health and give gold / die
+                //targetEnemyBody.RefreshHealthBar();
+                //if (targetEnemyBody.hitPoints < 1)
+                //{
+                //    try
+                //    {
+                //        targetEnemyBody.KillsEnemyandAddsGold();
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        print("Exception killing enemy  skipping now");
+                //    }
+                    
+                //}
             }
             //finally look at the last point
             beamParticles.enableEmission = true;

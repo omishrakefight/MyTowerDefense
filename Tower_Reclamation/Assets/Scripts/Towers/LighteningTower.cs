@@ -41,7 +41,7 @@ public class LighteningTower : Tower {
     private float arcLength = 1.25f;
     private float arcVariation = 1.25f;
     private float inaccuracy = 0.75f;
-    private float timeOfZap = 0.35f;
+    private float timeOfZap = 0.40f;
     private float delayBetweenTargetJump = .10f;
     private float zapTimer;
     //Light charge;
@@ -298,7 +298,6 @@ public class LighteningTower : Tower {
                     secondLightning.SetVertexCount(i2 + 1);
                     secondLightning.SetPosition(i2, target.transform.position);
                     //lightTrace.TraceLight(gameObject.transform.position, target.transform.position);
-                    zapTimer = zapTimer - Time.deltaTime;
                 }
                 catch (Exception)
                 {

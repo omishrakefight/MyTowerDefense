@@ -70,7 +70,6 @@ public class Tower_Plasma : Tower
             float distanceToPreferedEnemy = Vector3.Distance(preferedEnemyBody.gameObject.transform.position, gameObject.transform.position);
             if (distanceToPreferedEnemy <= attackRange && targetEnemyBody.isTargetable)
             {
-                print(preferedEnemyBody.gameObject.name);
                 targetEnemyBody = preferedEnemyBody;
                 targetEnemy = preferedEnemyBody.gameObject.transform;
             }

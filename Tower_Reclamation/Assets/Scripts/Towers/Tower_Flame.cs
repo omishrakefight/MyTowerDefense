@@ -35,6 +35,7 @@ public class Tower_Flame : Tower {
 
     override protected void Start()
     {
+        base.Start();
         goldCost = (int)TowerCosts.FlameTowerCost;
         // nothing if it is unbuffed 
 

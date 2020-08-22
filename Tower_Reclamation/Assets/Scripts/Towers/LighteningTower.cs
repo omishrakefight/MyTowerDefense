@@ -19,20 +19,12 @@ public class LighteningTower : Tower {
     [SerializeField] protected SphereCollider AOERange;
     protected LineRenderer secondLightning;
 
-    //paramteres of each tower
-    //SphereCollider attackAOE;
-    //float attackRange;
-    //float chargeTime;
-    //float currentChargeTime;
-    //bool isCharged = false;
-
     //For tinker upgrades
     readonly new bool cantargettingModule = true;
     readonly new bool canAlloyReasearch = true;
     readonly new bool canSturdyTank = true;
     readonly new bool canHeavyShelling = false;
     readonly new bool canTowerEngineer = true;
-
 
     private GameObject target;
     private LineRenderer lineRend;
@@ -44,22 +36,14 @@ public class LighteningTower : Tower {
     private float delayBetweenTargetJump = .10f;
     private float zapTimer;
 
-    List<EnemyMovement> sceneEnemies;
-    List<EnemyMovement> targets;
-    //Light charge;
-    //ParticleSystem projectileParticle;
-    //float towerDmg;
-    //private float currentTowerDmg;
-    //List<EnemyMovement> targets;
-
-    // State of tower
-    //[SerializeField] Transform targetEnemy;
+    //List<EnemyMovement> sceneEnemies;
+    List<EnemyHealth> targets;
 
     protected override void Start()
     {
         //ZapTarget(FindObjectOfType<EnemyMovement>().gameObject);
         base.Start();
-        sceneEnemies = EnemySpawner.EnemyAliveList;
+        //sceneEnemies = EnemySpawner.EnemyAliveList;  DONE IN BASE.
         lineRend = gameObject.GetComponent<LineRenderer>();
         zapTimer = 0;
         lineRend.SetVertexCount(1);
@@ -180,11 +164,9 @@ public class LighteningTower : Tower {
 
     }
 
-    private void CheckEnemyRange(List<EnemyMovement> targets)
+    private void CheckAllEnemyRange()//List<EnemyMovement> targets)
     {
-
-        //var sceneEnemies = EnemySpawner.EnemyAliveList;//FindObjectsOfType<EnemyMovement>();
-        foreach (EnemyMovement enemy in sceneEnemies)
+        foreach (EnemyHealth enemy in sceneEnemies)
         {
             var distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
             if (distanceToEnemy < attackRange)
@@ -192,7 +174,6 @@ public class LighteningTower : Tower {
                 targets.Add(enemy);
             }
         }
-        //print(targets.Count);
     }
 
     private void OnTriggerStay(Collider other)
@@ -200,9 +181,9 @@ public class LighteningTower : Tower {
         if (isCharged)
         {
             //targets.Clear();
-            targets = new List<EnemyMovement>();
+            targets = new List<EnemyHealth>();
             print("I am charged and enemies are nearby!!");
-            CheckEnemyRange(targets);
+            CheckAllEnemyRange();
             //var sceneEnemies = FindObjectsOfType<EnemyMovement>();
             for (int i = 0; i < targets.Count; i++)
             {
@@ -211,7 +192,7 @@ public class LighteningTower : Tower {
                     // Trigger lightning animation (targets available)
                     ZapTarget(other.gameObject);
                     //print("POW");
-                    targets[i].GetComponent<EnemyHealth>().HitByNonProjectile(towerDmg);// .hitPoints -= towerDmg;
+                    targets[i].HitByNonProjectile(towerDmg);// .hitPoints -= towerDmg;
                     //Shifted this to the enemy to refresh health and give gold / die
                     //targets[i].GetComponent<EnemyHealth>().RefreshHealthBar();
 
@@ -253,7 +234,7 @@ public class LighteningTower : Tower {
             Vector3 lastPoint = transform.position;
             int i = 1;
             lineRend.SetPosition(0, transform.position);//make the origin of the LR the same as the transform
-            foreach (EnemyMovement target in targets)
+            foreach (EnemyHealth target in targets)
             {
                 try
                 {
@@ -284,7 +265,7 @@ public class LighteningTower : Tower {
             Vector3 lastPoint2 = transform.position;
             int i2 = 1;
             secondLightning.SetPosition(0, transform.position);//make the origin of the LR the same as the transform
-            foreach (EnemyMovement target in targets)
+            foreach (EnemyHealth target in targets)
             {
                 try
                 {
@@ -437,3 +418,17 @@ public class LighteningTower : Tower {
         }
         */
 }
+
+//Light charge;
+//ParticleSystem projectileParticle;
+//float towerDmg;
+//private float currentTowerDmg;
+//List<EnemyMovement> targets;
+
+//paramteres of each tower
+//SphereCollider attackAOE;
+//float attackRange;
+//float chargeTime;
+//float currentChargeTime;
+//bool isCharged = false;
+

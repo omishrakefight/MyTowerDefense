@@ -21,7 +21,7 @@ public abstract class Tower : MonoBehaviour {
     [SerializeField] public float towerDmg = 30;
     [SerializeField] protected float currentTowerDmg = 30;
 
-    List<EnemyMovement> targets;
+    public List<EnemyHealth> sceneEnemies;
     [SerializeField] public Transform targetEnemy;
     [SerializeField] protected Transform objectToPan;
     public EnemyHealth targetEnemyBody;
@@ -43,7 +43,7 @@ public abstract class Tower : MonoBehaviour {
         try
         {
             // combat initializations.  If tower is spawned in base these might catch.
-            targets = EnemySpawner.EnemyAliveList;
+            sceneEnemies = EnemySpawner.EnemyAliveList;
         }
         catch (Exception e)
         {
@@ -93,8 +93,8 @@ public abstract class Tower : MonoBehaviour {
     public void SetTargetEnemy()
     {
         bool getNext = false;
-        var sceneEnemies = FindObjectsOfType<EnemyHealth>();
-        if (sceneEnemies.Length == 0) { return; }
+        //var sceneEnemies = FindObjectsOfType<EnemyHealth>();
+        if (sceneEnemies.Count == 0) { return; }
 
         Transform closestEnemy = sceneEnemies[0].transform; // change default?
         // This meanas grab next in comparisons

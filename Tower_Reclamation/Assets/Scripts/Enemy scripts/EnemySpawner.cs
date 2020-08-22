@@ -43,7 +43,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] Slider slider;
     public int enemyCounter = 0;
 
-    public static List<EnemyMovement> EnemyAliveList = new List<EnemyMovement>();
+    public static List<EnemyHealth> EnemyAliveList = new List<EnemyHealth>();
     // Use this for initialization
     /*
      * I Need THESE FOR INJECTION

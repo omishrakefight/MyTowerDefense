@@ -31,7 +31,7 @@ public class RifledTower : Tower {
 
     // minrange = 0, set it if sniper?
     override protected void Start () {
-
+        base.Start();
         goldCost = (int)TowerCosts.RifledTowerCost;
        
 	}

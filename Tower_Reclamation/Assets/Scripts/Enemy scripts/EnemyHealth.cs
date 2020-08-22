@@ -64,7 +64,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     public void RegisterToEnemyList()
     {
         int amountPreAdd = EnemySpawner.EnemyAliveList.Count;
-        EnemySpawner.EnemyAliveList.Add(GetComponentInChildren<EnemyMovement>());
+        EnemySpawner.EnemyAliveList.Add(this);
         print("Amount of enemies before me = " + amountPreAdd + "  |||  Enemies after = " + EnemySpawner.EnemyAliveList.Count.ToString());
     }
 
@@ -147,7 +147,7 @@ public abstract class EnemyHealth : MonoBehaviour {
 
         Instantiate(deathPrefab, transform.position, Quaternion.identity);
         AudioSource.PlayClipAtPoint(enemyDiedAudio, Camera.main.transform.position);
-        EnemySpawner.EnemyAliveList.Remove(GetComponentInChildren<EnemyMovement>());
+        EnemySpawner.EnemyAliveList.Remove(this);
 
         KillEnemy();
     }

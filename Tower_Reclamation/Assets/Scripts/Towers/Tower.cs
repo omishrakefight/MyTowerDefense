@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public abstract class Tower : MonoBehaviour {
 
@@ -39,6 +40,15 @@ public abstract class Tower : MonoBehaviour {
 
     protected virtual void Start()
     {
+        try
+        {
+            // combat initializations.  If tower is spawned in base these might catch.
+            targets = EnemySpawner.EnemyAliveList;
+        }
+        catch (Exception e)
+        {
+            print(e.Message + ":  Error is initialization object name: " + gameObject.name);
+        }
         //preferedEnemyBody = FindObjectOfType<Singleton>().preferedTargetEnemy;
     }
 

@@ -19,7 +19,6 @@ public class LighteningTower : Tower {
     [SerializeField] protected SphereCollider AOERange;
     protected LineRenderer secondLightning;
 
-    List<EnemyMovement> targets;
     //paramteres of each tower
     //SphereCollider attackAOE;
     //float attackRange;
@@ -44,6 +43,9 @@ public class LighteningTower : Tower {
     private float timeOfZap = 0.40f;
     private float delayBetweenTargetJump = .10f;
     private float zapTimer;
+
+    List<EnemyMovement> sceneEnemies;
+    List<EnemyMovement> targets;
     //Light charge;
     //ParticleSystem projectileParticle;
     //float towerDmg;
@@ -56,6 +58,8 @@ public class LighteningTower : Tower {
     protected override void Start()
     {
         //ZapTarget(FindObjectOfType<EnemyMovement>().gameObject);
+        base.Start();
+        sceneEnemies = EnemySpawner.EnemyAliveList;
         lineRend = gameObject.GetComponent<LineRenderer>();
         zapTimer = 0;
         lineRend.SetVertexCount(1);
@@ -178,8 +182,8 @@ public class LighteningTower : Tower {
 
     private void CheckEnemyRange(List<EnemyMovement> targets)
     {
-        
-        var sceneEnemies = FindObjectsOfType<EnemyMovement>();
+
+        //var sceneEnemies = EnemySpawner.EnemyAliveList;//FindObjectsOfType<EnemyMovement>();
         foreach (EnemyMovement enemy in sceneEnemies)
         {
             var distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);

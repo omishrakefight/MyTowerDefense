@@ -263,7 +263,7 @@ MonoBehaviour:
   canTowerEngineer: 0
   keepBuffed: 0
   chargeTime: 7
-  currentChargeTime: 0
+  currentChargeTime: 6.2
   isCharged: 0
   charge: {fileID: 108406019157774086}
   projectileParticle: {fileID: 0}

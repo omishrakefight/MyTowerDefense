@@ -145,6 +145,8 @@ public class Tower_Flame : Tower {
                 attackRange = head.SetTowerTypeFlameThrower();
                 break;
         }
+        currentAttackRange = head.GetTowerRange();
+        attackRange = currentAttackRange;
     }
 
     //  The actual Dmg applier is on the head of the turret with the capsul collider.

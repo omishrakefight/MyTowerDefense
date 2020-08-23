@@ -57,6 +57,11 @@ public abstract class Tower : MonoBehaviour {
         keepBuffed = true;
     }
 
+    public float GetAttackRange()
+    {
+        return currentAttackRange;
+    }
+
     public void CheckAndApplyBuff()
     {
         //currentAttackRange = attackRange;

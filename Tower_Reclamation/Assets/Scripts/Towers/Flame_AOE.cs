@@ -170,4 +170,9 @@ public class Flame_AOE : MonoBehaviour {
         }
     }
 
+    public float GetTowerRange()
+    {
+        return currentAttackRange;
+    }
+
 }

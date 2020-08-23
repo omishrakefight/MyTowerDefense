@@ -79,7 +79,7 @@ public class LighteningTower : Tower {
         base.CheckUpgradesForTankTower(ref towerDmg, ref attackRange);
         currentTowerDmg = towerDmg;
         AOERange.radius = (attackRange * .60f);
-
+        currentAttackRange = attackRange;
         
     }
 
@@ -161,7 +161,7 @@ public class LighteningTower : Tower {
                 break;
         }
         AOERange.radius = (attackRange * .60f);
-
+        currentAttackRange = attackRange;
     }
 
     private void CheckAllEnemyRange()//List<EnemyMovement> targets)

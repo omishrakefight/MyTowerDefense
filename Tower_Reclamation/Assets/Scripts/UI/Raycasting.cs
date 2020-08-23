@@ -55,12 +55,20 @@ public class Raycasting : MonoBehaviour {
                 {
                     singleton.SetPreferedEnemy(raycastHit.collider.GetComponentInChildren<EnemyHealth>());
                 }
-                else if (raycastHit.collider.GetComponentInChildren<Tower>() != null)
+                else if (raycastHit.collider.GetComponentInParent<Tower>() != null)
                 {
                     var sightRange = FindObjectOfType<TowerUpgradeAndRangeSight>();
                     if (sightRange != null)
                     {
-                        sightRange.CreatePoints(raycastHit.collider.GetComponentInChildren<Tower>());
+                        sightRange.CreatePoints(raycastHit.collider.GetComponentInParent<Tower>());
+                    }
+                }
+                else
+                {
+                    var sightRange = FindObjectOfType<TowerUpgradeAndRangeSight>();
+                    if (sightRange != null)
+                    {
+                        sightRange.DestroyRangeCircle();
                     }
                 }
             }

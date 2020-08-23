@@ -20,15 +20,18 @@ public class TowerUpgradeAndRangeSight : MonoBehaviour {
     void Start()
     {
         line = gameObject.GetComponent<LineRenderer>();
+        line.enabled = false;
 
         // have it use world space and get the objects worldspace.
         line.positionCount= (segments + 1);
-        line.useWorldSpace = false;
+        line.useWorldSpace = true;
         //CreatePoints();
     }
 
     public void CreatePoints(Tower towerToDrawRangeAround )
     {
+        line.enabled = true;
+        radius =  towerToDrawRangeAround.GetAttackRange();
         float x;
         float y;
         float z;
@@ -49,6 +52,11 @@ public class TowerUpgradeAndRangeSight : MonoBehaviour {
 
             angle += (360f / segments);
         }
+    }
+
+    public void DestroyRangeCircle()
+    {
+        line.enabled = false;
     }
 
 	

@@ -45,7 +45,7 @@ public abstract class EnemyHealth : MonoBehaviour {
             //was 34, upping to 100 for easier adjustments and reading.  times all dmg / life by 3x
             hitPoints = 100;
             hitPoints += (6 * Singleton.Instance.level);
-            float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 40;
+            float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 36;
             hitPoints += healthModifier;
             hitPointsMax = hitPoints;
             healthImage = enemyHealthBar.gameObject.GetComponentInChildren<Image>();

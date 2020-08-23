@@ -44,16 +44,24 @@ public class Raycasting : MonoBehaviour {
         //TODO move all my click crap somehow here? consolidate code.  Waypoint clicks maybe.
         if (Input.GetMouseButtonDown(0))
         {
-            //print(layerHit);
             try
             {
+                // make it a switch?
+                //switch ()
+                //{
 
+                //}
                 if (raycastHit.collider.GetComponentInChildren<EnemyHealth>() != null)
                 {
-                    //print(raycastHit.collider.name);
-
                     singleton.SetPreferedEnemy(raycastHit.collider.GetComponentInChildren<EnemyHealth>());
-
+                }
+                else if (raycastHit.collider.GetComponentInChildren<Tower>() != null)
+                {
+                    var sightRange = FindObjectOfType<TowerUpgradeAndRangeSight>();
+                    if (sightRange != null)
+                    {
+                        sightRange.CreatePoints(raycastHit.collider.GetComponentInChildren<Tower>());
+                    }
                 }
             }
             catch (Exception clickError)

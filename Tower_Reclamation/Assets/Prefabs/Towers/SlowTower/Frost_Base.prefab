@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 23308198702397896}
   - component: {fileID: 114105923518641360}
   - component: {fileID: 65295404993026758}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Frost_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,11 +208,12 @@ MonoBehaviour:
   attackRange: 10
   towerDmg: 30
   currentTowerDmg: 30
+  sceneEnemies: []
   targetEnemy: {fileID: 0}
   objectToPan: {fileID: 0}
   targetEnemyBody: {fileID: 0}
   preferedEnemyBody: {fileID: 0}
-  canSilverWiring: 0
+  cantargettingModule: 0
   canAlloyReasearch: 0
   canSturdyTank: 0
   canHeavyShelling: 0

@@ -43,6 +43,7 @@ public class Tower_Ice : Tower {
         base.CheckUpgradesForTankTower(ref chillAmount, ref range);
 
         chillAmount = 1f - preFlippedChillAmount;
+        currentAttackRange = range;
     }
 
 

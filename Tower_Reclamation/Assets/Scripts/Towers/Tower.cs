@@ -16,6 +16,7 @@ public abstract class Tower : MonoBehaviour {
     protected string TowerBaseExplanation = "";
     protected string TowerBaseFlavorTxt = "";
     protected string TowerStatsTxt = "";
+    protected string TowerTypeName = "";
 
 
     [SerializeField] public float towerDmg = 30;

@@ -49,6 +49,8 @@ public class LighteningTower : Tower {
         lineRend.SetVertexCount(1);
         GetSecondLineRender();
         secondLightning.SetVertexCount(1);
+
+        TowerTypeName = "Lightning Tower";
     }
 
     public override void DelayedStart()

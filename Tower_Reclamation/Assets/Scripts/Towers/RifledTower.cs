@@ -33,8 +33,9 @@ public class RifledTower : Tower {
     override protected void Start () {
         base.Start();
         goldCost = (int)TowerCosts.RifledTowerCost;
-       
-	}
+
+        TowerTypeName = "Rifled Tower";
+    }
 
     override public void DelayedStart()
     {

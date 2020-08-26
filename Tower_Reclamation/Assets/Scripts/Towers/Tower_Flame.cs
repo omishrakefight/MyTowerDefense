@@ -29,6 +29,7 @@ public class Tower_Flame : Tower {
 
     private string attackAreaType = "Wide";
 
+
     // Buff info
     //bool keepBuffed = false;
    
@@ -37,6 +38,8 @@ public class Tower_Flame : Tower {
     {
         base.Start();
         goldCost = (int)TowerCosts.FlameTowerCost;
+
+        TowerTypeName = "Flame Tower";
         // nothing if it is unbuffed 
 
         // change this to percentage based buff.  otherwise it is an overwrite

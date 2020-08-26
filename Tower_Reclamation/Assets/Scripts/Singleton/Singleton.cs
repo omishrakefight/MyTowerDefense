@@ -32,6 +32,8 @@ public sealed class Singleton : MonoBehaviour {
     public int towerThreeBaseType = -1;
     public int towerThreeHeadType = -1;
 
+    static public Dictionary<string, float> towerDamages = new Dictionary<string, float>();
+
     protected Dropdown dropdown;
 
     public EnemyHealth preferedTargetEnemy = null;
@@ -147,6 +149,31 @@ public sealed class Singleton : MonoBehaviour {
         level++;
         print(level + "is the level now!!!!!!");
         levelText.text = "Level : " + level.ToString();
+
+        // loops all towers that damaged this round and tells you how well they did.  Then clears.
+        foreach (string key in towerDamages.Keys)
+        {
+            print(key + ": " + towerDamages[key]);
+        }
+        towerDamages.Clear();
+     }
+
+    /// <summary>
+    /// TODO check if it needs optimizing.  This adds the tower damage caused every frame, and by which towers.  Im not sure if this is too much.
+    /// </summary>
+    /// <param name="towerTypeName"></param>
+    /// <param name="damageToAdd"></param>
+    public static void AddTowerDamage(string towerTypeName, float damageToAdd)
+    {
+        if (towerDamages.ContainsKey(towerTypeName))
+        {
+            float currentDmg = towerDamages[towerTypeName];
+            currentDmg += damageToAdd;
+            towerDamages[towerTypeName] = currentDmg;
+        } else
+        {
+            towerDamages.Add(towerTypeName, damageToAdd);
+        }
     }
 
     public void LoadLevel(int loadedLevel)

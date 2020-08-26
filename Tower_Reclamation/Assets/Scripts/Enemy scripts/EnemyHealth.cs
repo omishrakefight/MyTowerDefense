@@ -108,10 +108,11 @@ public abstract class EnemyHealth : MonoBehaviour {
         }
         if (onFire && time < burnTime)
         {
-
+            float burn = burnDmg * Time.deltaTime;
             time += 1 * Time.deltaTime;
-            hitPoints -= burnDmg * Time.deltaTime;
+            hitPoints -= burn;
             healthImage.fillAmount = (hitPoints / hitPointsMax);
+            Singleton.AddTowerDamage("Flame Tower", burn);
         }
         else
         {

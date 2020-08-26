@@ -43,6 +43,7 @@ public class Tower_Plasma : Tower
         base.Start();
 
         //laser = transform.GetComponentInChildren<CapsuleCollider>();
+        TowerTypeName = "Plasma Tower";
     }
 
 

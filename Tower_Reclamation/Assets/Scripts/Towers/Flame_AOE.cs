@@ -7,6 +7,8 @@ public class Flame_AOE : MonoBehaviour {
 
     public float towerDmg = 4;
     public float currentTowerDmg = 4;
+    protected Tower_Flame towerBase;
+    string TowerTypeName;
 
     [SerializeField] float currentAttackRange;
     [SerializeField] float baseAttackRange;
@@ -28,11 +30,12 @@ public class Flame_AOE : MonoBehaviour {
 
     void Start()
     {
-
+        TowerTypeName = "Flame Tower";
     }
 
     public void DelayedStart(bool keepBuffed)
     {
+        towerBase = GetComponentInParent<Tower_Flame>();
         towerDmg = 12;
         currentTowerDmg = 12;
         float rangeModifier = 1.0f;
@@ -81,6 +84,7 @@ public class Flame_AOE : MonoBehaviour {
         //after initial setup bonuses, set them equal at a 'base value' this way ingame values and resets work easily.
         baseAttackRange = currentAttackRange;
         baseAttackWidth = currentAttackWidth;
+        towerBase.SetNewTowerDmg(currentTowerDmg);
     }
 
     public void BuffRange(float rangeBuff)
@@ -105,6 +109,7 @@ public class Flame_AOE : MonoBehaviour {
         NewCapsulCenter = flameAOE.center;  //= (currentAttackWidth / 2);
         NewCapsulCenter.z = (currentAttackWidth / 2);
         flameAOE.center = NewCapsulCenter;
+        towerBase.SetNewTowerDmg(currentTowerDmg);
     }
 
     public void ChangeParticleTime(float timePercent)
@@ -145,8 +150,9 @@ public class Flame_AOE : MonoBehaviour {
     }
 
 
-    public float Damage()
+    public float Damage(ref string towerName)
     {
+        towerName = TowerTypeName;
         return currentTowerDmg;
     }
 

@@ -36,7 +36,7 @@ public class BurrowerHealth : EnemyHealth {
         burrowerMove.IWasHit();
     }
 
-    override public void HitByNonProjectile(float damage)
+    override public void HitByNonProjectile(float damage, string towerName)
     {
         if (burrowed) // cant shoot me im underground bitch.
         {
@@ -48,6 +48,7 @@ public class BurrowerHealth : EnemyHealth {
         healthImage.fillAmount = (hitPoints / hitPointsMax);
         TellMovementToStartBurrow();
         hitparticleprefab.Play();
+        Singleton.AddTowerDamage(towerName, damage);
 
         if (hitPoints <= 0)
         {
@@ -91,10 +92,9 @@ public class BurrowerHealth : EnemyHealth {
         {
             KillsEnemyandAddsGold();
         }
-        if (onFire && time < burnTime)
+        if (onFire && time > 0)
         {
-
-            time += 1 * Time.deltaTime;
+            time -= 1 * Time.deltaTime;
             hitPoints -= burnDmg * Time.deltaTime;
             TellMovementToStartBurrow();
             healthImage.fillAmount = (hitPoints / hitPointsMax);

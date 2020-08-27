@@ -187,7 +187,7 @@ public class TowerSelecter : MonoBehaviour
         TowerBaseDescription.text = FindObjectOfType<Tower>().GetBaseExplanation();
         TowerBaseFlavorTxt.text = FindObjectOfType<Tower>().GetBaseFlavorTxt();
         float length = LayoutUtility.GetPreferredHeight(TowerBaseDescription.rectTransform) + 20f;
-        print(length);
+        //print(length);
         TowerBaseFlavorTxt.transform.position = (TowerBaseDescription.transform.position - (new Vector3(0f, length, 0f)));
         //TowerBaseFlavorTxt.transform.Translate(new Vector3(0f, -length, 0f));
     }
@@ -238,7 +238,7 @@ public class TowerSelecter : MonoBehaviour
     public void SpawnTowerForViewing(Vector3 position, Tower towerBase, GameObject towerHead)
     {
         var container = new GameObject();
-        container.name = "Viewing Tower";
+        container.name = towerBase.name;
         container.transform.position = position;
 
         //  FOR FUTURE  
@@ -249,7 +249,7 @@ public class TowerSelecter : MonoBehaviour
 
         // FOR NOW  I could go into the Tower Selecter and make that one function first.  I get info from there, so it needs to work first (also fastest to test.
         // I CAN hardcode stuff i dont have yet with this hack.  For slow and light tower, put it as an empty object.  It will get added, not throw an excepttion  AND be invisible and take low power.
-        print(towerBase.name);
+        //print(towerBase.name);
         float headHeight = ((towerBase.GetComponentInChildren<MeshFilter>().sharedMesh.bounds.extents.y) * .94f); //This is to account for bigger meshes    // + (obj2.GetComponent<MeshFilter>().sharedMesh.bounds.extents.y));
         var tBase = Instantiate(towerBase, position, Quaternion.identity);
         tBase.GetComponentInChildren<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;

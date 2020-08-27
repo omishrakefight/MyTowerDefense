@@ -65,7 +65,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     {
         int amountPreAdd = EnemySpawner.EnemyAliveList.Count;
         EnemySpawner.EnemyAliveList.Add(this);
-        print("Amount of enemies before me = " + amountPreAdd + "  |||  Enemies after = " + EnemySpawner.EnemyAliveList.Count.ToString());
+        //print("Amount of enemies before me = " + amountPreAdd + "  |||  Enemies after = " + EnemySpawner.EnemyAliveList.Count.ToString());
     }
 
     public void IsBoss()
@@ -106,10 +106,10 @@ public abstract class EnemyHealth : MonoBehaviour {
         {
             KillsEnemyandAddsGold();
         }
-        if (onFire && time < burnTime)
+        if (onFire && time > 0)
         {
             float burn = burnDmg * Time.deltaTime;
-            time += 1 * Time.deltaTime;
+            time -= 1 * Time.deltaTime;
             hitPoints -= burn;
             healthImage.fillAmount = (hitPoints / hitPointsMax);
             Singleton.AddTowerDamage("Flame Tower", burn);
@@ -124,7 +124,12 @@ public abstract class EnemyHealth : MonoBehaviour {
     public void CaughtFire(float fireDmg)
     {
         onFire = true;
-        time = 0;
+        time += 2 * Time.deltaTime;
+        if(time > burnTime)
+        {
+            time = burnTime;
+        }
+
         burnDmg = fireDmg;
     }
 
@@ -160,19 +165,22 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     protected virtual void ProcessHit(GameObject other)
     {
+        string towerName = "";
         float dmg = 0;
-        dmg = other.GetComponentInParent<Tower_Dmg>().towerDMG();
+        dmg = other.GetComponentInParent<Tower>().Damage(ref towerName);
+        Singleton.AddTowerDamage(towerName, dmg);
         hitPoints = hitPoints - dmg;
         hitparticleprefab.Play();
         healthImage.fillAmount = (hitPoints / hitPointsMax);
     }
 
-    public virtual void HitByNonProjectile(float damage)
+    public virtual void HitByNonProjectile(float damage, string towerName)
     {
         float dmg = damage;
         hitPoints = hitPoints - dmg;
         healthImage.fillAmount = (hitPoints / hitPointsMax);
 
+        Singleton.AddTowerDamage(towerName, damage);
         hitparticleprefab.Play();
 
         if (hitPoints <= 0)

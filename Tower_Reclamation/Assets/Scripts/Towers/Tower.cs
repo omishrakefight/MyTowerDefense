@@ -90,8 +90,9 @@ public abstract class Tower : MonoBehaviour {
     }
 
     // returns how much dmg this tower does.
-    public float Damage()
+    public float Damage(ref string towerName)
     {
+        towerName = TowerTypeName;
         return currentTowerDmg;
     }
 
@@ -99,10 +100,19 @@ public abstract class Tower : MonoBehaviour {
     public void SetTargetEnemy()
     {
         bool getNext = false;
+        Transform closestEnemy;
         //var sceneEnemies = FindObjectsOfType<EnemyHealth>();
         if (sceneEnemies.Count == 0) { return; }
 
-        Transform closestEnemy = sceneEnemies[0].transform; // change default?
+        try
+        {
+            closestEnemy = sceneEnemies[0].transform; // change default?
+        }
+        catch (Exception e)
+        {
+            return; // if it bugs out selecting target, lost 1 frame and re-try next.
+        }
+        
         // This meanas grab next in comparisons
         if (!sceneEnemies[0].isTargetable)
         {
@@ -239,6 +249,12 @@ public abstract class Tower : MonoBehaviour {
     {
         // this is overriden in each tower.
         TowerStatsTxt = "";
+    }
+
+    public void SetNewTowerDmg(float newDamage)
+    {
+        currentTowerDmg = newDamage;
+        towerDmg = newDamage;
     }
 
     public string GetTowerStatsExplanation()

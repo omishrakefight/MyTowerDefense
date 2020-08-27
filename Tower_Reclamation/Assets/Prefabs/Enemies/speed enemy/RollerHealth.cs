@@ -39,7 +39,9 @@ public class RollerHealth : EnemyHealth {
         }
         else
         {
-            dmg = other.GetComponentInParent<Tower_Dmg>().towerDMG();
+            string towerName = "";
+            dmg = other.GetComponentInParent<Tower>().Damage(ref towerName);
+            Singleton.AddTowerDamage(towerName, dmg);
             hitPoints = hitPoints - dmg;
             healthImage.fillAmount = (hitPoints / hitPointsMax);
                 

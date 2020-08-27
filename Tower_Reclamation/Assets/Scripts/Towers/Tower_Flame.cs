@@ -128,7 +128,8 @@ public class Tower_Flame : Tower {
         }
 
         // TODO - make this recalculate range after range modifiers.
-
+        towerDmg = head.towerDmg;
+        currentTowerDmg = towerDmg;
     }
 
     public override void DetermineTowerHeadType(int towerInt)

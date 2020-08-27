@@ -159,7 +159,7 @@ public class Tower_Plasma : Tower
         {
             try
             {
-                enemy.HitByNonProjectile(towerDmg);
+                enemy.HitByNonProjectile(towerDmg, TowerTypeName);
             } catch(Exception e)
             {
                 print("problem hitting the guy " + enemy.name);
@@ -329,7 +329,7 @@ public class Tower_Plasma : Tower
                 //TODO NEED TO CHANGE this needs to only get the enemy health on TARGET CHANGE way too process intensive to get 4 times a second.
                 try
                 {
-                    targetEnemyBody.HitByNonProjectile(towerDmg); // .hitPoints -= towerDmg;
+                    targetEnemyBody.HitByNonProjectile(towerDmg, TowerTypeName); // .hitPoints -= towerDmg;
                 }
                 catch (Exception e)
                 {

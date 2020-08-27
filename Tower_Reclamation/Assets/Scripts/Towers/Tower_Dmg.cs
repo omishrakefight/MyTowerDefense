@@ -58,19 +58,20 @@ public class Tower_Dmg : MonoBehaviour {
     // this reduces the amount of checks needed.
     public float towerDMG()
     {
+        string c = "";
         switch(tower)
         {
             case 0:
-                dmg = GetComponent<RifledTower>().Damage();
+                dmg = GetComponent<RifledTower>().Damage(ref c);
                 break;
             case 1:
-                dmg = GetComponent<Flame_AOE>().Damage();
+                dmg = GetComponent<Flame_AOE>().Damage(ref c);
                 break;
             case 2:
-                dmg = GetComponent<LighteningTower>().Damage();
+                dmg = GetComponent<LighteningTower>().Damage(ref c);
                 break;
             case 3:
-                dmg = GetComponent<Tower_Plasma>().Damage();
+                dmg = GetComponent<Tower_Plasma>().Damage(ref c);
                 break;
 
         }

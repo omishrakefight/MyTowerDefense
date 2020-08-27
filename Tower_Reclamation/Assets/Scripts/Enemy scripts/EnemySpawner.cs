@@ -59,11 +59,6 @@ public class EnemySpawner : MonoBehaviour
         slider.maxValue = timeBetweenWaves;
         win.enabled = false;
         enemyList = Singleton.Instance.GetEnemyList();  //GetComponent<Singleton>().GetEnemyList();
-        //print(FindObjectOfType<Singleton>() + "is enemy singleton thing" + FindObjectOfType<Singleton>().GetEnemyList());
-        //foreach (int x in FindObjectOfType<Singleton>().GetEnemyList())
-        //{
-        //    print(x);
-        //}
     }
 
     public IEnumerator SpawnSpecificEnemies() //List<int> enemyList
@@ -78,8 +73,6 @@ public class EnemySpawner : MonoBehaviour
             {
                 currentlySpawning = true;
                 enemyCounter++;
-                //var enemySpawnLoc = Instantiate(currentEnemy, transform.position, Quaternion.identity);
-                //enemySpawnLoc.transform.parent = enemiesLocation;
 
                 switch (x)
                 {
@@ -123,11 +116,8 @@ public class EnemySpawner : MonoBehaviour
                     level.WaveUpOne();
                     currentlySpawning = false;
 
-                    //yield return StartCoroutine(WaitBetweenWaves());
-                    //print("Im about to start waiting between waves! " + waveTimer + ", > " + timeBetweenWaves);
                     // This is wait WHILE so its inverse.  wait while wave is less than time between, once this FALSE proceede.
                     yield return new WaitWhile(() => (waveTimer < timeBetweenWaves));
-                    print("I am past it! lets see, " + waveTimer + ", > " + timeBetweenWaves);
                     betweenWaves = false;
                     waveTimer = 0;
 
@@ -138,15 +128,6 @@ public class EnemySpawner : MonoBehaviour
                         checkForBoss = false;
                     }
                 }
-                //if (x == -1)
-                //{
-                //    level.WaveUpOne();
-                //    currentlySpawning = false;
-                //    betweenWaves = false;
-                //    //yield return StartCoroutine(WaitBetweenWaves());
-                //    yield return new WaitWhile(() => waveTimer > timeBetweenWaves);
-                //    waveTimer = 0;
-                //}
                 
             }
         }
@@ -191,9 +172,6 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(4);
         FindObjectOfType<LoadNextArea>().LoadNextAreaPostBattle(Singleton.Instance.level);
 
-        //yield return StartCoroutine(WaitBetweenWaves());
-        //yield return new WaitWhile(() => waveTimer > timeBetweenWaves);
-        //waveTimer = 0;
     }
 
     private void CheckForBoss()

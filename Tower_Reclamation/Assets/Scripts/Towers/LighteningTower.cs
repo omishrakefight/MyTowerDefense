@@ -194,7 +194,7 @@ public class LighteningTower : Tower {
                     // Trigger lightning animation (targets available)
                     ZapTarget(other.gameObject);
                     //print("POW");
-                    targets[i].HitByNonProjectile(towerDmg);// .hitPoints -= towerDmg;
+                    targets[i].HitByNonProjectile(towerDmg, TowerTypeName);// .hitPoints -= towerDmg;
                     //Shifted this to the enemy to refresh health and give gold / die
                     //targets[i].GetComponent<EnemyHealth>().RefreshHealthBar();
 

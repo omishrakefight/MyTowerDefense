@@ -325,7 +325,7 @@ public class Tower_Plasma : Tower
             {
                 crystalCurrentBeamTime = (crystalCurrentBeamTime % .25f);
                 float towerDmg = UnityEngine.Random.Range(1, maxTowerDmg);
-                print("Plasma beam dmg = " + towerDmg);
+                //print("Plasma beam dmg = " + towerDmg);
                 //TODO NEED TO CHANGE this needs to only get the enemy health on TARGET CHANGE way too process intensive to get 4 times a second.
                 try
                 {

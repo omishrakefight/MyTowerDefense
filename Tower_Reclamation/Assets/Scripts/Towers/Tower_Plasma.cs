@@ -204,9 +204,12 @@ public class Tower_Plasma : Tower
         {
             case (int)PlasmaHead.Basic:
                 headType = (int)PlasmaHead.Basic;
+                laser = transform.GetComponentInChildren<CapsuleCollider>();
                 TowerAugmentExplanation = "The default head of the Plasma Turret.  Hits in a line for randomised damage.";
                 minTowerDmg = 30;
                 maxTowerDmg = 90;
+                laser.gameObject.SetActive(false);
+                spray = GetComponentInChildren<ParticleSystem>();
                 //nothing;
                 break;
             case (int)PlasmaHead.Crystal:

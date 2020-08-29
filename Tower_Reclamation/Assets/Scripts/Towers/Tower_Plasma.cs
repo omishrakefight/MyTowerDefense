@@ -53,7 +53,7 @@ public class Tower_Plasma : Tower
             "This heavy shot comes at a slight cost to accuracy: not enough to entirely miss the target, but it does make it a gamble on where you hit them, " +
             "and in direct correlation, how much damage the shot causes.";
 
-        maxCharge = 4f;
+        maxCharge = 4.0f;
         goldCost = (int)TowerCosts.PlasmaTowerCost;
         attackRange = 30;
         towerDmg = 18;
@@ -128,8 +128,6 @@ public class Tower_Plasma : Tower
                 laserCurrentTime = 0f;
                 canFire = false;
                 laserIsOn = false;
-
-
                 spray.Emit(10);
 
                 HitEnemies();
@@ -155,6 +153,9 @@ public class Tower_Plasma : Tower
     public void HitEnemies()
     {
         print(targetsList.Count + " enemies in list");
+
+        towerDmg = UnityEngine.Random.Range(minTowerDmg, maxTowerDmg);
+        print("Plasma hit for " + towerDmg);
         foreach (EnemyHealth enemy in targetsList)
         {
             try
@@ -175,7 +176,6 @@ public class Tower_Plasma : Tower
         plasmaTargeter = GetComponentInChildren<Tower_PlasmaHead>();
 
         targetsList = plasmaTargeter.getEnemies();
-        print("targets " + targetsList.Count);
     }
 
 

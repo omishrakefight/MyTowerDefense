@@ -183,7 +183,6 @@ public class BurrowerMovement : EnemyMovement {
     {
         if (canBeHit) {
             recentlyHit = true;
-            print("burrower says ouch, I gots to go.");
             canBeHit = false;
         }
     }

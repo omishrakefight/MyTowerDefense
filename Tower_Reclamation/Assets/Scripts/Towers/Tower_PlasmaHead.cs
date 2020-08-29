@@ -17,7 +17,6 @@ public class Tower_PlasmaHead : MonoBehaviour
 
     public List<EnemyHealth> getEnemies()
     {
-        print("getting enemies " + enemies.Count);
         return enemies;
     }
 
@@ -39,16 +38,13 @@ public class Tower_PlasmaHead : MonoBehaviour
         //print(other + "found something to trigger on");
         if (other.gameObject.GetComponentInParent<EnemyHealth>() != null)
         {
-            print("in parent");
             if (!enemies.Contains(other.gameObject.GetComponentInParent<EnemyHealth>()))
             {
                 //print("found someone");
                 enemies.Add(other.gameObject.GetComponentInParent<EnemyHealth>());
-                print("added them" + enemies.Count);
             }
         } else if(other.gameObject.GetComponentInChildren<EnemyHealth>() != null) 
         {
-            print("in child");
             if (!enemies.Contains(other.gameObject.GetComponentInChildren<EnemyHealth>()))
             {
                 //print("found someone");

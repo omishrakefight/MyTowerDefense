@@ -718,7 +718,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1867615240620330}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 46.48621, y: 40.713757, z: -40.108685}
+  m_LocalPosition: {x: 97.5733, y: 200.97232, z: -207.29459}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4964004966297584}
@@ -811,7 +811,7 @@ Transform:
   m_GameObject: {fileID: 1677173230102258}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
   m_LocalPosition: {x: 4.1899996, y: 1.1300001, z: 21.19}
-  m_LocalScale: {x: 1, y: 14.810008, z: 1}
+  m_LocalScale: {x: 2.1, y: 14.810008, z: 0.2}
   m_Children: []
   m_Father: {fileID: 4964004966297584}
   m_RootOrder: 2
@@ -2147,7 +2147,7 @@ MonoBehaviour:
   ImportedFrom: 1
   ImportedFile: C:/Users/omish/Desktop/MagicaVoxel/MagicaVoxel-0.99.3-alpha-win64/vox/PlasmaTurretHead.vox
   ImportedCutoutColor: {r: 0, g: 0, b: 0, a: 0}
-  thisInstanceId: -45898
+  thisInstanceId: -4624
   Undone: 1
 --- !u!114 &114160750601304926
 MonoBehaviour:
@@ -2429,7 +2429,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.5
+  m_Radius: 1.48
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

@@ -35,7 +35,7 @@ public class TutorialMissionStart : MonoBehaviour {
     string string3;
     string string4;
     string string5 = "NO!! no, we WILL save him, it will have to be enough... ";
-    string string6 = "Throw the last tower!   ";
+    string string6 = "THROW THE LAST TOWER!  Up there! on the node, that base should give the tower increased range and damage.";
     string string7 = "He WILL make it back.";
 
     // Use this for initialization
@@ -66,7 +66,8 @@ public class TutorialMissionStart : MonoBehaviour {
         StartCoroutine(SlowMessageTyping());
     }
 
-
+    // I can make it whe ni build a tower start slow message again, but change the converstaions item, clear and add new dialogues.
+    //NOPE IM STUPID  this is a function based off a button, a button that is not a necessary prefab.  Just have the button also do everything I want.
 
     IEnumerator SlowMessageTyping()
     {

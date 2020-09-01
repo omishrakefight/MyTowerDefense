@@ -32,7 +32,7 @@ public class HealingBugs : MonoBehaviour {
 
     void DeathHealAura()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 30f);
+        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 15f);
         int i = 0;
         while (i < hitColliders.Length)
         {

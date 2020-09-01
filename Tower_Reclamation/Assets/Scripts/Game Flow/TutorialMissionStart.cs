@@ -16,8 +16,13 @@ public class TutorialMissionStart : MonoBehaviour {
 
     public bool timeToRun = false;
     private bool spawnEnemies = true;
+    private bool isLastChatSegment = false;
+    private bool isEnableingChatTurnOff = false;
 
     [SerializeField] float typingSpeed = .02f;
+
+    [SerializeField] Button towerButton;
+    [SerializeField] Light spotLight;
 
     [Header("Soldier")]
     [SerializeField] Texture soldierNeutral;
@@ -37,14 +42,24 @@ public class TutorialMissionStart : MonoBehaviour {
     string string5 = "NO!! no, we WILL save him, it will have to be enough... ";
     string string6 = "THROW THE LAST TOWER!  Up there! on the node, that base should give the tower increased range and damage.";
     string string7 = "He WILL make it back.";
-
+    string string8 = "Good job.";
+    string string9 = "Now, we wait and see if it is enough.";
+    string string10 = "Tobias!  There are a LOT more than usual. HELP!!!.";
+    string string11 = "HELP!!!.";
+    string string12 = "This isn't good.. That tower alone wont be enough.";
+    string string13 = "Fire the last tower over there.  We will need to utilize the base doors to hold them back, hopefully they hold long enough.";
+    // O SHIT! they have Rorendurs? something*.  We will need more than one tower for those enemies for sure. ?  those are swarm enemies that have less HP than the normal
+    // guys but they spawn in a brood of 2, making the single shot rifled tower less effective.
     // Use this for initialization
     void Start()
     {
+        //towerButton.enabled = false;
+        towerButton.gameObject.SetActive(false);
+        spotLight.gameObject.SetActive(false);
         EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
         enemySpawner.SetDelayedSpawnTime(25f);
         Singleton singleton = Singleton.Instance;
-        singleton.enemyList = new List<int> { 1, 1, 1, -1, 1, -1, 1 };
+        singleton.enemyList = new List<int> { 1, -1,   1, 1, -1,   1, -1,   1, 1, 1, 1, 1};
         //enemySpawner.enemyList = new List<int> { 1, 1, -1, 1, 1, 1};
 
         singleton.SetLevel(1);
@@ -90,6 +105,7 @@ public class TutorialMissionStart : MonoBehaviour {
             yield return StartCoroutine(SlowMessageTyping());
         }
 
+        isEnableingChatTurnOff = true;
         StartCoroutine(DisableText());
     }
 
@@ -102,19 +118,23 @@ public class TutorialMissionStart : MonoBehaviour {
                 typingSpeed = .5f;
                 personTalking.texture = soldierNeutral;
                 talking = conversations[conversationTracker];
+                conversationTracker++;
                 break;
             case 1:
                 typingSpeed = .02f;
                 personTalking.texture = soldierNeutral;
                 talking = conversations[conversationTracker];
+                conversationTracker++;
                 break;
             case 2:
                 personTalking.texture = soldierNeutral;
                 talking = conversations[conversationTracker];
+                conversationTracker++;
                 break;
             case 3:
                 personTalking.texture = generalShouting;
                 talking = conversations[conversationTracker];
+                conversationTracker++;
                 break;
             case 4:
                 // To make the character run in scene
@@ -123,28 +143,60 @@ public class TutorialMissionStart : MonoBehaviour {
 
                 personTalking.texture = soldierScared;
                 talking = conversations[conversationTracker];
+                conversationTracker++;
                 break;
             case 5:
                 personTalking.texture = general;
                 talking = conversations[conversationTracker];
-                Time.timeScale = .15f;
+                conversationTracker++;
+                Time.timeScale = 0f;
                 break;
             case 6:
                 personTalking.texture = generalShouting;
                 talking = conversations[conversationTracker];
+                conversationTracker++;
                 break;
             case 7:
                 personTalking.texture = general;
                 talking = conversations[conversationTracker];
-                Time.timeScale = 1.0f;
+                conversationTracker++;
+
+                towerButton.gameObject.SetActive(true);
+                spotLight.gameObject.SetActive(true);
+                isLastChatSegment = true;
+                //towerButton.enabled = true;
+                //Time.timeScale = 1.0f;
                 break;
             case 8:
+                personTalking.texture = general;
+                talking = conversations[conversationTracker];
+                conversationTracker++;
+                break;
+            case 9:
+                personTalking.texture = general;
+                talking = conversations[conversationTracker];
+                conversationTracker++;
+                isLastChatSegment = true; // SIGH maybe use this bool to make an if in the slowtalk function so IF this is enabled, it swaps the one that it looks at in the function to disable below... w/e
                 break;
         }
 
-
-        conversationTracker++;
         yield break;
+    }
+
+
+    public void BuiltTowerNextConversation()
+    {
+        isEnableingChatTurnOff = false;
+        Time.timeScale = 1.0f;
+        //conversations.Clear();
+        conversations.AddRange(new string[] { string8, string9 });
+        conversationTracker = 8;
+
+        spotLight.gameObject.SetActive(false);
+        talkingCanvas.enabled = true;
+        StartCoroutine(SlowMessageTyping());
+
+        StartCoroutine(DisableText());
     }
 
     private void SpawnTheEnemiesAtScreem()
@@ -159,8 +211,11 @@ public class TutorialMissionStart : MonoBehaviour {
 
     private IEnumerator DisableText()
     {
-        yield return new WaitForSeconds(4);
-        talkingCanvas.enabled = false;
+        yield return new WaitForSecondsRealtime(3);
+        if (isEnableingChatTurnOff)
+        {
+            talkingCanvas.enabled = false;
+        }       
     }
 
 

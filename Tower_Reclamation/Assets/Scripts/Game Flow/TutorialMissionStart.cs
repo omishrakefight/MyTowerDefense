@@ -32,22 +32,34 @@ public class TutorialMissionStart : MonoBehaviour {
     [SerializeField] Texture general;
     [SerializeField] Texture generalShouting;
 
+    [Header("WayPoints")]
+    [SerializeField] Waypoint waypoint1;
+    [SerializeField] Waypoint waypoint2;
+    private int lightHeight = 19;
 
+    private int towerSpawnCount = 0;
 
-    string string0;
-    string string1;
-    string string2;
-    string string3;
-    string string4;
+    string string0 = ". . . ";
+    string string1 = "It shouldn't take this long to find scraps.";
+    string string2 = "Sir!!!  There's almost nothing left! I can only find one good piece, we’ve already scavenged most of the metal here.";
+    string string3 = "SHUT UP! THE BUGS ARE BACK, GET BACK HERE NOW!!";
+    string string4 = "?!?!?!?? HNNGGG";
     string string5 = "NO!! no, we WILL save him, it will have to be enough... ";
-    string string6 = "THROW THE LAST TOWER!  Up there! on the node, that base should give the tower increased range and damage.";
+    string string6 = "THROW THE TOWER!  Up there! on the node, that base should give the tower increased range and damage.";
     string string7 = "He WILL make it back.";
     string string8 = "Good job.";
     string string9 = "Now, we wait and see if it is enough.";
-    string string10 = "Tobias!  There are a LOT more than usual. HELP!!!.";
-    string string11 = "HELP!!!.";
-    string string12 = "This isn't good.. That tower alone wont be enough.";
-    string string13 = "Fire the last tower over there.  We will need to utilize the base doors to hold them back, hopefully they hold long enough.";
+    string string10 = "Ugh.  I hope this pack ends soon... The ones up front are always the starved and malnurished, those are easy to kill; but as it goes longer" +
+    " the ones in the back are health and strong.  They have no need to rush for food, and they take many more bullets to kill.";
+    string string11 = "Tobias!  There are a LOT more than usual. HELP!!!.";
+    string string12 = "HELP!!!.";
+    string string13 = "This isn't good.. That tower alone wont be enough.";
+    string string14 = "Fire the last tower over there.  We will need to utilize the base doors to hold them back, hopefully they hold long enough.";
+
+
+    string stringy = "Oh my god thats a big wave! WHAT??";
+    string stringz = "It has the swarm strain in its pack??  I dont know if it will be enough but.. THROW THE LAST TOWER"; //maybe popup explanations as well?
+
     // O SHIT! they have Rorendurs? something*.  We will need more than one tower for those enemies for sure. ?  those are swarm enemies that have less HP than the normal
     // guys but they spawn in a brood of 2, making the single shot rifled tower less effective.
     // Use this for initialization
@@ -59,24 +71,21 @@ public class TutorialMissionStart : MonoBehaviour {
         EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
         enemySpawner.SetDelayedSpawnTime(25f);
         Singleton singleton = Singleton.Instance;
-        singleton.enemyList = new List<int> { 1, -1,   1, 1, -1,   1, -1,   1, 1, (int)Enemies.doubles, (int)Enemies.doubles, 1};
+        singleton.enemyList = new List<int> { 1, -1,   1, -1,   1, -1,   1, 1, (int)Enemies.doubles, (int)Enemies.doubles, 1};
         //enemySpawner.enemyList = new List<int> { 1, 1, -1, 1, 1, 1};
 
         singleton.SetLevel(1);
 
         // initializing strings
         text.text = "";
-
-        string0 = ". . . ";
-        string1 = "It shouldn't take this long to find scraps.";
-        string2 = "Sir!!!  There's almost nothing left! I can only find one good piece, we’ve already scavenged most of the metal here.";
-        string3 = "SHUT UP! THE BUGS ARE BACK, GET BACK HERE NOW!!";
-        string4 = "?!?!?!?? HNNGGG";
         
         conversations = new List<string>();
         conversations.AddRange(new string[] { string0, string1, string2, string3, string4, string5, string6, string7 });
         conversationTracker = 0;
 
+        GoldManagement GM = FindObjectOfType<GoldManagement>();
+        GM.goldCount = 90;
+        GM.GoldCounter();
 
         StartCoroutine(SlowMessageTyping());
     }
@@ -163,6 +172,7 @@ public class TutorialMissionStart : MonoBehaviour {
 
                 towerButton.gameObject.SetActive(true);
                 spotLight.gameObject.SetActive(true);
+                spotLight.transform.position = (waypoint1.transform.position + new Vector3(0f, lightHeight, 0f));
                 isLastChatSegment = true;
                 //towerButton.enabled = true;
                 //Time.timeScale = 1.0f;
@@ -178,6 +188,8 @@ public class TutorialMissionStart : MonoBehaviour {
                 conversationTracker++;
                 isLastChatSegment = true; // SIGH maybe use this bool to make an if in the slowtalk function so IF this is enabled, it swaps the one that it looks at in the function to disable below... w/e
                 break;
+
+
         }
 
         yield break;
@@ -186,6 +198,17 @@ public class TutorialMissionStart : MonoBehaviour {
 
     public void BuiltTowerNextConversation()
     {
+
+        switch (towerSpawnCount)
+        {
+            case 0:
+                break;
+            case 1:
+                //TODO treat differently.  This is
+                return;
+            default:
+                break;
+        }
         isEnableingChatTurnOff = false;
         Time.timeScale = 1.0f;
         //conversations.Clear();

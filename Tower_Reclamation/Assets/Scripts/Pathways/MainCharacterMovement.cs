@@ -10,6 +10,7 @@ public class MainCharacterMovement : MonoBehaviour {
 
     int currentPathNode = 8;
     private bool stoppedSearching = false;
+    private bool atTheEnd = false;
 
 
     void Start()
@@ -61,7 +62,13 @@ public class MainCharacterMovement : MonoBehaviour {
             {
                 if (transform.position == path[path.Count - 1].transform.position)
                 {
-                    Destroy(this.gameObject);
+                    if (atTheEnd)
+                    {
+                        return;
+                    }
+                    atTheEnd = true;
+                    StartCoroutine(WaitForDoorsToOpen());
+                    //Destroy(this.gameObject);
                 }
                 else
                 {
@@ -69,11 +76,15 @@ public class MainCharacterMovement : MonoBehaviour {
                 }
             }
         }
-
-
     }
 
-    private List<Waypoint> FindNextNode()
+    IEnumerator WaitForDoorsToOpen()
+    {
+        yield return new WaitForSeconds(5);
+        Destroy(this.gameObject);
+    }
+
+        private List<Waypoint> FindNextNode()
     {
         PathFinder pathFinder = FindObjectOfType<PathFinder>();
         var path = pathFinder.GivePath();

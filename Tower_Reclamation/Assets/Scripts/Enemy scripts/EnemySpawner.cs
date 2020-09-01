@@ -12,7 +12,6 @@ public class EnemySpawner : MonoBehaviour
     private float startSetupTime = 10f;
     private float startupTimer = 0;
     private bool begin = false;
-    float secondsBetweenSpawns = 2.25f;
     private bool checkForBoss = true;
     const float originalSecondsBetweenSpawns = 2.00f;
     private EnemyMovement currentEnemy;
@@ -38,7 +37,8 @@ public class EnemySpawner : MonoBehaviour
     //Singleton enemyListContainer;
 
     bool betweenWaves = false;
-    float timeBetweenWaves = 8.5f;
+    public float timeBetweenWaves = 8.5f;
+    public float secondsBetweenSpawns = 2.25f;
     float waveTimer;
     [SerializeField] Slider slider;
     public int enemyCounter = 0;

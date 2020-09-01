@@ -2290,6 +2290,8 @@ MonoBehaviour:
   soldierScared: {fileID: 2800000, guid: cc6b806cbce74f8408fe1e3a5e95e675, type: 3}
   general: {fileID: 2800000, guid: ae193ef052fd2c3468ce836a684c1b18, type: 3}
   generalShouting: {fileID: 2800000, guid: aa29e6a5da0bc5e43a9b30d1eab27279, type: 3}
+  waypoint1: {fileID: 0}
+  waypoint2: {fileID: 0}
 --- !u!114 &114802167071044880
 MonoBehaviour:
   m_ObjectHideFlags: 1

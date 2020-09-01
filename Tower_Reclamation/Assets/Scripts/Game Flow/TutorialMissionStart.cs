@@ -21,6 +21,16 @@ public class TutorialMissionStart : MonoBehaviour {
 
     [SerializeField] float typingSpeed = .02f;
 
+    // kinda dumb but I dont have another way to spawn text off enemy spawns.  This way I can track what I send and times to prompt messages.
+    float timeBetweenWaves = 0f;
+    float timeBetweenEnemies = 0f;
+
+    float timerForEvents = 0f;
+    float eventTalkABoutBigPack;
+    bool talkedAboutBigPack = false;
+    float eventSeeTheSwarmEnemies;
+    bool talkedAboutTheSwarm = false;
+
     [SerializeField] Button towerButton;
     [SerializeField] Light spotLight;
 
@@ -45,20 +55,22 @@ public class TutorialMissionStart : MonoBehaviour {
     string string3 = "SHUT UP! THE BUGS ARE BACK, GET BACK HERE NOW!!";
     string string4 = "?!?!?!?? HNNGGG";
     string string5 = "NO!! no, we WILL save him, it will have to be enough... ";
-    string string6 = "THROW THE TOWER!  Up there! on the node, that base should give the tower increased range and damage.";
+    string string6 = "THROW THE TOWER!  Up there! on that node, the base should give the tower increased range and damage.";
     string string7 = "He WILL make it back.";
     string string8 = "Good job.";
     string string9 = "Now, we wait and see if it is enough.";
-    string string10 = "Ugh.  I hope this pack ends soon... The ones up front are always the starved and malnurished, those are easy to kill; but as it goes longer" +
-    " the ones in the back are health and strong.  They have no need to rush for food, and they take many more bullets to kill.";
-    string string11 = "Tobias!  There are a LOT more than usual. HELP!!!.";
-    string string12 = "HELP!!!.";
-    string string13 = "This isn't good.. That tower alone wont be enough.";
-    string string14 = "Fire the last tower over there.  We will need to utilize the base doors to hold them back, hopefully they hold long enough.";
+    string string10 = "Ugh.  I hope this pack ends soon... ";
+    string string11 = "The ones up front are always starved and malnurished, those are easy to kill.  But, as it goes on longer" +
+    " the ones in the back are healthy and strong.  Those ones take a lot more firepower to stop."; //They have no need to rush for food, and they take many more bullets to kill.";
+    string string12 = "Tobias!  There are a LOT more than usual. HELP!!!.";
+    string string13 = "HELP!!!.";
+    string string14 = "This isn't good.. And it has the swarm strain in its pack??  I dont know if it will be enough but.. THROW THE LAST TOWER"; //maybe popup explanations as well?
+    //string string14 = "This isn't good.. That tower alone wont be enough.";
+    string string15 = "We will need to utilize the base doors to hold them back, hopefully they hold long enough."; //Fire the last tower over there.  
 
 
     string stringy = "Oh my god thats a big wave! WHAT??";
-    string stringz = "It has the swarm strain in its pack??  I dont know if it will be enough but.. THROW THE LAST TOWER"; //maybe popup explanations as well?
+    string stringz = "This isn't good.. And it has the swarm strain in its pack??  I dont know if it will be enough but.. THROW THE LAST TOWER"; //maybe popup explanations as well?
 
     // O SHIT! they have Rorendurs? something*.  We will need more than one tower for those enemies for sure. ?  those are swarm enemies that have less HP than the normal
     // guys but they spawn in a brood of 2, making the single shot rifled tower less effective.
@@ -84,7 +96,7 @@ public class TutorialMissionStart : MonoBehaviour {
         conversationTracker = 0;
 
         GoldManagement GM = FindObjectOfType<GoldManagement>();
-        GM.goldCount = 90;
+        GM.goldCount = 94;
         GM.GoldCounter();
 
         StartCoroutine(SlowMessageTyping());
@@ -98,6 +110,7 @@ public class TutorialMissionStart : MonoBehaviour {
         // TODO maybe put this in a while loop instead of calling itself?
         StartCoroutine(ConversationPicker());
         text.text = "";
+        isEnableingChatTurnOff = false;
         //SpawnTheEnemiesAtScreem();  NOPE want more control here, removing the if and spawning on demand.
         // Loop the converstation 1 char at a time.
         for (int i = 0; i < talking.Length; i++)
@@ -158,12 +171,13 @@ public class TutorialMissionStart : MonoBehaviour {
                 personTalking.texture = general;
                 talking = conversations[conversationTracker];
                 conversationTracker++;
-                Time.timeScale = 0f;
+                Time.timeScale = .2f;
                 break;
             case 6:
                 personTalking.texture = generalShouting;
                 talking = conversations[conversationTracker];
                 conversationTracker++;
+                Time.timeScale = 0f;
                 break;
             case 7:
                 personTalking.texture = general;
@@ -175,7 +189,7 @@ public class TutorialMissionStart : MonoBehaviour {
                 spotLight.transform.position = (waypoint1.transform.position + new Vector3(0f, lightHeight, 0f));
                 isLastChatSegment = true;
                 //towerButton.enabled = true;
-                //Time.timeScale = 1.0f;
+                
                 break;
             case 8:
                 personTalking.texture = general;
@@ -188,7 +202,42 @@ public class TutorialMissionStart : MonoBehaviour {
                 conversationTracker++;
                 isLastChatSegment = true; // SIGH maybe use this bool to make an if in the slowtalk function so IF this is enabled, it swaps the one that it looks at in the function to disable below... w/e
                 break;
-
+            case 10:
+                personTalking.texture = general;
+                talking = conversations[conversationTracker];
+                conversationTracker++;
+                break;
+            case 11:
+                personTalking.texture = general;
+                talking = conversations[conversationTracker];
+                conversationTracker++;
+                isLastChatSegment = true;
+                break;
+            case 12:
+                personTalking.texture = soldierNeutral;
+                talking = conversations[conversationTracker];
+                conversationTracker++;
+                Time.timeScale = .2f;
+                break;
+            case 13:
+                personTalking.texture = soldierScared;
+                talking = conversations[conversationTracker];
+                conversationTracker++;
+                break;
+            case 14:
+                personTalking.texture = general;
+                talking = conversations[conversationTracker];
+                conversationTracker++;
+                spotLight.gameObject.SetActive(true);
+                spotLight.transform.position = (waypoint2.transform.position + new Vector3(0f, lightHeight, 0f));
+                break;
+            case 15:
+                personTalking.texture = general;
+                talking = conversations[conversationTracker];
+                conversationTracker++;
+                Time.timeScale = 0f;
+                isLastChatSegment = true;
+                break;
 
         }
 
@@ -201,23 +250,30 @@ public class TutorialMissionStart : MonoBehaviour {
 
         switch (towerSpawnCount)
         {
+            // Can do checks here to see if they are placed in the right spot
             case 0:
+                conversations.AddRange(new string[] { string8, string9 });
+                conversationTracker = 8;
                 break;
             case 1:
                 //TODO treat differently.  This is
+                Time.timeScale = 1.0f;
+                spotLight.gameObject.SetActive(false);
                 return;
             default:
+                Time.timeScale = 1.0f;
+                spotLight.gameObject.SetActive(false);
                 break;
         }
         isEnableingChatTurnOff = false;
         Time.timeScale = 1.0f;
         //conversations.Clear();
-        conversations.AddRange(new string[] { string8, string9 });
-        conversationTracker = 8;
 
+        //towerButton.enabled = false;
         spotLight.gameObject.SetActive(false);
         talkingCanvas.enabled = true;
         StartCoroutine(SlowMessageTyping());
+        towerSpawnCount++;
 
         StartCoroutine(DisableText());
     }
@@ -226,9 +282,18 @@ public class TutorialMissionStart : MonoBehaviour {
     {
         //if (conversationTracker == conversations.Count && spawnEnemies)
         //{
-            //StartCoroutine(FindObjectOfType<EnemySpawner>().ContinualSpawnEnemies());
-            FindObjectOfType<EnemySpawner>().StartBattle();
-            spawnEnemies = false;
+        //StartCoroutine(FindObjectOfType<EnemySpawner>().ContinualSpawnEnemies());
+        EnemySpawner enemyObj = FindObjectOfType<EnemySpawner>();
+        enemyObj.StartBattle();
+
+        float betweenSpawns = enemyObj.secondsBetweenSpawns;
+        float betweenWaves = enemyObj.timeBetweenWaves;
+
+        eventTalkABoutBigPack = ((2 * betweenWaves) + (2 * betweenSpawns) + 2f); // the 2f is just so you have time to see that they are tankier.
+        eventSeeTheSwarmEnemies = ((3 * betweenWaves) + (6 * betweenSpawns));
+
+
+        spawnEnemies = false;
         //}
     }
 
@@ -245,6 +310,34 @@ public class TutorialMissionStart : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (!spawnEnemies)
+        {
+            timerForEvents += (1 * Time.deltaTime);
+        }
+
+        if (timerForEvents > eventTalkABoutBigPack && !talkedAboutBigPack)
+        {
+            talkedAboutBigPack = true;
+            conversations.AddRange(new string[] { string10, string11 });
+            conversationTracker = 10;
+
+            talkingCanvas.enabled = true;
+            StartCoroutine(SlowMessageTyping());
+
+            StartCoroutine(DisableText());
+        }
+        if (timerForEvents > eventSeeTheSwarmEnemies && !talkedAboutTheSwarm)
+        {
+            talkedAboutTheSwarm = true;
+            conversations.AddRange(new string[] { string12, string13, string14, string15 });
+            conversationTracker = 12;
+
+            talkingCanvas.enabled = true;
+            StartCoroutine(SlowMessageTyping());
+
+            StartCoroutine(DisableText());
+        }
+
 
     } 
 }

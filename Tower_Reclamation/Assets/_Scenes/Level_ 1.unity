@@ -1218,10 +1218,30 @@ Prefab:
       propertyPath: spotLight
       value: 
       objectReference: {fileID: 987948191}
-    - target: {fileID: 224053260730986952, guid: 20c60962034079844b065e846370d742,
+    - target: {fileID: 114790839238810214, guid: 20c60962034079844b065e846370d742,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
+      propertyPath: waypoint1
+      value: 
+      objectReference: {fileID: 1116616940}
+    - target: {fileID: 114790839238810214, guid: 20c60962034079844b065e846370d742,
+        type: 2}
+      propertyPath: waypoint2
+      value: 
+      objectReference: {fileID: 2115939315}
+    - target: {fileID: 224599145249748012, guid: 20c60962034079844b065e846370d742,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224599145249748012, guid: 20c60962034079844b065e846370d742,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224599145249748012, guid: 20c60962034079844b065e846370d742,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 20c60962034079844b065e846370d742, type: 2}
@@ -2554,6 +2574,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a6d299a9dc9635b439483248816a8df0, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1116616940 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114034371900934920, guid: a6d299a9dc9635b439483248816a8df0,
+    type: 2}
+  m_PrefabInternal: {fileID: 1116616939}
+  m_Script: {fileID: 11500000, guid: 9c219719ebb331046adfff32609a9d3b, type: 3}
 --- !u!4 &1119690972 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4803110345335862, guid: 9755912896f51c84482190fe7f28a6c0,
@@ -2943,6 +2969,8 @@ MonoBehaviour:
   win: {fileID: 2031451887}
   stillAlive: 1
   enemyList: 
+  timeBetweenWaves: 8.5
+  secondsBetweenSpawns: 2.25
   slider: {fileID: 1680339299}
   enemyCounter: 0
 --- !u!82 &1292924666
@@ -4343,6 +4371,12 @@ Transform:
   m_PrefabParentObject: {fileID: 4569467521972290, guid: a6d299a9dc9635b439483248816a8df0,
     type: 2}
   m_PrefabInternal: {fileID: 2115939313}
+--- !u!114 &2115939315 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114034371900934920, guid: a6d299a9dc9635b439483248816a8df0,
+    type: 2}
+  m_PrefabInternal: {fileID: 2115939313}
+  m_Script: {fileID: 11500000, guid: 9c219719ebb331046adfff32609a9d3b, type: 3}
 --- !u!4 &2122507871 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4794911589301058, guid: fd17c167900a2b149aa188e416247581,

@@ -71,8 +71,8 @@ public abstract class Tower : MonoBehaviour {
         else
         {
             print(towerDmg + " = towerdmg, current = " + currentTowerDmg);
-            attackRange += (currentAttackRange * .2f);
-            towerDmg += (currentTowerDmg * .2f);
+            attackRange += (currentAttackRange * .15f);
+            towerDmg += (currentTowerDmg * .15f);
             print("towerDMG after 2nd buff " + towerDmg);
         }
     }

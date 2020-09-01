@@ -130,3 +130,15 @@ public enum LightningBase
     Basic = 0,
     Rapid = 1
 }
+
+public enum Enemies
+{
+    generic = 1,
+    burrower = 2,
+    rolling = 3,
+    doubles = 4,
+
+    //specials
+    slimter = 20,
+    healer = 21
+}

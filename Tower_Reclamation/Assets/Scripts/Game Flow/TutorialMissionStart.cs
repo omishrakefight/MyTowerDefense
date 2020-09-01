@@ -59,7 +59,7 @@ public class TutorialMissionStart : MonoBehaviour {
         EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
         enemySpawner.SetDelayedSpawnTime(25f);
         Singleton singleton = Singleton.Instance;
-        singleton.enemyList = new List<int> { 1, -1,   1, 1, -1,   1, -1,   1, 1, 1, 1, 1};
+        singleton.enemyList = new List<int> { 1, -1,   1, 1, -1,   1, -1,   1, 1, (int)Enemies.doubles, (int)Enemies.doubles, 1};
         //enemySpawner.enemyList = new List<int> { 1, 1, -1, 1, 1, 1};
 
         singleton.SetLevel(1);

@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour
     private float startSetupTime = 10f;
     private float startupTimer = 0;
     private bool begin = false;
-    float secondsBetweenSpawns = 2.00f;
+    float secondsBetweenSpawns = 2.25f;
     private bool checkForBoss = true;
     const float originalSecondsBetweenSpawns = 2.00f;
     private EnemyMovement currentEnemy;

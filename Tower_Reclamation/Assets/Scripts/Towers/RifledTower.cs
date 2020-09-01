@@ -47,7 +47,7 @@ public class RifledTower : Tower {
         base.Start();
         minRange = 0f;
         towerDmg = 15f;
-        attackRange = 24f;
+        attackRange = 20f;
         currentTowerDmg = 15f;
         currentAttackRange = attackRange;
         base.CheckUpgradesForRifledTower(ref towerDmg, ref attackRange);

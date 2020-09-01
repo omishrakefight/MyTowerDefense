@@ -12,7 +12,7 @@ public class GoldManagement : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        goldCount = 120;
+        goldCount = 150;
         GoldCounter();
     }
 	

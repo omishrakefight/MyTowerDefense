@@ -12,6 +12,9 @@ public class SaveAndLoad : MonoBehaviour {
     private const string savedDataFileName = "/TowerInformation.dat";
     public bool[] towerList;
 
+    public bool DoneLookingAtSummary = false;
+    protected AsyncOperation loadingLevelFromPostGame;
+
     bool finishedLoading = false;
     SaveSerializedObject saver;
     PlayerTowerLog _playerTowerLog;
@@ -131,15 +134,6 @@ public class SaveAndLoad : MonoBehaviour {
 
         AsyncOperation loadingBase;
         loadingBase = SceneManager.LoadSceneAsync("_Scenes/_Base");
-        //finishedLoading = false;
-        //IEnumerator load;
-        //load = LoadFromFile((int)LoadBase.NewGame);
-
-        //StartCoroutine(load);
-        //if (finishedLoading)
-        //{
-        //    StopCoroutine(load);
-        //    print("shutdown!");
     }
 
     public void LoadSavedBase()
@@ -219,13 +213,27 @@ public class SaveAndLoad : MonoBehaviour {
         }
 
         // Loading the base.
-        AsyncOperation loadingBase;
-        loadingBase = SceneManager.LoadSceneAsync("_Scenes/_Base");
-
-        while (!loadingBase.isDone)
+        // if loading from file it is most likely a CONTINUE and so we just load everything from file
+        if (isLoadingFromFile)
         {
-            yield return new WaitForSeconds(.50f);
+            AsyncOperation loadingBase;
+            loadingBase = SceneManager.LoadSceneAsync("_Scenes/_Base");
+
+            while (!loadingBase.isDone)
+            {
+                yield return new WaitForSeconds(.50f);
+            }
+        } 
+        else // ELSE it is a level completed, I want to show post level information.
+        {
+            loadingLevelFromPostGame = null;
+            FindObjectOfType<PostLevelSummaryScreen>().TurnOnSummaryScreen();
+
+            //yield return new WaitUntil(CheckIfSummaryClose());
+            yield return new WaitUntil(() => DoneLookingAtSummary == true); // function not null? asyn load
+            yield return new WaitUntil(() => loadingLevelFromPostGame.isDone);
         }
+
 
 
         // set everything that needs an active base.  
@@ -277,5 +285,23 @@ public class SaveAndLoad : MonoBehaviour {
         finishedLoading = true;
 
         yield return new WaitForSeconds(12f);
+    }
+
+    public void ClosedSummary(AsyncOperation loading)
+    {
+        DoneLookingAtSummary = true;
+        loadingLevelFromPostGame = loading;
+        loadingLevelFromPostGame.allowSceneActivation = true;
+    }
+
+    public bool CheckIfSummaryClose()
+    {
+        if (DoneLookingAtSummary)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
     }
 }

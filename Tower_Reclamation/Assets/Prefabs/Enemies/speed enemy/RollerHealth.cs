@@ -12,7 +12,8 @@ public class RollerHealth : EnemyHealth {
         canDodge = true;
         hitPointsMax = hitPointsMax * .65f;
         hitPoints = hitPointsMax;
-	}
+        enemyName = "Roller";
+    }
 	
 	// Update is called once per frame
 	override protected void Update () {
@@ -28,9 +29,9 @@ public class RollerHealth : EnemyHealth {
 	}
 
 
-    override protected void ProcessHit(GameObject other)
+    override protected void ProcessHit(float dmg, string towerName)
     {
-        float dmg = 0;
+        //float dmg = 0;
         if (canDodge)
         {
             // todo add dodge effect / sound / W/E
@@ -39,13 +40,15 @@ public class RollerHealth : EnemyHealth {
         }
         else
         {
-            string towerName = "";
-            dmg = other.GetComponentInParent<Tower>().Damage(ref towerName);
-            Singleton.AddTowerDamage(towerName, dmg);
+            //string towerName = "";
+            //dmg = other.GetComponentInParent<Tower>().Damage(ref towerName);
             hitPoints = hitPoints - dmg;
             healthImage.fillAmount = (hitPoints / hitPointsMax);
                 
             hitparticleprefab.Play();
+
+            damageLog.UpdateDamage(towerName, dmg);
+            Singleton.AddTowerDamage(towerName, dmg);
         }
         
         //    print("Current hit points are : " + hitPoints);

@@ -10,6 +10,7 @@ public class HealerHealth : EnemyHealth {
         hitPoints = hitPoints * 1.3f;
         hitPointsMax = hitPoints;
         goldForMyHead = goldForMyHead * 2.1f;
+        enemyName = "Healer";
     }
 	
 	// Update is called once per frame

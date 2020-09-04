@@ -10,7 +10,8 @@ public class SlimerHealth : EnemyHealth {
         hitPoints = hitPoints * 1.2f;
         hitPointsMax = hitPoints;
         goldForMyHead = goldForMyHead * 2.1f;
-	}
+        enemyName = "Slimer";
+    }
 	
 	// Update is called once per frame
 	override protected void Update () {

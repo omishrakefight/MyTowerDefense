@@ -151,10 +151,10 @@ public sealed class Singleton : MonoBehaviour {
         levelText.text = "Level : " + level.ToString();
 
         // loops all towers that damaged this round and tells you how well they did.  Then clears.
-        foreach (string key in towerDamages.Keys)
-        {
-            print(key + ": " + towerDamages[key]);
-        }
+        //foreach (string key in towerDamages.Keys)
+        //{
+        //    print(key + ": " + towerDamages[key]);
+        //}
         towerDamages.Clear();
      }
 

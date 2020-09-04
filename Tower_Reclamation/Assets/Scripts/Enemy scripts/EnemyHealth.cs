@@ -18,6 +18,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     [SerializeField] public float hitPointsMax;
     [SerializeField] public Canvas enemyHealthBar;
     protected Image healthImage;
+    protected PostLevelSummaryScreen damageLog;
 
     protected float burnTime = 3f;
     [SerializeField] protected bool onFire = false;
@@ -30,6 +31,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     protected float healPercent;
     protected float goldForMyHead = 8;
     float healPerTick = 0f;
+    protected string enemyName = "";
 
     public bool isTargetable = true;
     public bool isBoss = false;
@@ -38,15 +40,21 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     // Use this for initialization
     protected virtual void Start()
-    {       
+    {
+    //protected PostLevelSummaryScreen damageLog;
+    damageLog = FindObjectOfType<PostLevelSummaryScreen>();
         if (noSpecialHealthThings)
         {
             // for each WAVE hit points go up a set amount.  In addition, for each level you are on, health ramps up.  Just base HP for now.
             //was 34, upping to 100 for easier adjustments and reading.  times all dmg / life by 3x
             hitPoints = 150;
             hitPoints += (6 * Singleton.Instance.level);
-            float healthModifier = FindObjectOfType<CurrentWave>().waveCount * 36;
+            // flat scaling (majority)
+            int wavecount = FindObjectOfType<CurrentWave>().waveCount;
+            float healthModifier = wavecount * 36;
+            //plus percent scaling to make lateround harder.
             hitPoints += healthModifier;
+            //healthModifier = (hitPoints * (1 + ( .04 * (float)wavecount)));
             hitPointsMax = hitPoints;
             healthImage = enemyHealthBar.gameObject.GetComponentInChildren<Image>();
             healthImage.fillAmount = 1.0f;
@@ -102,21 +110,26 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     public virtual IEnumerator Burning(float fireDmg)
     {
-        if (hitPoints < 1)
-        {
-            KillsEnemyandAddsGold();
-        }
+        float burn = 0;
         if (onFire && time > 0)
         {
-            float burn = burnDmg * Time.deltaTime;
+            burn = burnDmg * Time.deltaTime;
             time -= 1 * Time.deltaTime;
             hitPoints -= burn;
             healthImage.fillAmount = (hitPoints / hitPointsMax);
+
+            damageLog.UpdateDamage("Flame Tower", burn);
             Singleton.AddTowerDamage("Flame Tower", burn);
         }
         else
         {
             onFire = false;
+        }
+
+        if (hitPoints < 1)
+        {
+            KillsEnemyandAddsGold();
+            damageLog.UpdateKills("Flame Tower", enemyName);
         }
         yield return new WaitForSeconds(1f);
     }
@@ -135,10 +148,14 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     protected virtual void OnParticleCollision(GameObject other)
     {
-        ProcessHit(other);
+        string towerName = "";
+        float dmg = 0;
+        dmg = other.GetComponentInParent<Tower>().Damage(ref towerName);
+        ProcessHit(dmg, towerName);
         if (hitPoints <= 0)
         {
             //Adds gold upon death, then deletes the enemy.
+            damageLog.UpdateKills(towerName, enemyName);
             KillsEnemyandAddsGold();
         }
         else
@@ -163,15 +180,17 @@ public abstract class EnemyHealth : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    protected virtual void ProcessHit(GameObject other)
+    protected virtual void ProcessHit(float dmg, string towerName)
     {
-        string towerName = "";
-        float dmg = 0;
-        dmg = other.GetComponentInParent<Tower>().Damage(ref towerName);
-        Singleton.AddTowerDamage(towerName, dmg);
+        //string towerName = "";
+        //float dmg = 0;
+        //dmg = other.GetComponentInParent<Tower>().Damage(ref towerName);        
         hitPoints = hitPoints - dmg;
         hitparticleprefab.Play();
         healthImage.fillAmount = (hitPoints / hitPointsMax);
+
+        damageLog.UpdateDamage(towerName, dmg);
+        Singleton.AddTowerDamage(towerName, dmg);
     }
 
     public virtual void HitByNonProjectile(float damage, string towerName)
@@ -180,16 +199,19 @@ public abstract class EnemyHealth : MonoBehaviour {
         hitPoints = hitPoints - dmg;
         healthImage.fillAmount = (hitPoints / hitPointsMax);
 
+        
         Singleton.AddTowerDamage(towerName, damage);
         hitparticleprefab.Play();
 
         if (hitPoints <= 0)
         {
             //Adds gold upon death, then deletes the enemy.
+            damageLog.UpdateDamageAndKills(towerName, dmg, enemyName);
             KillsEnemyandAddsGold();
         }
         else
         {
+            damageLog.UpdateDamage(towerName, dmg);
             GetComponent<AudioSource>().PlayOneShot(enemyHitAudio);
         }
     }

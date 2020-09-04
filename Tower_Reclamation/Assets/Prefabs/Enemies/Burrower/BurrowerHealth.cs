@@ -10,6 +10,7 @@ public class BurrowerHealth : EnemyHealth {
     override protected void Start()
     {
         base.Start();
+        enemyName = "Burrower";
         burrowerMove = GetComponent<BurrowerMovement>();
         hitPoints = hitPoints * .55f;
         hitPointsMax = hitPoints;
@@ -54,9 +55,11 @@ public class BurrowerHealth : EnemyHealth {
         {
             //Adds gold upon death, then deletes the enemy.
             KillsEnemyandAddsGold();
+            damageLog.UpdateDamageAndKills(towerName, damage, enemyName);
         }
         else
         {
+            damageLog.UpdateDamage(towerName, damage);
             GetComponent<AudioSource>().PlayOneShot(enemyHitAudio);
         }
     }
@@ -68,12 +71,17 @@ public class BurrowerHealth : EnemyHealth {
             return;
         }
 
-        ProcessHit(other);
+        string towerName = "";
+        float dmg = 0;
+        dmg = other.GetComponentInParent<Tower>().Damage(ref towerName);
+        ProcessHit(dmg, towerName);
+
         healthImage.fillAmount = (hitPoints / hitPointsMax);
         TellMovementToStartBurrow();
         if (hitPoints <= 0)
         {
             //Adds gold upon death, then deletes the enemy.
+            damageLog.UpdateKills(towerName, enemyName);
             KillsEnemyandAddsGold();
         }
         else

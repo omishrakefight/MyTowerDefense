@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 114801057434098164}
   - component: {fileID: 114718495718740016}
   - component: {fileID: 65788818565865820}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plasma Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2933,11 +2933,12 @@ MonoBehaviour:
   attackRange: 30
   towerDmg: 30
   currentTowerDmg: 30
+  sceneEnemies: []
   targetEnemy: {fileID: 0}
   objectToPan: {fileID: 0}
   targetEnemyBody: {fileID: 0}
   preferedEnemyBody: {fileID: 0}
-  canSilverWiring: 0
+  cantargettingModule: 0
   canAlloyReasearch: 0
   canSturdyTank: 0
   canHeavyShelling: 0

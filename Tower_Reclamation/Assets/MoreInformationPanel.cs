@@ -1,9 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+
 
 public class MoreInformationPanel : MonoBehaviour {
 
+    [SerializeField] Text informationText;
+    [SerializeField] Sprite picture;
     float outsideTimeScale;
     float pauseTime = 0f;
 
@@ -24,4 +29,7 @@ public class MoreInformationPanel : MonoBehaviour {
         Time.timeScale = outsideTimeScale;
         Destroy(this.gameObject);
     }
+
+    public MoreInformationPanel() { }
+
 }

@@ -2628,6 +2628,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 114959429549803794}
   talking: 
+  moreInformationPrompt: {fileID: 114213890005618042, guid: 9b6e49375cea3e64dacf02c1f2c64f11,
+    type: 2}
   talkingCanvas: {fileID: 223501935539448506}
   personTalking: {fileID: 114309202383049646}
   timeToRun: 0

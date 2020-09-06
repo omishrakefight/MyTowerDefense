@@ -275,6 +275,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   informationText: {fileID: 114183750947153066}
+  newPanel: {fileID: 114213890005618042}
+  picture: {fileID: 114485622146483626}
 --- !u!114 &114424006333040166
 MonoBehaviour:
   m_ObjectHideFlags: 1

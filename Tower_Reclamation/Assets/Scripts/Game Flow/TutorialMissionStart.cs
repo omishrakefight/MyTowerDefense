@@ -8,6 +8,7 @@ using System;
 public class TutorialMissionStart : MonoBehaviour {
     [SerializeField] Text text;
     [SerializeField] string talking;
+    [SerializeField] MoreInformationPanel moreInformationPrompt;
     List<string> conversations;
     int conversationTracker = 0;
 
@@ -141,6 +142,12 @@ public class TutorialMissionStart : MonoBehaviour {
                 personTalking.texture = soldierNeutral;
                 talking = conversations[conversationTracker];
                 conversationTracker++;
+
+                //testing
+                List<string> x = new List<string>() { "x", "y" };
+                List<Texture> y = new List<Texture>() { soldierNeutral, soldierScared };
+                var prompt = Instantiate(moreInformationPrompt, transform.position, Quaternion.identity);
+                prompt.GetComponentInChildren<MoreInformationPanel>().DelayedInitialization(y, x);
                 break;
             case 1:
                 typingSpeed = .02f;
@@ -189,6 +196,10 @@ public class TutorialMissionStart : MonoBehaviour {
                 spotLight.transform.position = (waypoint1.transform.position + new Vector3(0f, lightHeight, 0f));
                 isLastChatSegment = true;
                 //towerButton.enabled = true;
+                //List<string> x = new List<string>() { "x", "y" };
+                //List<Texture> y = new List<Texture>() { soldierNeutral, soldierScared};
+                //var prompt = Instantiate(moreInformationPrompt, transform.position, Quaternion.identity);
+                //prompt.DelayedInitialization(y, x);
                 
                 break;
             case 8:

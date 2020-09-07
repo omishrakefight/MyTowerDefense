@@ -146,7 +146,7 @@ public class TutorialMissionStart : MonoBehaviour {
                 //testing
                 List<string> x = new List<string>() { "x", "y" };
                 List<Texture> y = new List<Texture>() { soldierNeutral, soldierScared };
-                var prompt = Instantiate(moreInformationPrompt, transform.position, Quaternion.identity);
+                var prompt = Instantiate(moreInformationPrompt, transform.position, Quaternion.identity, gameObject.transform);
                 prompt.GetComponentInChildren<MoreInformationPanel>().DelayedInitialization(y, x);
                 break;
             case 1:

@@ -9,6 +9,7 @@ public class MoreInformationPanel : MonoBehaviour {
 
     [SerializeField] Text informationText;
     [SerializeField] RawImage picture;
+    [SerializeField] Image pictureX;
     List<Texture> images = new List<Texture>();
     List<string> texts = new List<string>();
     float outsideTimeScale;
@@ -37,6 +38,7 @@ public class MoreInformationPanel : MonoBehaviour {
         if (createAnother)
         {
             picture.texture = images[0];
+            pictureX.sprite = images[0];
             informationText.text = texts[0];
 
             images.RemoveAt(0);

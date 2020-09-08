@@ -12,7 +12,7 @@ public class BurrowerHealth : EnemyHealth {
         base.Start();
         enemyName = "Burrower";
         burrowerMove = GetComponent<BurrowerMovement>();
-        hitPoints = hitPoints * .55f;
+        hitPoints = hitPoints * .65f;
         hitPointsMax = hitPoints;
         burrowed = burrowerMove.burrowed;
     }

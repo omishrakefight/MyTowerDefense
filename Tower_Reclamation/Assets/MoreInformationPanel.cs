@@ -10,6 +10,7 @@ public class MoreInformationPanel : MonoBehaviour {
     [SerializeField] Text informationText;
     [SerializeField] RawImage picture;
     [SerializeField] Image pictureX;
+    [SerializeField] Text buttonName;
     List<Texture> images = new List<Texture>();
     List<string> texts = new List<string>();
     float outsideTimeScale;
@@ -38,7 +39,7 @@ public class MoreInformationPanel : MonoBehaviour {
         if (createAnother)
         {
             picture.texture = images[0];
-            pictureX.sprite = images[0];
+            //pictureX.sprite = images[0];
             informationText.text = texts[0];
 
             images.RemoveAt(0);
@@ -47,10 +48,12 @@ public class MoreInformationPanel : MonoBehaviour {
             if (images.Count > 0 && texts.Count > 0)
             {
                 createAnother = true;
+                buttonName.text = "NEXT";
                 //TODO set button to continue instead of close here.
             } else
             {
                 createAnother = false;
+                buttonName.text = "CLOSE";
             }
             return;
         }
@@ -66,19 +69,6 @@ public class MoreInformationPanel : MonoBehaviour {
     }
     public MoreInformationPanel(List<Texture> image, List<string> text)
     {
-        //picture.texture = image[0];
-        //informationText = text[0];
-
-        //image.RemoveAt(0);
-        //text.RemoveAt(0);
-
-        //images = image;
-        //texts = text;
-
-        //if (image.Count > 0 && text.Count > 0)
-        //{
-        //    createAnother = true;
-        //}
         AddAndSetItems(image, text);
     }
 
@@ -101,6 +91,7 @@ public class MoreInformationPanel : MonoBehaviour {
         if (image.Count > 0 && text.Count > 0)
         {
             createAnother = true;
+            buttonName.text = "NEXT";
         }
     }
 

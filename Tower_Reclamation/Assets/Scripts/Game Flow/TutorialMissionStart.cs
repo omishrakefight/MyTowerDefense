@@ -9,9 +9,11 @@ public class TutorialMissionStart : MonoBehaviour {
     [SerializeField] Text text;
     [SerializeField] string talking;
     [SerializeField] MoreInformationPanel moreInformationPrompt;
+    MoreInformationPanel prompt;
     List<string> conversations;
     int conversationTracker = 0;
 
+    [SerializeField] GameObject TalkingCanvas;
     [SerializeField] Canvas talkingCanvas;
     [SerializeField] RawImage personTalking;
 
@@ -46,9 +48,26 @@ public class TutorialMissionStart : MonoBehaviour {
     [Header("WayPoints")]
     [SerializeField] Waypoint waypoint1;
     [SerializeField] Waypoint waypoint2;
-    private int lightHeight = 19;
 
+    [Header("Tutorial Pictures")]
+    [SerializeField] Texture goldImage;
+    [SerializeField] Texture waveImage;
+    [SerializeField] Texture healthImage;
+    [SerializeField] Texture towerButtonImage;
+    private int lightHeight = 19;
     private int towerSpawnCount = 0;
+
+    const string goldExplanation = "The people inside the base constantly build tower parts that are consumed to build different towers." +
+        "This process is slow but constant.  When an alien is killed, they are reinvigorated and create a burst of parts instantly.  The amount of parts currently" +
+        " stockpiled are shown here.";
+    const string waveExplanation = "The wave count location is shown above.  The enemies in front are generally weaker, but as the wave count goes higher " +
+        "the stronger enemies come out, which have more base life.";
+    const string healthExplanation = "The health bar shows the bases defense.  When this hits 0, the aliens have broken past the gate and it is game over.  " +
+        "The gate life is broken into two different sections.  One is the outer doors of the base, and the second is the inner barricade.  The barricade life is taken with " +
+        "the team when they move to a new location, while the base doors are not.  The barricade can be replenished after some levels.";
+    const string towerButtonExplanation = "The tower buttons are located at the bottom right of the screen.  This has the tower name, and parts cost.  " +
+        "You first click on a buildable tile and then click the button for the tower you wish to build.  Tiles with flashing red cannot be build on.";
+
 
     string string0 = ". . . ";
     string string1 = "It shouldn't take this long to find scraps.";
@@ -97,8 +116,8 @@ public class TutorialMissionStart : MonoBehaviour {
         conversationTracker = 0;
 
         GoldManagement GM = FindObjectOfType<GoldManagement>();
-        GM.goldCount = 94;
-        GM.GoldCounter();
+        GM.SetGoldAmount(94);
+        //GM.GoldCounter();
 
         StartCoroutine(SlowMessageTyping());
     }
@@ -144,10 +163,10 @@ public class TutorialMissionStart : MonoBehaviour {
                 conversationTracker++;
 
                 //testing
-                List<string> x = new List<string>() { "x", "y" };
-                List<Texture> y = new List<Texture>() { soldierNeutral, soldierScared };
-                var prompt = Instantiate(moreInformationPrompt, transform.position, Quaternion.identity, gameObject.transform);
-                prompt.GetComponentInChildren<MoreInformationPanel>().DelayedInitialization(y, x);
+                //List<string> x = new List<string>() { "x", "y" };
+                //List<Texture> y = new List<Texture>() { soldierNeutral, soldierScared };
+                //var prompt = Instantiate(moreInformationPrompt, transform.position, Quaternion.identity, gameObject.transform);
+                //prompt.GetComponentInChildren<MoreInformationPanel>().DelayedInitialization(y, x);
                 break;
             case 1:
                 typingSpeed = .02f;
@@ -195,12 +214,13 @@ public class TutorialMissionStart : MonoBehaviour {
                 spotLight.gameObject.SetActive(true);
                 spotLight.transform.position = (waypoint1.transform.position + new Vector3(0f, lightHeight, 0f));
                 isLastChatSegment = true;
-                //towerButton.enabled = true;
-                //List<string> x = new List<string>() { "x", "y" };
-                //List<Texture> y = new List<Texture>() { soldierNeutral, soldierScared};
-                //var prompt = Instantiate(moreInformationPrompt, transform.position, Quaternion.identity);
-                //prompt.DelayedInitialization(y, x);
-                
+                towerButton.enabled = true;
+
+                List<string> promptTexts = new List<string>() { waveExplanation, goldExplanation, towerButtonExplanation };
+                List<Texture> prompImages = new List<Texture>() { waveImage, goldImage, towerButtonImage };
+                prompt = Instantiate(moreInformationPrompt, transform.position, Quaternion.identity, gameObject.transform);
+                prompt.DelayedInitialization(prompImages, promptTexts);
+
                 break;
             case 8:
                 personTalking.texture = general;
@@ -282,7 +302,7 @@ public class TutorialMissionStart : MonoBehaviour {
 
         //towerButton.enabled = false;
         spotLight.gameObject.SetActive(false);
-        talkingCanvas.enabled = true;
+        TalkingCanvas.SetActive(true);
         StartCoroutine(SlowMessageTyping());
         towerSpawnCount++;
 
@@ -313,7 +333,8 @@ public class TutorialMissionStart : MonoBehaviour {
         yield return new WaitForSecondsRealtime(3);
         if (isEnableingChatTurnOff)
         {
-            talkingCanvas.enabled = false;
+            //talkingCanvas.active = false;
+            TalkingCanvas.SetActive(false);
         }       
     }
 
@@ -332,7 +353,7 @@ public class TutorialMissionStart : MonoBehaviour {
             conversations.AddRange(new string[] { string10, string11 });
             conversationTracker = 10;
 
-            talkingCanvas.enabled = true;
+            TalkingCanvas.SetActive(true);
             StartCoroutine(SlowMessageTyping());
 
             StartCoroutine(DisableText());
@@ -343,7 +364,7 @@ public class TutorialMissionStart : MonoBehaviour {
             conversations.AddRange(new string[] { string12, string13, string14, string15 });
             conversationTracker = 12;
 
-            talkingCanvas.enabled = true;
+            TalkingCanvas.SetActive(true);
             StartCoroutine(SlowMessageTyping());
 
             StartCoroutine(DisableText());

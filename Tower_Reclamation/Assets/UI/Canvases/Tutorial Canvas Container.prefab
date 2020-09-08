@@ -2630,6 +2630,7 @@ MonoBehaviour:
   talking: 
   moreInformationPrompt: {fileID: 114213890005618042, guid: 9b6e49375cea3e64dacf02c1f2c64f11,
     type: 2}
+  TalkingCanvas: {fileID: 1836972774196302}
   talkingCanvas: {fileID: 223501935539448506}
   personTalking: {fileID: 114309202383049646}
   timeToRun: 0
@@ -2642,6 +2643,10 @@ MonoBehaviour:
   generalShouting: {fileID: 2800000, guid: aa29e6a5da0bc5e43a9b30d1eab27279, type: 3}
   waypoint1: {fileID: 0}
   waypoint2: {fileID: 0}
+  goldImage: {fileID: 2800000, guid: dde5d22dd5b51674f88913164265c0eb, type: 3}
+  waveImage: {fileID: 2800000, guid: 26aa892f3a4e0a94ca36377a047c564c, type: 3}
+  healthImage: {fileID: 2800000, guid: 14d3a466e09c6dc4381792bf6b445a2a, type: 3}
+  towerButtonImage: {fileID: 2800000, guid: 461d8ede2faaf5348ac6a1ac0d2823fc, type: 3}
 --- !u!114 &114795381290620472
 MonoBehaviour:
   m_ObjectHideFlags: 1

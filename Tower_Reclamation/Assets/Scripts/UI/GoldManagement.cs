@@ -7,18 +7,29 @@ using UnityEngine;
 public class GoldManagement : MonoBehaviour {
 
     //inside enemy health dmg
-    [SerializeField] public int goldCount = 120;
+    [SerializeField] public int goldCount = 150;
+    private bool setGoldManually = false;
     public Text gold;
 
     // Use this for initialization
     void Start () {
-        goldCount = 150;
+        if (!setGoldManually)
+        {
+            goldCount = 150;
+        }
         GoldCounter();
     }
 	
 	// Update is called once per frame
 	void Update () {
         //GoldCounter();
+    }
+
+    public void SetGoldAmount(int newAmount)
+    {
+        goldCount = newAmount;
+        setGoldManually = true;
+        GoldCounter();
     }
 
     public void AddGold(float money)

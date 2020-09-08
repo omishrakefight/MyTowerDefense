@@ -4831,31 +4831,9 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114213890005618042, guid: 9b6e49375cea3e64dacf02c1f2c64f11,
-        type: 2}
-      propertyPath: pictureX
-      value: 
-      objectReference: {fileID: 428328555}
-    - target: {fileID: 114822243836433204, guid: 9b6e49375cea3e64dacf02c1f2c64f11,
-        type: 2}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: cc6b806cbce74f8408fe1e3a5e95e675,
-        type: 3}
-    - target: {fileID: 114822243836433204, guid: 9b6e49375cea3e64dacf02c1f2c64f11,
-        type: 2}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9b6e49375cea3e64dacf02c1f2c64f11, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &428328555 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114822243836433204, guid: 9b6e49375cea3e64dacf02c1f2c64f11,
-    type: 2}
-  m_PrefabInternal: {fileID: 428328554}
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &449365724
 Prefab:
   m_ObjectHideFlags: 0

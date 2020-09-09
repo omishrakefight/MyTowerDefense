@@ -117,7 +117,8 @@ public class TowerSelecter : MonoBehaviour
         {
             changingTowerType = true;
             ResetTowerPicture();
-            FocusRifledTowers();
+            //ResetNumbersOnBaseChange();
+            //FocusRifledTowers();
         }
         collider = tower.GetComponentInChildren<BoxCollider>();
         bound = collider.bounds;
@@ -315,6 +316,20 @@ public class TowerSelecter : MonoBehaviour
         return decidedTower;
     }
 
+    public void InitializeOptionsOnRoomSwap()
+    {
+        if (towerLog == null)
+        {
+            towerLog = FindObjectOfType<PlayerTowerLog>();
+        }
+        knownTowerParts = new Dictionary<string, int>();
+        List<Dropdown.OptionData> list = towerTurret.options;
+
+        string tower = list[towerTurret.value].text;//towerTurret.options(towserTurret.value).text;
+        knownTowerParts = towerLog.GetTowerParts(tower);
+        FocusDynamicTowerType(knownTowerParts);
+    }
+
     // Need to change this so it is also if contains, then also pull the values out of the functions.
     // scrap what I said, just plug in the select, its gotten from the list so should match perfectly.  Then get the stuff inside that dictionary and populate and filters. 
     public Tower SetTowerBaseAndHead()
@@ -445,16 +460,17 @@ public class TowerSelecter : MonoBehaviour
         List<Dropdown.OptionData> list = towerTurret.options;
         string tower = list[towerTurret.value].text;
 
-        if (towerLog == null)
-        {
+        //if (towerLog == null)
+        //{
             towerLog = FindObjectOfType<PlayerTowerLog>();
-        }
+        //}
 
         if (changingTowerType)
         {
             baseType = 0; 
             towerBarrelType = 0;
             // I only enter it once per 'change'
+            //SetTowerBaseAndHead2();
             changingTowerType = false;
         } else
         {

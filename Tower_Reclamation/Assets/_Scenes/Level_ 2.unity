@@ -3595,7 +3595,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4340654816979028, guid: cc75ea66699fa154ba977df39563230f, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 90.64653
+      value: 40.64653
       objectReference: {fileID: 0}
     - target: {fileID: 4340654816979028, guid: cc75ea66699fa154ba977df39563230f, type: 2}
       propertyPath: m_LocalPosition.y
@@ -3603,7 +3603,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4340654816979028, guid: cc75ea66699fa154ba977df39563230f, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -131.21146
+      value: -121.21145
       objectReference: {fileID: 0}
     - target: {fileID: 4340654816979028, guid: cc75ea66699fa154ba977df39563230f, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3627,12 +3627,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1056090195284560, guid: cc75ea66699fa154ba977df39563230f, type: 2}
       propertyPath: m_Name
-      value: Cube 10, -3
+      value: Cube 5, -2
       objectReference: {fileID: 0}
     - target: {fileID: 102289040063286170, guid: cc75ea66699fa154ba977df39563230f,
         type: 2}
       propertyPath: m_Text
-      value: 10, -3
+      value: 5, -2
       objectReference: {fileID: 0}
     - target: {fileID: 4340654816979028, guid: cc75ea66699fa154ba977df39563230f, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y

@@ -10,7 +10,7 @@ public class BurrowerMovement : EnemyMovement {
 
     public bool burrowed = false;
     public float currentBurrowTime = 0f;
-    public float burrowTime = 2f;
+    public float burrowTime = 2.25f;
 
     public float currentDiggingTime = 0f;
     public float digTime = .25f;
@@ -77,10 +77,9 @@ public class BurrowerMovement : EnemyMovement {
                 UntargetMeFools();
             }
 
+            transform.position = Vector3.MoveTowards(transform.position, (new Vector3(transform.position.x, (currentDigSite.y - distanceToBurrow - distanceToBurrow), transform.position.z) + heightOffset), trialSpeedForDigging);
             if (punchingBase)
                 return;
-            transform.position = Vector3.MoveTowards(transform.position, (new Vector3(transform.position.x, (currentDigSite.y - distanceToBurrow - distanceToBurrow), transform.position.z) + heightOffset), trialSpeedForDigging);
-
         }
         else if (currentBurrowTime > burrowTime && currentDiggingTime > 0)
         {

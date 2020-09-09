@@ -733,6 +733,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1043953480}
+        m_MethodName: InitializeOptionsOnRoomSwap
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &122882322
@@ -4946,16 +4957,6 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224692078393970126, guid: 0dda80d1a3480b246ae2a6121eb27390,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.000094075804
-      objectReference: {fileID: 0}
-    - target: {fileID: 224825510150359540, guid: 0dda80d1a3480b246ae2a6121eb27390,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 0.00009987779
       objectReference: {fileID: 0}
     - target: {fileID: 224711832278688760, guid: 0dda80d1a3480b246ae2a6121eb27390,
         type: 2}

@@ -15,11 +15,14 @@ public class HealingBugs : MonoBehaviour {
     ///     and then on death it does double that for 10 secs, so 5% each sec.
     ///     --- maybe stronger? .08?
     /// </summary>
+    /// 
+
+    [SerializeField] HealerCloud deathCloud;
 
     // Use this for initialization
     void Start()
     {
-
+        print("cloud spawnedd");
     }
 
     // Update is called once per frame
@@ -28,7 +31,7 @@ public class HealingBugs : MonoBehaviour {
         DeathHealAura();
     }
 
-    float healPercent = .05f;
+    float healPercent = .035f;
 
     void DeathHealAura()
     {
@@ -44,4 +47,11 @@ public class HealingBugs : MonoBehaviour {
             i++;
         }
     }
+
+    public void DiedSpawnCloud()
+    {
+        Instantiate(deathCloud, transform.position, Quaternion.identity);
+    }
+
+
 }

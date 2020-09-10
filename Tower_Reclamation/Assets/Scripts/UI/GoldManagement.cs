@@ -11,6 +11,7 @@ public class GoldManagement : MonoBehaviour {
     private bool setGoldManually = false;
     public Text gold;
     float goldTimer = 0f;
+    bool roundStarted = false;
 
     // Use this for initialization
     void Start () {
@@ -24,12 +25,32 @@ public class GoldManagement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //GoldCounter();
-        goldTimer += Time.deltaTime;
+        if (roundStarted) // set in tutrial and normal lvls
+        {
+            goldTimer += Time.deltaTime;
+        }
+
         if (goldTimer > 2f)
         {
             goldTimer =- 2.0f;
             AddGold(1);
         }
+    }
+
+    public void Started()
+    {
+        roundStarted = true;
+    }
+
+    public void AddExtraGoldTimer(float time)
+    {
+        goldTimer += time;
+
+        int divisions = (int)(goldTimer / 2f);
+
+        AddGold(divisions);
+
+        goldTimer -= (2 * divisions);
     }
 
     public void SetGoldAmount(int newAmount)

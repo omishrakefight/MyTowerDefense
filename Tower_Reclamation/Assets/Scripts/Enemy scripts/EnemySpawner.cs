@@ -36,6 +36,7 @@ public class EnemySpawner : MonoBehaviour
     public List<int> enemyList = new List<int>();
     //Singleton enemyListContainer;
 
+    GoldManagement GM = null;
     bool betweenWaves = false;
     public float timeBetweenWaves = 8.5f;
     public float secondsBetweenSpawns = 2.25f;
@@ -269,6 +270,15 @@ public class EnemySpawner : MonoBehaviour
         //}
     }
 
+    private void CheckGoldReference()
+    {
+        if (GM == null)
+        {
+            GM = FindObjectOfType<GoldManagement>();
+        }
+    }
+
+
     
     void Update()
     {
@@ -282,6 +292,9 @@ public class EnemySpawner : MonoBehaviour
                 StartCoroutine(SpawnSpecificEnemies());
                 begin = true;
                 slider.value = startSetupTime / startupTimer;
+
+                CheckGoldReference();
+                GM.Started();
             }
         }
 
@@ -294,6 +307,15 @@ public class EnemySpawner : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && !currentlySpawning)
         {
+            if (begin)
+            {
+                CheckGoldReference();
+                GM.AddExtraGoldTimer((timeBetweenWaves - waveTimer));
+            } else
+            {
+                CheckGoldReference();
+                GM.Started();
+            }
             waveTimer = timeBetweenWaves;
             startupTimer = startSetupTime;
         }

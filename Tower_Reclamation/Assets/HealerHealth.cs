@@ -7,7 +7,7 @@ public class HealerHealth : EnemyHealth {
 	// Use this for initialization
 	void Start () {
         base.Start();
-        hitPoints = hitPoints * 1.3f;
+        hitPoints = hitPoints * 1.1f;
         hitPointsMax = hitPoints;
         goldForMyHead = goldForMyHead * 2.1f;
         enemyName = "Healer";
@@ -19,6 +19,12 @@ public class HealerHealth : EnemyHealth {
         {
             StartCoroutine(Burning(burnDmg));
         }
+    }
+
+    public new void KillEnemy()
+    {
+        GetComponentInChildren<HealingBugs>().DiedSpawnCloud();
+        Destroy(gameObject);
     }
 
     //new public IEnumerator Healing(float healPercent)

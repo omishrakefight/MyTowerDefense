@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 114340658418398028}
   - component: {fileID: 114926249581280782}
   - component: {fileID: 65552593799993456}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Plasma Base 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,6 +170,7 @@ MonoBehaviour:
   attackRange: 30
   towerDmg: 30
   currentTowerDmg: 30
+  sceneEnemies: []
   targetEnemy: {fileID: 0}
   objectToPan: {fileID: 0}
   targetEnemyBody: {fileID: 0}

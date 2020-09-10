@@ -48,7 +48,7 @@ public abstract class EnemyHealth : MonoBehaviour {
             // for each WAVE hit points go up a set amount.  In addition, for each level you are on, health ramps up.  Just base HP for now.
             //was 34, upping to 100 for easier adjustments and reading.  times all dmg / life by 3x
             hitPoints = 145;
-            hitPoints += (5 * Singleton.Instance.level);
+            hitPoints += (3 * Singleton.Instance.level);
             // flat scaling (majority)
             int wavecount = FindObjectOfType<CurrentWave>().waveCount;
             float healthModifier = wavecount * 35;

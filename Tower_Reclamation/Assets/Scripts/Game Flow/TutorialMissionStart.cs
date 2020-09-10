@@ -34,6 +34,8 @@ public class TutorialMissionStart : MonoBehaviour {
     float eventSeeTheSwarmEnemies;
     bool talkedAboutTheSwarm = false;
 
+    private GoldManagement GM = null;
+
     [SerializeField] Button towerButton;
     [SerializeField] Light spotLight;
 
@@ -196,6 +198,10 @@ public class TutorialMissionStart : MonoBehaviour {
                 // To make the character run in scene
                 timeToRun = true;
                 SpawnTheEnemiesAtScreem();
+
+                GM = FindObjectOfType<GoldManagement>();
+                
+                GM.Started();
 
                 personTalking.texture = soldierScared;
                 talking = conversations[conversationTracker];

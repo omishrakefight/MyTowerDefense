@@ -250,7 +250,6 @@ GameObject:
   - component: {fileID: 47542410}
   - component: {fileID: 47542411}
   - component: {fileID: 47542412}
-  - component: {fileID: 47542413}
   - component: {fileID: 47542414}
   m_Layer: 0
   m_Name: World
@@ -313,19 +312,6 @@ MonoBehaviour:
   plasmaTowerPrefab: {fileID: 0}
   towerParentTransform: {fileID: 2023514800}
   lastWaypoint: {fileID: 0}
---- !u!114 &47542413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 47542409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40403959c6c9e81419571f368e8e2c87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goldCount: 120
-  gold: {fileID: 196826381}
 --- !u!114 &47542414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -703,12 +689,6 @@ Transform:
   m_Father: {fileID: 47542410}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &196826381 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114901852585953696, guid: c75d683a57da05b46abfab717912e227,
-    type: 2}
-  m_PrefabInternal: {fileID: 1166638106}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &219629683
 GameObject:
   m_ObjectHideFlags: 0

@@ -171,7 +171,6 @@ GameObject:
   m_Component:
   - component: {fileID: 47542410}
   - component: {fileID: 47542411}
-  - component: {fileID: 47542413}
   - component: {fileID: 47542414}
   m_Layer: 0
   m_Name: World
@@ -213,19 +212,6 @@ MonoBehaviour:
   enemyPathLights: {fileID: 219629684}
   startWaypoint: {fileID: 441587991}
   endWaypoint: {fileID: 1746828398}
---- !u!114 &47542413
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 47542409}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40403959c6c9e81419571f368e8e2c87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goldCount: 120
-  gold: {fileID: 1299173732}
 --- !u!114 &47542414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2619,12 +2605,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 83bf929445d83c84f85ec1083d0e4aea, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &1299173732 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114901852585953696, guid: c75d683a57da05b46abfab717912e227,
-    type: 2}
-  m_PrefabInternal: {fileID: 1871867061}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1312662413
 Prefab:
   m_ObjectHideFlags: 0

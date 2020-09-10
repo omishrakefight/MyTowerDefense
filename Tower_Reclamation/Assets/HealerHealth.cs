@@ -21,7 +21,7 @@ public class HealerHealth : EnemyHealth {
         }
     }
 
-    public new void KillEnemy()
+    public override void KillEnemy()
     {
         GetComponentInChildren<HealingBugs>().DiedSpawnCloud();
         Destroy(gameObject);

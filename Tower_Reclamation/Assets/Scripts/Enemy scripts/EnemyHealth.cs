@@ -175,7 +175,7 @@ public abstract class EnemyHealth : MonoBehaviour {
         KillEnemy();
     }
 
-    public void KillEnemy()
+    public virtual void KillEnemy()
     {
         Destroy(gameObject);
     }

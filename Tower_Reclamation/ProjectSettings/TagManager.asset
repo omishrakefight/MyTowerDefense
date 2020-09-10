@@ -11,6 +11,7 @@ TagManager:
   - TowerInfo
   - Base Rooms Obj
   - Tower Number Dropdown
+  - Slime Container
   layers:
   - Default
   - TransparentFX

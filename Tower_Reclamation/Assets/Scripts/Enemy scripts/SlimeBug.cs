@@ -24,6 +24,6 @@ public class SlimeBug : MonoBehaviour {
     public void SpawnSlime(Vector3 oldLoc, Vector3 newLoc) // average them together for the inbetween
     {
         Vector3 slimeLocation = new Vector3(((oldLoc.x + newLoc.x) / 2), ((oldLoc.y + newLoc.y) / 2), ((oldLoc.z + newLoc.z) / 2));
-        Instantiate(slime, slimeLocation, Quaternion.identity);
+        Instantiate(slime, slimeLocation, Quaternion.identity, GameObject.FindWithTag("Slime Container").gameObject.transform);
     }
 }

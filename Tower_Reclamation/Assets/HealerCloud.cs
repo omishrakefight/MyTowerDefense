@@ -19,7 +19,7 @@ public class HealerCloud : MonoBehaviour {
         counter += Time.deltaTime;
         if(counter > lifeTime)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
 	}
 

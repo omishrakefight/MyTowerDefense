@@ -29,7 +29,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     protected float healTimer = 1f;
     protected float healTime = 0f;
     protected float healPercent;
-    protected float goldForMyHead = 8;
+    protected float goldForMyHead = 7;
     float healPerTick = 0f;
     protected string enemyName = "";
 
@@ -47,14 +47,14 @@ public abstract class EnemyHealth : MonoBehaviour {
         {
             // for each WAVE hit points go up a set amount.  In addition, for each level you are on, health ramps up.  Just base HP for now.
             //was 34, upping to 100 for easier adjustments and reading.  times all dmg / life by 3x
-            hitPoints = 150;
-            hitPoints += (6 * Singleton.Instance.level);
+            hitPoints = 145;
+            hitPoints += (5 * Singleton.Instance.level);
             // flat scaling (majority)
             int wavecount = FindObjectOfType<CurrentWave>().waveCount;
-            float healthModifier = wavecount * 36;
+            float healthModifier = wavecount * 35;
             //plus percent scaling to make lateround harder.
             hitPoints += healthModifier;
-            //healthModifier = (hitPoints * (1 + ( .04 * (float)wavecount)));
+            healthModifier = (hitPoints * (1 + ( .05f * (float)wavecount)));
             hitPointsMax = hitPoints;
             healthImage = enemyHealthBar.gameObject.GetComponentInChildren<Image>();
             healthImage.fillAmount = 1.0f;

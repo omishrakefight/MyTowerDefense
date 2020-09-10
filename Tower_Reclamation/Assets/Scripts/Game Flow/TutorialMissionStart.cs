@@ -100,8 +100,7 @@ public class TutorialMissionStart : MonoBehaviour {
         //towerButton.enabled = false;
         towerButton.gameObject.SetActive(false);
         spotLight.gameObject.SetActive(false);
-        EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
-        enemySpawner.SetDelayedSpawnTime(25f);
+
         Singleton singleton = Singleton.Instance;
         singleton.enemyList = new List<int> { 1, -1,   1, -1,   1, -1,   1, 1, (int)Enemies.doubles, (int)Enemies.doubles, 1};
         //enemySpawner.enemyList = new List<int> { 1, 1, -1, 1, 1, 1};
@@ -115,11 +114,20 @@ public class TutorialMissionStart : MonoBehaviour {
         conversations.AddRange(new string[] { string0, string1, string2, string3, string4, string5, string6, string7 });
         conversationTracker = 0;
 
-        GoldManagement GM = FindObjectOfType<GoldManagement>();
-        GM.SetGoldAmount(94);
         //GM.GoldCounter();
 
+        StartCoroutine(LateInitialization());
         StartCoroutine(SlowMessageTyping());
+    }
+
+    IEnumerator LateInitialization()
+    {
+        yield return null;
+
+        EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
+        enemySpawner.SetDelayedSpawnTime(25f);
+        GoldManagement GM = FindObjectOfType<GoldManagement>();
+        GM.SetGoldAmount(94);
     }
 
     // I can make it whe ni build a tower start slow message again, but change the converstaions item, clear and add new dialogues.

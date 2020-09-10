@@ -19,8 +19,10 @@ public class MainCharacterMovement : MonoBehaviour {
         var path = pathFinder.GivePath();
         transform.position = path[8].transform.position;
 
-        // StartCoroutine(FollowWaypoints(path));
+
     }
+
+
 
     IEnumerator SearchingForMetal()
     {

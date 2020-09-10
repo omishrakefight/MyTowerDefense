@@ -55,6 +55,7 @@ public class EnemySpawner : MonoBehaviour
     */
     void Start()
     {
+        EnemyAliveList.Clear();
         level = FindObjectOfType<CurrentWave>();
         slider.maxValue = timeBetweenWaves;
         win.enabled = false;

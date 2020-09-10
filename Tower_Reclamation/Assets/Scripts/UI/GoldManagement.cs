@@ -10,6 +10,7 @@ public class GoldManagement : MonoBehaviour {
     [SerializeField] public int goldCount = 150;
     private bool setGoldManually = false;
     public Text gold;
+    float goldTimer = 0f;
 
     // Use this for initialization
     void Start () {
@@ -23,6 +24,12 @@ public class GoldManagement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         //GoldCounter();
+        goldTimer += Time.deltaTime;
+        if (goldTimer > 2f)
+        {
+            goldTimer =- 2.0f;
+            AddGold(1);
+        }
     }
 
     public void SetGoldAmount(int newAmount)

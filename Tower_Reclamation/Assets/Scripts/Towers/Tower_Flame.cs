@@ -112,11 +112,11 @@ public class Tower_Flame : Tower {
                 break;
             case (int)FlameBase.Tall:
                 // double range at 60% dmg.
-                towerDmgModifierPercent = .40f;
-                towerAttackRangeModifierPercent = .80f;
+                towerDmgModifierPercent = .30f;
+                towerAttackRangeModifierPercent = .50f;
                 head.BuffRange(towerAttackRangeModifierPercent);
-                head.currentTowerDmg -= (head.currentTowerDmg * .40f);
-                head.towerDmg -= (head.currentTowerDmg * .40f);
+                head.currentTowerDmg -= (head.currentTowerDmg * towerDmgModifierPercent);
+                head.towerDmg -= (head.currentTowerDmg * towerDmgModifierPercent);
 
                 TowerBaseExplanation = "Tower damage -" + (int)(towerDmgModifierPercent * 100f) + '%';
                 TowerBaseExplanation += "\nTower Area of Effect +" + (int)(towerAttackRangeModifierPercent * 100f) + '%';

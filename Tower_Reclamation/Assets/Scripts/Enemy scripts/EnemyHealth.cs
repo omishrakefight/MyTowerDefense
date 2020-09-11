@@ -227,7 +227,7 @@ public abstract class EnemyHealth : MonoBehaviour {
         else if (this.healPercent != healPercent) // recalclate the healPerTick ONLY on new percentage.
         {
             this.healPercent = healPercent;
-            float healPerTick = (healPercent * hitPointsMax); // move this only if different.
+            healPerTick = (healPercent * hitPointsMax); // move this only if different.
             if (isBoss) // bosses need to be killable as well 
             {
                 healPerTick = healPerTick / 10f;
@@ -264,7 +264,7 @@ public abstract class EnemyHealth : MonoBehaviour {
         else
         {
             healing = false;
-            healPercent = 0.0f;
+            this.healPercent = 0.0f;
         }
         yield return new WaitForSeconds(1f);
     }

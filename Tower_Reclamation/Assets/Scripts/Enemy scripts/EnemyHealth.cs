@@ -47,8 +47,8 @@ public abstract class EnemyHealth : MonoBehaviour {
         {
             // for each WAVE hit points go up a set amount.  In addition, for each level you are on, health ramps up.  Just base HP for now.
             //was 34, upping to 100 for easier adjustments and reading.  times all dmg / life by 3x
-            hitPoints = 145;
-            hitPoints += (3 * Singleton.Instance.level);
+            hitPoints = 125;
+            hitPoints += (5 * Singleton.Instance.level);
             // flat scaling (majority)
             int wavecount = FindObjectOfType<CurrentWave>().waveCount;
             float healthModifier = wavecount * 35;
@@ -218,7 +218,23 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     public void HealingBuffed(float healPercent)
     {
-        this.healPercent = healPercent;
+        // if an enemy is standing in a puddle and by a healer, get puddles healing first.
+        //if currenthealing is higher, keep higher healing.  on healing timeout it is reset to 0 (will trigger a reassessment)
+        if (this.healPercent > healPercent)
+        {
+            return;
+        }
+        else if (this.healPercent != healPercent) // recalclate the healPerTick ONLY on new percentage.
+        {
+            this.healPercent = healPercent;
+            float healPerTick = (healPercent * hitPointsMax); // move this only if different.
+            if (isBoss) // bosses need to be killable as well 
+            {
+                healPerTick = healPerTick / 10f;
+            }
+        }
+
+
         healTime = 0f;
         healing = true;
         //float healPerTick = (healPercent * hitPoints);
@@ -227,7 +243,7 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     public IEnumerator Healing(float healPercent)
     {
-        float healPerTick = (healPercent * hitPointsMax);
+
         //print("HPT: " + healPerTick + " HPerc: " + healPercent + " HPM: " + hitPointsMax);
 
         if (healing && healTime < healTimer)
@@ -248,6 +264,7 @@ public abstract class EnemyHealth : MonoBehaviour {
         else
         {
             healing = false;
+            healPercent = 0.0f;
         }
         yield return new WaitForSeconds(1f);
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealerCloud : MonoBehaviour {
 
 
-    float healPercent = 7.0f;
+    float healPercent = .07f;
 
     float lifeTime = 4f;
     float counter = 0f;
@@ -21,6 +21,7 @@ public class HealerCloud : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
+        DeathHealAura();
 	}
 
     private void OnTriggerStay(Collider other)
@@ -35,5 +36,20 @@ public class HealerCloud : MonoBehaviour {
     public void SetHealFactor(float healPercent)
     {
         this.healPercent = healPercent;
+    }
+
+    void DeathHealAura()
+    {
+        Collider[] hitColliders = Physics.OverlapSphere(gameObject.transform.position, 15f);
+        int i = 0;
+        while (i < hitColliders.Length)
+        {
+            if (hitColliders[i].gameObject.GetComponentInParent<EnemyHealth>())
+            {
+                hitColliders[i].gameObject.GetComponentInParent<EnemyHealth>().HealingBuffed(healPercent);
+                //print("Feast upon my blood and heal thyself!!!!!!!!!!");
+            }
+            i++;
+        }
     }
 }

@@ -56,6 +56,8 @@ public class TutorialMissionStart : MonoBehaviour {
     [SerializeField] Texture waveImage;
     [SerializeField] Texture healthImage;
     [SerializeField] Texture towerButtonImage;
+    [SerializeField] Texture enemyDoubleImage;
+    [SerializeField] Texture enemyPathwayImage;
     private int lightHeight = 19;
     private int towerSpawnCount = 0;
 
@@ -69,6 +71,11 @@ public class TutorialMissionStart : MonoBehaviour {
         "the team when they move to a new location, while the base doors are not.  The barricade can be replenished after some levels.";
     const string towerButtonExplanation = "The tower buttons are located at the bottom right of the screen.  This has the tower name, and parts cost.  " +
         "You first click on a buildable tile and then click the button for the tower you wish to build.  Tiles with flashing red cannot be build on.";
+    const string enemyPathwayExplanation = "The tiles that flash red are actually tiles with a mild pheromone that attracts the Xeno.  It isn't strong enough" +
+        " to do anything too clever, but it can make sure they follow a specific path, given they are already coming our way.";
+    const string enemyTypesExplanation = "Swarm strain.  If enemies look different, then they are different.  Try to diversify towers to cover a bigger range of enemies easily. " +
+        "This swarm strain (as the name implies) swarms.  Each one has less life than the normal Xenos, but together they can outperform it.  Use Area of Effect towers to more " +
+        "efficiently kill these.";
 
     // Enemy promps
     const string genericEnemyExplanation = "";
@@ -172,7 +179,8 @@ public class TutorialMissionStart : MonoBehaviour {
 
     IEnumerator ConversationPicker()
     {
-
+        List<string> promptTexts = new List<string>();
+        List<Texture> prompImages = new List<Texture>();
         switch (conversationTracker)
         {
             case 0:
@@ -239,8 +247,8 @@ public class TutorialMissionStart : MonoBehaviour {
                 isLastChatSegment = true;
                 towerButton.enabled = true;
 
-                List<string> promptTexts = new List<string>() { waveExplanation, goldExplanation, towerButtonExplanation };
-                List<Texture> prompImages = new List<Texture>() { waveImage, goldImage, towerButtonImage };
+                promptTexts = new List<string>() { waveExplanation, goldExplanation, towerButtonExplanation, enemyPathwayExplanation };
+                prompImages = new List<Texture>() { waveImage, goldImage, towerButtonImage, enemyPathwayImage };
                 prompt = Instantiate(moreInformationPrompt, transform.position, Quaternion.identity, gameObject.transform);
                 prompt.DelayedInitialization(prompImages, promptTexts);
 
@@ -291,6 +299,11 @@ public class TutorialMissionStart : MonoBehaviour {
                 conversationTracker++;
                 Time.timeScale = 0f;
                 isLastChatSegment = true;
+
+                promptTexts = new List<string>() { enemyTypesExplanation };
+                prompImages = new List<Texture>() { enemyDoubleImage };
+                prompt = Instantiate(moreInformationPrompt, transform.position, Quaternion.identity, gameObject.transform);
+                prompt.DelayedInitialization(prompImages, promptTexts);
                 break;
 
         }

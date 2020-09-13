@@ -2648,6 +2648,8 @@ MonoBehaviour:
   waveImage: {fileID: 2800000, guid: 26aa892f3a4e0a94ca36377a047c564c, type: 3}
   healthImage: {fileID: 2800000, guid: 14d3a466e09c6dc4381792bf6b445a2a, type: 3}
   towerButtonImage: {fileID: 2800000, guid: 461d8ede2faaf5348ac6a1ac0d2823fc, type: 3}
+  enemyDoubleImage: {fileID: 2800000, guid: de49745d85ceb1648977f692691601d2, type: 3}
+  enemyPathwayImage: {fileID: 2800000, guid: 3d7657d6d2e063040b156592ab24ae1c, type: 3}
 --- !u!114 &114795381290620472
 MonoBehaviour:
   m_ObjectHideFlags: 1

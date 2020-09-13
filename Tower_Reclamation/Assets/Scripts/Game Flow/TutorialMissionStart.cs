@@ -70,6 +70,15 @@ public class TutorialMissionStart : MonoBehaviour {
     const string towerButtonExplanation = "The tower buttons are located at the bottom right of the screen.  This has the tower name, and parts cost.  " +
         "You first click on a buildable tile and then click the button for the tower you wish to build.  Tiles with flashing red cannot be build on.";
 
+    // Enemy promps
+    const string genericEnemyExplanation = "";
+    const string rollerEnemyExplanation = "";
+    const string doublesEnemyExplanation = "";
+    const string burrowerEnemyExplanation = "";
+
+    const string healerEnemyExplanation = "";
+    const string slimerEnemyExplanation = "";
+
 
     string string0 = ". . . ";
     string string1 = "It shouldn't take this long to find scraps.";

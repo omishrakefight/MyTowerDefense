@@ -78,13 +78,17 @@ public class TutorialMissionStart : MonoBehaviour {
         "efficiently kill these.";
 
     // Enemy promps
-    const string genericEnemyExplanation = "";
-    const string rollerEnemyExplanation = "";
-    const string doublesEnemyExplanation = "";
-    const string burrowerEnemyExplanation = "";
+    const string genericEnemyExplanation = "The generic enemy has the most life out of all the basic enemies.";
+    const string rollerEnemyExplanation = "The rolling enemy has increased movespeed and will dodge a projectile every few seconds.";
+    const string doublesEnemyExplanation = "The swarm type enemies spawns in groups of 2.  Each one has less life than the basic enemy, however, " +
+        "together their combined life is greater than the basic enemy.";
+    const string burrowerEnemyExplanation = "The burrower strain will dig underground to avoid danger after taking damage.";
 
-    const string healerEnemyExplanation = "";
-    const string slimerEnemyExplanation = "";
+    const string healerEnemyExplanation = "The healer strain is an advanced type enemy that releases a healing gas while alive.  When it dies, it releases a more concentrated " +
+        "blast, doing double healing for a few seconds.  Enemeis with full life receive half healing as it forms a protective coating over their carapace.  Healers are " +
+        "immune to the healing gas.";
+    const string slimerEnemyExplanation = "The slimer strand is a slower advanced enemy.  When it touches a tile that is not slimed it will expulse a permanent sludge " +
+        "that increases the movespeed of all enemeis that are in it.  Slimes recive a more significant speed buff.";
 
 
     string string0 = ". . . ";

@@ -119,22 +119,29 @@ public abstract class Tower : MonoBehaviour {
             getNext = true;
         }
 
-        foreach (EnemyHealth testEnemy in sceneEnemies)
+        try
         {
-            if (testEnemy.isTargetable) // checking for health script enabled
+            foreach (EnemyHealth testEnemy in sceneEnemies)
             {
-                if (getNext)
+                if (testEnemy.isTargetable) // checking for health script enabled
                 {
-                    closestEnemy = testEnemy.transform;
-                }
+                    if (getNext)
+                    {
+                        closestEnemy = testEnemy.transform;
+                    }
 
-                closestEnemy = GetClosest(closestEnemy, testEnemy.transform);
+                    closestEnemy = GetClosest(closestEnemy, testEnemy.transform);
+                }
             }
+
+            targetEnemy = closestEnemy;
+            targetEnemyBody = targetEnemy.GetComponentInChildren<EnemyHealth>();
+        }
+        catch (Exception e)
+        {
+            print("Failed target acquisition try again: whomp whomp");
         }
 
-
-        targetEnemy = closestEnemy;
-        targetEnemyBody = targetEnemy.GetComponentInChildren<EnemyHealth>();
     }
 
     protected virtual Transform GetClosest(Transform transformA, Transform transformB)

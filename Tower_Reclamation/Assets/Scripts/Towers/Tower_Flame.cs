@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tower_Flame : Tower {
 
@@ -288,6 +289,12 @@ public class Tower_Flame : Tower {
         towerCost = towerCost * percentToPay;
 
         return towerCost;
+    }
+
+    public void SetButtonOne(Button buttonOne, Text text)
+    {
+        text.text = "Upgrade dmg";
+        buttonOne.onClick.AddListener(GetStringStats);
     }
 
 }

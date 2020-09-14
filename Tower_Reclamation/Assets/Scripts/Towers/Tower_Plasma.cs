@@ -13,6 +13,9 @@ public class Tower_Plasma : Tower
     Tower_PlasmaHead plasmaTargeter;
     LineRenderer lineRenderer;
 
+    int towerType = -1;
+    int crystalMaxCharge = 2;
+
     float crystalDmgInterval = .25f;
     float crystalCurrentBeamTime = 0f;
     float crystalCurrentChargeTime = 0f;
@@ -56,6 +59,7 @@ public class Tower_Plasma : Tower
         maxCharge = 4.0f;
         goldCost = (int)TowerCosts.PlasmaTowerCost;
         attackRange = 30;
+        currentAttackRange = attackRange;
         towerDmg = 18;
         base.CheckUpgradesForRifledTower(ref towerDmg, ref attackRange);
         CheckAndApplyBuff();
@@ -195,11 +199,14 @@ public class Tower_Plasma : Tower
                 //nothing
                 break;
         }
+        currentAttackRange = attackRange;
+        currentTowerDmg = towerDmg;
     }
 
 
     public override void DetermineTowerHeadType(int towerInt)
     {
+        towerType = towerInt;
         switch (towerInt)
         {
             case (int)PlasmaHead.Basic:
@@ -233,6 +240,8 @@ public class Tower_Plasma : Tower
                 TowerAugmentExplanation = "The default head of the Plasma Turret.  Hits in a line for randomised damage.";
                 break;
         }
+        currentAttackRange = attackRange;
+        currentTowerDmg = towerDmg;
     }
 
 
@@ -240,9 +249,15 @@ public class Tower_Plasma : Tower
     {
         TowerStatsTxt = "Plasma Tower Stats \n" +
             "Attack Range = " + attackRange + "\n" +
-            "Attack Damage = " + towerDmg + " \n" +
+            "Minimum Attack Damage = " + minTowerDmg + " \n" +
+            "Maximum Attack Damage = " + maxTowerDmg + " \n" +
             "Attack Speed = This Tower charges over " + maxCharge  + " seconds \n" +
             "Targetting = Piercing shot through target.";
+        if (towerType == (int)PlasmaHead.Crystal)
+        {
+            TowerStatsTxt += "\n\nBonus Max dmg Per charge level: " + crystalDMGPerStage + "\n" +
+                "Max charge level increases : " + crystalMaxCharge;
+        }
     }
 
 
@@ -304,7 +319,7 @@ public class Tower_Plasma : Tower
             crystalCurrentBeamTime += (1 * Time.deltaTime);
 
             // 0, 1, 2;
-            if(crystalBeamLevel < 2)
+            if(crystalBeamLevel < crystalMaxCharge)
             {
                 crystalCurrentChargeTime += (1 * Time.deltaTime);
 

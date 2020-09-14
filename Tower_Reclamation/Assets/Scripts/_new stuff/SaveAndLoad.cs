@@ -180,6 +180,7 @@ public class SaveAndLoad : MonoBehaviour {
         // 2nd is to load base (singleton already has loaded the setting base needs)
         // 3rd is to do all the loading that requires the base active.
 
+        DoneLookingAtSummary = false;
         SaveSerializedObject savedFile = null;
         _singleton = Singleton.Instance;
         FileStream file = null;

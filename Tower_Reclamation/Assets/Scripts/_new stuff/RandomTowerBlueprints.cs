@@ -5,10 +5,13 @@ using System.Collections.ObjectModel;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RandomTowerBlueprints : MonoBehaviour {
+public class RandomTowerBlueprints : MonoBehaviour
+{
 
     private int amountOfTowers;
     public int amountOfUndiscoveredTowers;
+    MoreInformationPanel prompt;
+    [SerializeField] MoreInformationPanel moreInformationPrompt;
     bool[] towers;
     PlayerTowerLog towerLog;
     [SerializeField] TowerSelecter turretTypes;
@@ -149,7 +152,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
                     //SetupNewButton(buttonOneText.text, ref buttonOneImage);
 
                     towersICanLearn.RemoveAt(rando);
-                   amountOfUndiscoveredTowers--;
+                    amountOfUndiscoveredTowers--;
                     towerOneInUse = true;
                     //print("x was 0");
                 }
@@ -211,7 +214,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
         List<string> towersICanLearn = new List<string>();
 
 
-        for(int x = 0; x < towersFromLearnable.Count; x++)
+        for (int x = 0; x < towersFromLearnable.Count; x++)
         {
             if (!knownTowerTypes.ContainsKey(towersFromLearnable[x]))
             {
@@ -219,7 +222,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
             }
         }
         return towersICanLearn;
-        
+
     }
 
 
@@ -285,7 +288,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
 
     private List<string> GetDiscoveredTowers()
     {
-       
+
         discoveredTowers.Clear();
         if (towers[(int)Towers.RifledTower] == true)
         {
@@ -359,25 +362,25 @@ public class RandomTowerBlueprints : MonoBehaviour {
             //print("tower[ " + (int)Towers.AssaultTower + "] should be true");
 
         }
-        else if(buttonName.Equals("FlameTower"))
+        else if (buttonName.Equals("FlameTower"))
         {
             towerLog.towers1[(int)Towers.FlameTower] = true;
             //print("tower[ " + (int)Towers.FlameTower + "] should be true");
 
         }
-        else if(buttonName.Equals("LighteningTower"))
+        else if (buttonName.Equals("LighteningTower"))
         {
             towerLog.towers1[(int)Towers.LighteningTower] = true;
             //print("tower[ " + (int)Towers.LighteningTower + "] should be true");
 
         }
-        else if(buttonName.Equals("PlasmaTower"))
+        else if (buttonName.Equals("PlasmaTower"))
         {
             towerLog.towers1[(int)Towers.PlasmaTower] = true;
             //print("tower[ " + (int)Towers.PlasmaTower + "] should be true");
 
         }
-        else if(buttonName.Equals("SlowTower"))
+        else if (buttonName.Equals("SlowTower"))
         {
             towerLog.towers1[(int)Towers.SlowTower] = true;
             //print("tower[ " + (int)Towers.SlowTower + "] should be true");
@@ -385,7 +388,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
         }
 
         turretTypes.UpdateTowersAvailable(GetDiscoveredTowers());
-        
+
     }
 
     /// <summary>
@@ -398,7 +401,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
         Dictionary<string, Dictionary<string, int>> learnableTowerTypes = new Dictionary<string, Dictionary<string, int>>();
         Dictionary<string, int> towerParts = new Dictionary<string, int>();
 
-        if(towerLog == null)
+        if (towerLog == null)
         {
             towerLog = FindObjectOfType<PlayerTowerLog>();
         }
@@ -461,48 +464,6 @@ public class RandomTowerBlueprints : MonoBehaviour {
             image.sprite = AlreadyKnown;
         }
 
-        //// since it is a pain to pass a reference to button.text, im just going to return the string i want.
-        //string towerDescription = "";
-        //if (towerTextDescription.Equals("RifledTower"))
-        //{
-        //    towerLog.towers1[(int)Towers.RifledTower] = true;
-        //    print("tower[ " + (int)Towers.RifledTower + "] should be true");
-        //}
-        //else if (towerTextDescription.Equals("AssaultTower"))
-        //{
-        //    towerDescription = AssaultTower;
-        //    image.sprite = AssaultTowerPic;
-
-        //}
-        //else if (towerTextDescription.Equals("FlameTower"))
-        //{
-        //    towerDescription = FlameTower;
-        //    image.sprite = FlameTowerPic;
-        //}
-        //else if (towerTextDescription.Equals("LighteningTower"))
-        //{
-        //    towerDescription = LightningTower;
-        //    image.sprite = LightningTowerPic;
-
-        //}
-        //else if (towerTextDescription.Equals("PlasmaTower"))
-        //{
-        //    towerDescription = PlasmaTower;
-        //    image.sprite = PlasmaTowerPic;
-
-        //}
-        //else if (towerTextDescription.Equals("SlowTower"))
-        //{
-        //    towerDescription = SlowTower;
-        //    image.sprite = SlowTowerPic;
-
-        //}
-        //else
-        //{
-        //    towerDescription = "Already known.";
-        //    image.sprite = AlreadyKnown;
-        //}
-
         return towerDescription;
     }
 
@@ -522,10 +483,10 @@ public class RandomTowerBlueprints : MonoBehaviour {
         //{
         //    limit = amountOfUndiscoveredTowers;
         //}
-        for(int x = 0; x < limit; x++)
+        for (int x = 0; x < limit; x++)
         {
             int rando = UnityEngine.Random.Range(0, amountOfUndiscoveredTowers);
-            if(x == 0)
+            if (x == 0)
             {
                 if (amountOfUndiscoveredTowers == 0)
                 {
@@ -563,7 +524,7 @@ public class RandomTowerBlueprints : MonoBehaviour {
                     towerTwoInUse = true;
                     //print("x was 1");
                 }
-                           }
+            }
             if (x == 2)
             {
                 if (amountOfUndiscoveredTowers == 0)
@@ -586,7 +547,30 @@ public class RandomTowerBlueprints : MonoBehaviour {
             //print(rando + " is rando number");
             //print(amountOfUndiscoveredTowers + " is undiscovered towers");
         }
-        
+
     }
 
+    public void CheckIfExplainComputerRoom()
+    {
+        // if computer is not explained, explain it.
+        if (!singleton.GetIsComputerExplained())
+        {
+            float waitTime = 2f;
+            singleton.SetIsComputerExplained(true);
+
+            StartCoroutine(ComputerTutorial(waitTime));
+        }
+
+    }
+
+    IEnumerator ComputerTutorial(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+
+
+        List<string> promptTexts = new List<string>() { "" };
+        List<Texture> prompImages = new List<Texture>() {  };
+        prompt = Instantiate(moreInformationPrompt, transform.position, Quaternion.identity, gameObject.transform);
+        prompt.DelayedInitialization(prompImages, promptTexts);
+    }
 }

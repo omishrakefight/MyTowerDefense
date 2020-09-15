@@ -16,6 +16,7 @@ public class SaveAndLoad : MonoBehaviour {
     protected AsyncOperation loadingLevelFromPostGame;
 
     bool finishedLoading = false;
+    public bool isTutorial = false;
     SaveSerializedObject saver;
     PlayerTowerLog _playerTowerLog;
     Singleton _singleton;
@@ -59,7 +60,7 @@ public class SaveAndLoad : MonoBehaviour {
         saver.SaveEnemyOptions(_missionChoice.firstEnemySet.ToArray(), _missionChoice.secondEnemySet.ToArray());
         saver.SaveTowersAndParts(_playerTowerLog.SaveKnownTowersAndParts(), _playerTowerLog.SaveLearnableTowersAndParts(), _playerTowerLog.SaveUnlearnableTowersAndParts());
         saver.SaveTinkerRoomInfo(_tinkerUpgrades.SaveCurrentUpgradeLevels(), _tinkerUpgrades.SaveLearnableUpgrades(), _tinkerUpgrades.SavePossibleOptions(), _tinkerUpgrades.SaveHasPicked());
-
+        saver.SetTutorial(_singleton.GetIsTutorial());
         //TODO just save as a list instead of going to [];
         //saver.SaveList(_missionChoice.firstEnemySet);
         //saver.SaveDic();
@@ -266,6 +267,7 @@ public class SaveAndLoad : MonoBehaviour {
                     _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, new int[] { }, false, false);
                 }
                 // LOAD REGARDLESS we load what towers we know regardless of loading saved or new base.  The IF a tower is learned is checked above with singleton
+                _singleton.SetIsTutorial(savedFile.isTutorial);
                 _playerTowerLog.LoadTowersAndParts(savedFile.knownTowersAndParts, savedFile.learnableTowersAndParts, savedFile.unlearnableTowersAndParts);
                 _tinkerUpgrades.AddToBackupList();
 

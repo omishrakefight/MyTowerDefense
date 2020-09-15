@@ -2373,6 +2373,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   amountOfUndiscoveredTowers: 0
+  moreInformationPrompt: {fileID: 114213890005618042, guid: 9b6e49375cea3e64dacf02c1f2c64f11,
+    type: 2}
   turretTypes: {fileID: 0}
   towerButtonOne: {fileID: 114621864876090652}
   buttonOneText: {fileID: 114416009061637182}

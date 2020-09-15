@@ -29,6 +29,14 @@ public class SaveSerializedObject  {
     public Dictionary<string, Dictionary<string, int>> knownTowersAndParts;
     public Dictionary<string, Dictionary<string, int>> learnableTowersAndParts;
     public Dictionary<string, Dictionary<string, int>> unlearnableTowersAndParts;
+
+    public bool isTutorial = false;
+    public bool hasExplainedComputerRoom = false;
+    public bool hasExplainedEngineerRoom = false;
+    public bool hasExplainedTinkerRoom = false;
+    public bool hasExplainedTurretRoom = false;
+    public bool hasExplainedMeetingRoom = false;
+
     // add the bool
 
     /// <summary>
@@ -70,6 +78,11 @@ public class SaveSerializedObject  {
         learnableUpgrades = _learnableUpgrades;
         possibleOptions = _possibleOptions;
         hasPicked = _hasPicked;
+    }
+
+    public void SetTutorial(bool _isTutorial)
+    {
+        isTutorial = _isTutorial;
     }
 
     public void IsHasChosenATower(bool chosen)

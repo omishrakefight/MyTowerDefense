@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class CanvasManager : MonoBehaviour {
 
     FadeScript fader;
+    Singleton _singleton = null;
 
     [Header ("Canvases")]
     [SerializeField] Canvas computerBase;
@@ -137,6 +139,8 @@ public class CanvasManager : MonoBehaviour {
 
     IEnumerator MeetingRoom()
     {
+        //CheckForSingleton();
+
         FadeIn_DisableOldCanvas();
         var delay = currentScreenFader.GetComponent<FadeScript>().fadeTime;
         yield return new WaitForSeconds(delay);
@@ -152,6 +156,8 @@ public class CanvasManager : MonoBehaviour {
     }
     IEnumerator TinkerRoom()
     {
+        //CheckForSingleton();
+
         FadeIn_DisableOldCanvas();
         var delay = currentScreenFader.GetComponent<FadeScript>().fadeTime;
         yield return new WaitForSeconds(delay);
@@ -167,6 +173,8 @@ public class CanvasManager : MonoBehaviour {
     }
     IEnumerator EngineerRoom()
     {
+        //CheckForSingleton();
+
         FadeIn_DisableOldCanvas();
         var delay = currentScreenFader.GetComponent<FadeScript>().fadeTime;
         yield return new WaitForSeconds(delay);
@@ -178,10 +186,16 @@ public class CanvasManager : MonoBehaviour {
         currentActiveCanvas = engineerer;
         currentScreenFader = engineerFader;
         currentScreenFader.GetComponent<FadeScript>().FadeOut();
+
         yield break;
     }
+
+
+
     IEnumerator TurretRoom()
     {
+        //CheckForSingleton();
+
         FadeIn_DisableOldCanvas();
         var delay = currentScreenFader.GetComponent<FadeScript>().fadeTime;
         yield return new WaitForSeconds(delay);
@@ -197,6 +211,8 @@ public class CanvasManager : MonoBehaviour {
     }
     IEnumerator ComputerRoom()
     {
+        //CheckForSingleton();
+
         FadeIn_DisableOldCanvas();
         var delay = currentScreenFader.GetComponent<FadeScript>().fadeTime;
         yield return new WaitForSeconds(delay);
@@ -208,8 +224,18 @@ public class CanvasManager : MonoBehaviour {
         currentActiveCanvas = computerBase;
         currentScreenFader = computerFader;
         currentScreenFader.GetComponent<FadeScript>().FadeOut();
+
         yield break;
     }
+
+
+    //private void CheckForSingleton()
+    //{
+    //    if (_singleton == null)
+    //    {
+    //        _singleton = FindObjectOfType<Singleton>();
+    //    }
+    //}
 
     /*
     public IEnumerator Wait()

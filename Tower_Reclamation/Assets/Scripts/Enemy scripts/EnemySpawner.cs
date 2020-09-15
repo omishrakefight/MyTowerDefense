@@ -321,7 +321,6 @@ public class EnemySpawner : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            FindObjectOfType<Singleton>().LevelCleared();
             FindObjectOfType<LoadNextArea>().LoadNextAreaPostBattle(Singleton.Instance.level);
         }
 

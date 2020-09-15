@@ -203,6 +203,7 @@ public class TowerSelecter : MonoBehaviour
         Tower towerBase = null;
         GameObject towerHead = null;
         int baseInt = 0, AugmentInt = 0;
+        string towerName = "Don't care";
 
         if (tower == null)
         {
@@ -212,7 +213,7 @@ public class TowerSelecter : MonoBehaviour
             DestroyObject(tower.gameObject);
         }
 
-        decidedTower = PickTower(ref towerBase, ref towerHead, ref baseInt, ref AugmentInt);
+        decidedTower = PickTower(ref towerBase, ref towerHead, ref baseInt, ref AugmentInt, ref towerName);
 
         SpawnTowerForViewing(towerPosition, towerBase, towerHead);
 
@@ -455,10 +456,10 @@ public class TowerSelecter : MonoBehaviour
     }
 
 
-    public Tower PickTower(ref Tower turretBase, ref GameObject towerHead, ref int baseType, ref int towerBarrelType)
+    public Tower PickTower(ref Tower turretBase, ref GameObject towerHead, ref int baseType, ref int towerBarrelType, ref string tower)
     {
         List<Dropdown.OptionData> list = towerTurret.options;
-        string tower = list[towerTurret.value].text;
+        tower = list[towerTurret.value].text;
 
         //if (towerLog == null)
         //{

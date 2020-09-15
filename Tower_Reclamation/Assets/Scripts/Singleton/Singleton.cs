@@ -21,16 +21,19 @@ public sealed class Singleton : MonoBehaviour {
     public GameObject towerOneHead = null;
     public int towerOneBaseType = -1;
     public int towerOneHeadType = -1;
+    public string towerOneName = "";
 
     public Tower towerTwoBase = null;
     public GameObject towerTwoHead = null;
     public int towerTwoBaseType = -1;
     public int towerTwoHeadType = -1;
+    public string towerTwoName = "";
 
     public Tower towerThreeBase = null;
     public GameObject towerThreeHead = null;
     public int towerThreeBaseType = -1;
     public int towerThreeHeadType = -1;
+    public string towerThreeName = "";
 
     static public Dictionary<string, float> towerDamages = new Dictionary<string, float>();
 
@@ -50,6 +53,13 @@ public sealed class Singleton : MonoBehaviour {
 
     public bool isHasPickedAPath = false;
     public bool isHasLearnedATower = false;
+
+    private bool isTutorial = false;
+    private bool hasExplainedComputerRoom = false;
+    private bool hasExplainedEngineeringRoom = false;
+    private bool hasExplainedTinkerRoom = false;
+    private bool hasExplainedTurretRoom = false;
+    private bool hasExplainedMeetingRoom = false;
 
     [Header("Rifle Tower")]
     [SerializeField] public Tower basicRifledTowerBase;
@@ -100,9 +110,10 @@ public sealed class Singleton : MonoBehaviour {
         GameObject towerHead = null;
         int baseType = -1;
         int headType = -1;
+        string towerName = "";
         dropdown = GameObject.FindGameObjectWithTag(towerNumTag).GetComponent<Dropdown>();
         towerSelector = FindObjectOfType<TowerSelecter>();
-        tempTower = towerSelector.PickTower(ref towerBase, ref towerHead, ref baseType, ref headType);
+        tempTower = towerSelector.PickTower(ref towerBase, ref towerHead, ref baseType, ref headType, ref towerName);
         //temp tower holds the new tower, swtich determines what button it takes over.need to convert to Tower instetad of towerDmG
         switch (dropdown.value)
         {
@@ -112,7 +123,7 @@ public sealed class Singleton : MonoBehaviour {
                 towerOneHead = towerHead;
                 towerOneBaseType = baseType;
                 towerOneHeadType = headType;
-
+                towerOneName = towerName;
                 //print(towerOne.name);
                 //FindObjectOfType<TowerButton1>().UpdateName();
                 break;
@@ -121,12 +132,14 @@ public sealed class Singleton : MonoBehaviour {
                 towerTwoHead = towerHead;
                 towerTwoBaseType = baseType;
                 towerTwoHeadType = headType;
+                towerTwoName = towerName;
                 break;
             case 3:
                 towerThreeBase = towerBase;
                 towerThreeHead = towerHead;
                 towerThreeBaseType = baseType;
                 towerThreeHeadType = headType;
+                towerName = towerThreeName;
                 //towerThree = tempTower;
                 //FindObjectOfType<TowerButton3>().UpdateName();
                 break;
@@ -144,6 +157,66 @@ public sealed class Singleton : MonoBehaviour {
  //       /_____/\___/ |___/  \___/ /_/          /___/   /_/ /_/ /_/     \____/ /_/     /_/ /_/ /_/ \__,_/  \__/  /_/   \____/ /_/ /_/ 
                                                                                                                              
                                 
+     public void SetIsTutorial(bool _isTutorial)
+     {
+        isTutorial = _isTutorial;
+     }
+
+    public void SetBaseTutorialStatus(bool computerRoom, bool engineeringRoom, bool tinkerRoom, bool turretRoom, bool meetingRoom)
+    {
+        hasExplainedComputerRoom = computerRoom;
+        hasExplainedEngineeringRoom = engineeringRoom;
+        hasExplainedTinkerRoom = tinkerRoom;
+        hasExplainedTurretRoom = turretRoom;
+        hasExplainedMeetingRoom = meetingRoom;
+    }
+    public void SetIsComputerExplained(bool explained)
+    {
+        hasExplainedComputerRoom = explained;
+    }
+    public void SetIsEngineeringExplained(bool explained)
+    {
+        hasExplainedEngineeringRoom = explained;
+    }
+    public void SetIsTinkerExplained(bool explained)
+    {
+        hasExplainedTinkerRoom = explained;
+    }
+    public void SetIsTurretExplained(bool explained)
+    {
+        hasExplainedTurretRoom = explained;
+    }
+    public void SetIsMeetingExplained(bool explained)
+    {
+        hasExplainedMeetingRoom = explained;
+    }
+
+    public bool GetIsComputerExplained()
+    {
+        return hasExplainedComputerRoom;
+    }
+    public bool GetIsEngineeringExplained()
+    {
+        return hasExplainedEngineeringRoom;
+    }
+    public bool GetIsTinkerExplained()
+    {
+        return hasExplainedTinkerRoom;
+    }
+    public bool GetIsTurretExplained()
+    {
+        return hasExplainedTurretRoom;
+    }
+    public bool GetIsMeetingExplained()
+    {
+        return hasExplainedMeetingRoom;
+    }
+
+    public bool GetIsTutorial()
+    {
+        return isTutorial;
+    }
+
      public void LevelCleared()
      {
         level++;

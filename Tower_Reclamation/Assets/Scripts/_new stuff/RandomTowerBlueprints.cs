@@ -43,6 +43,8 @@ public class RandomTowerBlueprints : MonoBehaviour
     [SerializeField] Sprite LightningTowerPic;
     [SerializeField] Sprite AlreadyKnown;
 
+    [Header("Tutorial Images")]
+    [SerializeField] Texture SelectionButtonImage;
 
 
     bool towerOneInUse = false;
@@ -567,9 +569,11 @@ public class RandomTowerBlueprints : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
 
+        string computerButtonExplained = "The computer hacker has found these tower files clicking one locks you out of learning the others from this computer.  " +
+            "This lets you find new parts in the engineering room, or set it up to be used in the next mission in the turret room.";
 
-        List<string> promptTexts = new List<string>() { "" };
-        List<Texture> prompImages = new List<Texture>() {  };
+        List<string> promptTexts = new List<string>() { computerButtonExplained };
+        List<Texture> prompImages = new List<Texture>() { SelectionButtonImage };
         prompt = Instantiate(moreInformationPrompt, transform.position, Quaternion.identity, gameObject.transform);
         prompt.DelayedInitialization(prompImages, promptTexts);
     }

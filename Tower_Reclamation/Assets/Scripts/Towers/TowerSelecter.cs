@@ -165,6 +165,11 @@ public class TowerSelecter : MonoBehaviour
         changingTowerType = false;
     }
 
+    public void loadSavedTower()
+    {
+
+    }
+
     // Sent from RandomTowerBlueprints.  it calls this function.
     public void UpdateTowersAvailable(List<string> towersKnown)
     {
@@ -315,6 +320,44 @@ public class TowerSelecter : MonoBehaviour
         FocusDynamicTowerType(knownTowerParts);
 
         return decidedTower;
+    }
+
+    public Tower SetTowerBaseAndHead2(string towerType)
+    {
+        if (towerLog == null)
+        {
+            towerLog = FindObjectOfType<PlayerTowerLog>();
+        }
+
+        int towerIndex = towerTurret.options.FindIndex(option => option.text == towerType);
+        towerTurret.value = towerIndex;
+
+        knownTowerParts = new Dictionary<string, int>();
+        knownTowerParts = towerLog.GetTowerParts(towerType);
+        FocusDynamicTowerType(knownTowerParts);
+
+        return decidedTower;
+    }
+
+    public void LoadTowerOne()
+    {
+        if (singleton == null)
+        {
+            singleton = FindObjectOfType<Singleton>();
+        }
+
+        changingTowerType = true;
+        towerBarrel.value = 0;
+        towerBase.value = 0;
+
+        //SetTowerBaseAndHead();
+        SetTowerBaseAndHead2(singleton.towerOneName);
+        changingTowerType = false;
+
+        towerBarrel.value = singleton.towerOneHeadType;
+        towerBase.value = singleton.towerOneBaseType;
+        ResetTowerPicture();
+
     }
 
     public void InitializeOptionsOnRoomSwap()
@@ -682,6 +725,7 @@ public class TowerSelecter : MonoBehaviour
                 break;
         }
     }
+
 
     //public void UpdateTowerType()
     //{

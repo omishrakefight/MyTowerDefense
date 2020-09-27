@@ -139,7 +139,7 @@ public sealed class Singleton : MonoBehaviour {
                 towerThreeHead = towerHead;
                 towerThreeBaseType = baseType;
                 towerThreeHeadType = headType;
-                towerName = towerThreeName;
+                towerThreeName = towerName;
                 //towerThree = tempTower;
                 //FindObjectOfType<TowerButton3>().UpdateName();
                 break;

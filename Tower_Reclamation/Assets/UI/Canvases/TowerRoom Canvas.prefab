@@ -750,7 +750,7 @@ GameObject:
   - component: {fileID: 114578839632742078}
   - component: {fileID: 114643450893912488}
   m_Layer: 5
-  m_Name: Button Select
+  m_Name: Button Save
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3191,6 +3191,9 @@ MonoBehaviour:
     type: 2}
   basicIceTower: {fileID: 114733931375009144, guid: f5de3bbfd2a4ba54596a7eaefbf2c0e4,
     type: 2}
+  TowerOnePanel: {fileID: 1201354700003480}
+  TowerTwoPanel: {fileID: 1748703946864782}
+  TowerThreePanel: {fileID: 1435048384045908}
   TowerTypeDescription: {fileID: 114462399790550028}
   TowerAugmentDescription: {fileID: 114018071501507708}
   TowerBaseDescription: {fileID: 114162829057612236}
@@ -3764,7 +3767,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114910455494808418}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114364131738658920}
+        m_MethodName: LoadTowerTwo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114497655273925524
@@ -3943,7 +3957,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 114220385698644896}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114364131738658920}
+        m_MethodName: LoadTowerThree
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &114537011674966174
@@ -4291,7 +4316,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 114364131738658920}
-        m_MethodName: ProxyFindTower
+        m_MethodName: SaveTowerToSingleton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

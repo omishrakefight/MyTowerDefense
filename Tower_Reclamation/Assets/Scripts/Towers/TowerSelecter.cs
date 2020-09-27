@@ -38,6 +38,11 @@ public class TowerSelecter : MonoBehaviour
 
     #endregion
 
+    [SerializeField] GameObject TowerOnePanel;
+    [SerializeField] GameObject TowerTwoPanel;
+    [SerializeField] GameObject TowerThreePanel;
+
+
     [SerializeField] public Text TowerTypeDescription;
     [SerializeField] public Text TowerAugmentDescription;
     [SerializeField] public Text TowerBaseDescription;
@@ -346,6 +351,10 @@ public class TowerSelecter : MonoBehaviour
             singleton = FindObjectOfType<Singleton>();
         }
 
+        TowerOnePanel.SetActive(true);
+        TowerTwoPanel.SetActive(false);
+        TowerThreePanel.SetActive(false);
+
         changingTowerType = true;
         towerBarrel.value = 0;
         towerBase.value = 0;
@@ -357,7 +366,51 @@ public class TowerSelecter : MonoBehaviour
         towerBarrel.value = singleton.towerOneHeadType;
         towerBase.value = singleton.towerOneBaseType;
         ResetTowerPicture();
+    }
+    public void LoadTowerTwo()
+    {
+        if (singleton == null)
+        {
+            singleton = FindObjectOfType<Singleton>();
+        }
 
+        TowerOnePanel.SetActive(false);
+        TowerTwoPanel.SetActive(true);
+        TowerThreePanel.SetActive(false);
+
+        changingTowerType = true;
+        towerBarrel.value = 0;
+        towerBase.value = 0;
+
+        //SetTowerBaseAndHead();
+        SetTowerBaseAndHead2(singleton.towerTwoName);
+        changingTowerType = false;
+
+        towerBarrel.value = singleton.towerTwoHeadType;
+        towerBase.value = singleton.towerTwoBaseType;
+        ResetTowerPicture();
+    }
+    public void LoadTowerThree()
+    {
+        if (singleton == null)
+        {
+            singleton = FindObjectOfType<Singleton>();
+        }
+        TowerOnePanel.SetActive(false);
+        TowerTwoPanel.SetActive(false);
+        TowerThreePanel.SetActive(true);
+
+        changingTowerType = true;
+        towerBarrel.value = 0;
+        towerBase.value = 0;
+
+        //SetTowerBaseAndHead();
+        SetTowerBaseAndHead2(singleton.towerThreeName);
+        changingTowerType = false;
+
+        towerBarrel.value = singleton.towerThreeHeadType;
+        towerBase.value = singleton.towerThreeBaseType;
+        ResetTowerPicture();
     }
 
     public void InitializeOptionsOnRoomSwap()
@@ -492,7 +545,7 @@ public class TowerSelecter : MonoBehaviour
     /// to cover the broken reference when towerroom is deleted on load.
     /// </summary>
     /// more precisely, The button references the new singleton which kills itself on spawning in, then this is a blnak reference.
-    public void ProxyFindTower()
+    public void SaveTowerToSingleton()
     {
         singleton = Singleton.Instance;
         singleton.FindTower();

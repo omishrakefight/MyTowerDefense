@@ -128,9 +128,13 @@ public abstract class Tower : MonoBehaviour {
                     if (getNext)
                     {
                         closestEnemy = testEnemy.transform;
+                        getNext = false;
                     }
 
                     closestEnemy = GetClosest(closestEnemy, testEnemy.transform);
+                } else
+                {
+                    int x = 0;
                 }
             }
 

@@ -186,7 +186,7 @@ public class RifledTower : Tower {
         if (preferedEnemyBody != null && preferedEnemyBody != targetEnemyBody)
         {
             float distanceToPreferedEnemy = Vector3.Distance(preferedEnemyBody.gameObject.transform.position, gameObject.transform.position);
-            if ((distanceToPreferedEnemy <= currentAttackRange && targetEnemyBody.isTargetable) && (distanceToPreferedEnemy >= minRange))
+            if ((distanceToPreferedEnemy <= currentAttackRange && preferedEnemyBody.isTargetable) && (distanceToPreferedEnemy >= minRange)) //targetEnemyBody.isTargetable
             {
                 //print(preferedEnemyBody.gameObject.name);
                 targetEnemyBody = preferedEnemyBody;

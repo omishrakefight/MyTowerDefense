@@ -14,6 +14,7 @@ public class ChooseNextMissionPath : MonoBehaviour {
     [SerializeField] Button choiceOneBtn;
     [SerializeField] Button choiceTwoBtn;
     public bool isHasChosen = false;
+    private bool isLoaded = false;
 
     public List<int> firstEnemySet = new List<int>();
     public List<int> secondEnemySet = new List<int>();
@@ -27,8 +28,11 @@ public class ChooseNextMissionPath : MonoBehaviour {
     void Start () {
         singleton = Singleton.Instance;
 
-        GetEnemyPathChoices();
-        isHasChosen = false;
+        if (!isLoaded)
+        {
+            GetEnemyPathChoices();
+            isHasChosen = false;
+        }
     }
 	
 	// Update is called once per frame
@@ -38,8 +42,8 @@ public class ChooseNextMissionPath : MonoBehaviour {
 
     public void LoadPathChoices(int[] firstPath, int[] secondPath)
     {
-        //firstEnemySet.Clear();
-        //secondEnemySet.Clear();
+        firstEnemySet.Clear();
+        secondEnemySet.Clear();
 
         firstEnemySet = new List<int>(firstPath);
         secondEnemySet = new List<int>(secondPath);
@@ -48,14 +52,11 @@ public class ChooseNextMissionPath : MonoBehaviour {
         choiceOneDescription.text = "We are seeing a lot of " + DetermineEnemyType(mostCommonEnemy)
             + ".  They comprise about " + percentOfEnemies.ToString() + "% of the enemies.";
 
-        //foreach (int enemy in secondPath)
-        //{
-        //    secondEnemySet.Add(enemy);
-        //}
-        // button informations.
         CalculateMostCommonEnemy(secondEnemySet);
         choiceTwoDescription.text = "We are seeing a lot of " + DetermineEnemyType(mostCommonEnemy)
             + ".  They comprise about " + percentOfEnemies.ToString() + "% of the enemies.";
+
+        isLoaded = true;
     }
 
     public void ChooseFirstPath()
@@ -84,6 +85,8 @@ public class ChooseNextMissionPath : MonoBehaviour {
 
     private void GetEnemyPathChoices()
     {
+        firstEnemySet.Clear();
+        secondEnemySet.Clear();
         // being set = to it permanent not at the snapshot
         firstEnemySet = singleton.CreateEnemyList(firstEnemySet);
         CalculateMostCommonEnemy(firstEnemySet);

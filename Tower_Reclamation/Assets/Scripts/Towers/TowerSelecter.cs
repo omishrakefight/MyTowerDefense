@@ -128,6 +128,10 @@ public class TowerSelecter : MonoBehaviour
         collider = tower.GetComponentInChildren<BoxCollider>();
         bound = collider.bounds;
 
+        if (!singleton.towerOneName.Equals(""))
+        {
+            LoadTowerOne();
+        }
         //UpdateTowersAvailable();
     }
 

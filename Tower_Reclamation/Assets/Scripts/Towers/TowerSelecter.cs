@@ -111,6 +111,7 @@ public class TowerSelecter : MonoBehaviour
         //towerPosition = new Vector3(5.2f, -1f, -2.70f);
 
         //this value is for the base turret room.
+        singleton = FindObjectOfType<Singleton>();
         towerPosition = towerPlaceholder.transform.position;
 
         towerBase.value = 0;

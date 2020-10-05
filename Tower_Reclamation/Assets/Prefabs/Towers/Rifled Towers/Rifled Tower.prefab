@@ -244,16 +244,18 @@ MonoBehaviour:
   attackRange: 28
   towerDmg: 10
   currentTowerDmg: 10
+  sceneEnemies: []
   targetEnemy: {fileID: 0}
   objectToPan: {fileID: 4613106442342080}
   targetEnemyBody: {fileID: 0}
   preferedEnemyBody: {fileID: 0}
-  canSilverWiring: 0
+  cantargettingModule: 0
   canAlloyReasearch: 0
   canSturdyTank: 0
   canHeavyShelling: 0
   canTowerEngineer: 0
   keepBuffed: 0
+  bullet: {fileID: 114668752534823016, guid: 4fdb30c603819434f9fbe04027a7ccbb, type: 2}
 --- !u!114 &114669625482126914
 MonoBehaviour:
   m_ObjectHideFlags: 1

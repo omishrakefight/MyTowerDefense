@@ -13,11 +13,16 @@ public class RifledTower : Tower {
     ParticleSystem projectileParticle = null;
     ParticleSystem.EmissionModule emission;
     Singleton singleton;
+
+    [SerializeField] RifledBullet bullet;
+    private float attackSpeed = 1.0f;
+    private float attackTimer = 0f;
+
     //[SerializeField] float towerDmg = 12;
     //[SerializeField] private float currentTowerDmg = 12;
     // State of tower
 
-    
+
     // Buff info
     //bool keepBuffed = false;
     readonly new bool cantargettingModule = true;
@@ -46,7 +51,7 @@ public class RifledTower : Tower {
 
         base.Start();
         minRange = 0f;
-        towerDmg = 15f;
+        towerDmg = 30f;
         attackRange = 20f;
         currentTowerDmg = 15f;
         currentAttackRange = attackRange;
@@ -109,26 +114,28 @@ public class RifledTower : Tower {
         switch (towerInt)
         {
             case (int)RifledHead.Basic:
-                towerAttackSpeedModifierPercent = 1.9f;
-                TowerAugmentExplanation = "Tower attack speed +" + (int)((towerAttackSpeedModifierPercent - 1f) * 100f) + '%'; 
-                emission.rateOverTime = (emission.rateOverTime.constant * towerAttackSpeedModifierPercent);
+                //towerAttackSpeedModifierPercent = 1.9f;
+                TowerAugmentExplanation = "Tower attack speed =" + attackSpeed;//(int)((towerAttackSpeedModifierPercent - 1f) * 100f) + '%';
+                //emission.rateOverTime = (emission.rateOverTime.constant * towerAttackSpeedModifierPercent);
+                //attackSpeed = attackSpeed / towerAttackSpeedModifierPercent;
                 //nothing;
                 break;
             case (int)RifledHead.Sniper:
-                towerDmgModifierPercent = 5f;
+                towerDmgModifierPercent = 2.75f;
                 towerAttackRangeModifierPercent = 1.75f;
-                towerAttackSpeedModifierPercent = .35f;
+                towerAttackSpeedModifierPercent = 3.5f;
                 float towerMinRange = .33f;
 
                 TowerAugmentExplanation = "Tower damage +" + (int)(towerDmgModifierPercent * 100f) + '%';
                 TowerAugmentExplanation += "\nTower attack range +" + (int)((towerAttackRangeModifierPercent -1) * 100f) + '%';
-                TowerAugmentExplanation += "\nTower attack speed -" + (int)((1 - towerAttackSpeedModifierPercent) * 100f) + '%';
+                TowerAugmentExplanation += "\nTower attack speed =" + (int)((towerAttackSpeedModifierPercent) * 100f) + "% slower";
                 TowerAugmentExplanation += "\nNEW* tower minimum range = " + (int)(towerMinRange * 100f) + "% of max range";
 
                 currentAttackRange = attackRange * towerAttackRangeModifierPercent;
                 attackRange = currentAttackRange;
                 minRange = currentAttackRange * towerMinRange;
-                emission.rateOverTime = (emission.rateOverTime.constant * towerAttackSpeedModifierPercent);
+                attackSpeed = attackSpeed * towerAttackSpeedModifierPercent;
+                //emission.rateOverTime = (emission.rateOverTime.constant * towerAttackSpeedModifierPercent);
                 towerDmg = towerDmg * towerDmgModifierPercent;
                 currentTowerDmg = towerDmg;
                 break;
@@ -144,7 +151,7 @@ public class RifledTower : Tower {
             "Attack Range = " + currentAttackRange + "\n" +
             "Minimum Attack Range = " + minRange + "\n" +
             "Attack Damage = " + currentTowerDmg + "\n" +
-            "Attack speed = " + (emission.rateOverTime.constant).ToString() + "/s \n" +
+            "Attack speed = " + attackSpeed + "/s \n" +
             "Damage Type = Projectile \n" +
             "Targetting = Single Enemy";
     }
@@ -182,6 +189,11 @@ public class RifledTower : Tower {
             return; // not initiallized yet
         }
 
+        if (attackTimer < attackSpeed)
+        {
+            attackTimer += Time.deltaTime;
+        }
+
 
         if (preferedEnemyBody != null && preferedEnemyBody != targetEnemyBody)
         {
@@ -198,6 +210,7 @@ public class RifledTower : Tower {
         {
             objectToPan.LookAt(targetEnemy);
             FireAtEnemy();
+
         }
         else
         {
@@ -238,11 +251,19 @@ public class RifledTower : Tower {
 
         if (distanceToEnemy <= currentAttackRange && targetEnemyBody.isTargetable && distanceToEnemy >= minRange)
         {
-            Shoot(true);
+            //Shoot(true);
+            //New shot setup
+            if (attackTimer >= attackSpeed)
+            {
+                attackTimer = 0f;
+                RifledBullet bulletShot = Instantiate(bullet, transform.position, Quaternion.identity);
+                float heightOffset = GetComponentInChildren<MeshFilter>().sharedMesh.bounds.extents.y * 1.10f;
+                bulletShot.Instantiate(targetEnemy, currentTowerDmg, TowerTypeName, heightOffset);
+            }
         }
         else
         {
-            Shoot(false);
+            //Shoot(false);
             SetTargetEnemy();
         }
     }

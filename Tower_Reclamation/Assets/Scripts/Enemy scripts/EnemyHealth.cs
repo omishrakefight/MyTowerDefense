@@ -32,6 +32,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     protected float goldForMyHead = 7;
     float healPerTick = 0f;
     protected string enemyName = "";
+    protected bool hasGold = true;
 
     public bool isTargetable = true;
     public bool isBoss = false;
@@ -66,6 +67,7 @@ public abstract class EnemyHealth : MonoBehaviour {
         {
             healPerTick = healPerTick / 10f;
         }
+        hasGold = true;
         RegisterToEnemyList();
     }
 
@@ -146,9 +148,69 @@ public abstract class EnemyHealth : MonoBehaviour {
         burnDmg = fireDmg;
     }
 
+    ////Rifled tower bullet dmg.
+    //protected void OnCollisionEnter(Collision collision) //    protected void OnCollisionEnter(Collision collision)
+    //{
+    //    print("im trhit!");
+    //    if (collision.gameObject.GetComponent<RifledBullet>())
+    //    {
+    //        RifledBullet bullet = collision.gameObject.GetComponent<RifledBullet>();
+    //        string towerName = "";
+    //        float dmg = 0;
+    //        dmg = bullet.damage;
+    //        towerName = bullet.towerName;
+    //        ProcessHit(dmg, towerName);
+    //        if (hitPoints <= 0)
+    //        {
+    //            //Adds gold upon death, then deletes the enemy.
+    //            damageLog.UpdateKills(towerName, enemyName);
+    //            KillsEnemyandAddsGold();
+    //        }
+    //        else
+    //        {
+    //            GetComponent<AudioSource>().PlayOneShot(enemyHitAudio);
+    //        }
+    //    }
+    //}
+
+    private void OnTriggerEnter(Collider other)
+    {
+        print("im trigger!");
+        if (other.gameObject.GetComponent<RifledBullet>())
+        {
+            RifledBullet bullet = other.gameObject.GetComponent<RifledBullet>();
+            string towerName = "";
+            float dmg = 0;
+            dmg = bullet.damage;
+            bullet.SetDamageToZero();
+            towerName = bullet.towerName;
+            ProcessHit(dmg, towerName);
+            if (hitPoints <= 0)
+            {
+                if (!hasGold) // debate this.  NOt sure if ishould use thi or try to find WHY more. l THis should fix it but its a meh fix.
+                {
+                    return;
+                }
+                hasGold = false;
+                //Adds gold upon death, then deletes the enemy.
+                damageLog.UpdateKills(towerName, enemyName);
+                KillsEnemyandAddsGold();
+            }
+            else
+            {
+                GetComponent<AudioSource>().PlayOneShot(enemyHitAudio);
+            }
+        }
+    }
+
     protected virtual void OnParticleCollision(GameObject other)
     {
-        string towerName = "";
+        if (other.gameObject.GetComponent<RifledBullet>())
+        {
+            print("im treated like a particle!");
+        }
+
+            string towerName = "";
         float dmg = 0;
         dmg = other.GetComponentInParent<Tower>().Damage(ref towerName);
         ProcessHit(dmg, towerName);
@@ -205,9 +267,15 @@ public abstract class EnemyHealth : MonoBehaviour {
 
         if (hitPoints <= 0)
         {
+            // if it has already been killed and is waiting for cleanup / dlete, dont double dip gold.
+            if (!hasGold)
+            {
+                return;
+            }
+            hasGold = false;
             //Adds gold upon death, then deletes the enemy.
             damageLog.UpdateDamageAndKills(towerName, dmg, enemyName);
-            KillsEnemyandAddsGold();
+            KillsEnemyandAddsGold();          
         }
         else
         {

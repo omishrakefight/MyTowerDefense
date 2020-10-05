@@ -53,6 +53,8 @@ public class BurrowerHealth : EnemyHealth {
 
         if (hitPoints <= 0)
         {
+            // if it has already been killed and is waiting for cleanup / dlete, dont double dip gold.
+
             //Adds gold upon death, then deletes the enemy.
             KillsEnemyandAddsGold();
             damageLog.UpdateDamageAndKills(towerName, damage, enemyName);

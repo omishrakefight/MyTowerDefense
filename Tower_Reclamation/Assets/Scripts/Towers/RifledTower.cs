@@ -95,7 +95,8 @@ public class RifledTower : Tower {
                 currentAttackRange -= changeAmount;
                 attackRange = currentAttackRange;
 
-                emission.rateOverTime = (emission.rateOverTime.constant * (1.0f + towerAttackSpeedModifierPercent));
+                //emission.rateOverTime = (emission.rateOverTime.constant * (1.0f + towerAttackSpeedModifierPercent));
+                attackSpeed = attackSpeed * (1 - towerAttackSpeedModifierPercent);
                 break;
             default:
                 print("Default base, I am towerint of : " + towerInt);
@@ -151,7 +152,7 @@ public class RifledTower : Tower {
             "Attack Range = " + currentAttackRange + "\n" +
             "Minimum Attack Range = " + minRange + "\n" +
             "Attack Damage = " + currentTowerDmg + "\n" +
-            "Attack speed = " + attackSpeed + "/s \n" +
+            "Attack speed = " + attackSpeed + " s \n" +
             "Damage Type = Projectile \n" +
             "Targetting = Single Enemy";
     }

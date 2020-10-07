@@ -1689,6 +1689,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slime: {fileID: 114593671393768422, guid: ea55370b2d53bb34dbb92c496ea109a6, type: 2}
+  slime_Straight: {fileID: 114063263013789374, guid: f2b739e40d05d9f43ababd5809c118fa,
+    type: 2}
+  slime_Curved: {fileID: 114854670070911326, guid: d3b1236164e34c74ab90280370a1c923,
+    type: 2}
 --- !u!114 &114277853263060562
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1786,6 +1790,7 @@ MonoBehaviour:
   onFire: 0
   time: 0
   isTargetable: 1
+  isBoss: 0
 --- !u!114 &114428397147215342
 MonoBehaviour:
   m_ObjectHideFlags: 1

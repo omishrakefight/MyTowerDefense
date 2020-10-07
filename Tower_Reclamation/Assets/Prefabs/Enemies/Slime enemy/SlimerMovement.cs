@@ -40,8 +40,15 @@ public class SlimerMovement : EnemyMovement {
             {
                 punchingBase = false;
                 if (path[currentPathNode].isSlimed == false) {
-                    GetComponent<SlimeBug>().SpawnSlime(path[currentPathNode].transform.position, path[currentPathNode + 1].transform.position);
-                    path[currentPathNode].isSlimed = true;
+                    if (currentPathNode < (path.Count - 2))
+                    {
+                        GetComponent<SlimeBug>().SpawnSlime(path[currentPathNode].transform.position, path[currentPathNode + 1].transform.position, path[currentPathNode + 2].transform.position);
+                        path[currentPathNode].isSlimed = true;
+                    } else
+                    {
+                        GetComponent<SlimeBug>().SpawnSlime(path[currentPathNode].transform.position, path[currentPathNode + 1].transform.position);
+                        path[currentPathNode].isSlimed = true;
+                    }
                 }
                 // increments the path node (go to next one) and turns them if need be.
                 ++currentPathNode;

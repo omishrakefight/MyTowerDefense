@@ -11,7 +11,12 @@ ModelImporter:
     2300000: slime_straight
     3300000: slime_straight
     4300000: slime_straight
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette
+    second: {fileID: 2100000, guid: cb32d4db476faf94494d43872edb939c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

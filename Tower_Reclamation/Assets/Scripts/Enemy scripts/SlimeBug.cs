@@ -26,8 +26,8 @@ public class SlimeBug : MonoBehaviour {
     {
         Vector3 slimeLocation = new Vector3(((oldLoc.x + newLoc.x) / 2), ((oldLoc.y + newLoc.y) / 2), ((oldLoc.z + newLoc.z) / 2));
         Instantiate(slime, slimeLocation, Quaternion.identity, GameObject.FindWithTag("Slime Container").gameObject.transform);
-
-        ExperimentalSlime(slimeLocation);
+        
+        //ExperimentalSlime(slimeLocation);
     }
     private Color[] colors;
     

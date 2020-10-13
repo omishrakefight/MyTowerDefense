@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class SlimeBug : MonoBehaviour {
 
+    //obsolete block
     [SerializeField] Slime slime;
+
+    //fancy new slime from wife.
     [SerializeField] Slime slime_Straight;
     [SerializeField] Slime slime_Curved;
 

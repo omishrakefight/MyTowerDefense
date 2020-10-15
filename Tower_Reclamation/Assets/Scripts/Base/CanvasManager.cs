@@ -23,6 +23,13 @@ public class CanvasManager : MonoBehaviour {
     [SerializeField] GameObject meetingRoomFader;
     public GameObject currentScreenFader;
 
+    [Header("Buttons")]
+    [SerializeField] Button computerBtn;
+    [SerializeField] Button engineerBtn;
+    [SerializeField] Button tinkerBtn;
+    [SerializeField] Button turretBtn;
+    [SerializeField] Button meetingRoomBtn;
+
     // Use this for initialization
     void Start () {
 
@@ -62,6 +69,11 @@ public class CanvasManager : MonoBehaviour {
     {
 
         yield return new WaitForFixedUpdate();
+
+        if (_singleton == null)
+        {
+            _singleton = FindObjectOfType<Singleton>();
+        }
 
         // Only have 1 Canvas going at a time
         turretFactory.gameObject.SetActive(true);
@@ -103,6 +115,7 @@ public class CanvasManager : MonoBehaviour {
     // room buttons, first checks if the active room is the one clicked.
     public void ChooseComputerRoom()
     {
+        CheckWhatCanBeDone();
         if (currentActiveCanvas != computerBase)
         {
             StartCoroutine(ComputerRoom());
@@ -110,6 +123,7 @@ public class CanvasManager : MonoBehaviour {
     }
     public void ChooseTurretRoom()
     {
+        CheckWhatCanBeDone();
         if (currentActiveCanvas != turretFactory)
         {
             StartCoroutine(TurretRoom());
@@ -117,6 +131,7 @@ public class CanvasManager : MonoBehaviour {
     }
     public void ChooseEngineerRoom()
     {
+        CheckWhatCanBeDone();
         if (currentActiveCanvas != engineerer)
         {
             StartCoroutine(EngineerRoom());
@@ -124,6 +139,7 @@ public class CanvasManager : MonoBehaviour {
     }
     public void ChooseTinkerRoom()
     {
+        CheckWhatCanBeDone();
         if (currentActiveCanvas != Tinker)
         {
             StartCoroutine(TinkerRoom());
@@ -131,9 +147,55 @@ public class CanvasManager : MonoBehaviour {
     }
     public void ChooseMeetingRoom()
     {
+        CheckWhatCanBeDone();
         if (currentActiveCanvas != meetingRoom)
         {
             StartCoroutine(MeetingRoom());
+        }
+    }
+
+    // Check the singleton to see what bools are available, change the buttons to gold to indicate stuff can be done.
+    // this is to be called every time a button is click to room change to update the colors.
+    public void CheckWhatCanBeDone()
+    {
+        if (_singleton == null)
+        {
+            _singleton = FindObjectOfType<Singleton>();
+        }
+
+        if (_singleton.isHasLearnedATower == false)
+        {
+            var color = computerBtn.colors;
+            color.normalColor = Color.yellow;
+        }
+        else
+        {
+            //turn it white.
+            var color = computerBtn.colors;
+            color.normalColor = Color.white;
+        }
+
+        if (_singleton.ishasLearnedTinker == false)
+        {
+            var color = computerBtn.colors;
+            color.normalColor = Color.yellow;
+        }
+        else
+        {
+            var color = computerBtn.colors;
+            color.normalColor = Color.white;
+        }
+
+        if (_singleton.isHasPickedAPath == false)
+        {
+            var color = computerBtn.colors;
+            color.normalColor = Color.yellow;
+        }
+        else
+        {
+            //turn it white.
+            var color = computerBtn.colors;
+            color.normalColor = Color.white;
         }
     }
 

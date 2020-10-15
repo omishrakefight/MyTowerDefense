@@ -53,6 +53,7 @@ public sealed class Singleton : MonoBehaviour {
 
     public bool isHasPickedAPath = false;
     public bool isHasLearnedATower = false;
+    public bool ishasLearnedTinker = false;
 
     private bool isTutorial = false;
     private bool hasExplainedComputerRoom = false;

@@ -1023,6 +1023,11 @@ MonoBehaviour:
   turretFader: {fileID: 1516349350}
   meetingRoomFader: {fileID: 1666521895}
   currentScreenFader: {fileID: 0}
+  computerBtn: {fileID: 1195169355}
+  engineerBtn: {fileID: 0}
+  tinkerBtn: {fileID: 1291141872}
+  turretBtn: {fileID: 122882321}
+  meetingRoomBtn: {fileID: 1380482590}
 --- !u!114 &317621694
 MonoBehaviour:
   m_ObjectHideFlags: 0

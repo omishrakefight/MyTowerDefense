@@ -260,7 +260,8 @@ public class SaveAndLoad : MonoBehaviour {
                     //List<int> test = savedFile.LoadList();
                     List<int> l = new List<int>(savedFile.enemyOption1List);
                     _missionChoice.LoadPathChoices(savedFile.enemyOption1List, savedFile.enemyOption2List);
-                    _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked, true);                   
+                    _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, savedFile.hasPicked, true);
+                    _singleton.ishasLearnedTinker = savedFile.hasPicked;
                 }  else
                 {
                     // this function is the 'reset' of the above.  It sets false to 'has picked' and 'hasRolled', while setting empty to the sotred options.

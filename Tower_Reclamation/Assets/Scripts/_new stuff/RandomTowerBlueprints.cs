@@ -557,7 +557,7 @@ public class RandomTowerBlueprints : MonoBehaviour
         // if computer is not explained, explain it.
         if (!singleton.GetIsComputerExplained())
         {
-            float waitTime = 2f;
+            float waitTime = 1f;
             singleton.SetIsComputerExplained(true);
 
             StartCoroutine(ComputerTutorial(waitTime));

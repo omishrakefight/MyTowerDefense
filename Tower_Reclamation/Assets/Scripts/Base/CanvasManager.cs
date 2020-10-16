@@ -57,6 +57,8 @@ public class CanvasManager : MonoBehaviour {
         currentActiveCanvas = meetingRoom;
         currentScreenFader = meetingRoomFader;
 
+        CheckWhatCanBeDone();
+
         //IEnumerator start;
         //start = DelayedStart();
 
@@ -98,6 +100,8 @@ public class CanvasManager : MonoBehaviour {
 
         currentActiveCanvas = meetingRoom;
         currentScreenFader = meetingRoomFader;
+
+        CheckWhatCanBeDone();
 
         yield return null;
     }
@@ -168,35 +172,41 @@ public class CanvasManager : MonoBehaviour {
         {
             var color = computerBtn.colors;
             color.normalColor = Color.yellow;
+            computerBtn.colors = color;
         }
         else
         {
             //turn it white.
             var color = computerBtn.colors;
             color.normalColor = Color.white;
+            computerBtn.colors = color;
         }
 
         if (_singleton.ishasLearnedTinker == false)
         {
-            var color = computerBtn.colors;
+            var color = tinkerBtn.colors;
             color.normalColor = Color.yellow;
+            tinkerBtn.colors = color;
         }
         else
         {
-            var color = computerBtn.colors;
+            var color = tinkerBtn.colors;
             color.normalColor = Color.white;
+            tinkerBtn.colors = color;
         }
 
         if (_singleton.isHasPickedAPath == false)
         {
-            var color = computerBtn.colors;
+            var color = meetingRoomBtn.colors;
             color.normalColor = Color.yellow;
+            meetingRoomBtn.colors = color;
         }
         else
         {
             //turn it white.
-            var color = computerBtn.colors;
+            var color = meetingRoomBtn.colors;
             color.normalColor = Color.white;
+            meetingRoomBtn.colors = color;
         }
     }
 

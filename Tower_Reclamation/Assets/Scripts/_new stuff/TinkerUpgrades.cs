@@ -6,6 +6,7 @@ using System;
 
 public class TinkerUpgrades : MonoBehaviour {
 
+    //TODO make sure that this flips the bool in singleton such that the button stops glowing.  Make sure singleton is updated to this bool on loading a saved game.
     public static List<int> currentUpgradeLevels = new List<int>();
     public static List<int> learnableUpgrades = new List<int>();
     public static List<int> possibleOptions = new List<int>();
@@ -115,6 +116,7 @@ public class TinkerUpgrades : MonoBehaviour {
                 }
             }
             Singleton.Instance.SendUpdateTinkerUpgrades(currentUpgradeLevels);
+            Singleton.Instance.ishasLearnedTinker = true;
         }
     }
 

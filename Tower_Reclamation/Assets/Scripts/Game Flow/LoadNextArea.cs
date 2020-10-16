@@ -1,9 +1,8 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections;
-using System.Collections.Generic;
-using System;
 
 public class LoadNextArea : MonoBehaviour {
 
@@ -72,7 +71,10 @@ public class LoadNextArea : MonoBehaviour {
         pickedPath = nextPath.isHasChosen;
 
         singleton.GetUpdateTinkerUpgrades();
-        if (singleton.isHasPickedAPath)
+
+        CheckDoneInBase();
+
+        if (CheckDoneInBase())
         {
             //print("level is currently: " + FindObjectOfType<LevelTracker>().currentLevel);
             //FindObjectOfType<LevelTracker>().IncreaseLevel();
@@ -89,6 +91,30 @@ public class LoadNextArea : MonoBehaviour {
         {
             StartCoroutine(YouMustPickAPathTextShowing());
         }
+    }
+
+    private bool CheckDoneInBase()
+    {
+        bool canProceed = true;
+        pickALane.text = "";
+
+        if (!singleton.isHasPickedAPath)
+        {
+            canProceed = false;
+            pickALane.text += "You must pick a path! \n";
+        }
+        if (!singleton.isHasLearnedATower)
+        {
+            canProceed = false;
+            pickALane.text += "You can learn a new tower! \n";
+        }
+        if (!singleton.ishasLearnedTinker)
+        {
+            canProceed = false;
+            pickALane.text += "You can research a tinker upgrade! \n";
+        }
+
+        return canProceed;
     }
 
     public IEnumerator YouMustPickAPathTextShowing()

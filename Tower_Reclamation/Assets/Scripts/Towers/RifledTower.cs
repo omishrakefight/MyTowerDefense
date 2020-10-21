@@ -61,6 +61,10 @@ public class RifledTower : Tower {
         currentAttackRange = attackRange;
         projectileParticle = GetComponentInChildren<ParticleSystem>();
         emission = projectileParticle.emission;
+
+        towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
+        towerUpgradeDescriptionTwo = "Upgrade tower attack speed +20%";
+        towerUpgradeDescriptionThree = "Upgrade tower range +20%";
     }
 
     public override void DetermineTowerTypeBase(int towerInt)

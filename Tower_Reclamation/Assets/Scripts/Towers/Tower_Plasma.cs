@@ -14,7 +14,7 @@ public class Tower_Plasma : Tower
     LineRenderer lineRenderer;
 
     int towerType = -1;
-    int crystalMaxCharge = 2;
+    int crystalMaxCharge = 3;
 
     float crystalDmgInterval = .25f;
     float crystalCurrentBeamTime = 0f;
@@ -233,7 +233,7 @@ public class Tower_Plasma : Tower
                 lineRenderer.enabled = false;
                 TowerAugmentExplanation = "The crystal head of the Plasma Turret.  Amplifies the effects for a single target.";
                 minTowerDmg = 3f;
-                maxTowerDmg = crystalBaseMaxDmg; //3
+                maxTowerDmg = crystalBaseMaxDmg; 
                 //nothing;
                 break;
             default:
@@ -311,6 +311,7 @@ public class Tower_Plasma : Tower
     // a better way to swap this? so not setting true every frame?
     private void ShootWithCrystal(bool isActive)
     {
+        float baseBeamWith = 1.0f;
         if (isActive)
         {
             lineRenderer.enabled = true;
@@ -323,25 +324,30 @@ public class Tower_Plasma : Tower
             {
                 crystalCurrentChargeTime += (1 * Time.deltaTime);
 
+                // this is a cheap way to have it upgrade beam level every second (the (int) truncates the int) so every second it goes up a rank and if rank doesnt match
+                // previous rank then it upgrades the beam.
                 if ((int)crystalCurrentChargeTime != crystalBeamLevel)
                 {
-                    if (crystalCurrentChargeTime < 2.0f)
-                    {
-                        crystalBeamLevel++;
-                        maxTowerDmg += crystalDMGPerStage;
-                        lineRenderer.widthMultiplier = 1.30f;
-                        // add in dmg increase, and in the target swap function restet both the beam level and the charge timer.
-                    } else
-                    {
-                        crystalBeamLevel++;
-                        maxTowerDmg += crystalDMGPerStage;
-                        lineRenderer.widthMultiplier = 1.60f;
-                    }
+                    crystalBeamLevel++;
+                    maxTowerDmg += crystalDMGPerStage;
+                    lineRenderer.widthMultiplier = (baseBeamWith + (.25f * crystalBeamLevel));
+                    //if (crystalCurrentChargeTime < 2.0f)
+                    //{
+                    //    crystalBeamLevel++;
+                    //    maxTowerDmg += crystalDMGPerStage;
+                    //    lineRenderer.widthMultiplier = 1.30f;
+                    //    // add in dmg increase, and in the target swap function restet both the beam level and the charge timer.
+                    //} else
+                    //{
+                    //    crystalBeamLevel++;
+                    //    maxTowerDmg += crystalDMGPerStage;
+                    //    lineRenderer.widthMultiplier = 1.60f;
+                    //}
                 }
             }
             if (crystalCurrentBeamTime > .25f)
             {
-                crystalCurrentBeamTime = (crystalCurrentBeamTime % .25f);
+                crystalCurrentBeamTime = (crystalCurrentBeamTime - .25f);
                 float towerDmg = UnityEngine.Random.Range(1, maxTowerDmg);
                 //print("Plasma beam dmg = " + towerDmg);
                 //TODO NEED TO CHANGE this needs to only get the enemy health on TARGET CHANGE way too process intensive to get 4 times a second.

@@ -18,9 +18,11 @@ public class LoadNextArea : MonoBehaviour {
     Singleton singleton;
     SaveAndLoad save;
     int currentLevel;
+    int timesClickedNextLevel = 0;
 
 	// Use this for initialization
 	void Start () {
+        timesClickedNextLevel = 0;
         enemySpawner = FindObjectOfType<EnemySpawner>();
         singleton = Singleton.Instance;// FindObjectOfType<Singleton>().Ins;
         save = FindObjectOfType<SaveAndLoad>();
@@ -54,6 +56,8 @@ public class LoadNextArea : MonoBehaviour {
 
             default:               
                 singleton.isHasLearnedATower = false;
+                singleton.ishasLearnedTinker = false;
+                singleton.isHasPickedAPath = false;
                 save.LoadNewBase();
                 break;
         }
@@ -72,9 +76,10 @@ public class LoadNextArea : MonoBehaviour {
 
         singleton.GetUpdateTinkerUpgrades();
 
-        CheckDoneInBase();
+        timesClickedNextLevel++;
 
-        if (CheckDoneInBase())
+        // they either need to do everything in base, or click to proceed 4 times.  More for me (developer) to skip
+        if (CheckDoneInBase() || timesClickedNextLevel > 3)
         {
             //print("level is currently: " + FindObjectOfType<LevelTracker>().currentLevel);
             //FindObjectOfType<LevelTracker>().IncreaseLevel();

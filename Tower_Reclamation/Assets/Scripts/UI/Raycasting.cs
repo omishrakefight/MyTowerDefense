@@ -60,6 +60,8 @@ public class Raycasting : MonoBehaviour {
                     var sightRange = FindObjectOfType<TowerUpgradeAndRangeSight>();
                     if (sightRange != null)
                     {
+                        sightRange.ShowInfoPanel();
+                        sightRange.InitializeFromTower(raycastHit.collider.GetComponentInParent<Tower>());
                         sightRange.CreatePoints(raycastHit.collider.GetComponentInParent<Tower>());
                     }
                 }

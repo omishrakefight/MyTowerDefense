@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(LineRenderer))]
 public class TowerUpgradeAndRangeSight : MonoBehaviour {
@@ -17,6 +18,21 @@ public class TowerUpgradeAndRangeSight : MonoBehaviour {
     public float radius = 5;
     LineRenderer line;
 
+    Tower _tower = null;
+
+    [SerializeField] GameObject upgradePanel;
+
+    [SerializeField] Text textInfo;
+
+    [SerializeField] Text btnInfoOne;
+    [SerializeField] Text btnInfoTwo;
+    [SerializeField] Text btnInfoThree;
+
+    [SerializeField] Button upgradeOne;
+    [SerializeField] Button upgradeTwo;
+    [SerializeField] Button upgradeThree; // I will have a function that takes in parameters like strings.  This will initialize the texts, buttons to what to do
+    // This object is generic, the towers pass in the info to initialize / tell it what can be upgraded.
+
     void Start()
     {
         line = gameObject.GetComponent<LineRenderer>();
@@ -26,6 +42,7 @@ public class TowerUpgradeAndRangeSight : MonoBehaviour {
         line.positionCount= (segments + 1);
         line.useWorldSpace = true;
         //CreatePoints();
+        HideInfoPanel();
     }
 
     public void CreatePoints(Tower towerToDrawRangeAround )
@@ -64,4 +81,49 @@ public class TowerUpgradeAndRangeSight : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void InitializeFromTower(Tower tower)
+    {
+        _tower = tower;
+        string proxy1 = "", proxy2 = "", proxy3 = "", proxyInfo = "";
+        tower.InitializeUpgradeOptionTexts(ref proxy1, ref proxy2, ref proxy3, ref proxyInfo);
+        btnInfoOne.text = proxy1;
+        btnInfoTwo.text = proxy2;
+        btnInfoThree.text = proxy3;
+
+        textInfo.text = proxyInfo;
+        ShowInfoPanel();
+    }
+
+    public void HideInfoPanel()
+    {
+        upgradePanel.SetActive(false);
+        _tower = null;
+    }
+    public void ShowInfoPanel()
+    {
+        upgradePanel.SetActive(true);
+    }
+
+    public void ButtonOne()
+    {
+        string proxyInfo = "";
+        _tower.UpgradeBtnOne(ref proxyInfo);
+        textInfo.text = proxyInfo;
+        ShowInfoPanel();
+    }
+    public void ButtonTwo()
+    {
+        string proxyInfo = "";
+        _tower.UpgradeBtnTwo(ref proxyInfo);
+        textInfo.text = proxyInfo;
+        ShowInfoPanel();
+    }
+    public void ButtonThree()
+    {
+        string proxyInfo = "";
+        _tower.UpgradeBtnThree(ref proxyInfo);
+        textInfo.text = proxyInfo;
+        ShowInfoPanel();
+    }
 }

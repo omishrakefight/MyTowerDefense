@@ -18,6 +18,11 @@ public abstract class Tower : MonoBehaviour {
     protected string TowerStatsTxt = "";
     protected string TowerTypeName = "";
 
+    protected string towerUpgradeDescriptionOne = "";
+    protected string towerUpgradeDescriptionTwo = "";
+    protected string towerUpgradeDescriptionThree = "";
+
+
 
     [SerializeField] public float towerDmg = 30;
     [SerializeField] protected float currentTowerDmg = 30;
@@ -254,6 +259,36 @@ public abstract class Tower : MonoBehaviour {
             TankAOERange += amountToAdd;
         //}
         //throw new NotImplementedException();
+    }
+
+    // Maybe also include ref goldcost? so buttons can be inactive unless you have enough gold?
+    public void InitializeUpgradeOptionTexts(ref string description1, ref string description2, ref string description3, ref string stats)
+    {
+        description1 = towerUpgradeDescriptionOne;
+        description2 = towerUpgradeDescriptionTwo;
+        description3 = towerUpgradeDescriptionThree;
+
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+
+    public virtual void UpgradeBtnOne(ref string stats)
+    {
+        print("Not Overriden in the base tower.");
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+    public virtual void UpgradeBtnTwo(ref string stats)
+    {
+        print("Not Overriden in the base tower.");
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+    public virtual void UpgradeBtnThree(ref string stats)
+    {
+        print("Not Overriden in the base tower.");
+        GetStringStats();
+        stats = TowerStatsTxt;
     }
 
     public virtual void GetStringStats()

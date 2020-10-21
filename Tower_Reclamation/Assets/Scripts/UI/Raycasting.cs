@@ -6,6 +6,7 @@ public class Raycasting : MonoBehaviour {
 
     public Layer[] layerPriorities =
     {
+    Layer.UI,
     Layer.Enemy,
     Layer.Tower,
     Layer.Waypoint
@@ -42,7 +43,10 @@ public class Raycasting : MonoBehaviour {
         // on raycasting, if the click is on an enemy send it to the singleton to disperse to the towers.
         // hsould be after the foreach, but i had trouble and it will be rare someone will click the same frame.
         //TODO move all my click crap somehow here? consolidate code.  Waypoint clicks maybe.
-        if (Input.GetMouseButtonDown(0))
+
+        //if(Input.bu) /// onbutton up do the below? on button down if on a tower set bool to setting individual enemy.
+        //if (Input.GetMouseButtonDown(0))
+        if(Input.GetMouseButtonUp(0))
         {
             try
             {
@@ -55,11 +59,16 @@ public class Raycasting : MonoBehaviour {
                 {
                     singleton.SetPreferedEnemy(raycastHit.collider.GetComponentInChildren<EnemyHealth>());
                 }
+                else if (raycastHit.collider.gameObject.layer.Equals(5))
+                {
+
+                }
                 else if (raycastHit.collider.GetComponentInParent<Tower>() != null)
                 {
                     var sightRange = FindObjectOfType<TowerUpgradeAndRangeSight>();
                     if (sightRange != null)
                     {
+                        sightRange.gameObject.SetActive(true);
                         sightRange.ShowInfoPanel();
                         sightRange.InitializeFromTower(raycastHit.collider.GetComponentInParent<Tower>());
                         sightRange.CreatePoints(raycastHit.collider.GetComponentInParent<Tower>());
@@ -71,6 +80,7 @@ public class Raycasting : MonoBehaviour {
                     if (sightRange != null)
                     {
                         sightRange.DestroyRangeCircle();
+                        //sightRange.HideInfoPanel();
                     }
                 }
             }

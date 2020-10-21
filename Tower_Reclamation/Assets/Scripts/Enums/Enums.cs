@@ -27,6 +27,7 @@ public enum Towers
 
 public enum Layer
 {
+    UI = 5,
     Tower = 8,
     Waypoint = 9,
     Enemy = 10,

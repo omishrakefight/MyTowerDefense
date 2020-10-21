@@ -33,6 +33,7 @@ public class RifledTower : Tower {
 
     protected float notATankTower = 0f;
     protected float minRange = 0f;
+    float towerMinRangeModifier = .33f;
 
     // minrange = 0, set it if sniper?
     override protected void Start () {
@@ -129,16 +130,15 @@ public class RifledTower : Tower {
                 towerDmgModifierPercent = 2.75f;
                 towerAttackRangeModifierPercent = 1.75f;
                 towerAttackSpeedModifierPercent = 3.5f;
-                float towerMinRange = .33f;
 
                 TowerAugmentExplanation = "Tower damage +" + (int)(towerDmgModifierPercent * 100f) + '%';
                 TowerAugmentExplanation += "\nTower attack range +" + (int)((towerAttackRangeModifierPercent -1) * 100f) + '%';
                 TowerAugmentExplanation += "\nTower attack speed =" + (int)((towerAttackSpeedModifierPercent) * 100f) + "% slower";
-                TowerAugmentExplanation += "\nNEW* tower minimum range = " + (int)(towerMinRange * 100f) + "% of max range";
+                TowerAugmentExplanation += "\nNEW* tower minimum range = " + (int)(towerMinRangeModifier * 100f) + "% of max range";
 
                 currentAttackRange = attackRange * towerAttackRangeModifierPercent;
                 attackRange = currentAttackRange;
-                minRange = currentAttackRange * towerMinRange;
+                minRange = currentAttackRange * towerMinRangeModifier;
                 attackSpeed = attackSpeed * towerAttackSpeedModifierPercent;
                 //emission.rateOverTime = (emission.rateOverTime.constant * towerAttackSpeedModifierPercent);
                 towerDmg = towerDmg * towerDmgModifierPercent;
@@ -291,6 +291,32 @@ public class RifledTower : Tower {
         towerCost = towerCost * percentToPay;
 
         return towerCost;
+    }
+
+    //towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
+    //towerUpgradeDescriptionTwo = "Upgrade tower attack speed +20%";
+    //towerUpgradeDescriptionThree = "Upgrade tower range +20%";
+    public override void UpgradeBtnOne(ref string stats)
+    {
+        currentTowerDmg += (.2f * towerDmg);
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+    public override void UpgradeBtnTwo(ref string stats)
+    {
+        attackSpeed = (.8f * attackSpeed);
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+    public override void UpgradeBtnThree(ref string stats)
+    {
+        currentAttackRange += (.2f * attackRange);
+        if (minRange != 0)
+        {
+            minRange = (currentAttackRange * towerMinRangeModifier);
+        }
+        GetStringStats();
+        stats = TowerStatsTxt;
     }
 
 }

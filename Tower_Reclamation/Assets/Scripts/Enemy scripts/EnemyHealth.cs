@@ -21,6 +21,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     protected PostLevelSummaryScreen damageLog;
 
     protected float burnTime = 3f;
+    protected float _healReduction = 0f;
     [SerializeField] protected bool onFire = false;
     [SerializeField] protected float time = 0;
     protected float burnDmg;
@@ -136,8 +137,9 @@ public abstract class EnemyHealth : MonoBehaviour {
         yield return new WaitForSeconds(1f);
     }
 
-    public void CaughtFire(float fireDmg)
+    public void CaughtFire(float fireDmg, float healReduction)
     {
+        _healReduction = healReduction;
         onFire = true;
         time += 2 * Time.deltaTime;
         if(time > burnTime)
@@ -295,7 +297,7 @@ public abstract class EnemyHealth : MonoBehaviour {
         else if (this.healPercent != healPercent) // recalclate the healPerTick ONLY on new percentage.
         {
             this.healPercent = healPercent;
-            healPerTick = (healPercent * hitPointsMax); // move this only if different.
+            healPerTick = (healPercent * hitPointsMax * (1 - _healReduction)); // move this only if different.
             if (isBoss) // bosses need to be killable as well 
             {
                 healPerTick = healPerTick / 10f;

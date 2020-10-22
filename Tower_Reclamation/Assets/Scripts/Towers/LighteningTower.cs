@@ -82,7 +82,10 @@ public class LighteningTower : Tower {
         currentTowerDmg = towerDmg;
         AOERange.radius = (attackRange * .60f);
         currentAttackRange = attackRange;
-        
+
+        towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
+        towerUpgradeDescriptionTwo = "Upgrade tower charge speed +20%"; // on the turret form +1 charge?
+        towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
     }
 
     /// <summary>

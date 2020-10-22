@@ -7,6 +7,7 @@ public class Flame_AOE : MonoBehaviour {
 
     public float towerDmg = 4;
     public float currentTowerDmg = 4;
+    public float healReduction = 0f;
     protected Tower_Flame towerBase;
     string TowerTypeName;
 
@@ -36,6 +37,7 @@ public class Flame_AOE : MonoBehaviour {
     public void DelayedStart(bool keepBuffed)
     {
         towerBase = GetComponentInParent<Tower_Flame>();
+        healReduction = 0f;
         towerDmg = 12;
         currentTowerDmg = 12;
         float rangeModifier = 1.0f;
@@ -85,6 +87,11 @@ public class Flame_AOE : MonoBehaviour {
         baseAttackRange = currentAttackRange;
         baseAttackWidth = currentAttackWidth;
         towerBase.SetNewTowerDmg(currentTowerDmg);
+    }
+
+    public void BuffDamage(float dmgPercent)
+    {
+        currentTowerDmg += (towerDmg * dmgPercent);
     }
 
     public void BuffRange(float rangeBuff)
@@ -172,7 +179,7 @@ public class Flame_AOE : MonoBehaviour {
     {
         if (other.gameObject.GetComponentInParent<EnemyHealth>())
         {
-            other.GetComponentInParent<EnemyHealth>().CaughtFire(currentTowerDmg);
+            other.GetComponentInParent<EnemyHealth>().CaughtFire(currentTowerDmg, healReduction);
         }
     }
 

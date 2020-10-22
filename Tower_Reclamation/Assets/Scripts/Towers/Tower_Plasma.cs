@@ -63,6 +63,10 @@ public class Tower_Plasma : Tower
         towerDmg = 18;
         base.CheckUpgradesForRifledTower(ref towerDmg, ref attackRange);
         CheckAndApplyBuff();
+
+        towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
+        towerUpgradeDescriptionTwo = "Upgrade tower charge speed +20%"; // overwritten in head for +1 charge?
+        towerUpgradeDescriptionThree = "Upgrade tower range +20%";
     }
 
 

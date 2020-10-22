@@ -86,6 +86,10 @@ public class Tower_Flame : Tower {
         }
 
         head.DelayedStart(keepBuffed);
+
+        towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
+        towerUpgradeDescriptionTwo = "Upgrade reduce enemy healing +10%";
+        towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
     }
 
     public override void DetermineTowerTypeBase(int towerInt)
@@ -268,9 +272,10 @@ public class Tower_Flame : Tower {
     public override void GetStringStats()
     {
         TowerStatsTxt = "Flame Tower Stats \n" +
-            "Attack Range = " + currentAttackRange + "\n" +
+            "Attack Range = " + head.GetTowerRange() + "\n" +
             "Attack cone type = " + attackAreaType + "\n" +
             "Attack Damage = " + head.currentTowerDmg + "\n" +
+            "Healing Reduction = " + head.healReduction + "\n" +
             "Attack speed = " + "Constant, Damage per sercond. \n" +
             "Damage Type = Spray \n" +
             "Targetting = Area Damage, centered on target.";
@@ -295,6 +300,30 @@ public class Tower_Flame : Tower {
     {
         text.text = "Upgrade dmg";
         buttonOne.onClick.AddListener(GetStringStats);
+    }
+
+
+        //towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
+        //towerUpgradeDescriptionTwo = "Upgrade reduce enemy healing +10%";
+        //towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
+    public override void UpgradeBtnOne(ref string stats)
+    {
+        head.BuffDamage(.2f);
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+    public override void UpgradeBtnTwo(ref string stats)
+    {
+        head.healReduction += 10f;
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+    public override void UpgradeBtnThree(ref string stats)
+    {
+        currentAttackRange += (.2f * attackRange);
+        head.BuffRange(.15f);
+        GetStringStats();
+        stats = TowerStatsTxt;
     }
 
 }

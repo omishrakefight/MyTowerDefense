@@ -44,6 +44,10 @@ public class Tower_Ice : Tower {
 
         chillAmount = 1f - preFlippedChillAmount;
         currentAttackRange = range;
+
+        towerUpgradeDescriptionOne = "Upgrade tower Slow percent +5%";
+        towerUpgradeDescriptionTwo = "Upgrade tower lingering slow duration 1 second";
+        towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
     }
 
 

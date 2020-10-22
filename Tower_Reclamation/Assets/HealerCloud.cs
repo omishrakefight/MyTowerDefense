@@ -9,6 +9,7 @@ public class HealerCloud : MonoBehaviour {
 
     float lifeTime = 4f;
     float counter = 0f;
+    float increaseSizePerSecond = 5f;
 	// Use this for initialization
 	void Start () {
 		
@@ -20,6 +21,10 @@ public class HealerCloud : MonoBehaviour {
         if(counter > lifeTime)
         {
             Destroy(this.gameObject);
+        } else
+        {
+            float sizeIncrease = (increaseSizePerSecond * Time.deltaTime);
+            this.gameObject.transform.localScale += new Vector3(sizeIncrease, 0, sizeIncrease);
         }
         DeathHealAura();
 	}

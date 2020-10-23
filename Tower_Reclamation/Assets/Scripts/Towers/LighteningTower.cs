@@ -9,6 +9,8 @@ public class LighteningTower : Tower {
     //[SerializeField] public SphereCollider attackAOE;
     [SerializeField] public float chargeTime = 8f;
     [SerializeField] public float currentChargeTime = 0;
+    public float damagePercent = 1.0f; // damage is reduced by 10% for each enemy hit.
+    public float damageReductionNumber = .05f;
     public bool isCharged = false;
     Singleton singleton;
     bool reducedCost = false;
@@ -85,7 +87,7 @@ public class LighteningTower : Tower {
 
         towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
         towerUpgradeDescriptionTwo = "Upgrade tower charge speed +20%"; // on the turret form +1 charge?
-        towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
+        towerUpgradeDescriptionThree = "Upgrade tower AOE +15% \nThis increases the range it will hit enemies, not the range it triggers an attack.";
     }
 
     /// <summary>
@@ -142,6 +144,7 @@ public class LighteningTower : Tower {
                 float speedDecimalModifier = .30f;
                 float damageDeimalModifier = .35f;
                 float attackRangeDeimalModifier = .80f;
+                damageReductionNumber = .10f;
 
 
                 print("Im doing rapid base");
@@ -159,6 +162,7 @@ public class LighteningTower : Tower {
                 TowerBaseExplanation += "Trigger Range = " + (AOERange.radius).ToString() + " \n";
                 TowerBaseExplanation += "Damage Range = -" + (Mathf.RoundToInt((1 - attackRangeDeimalModifier) * 100)).ToString() + "% \n";
                 TowerBaseExplanation += "Damage = -" + (Mathf.RoundToInt((1 - damageDeimalModifier) * 100)).ToString() + "% \n";
+                TowerBaseExplanation += "Damage Reduction per bounce = +100% \n"; // work here damage reduction
                 break;
             default:
                 print("Default base, I am towerint of : " + towerInt);
@@ -174,7 +178,7 @@ public class LighteningTower : Tower {
         foreach (EnemyHealth enemy in sceneEnemies)
         {
             var distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-            if (distanceToEnemy < attackRange)
+            if (distanceToEnemy < currentAttackRange)
             {
                 targets.Add(enemy);
             }
@@ -196,20 +200,20 @@ public class LighteningTower : Tower {
                 {
                     // Trigger lightning animation (targets available)
                     ZapTarget(other.gameObject);
-                    //print("POW");
-                    targets[i].HitByNonProjectile(towerDmg, TowerTypeName);// .hitPoints -= towerDmg;
-                    //Shifted this to the enemy to refresh health and give gold / die
-                    //targets[i].GetComponent<EnemyHealth>().RefreshHealthBar();
 
-                    //if (targets[i].GetComponent<EnemyHealth>().hitPoints < 1)
-                    //{
-                    //    targets[i].GetComponent<EnemyHealth>().KillsEnemyandAddsGold();
-                    //}
+                    float damageAfterBounceReduction = towerDmg * damagePercent;
+                    targets[i].HitByNonProjectile(damageAfterBounceReduction, TowerTypeName);
+
+                    if (damagePercent > .06f)
+                    {
+                        damagePercent -= damageReductionNumber;
+                    }
                 } catch (Exception e)
                 {
                     //Do nothing, enemy may have died in this time (cant find it)
                 }
             }
+            damagePercent = 1.0f;
             currentChargeTime = 0;
             isCharged = false;
             
@@ -310,9 +314,10 @@ public class LighteningTower : Tower {
     public override void GetStringStats()
     {
         TowerStatsTxt = "Lightning Tower Stats \n" +
-            "Attack Range = " + attackRange + "\n" +
+            "Attack Range = " + currentAttackRange + "\n" +
             "Attack Damage = " + currentTowerDmg + "\n" +
             "Attack speed = " + chargeTime.ToString() + " second charge. \n" +
+            "Each bounce loses " + damageReductionNumber + "% total damage\n" +
             "Damage Type = Lightning, instant. \n" +
             "Targetting = AOE centered on tower.";
     }
@@ -337,25 +342,6 @@ public class LighteningTower : Tower {
     }
 
 
-
-    //private LightningTrace lightTrace;
-
-
-    // Use this for initialization
-    //void Start()
-    //{
-
-    //    //lightTrace = gameObject.GetComponent<LightningTrace>();
-    //}
-
-
-    //-===================================================Lightning animation with line renderer
-    // Update is called once per frame
-    //void Update()
-    //{
-
-    //}
-
     private Vector3 Randomize(Vector3 newVector, float devation)
     {
         newVector += new Vector3(UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-1.0f, 1.0f), UnityEngine.Random.Range(-1.0f, 1.0f)) * devation;
@@ -370,70 +356,24 @@ public class LighteningTower : Tower {
         zapTimer = timeOfZap;
     }
 
-    //readonly bool cantargettingModule = true;
-    //readonly bool canAlloyReasearch = true;
-    //readonly bool canSturdyTank = true;
-    //readonly bool canHeavyShelling = false;
-    //readonly bool canTowerEngineer = true;
-    //private void CheckWhichUpgradesAreApplicable(ref float towerDmg, ref float attackRange)
-    //{
-    //    float percentModifier = 1.0f;
-    //    if (canHeavyShelling)
-    //    {
-    //        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.heavyShelling);
-    //        //since most are a reduction and this is a dmg buff, i mius from 2 and multiply by difference.
-    //        float multiplyFodder = 2.0f;
-    //        percentModifier = multiplyFodder - percentModifier;
-    //        float amountToAdd = (percentModifier * towerDmg);
-    //        towerDmg += amountToAdd;
-    //    }
-    //    if(canSturdyTank)
-    //    {
-    //        percentModifier = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.pressurizedTank);
-    //        //since most are a reduction and this is a  buff, i mius from 2 and multiply by difference.
-    //        float multiplyFodder = 2.0f;
-    //        percentModifier = multiplyFodder - percentModifier;
-    //        float amountToAdd = (percentModifier * attackRange);
-    //        //do overlap sphere and range is the diameter?  then attack range could work easily.
-    //        attackRange += amountToAdd;
-    //    }
-    //    //throw new NotImplementedException();
-    //}
+    public override void UpgradeBtnOne(ref string stats)
+    {
+        currentTowerDmg += (.2f * towerDmg);
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+    public override void UpgradeBtnTwo(ref string stats)
+    {
+        chargeTime = (.8f * chargeTime);
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+    public override void UpgradeBtnThree(ref string stats)
+    {
+        currentAttackRange += (.15f * attackRange);
 
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
 
-    /*
-        private void FireAtEnemy()
-        {
-            float distanceToEnemy = Vector3.Distance(targetEnemy.transform.position, gameObject.transform.position);
-            if (distanceToEnemy <= attackRange)
-            {
-                Shoot(true);
-            }
-            else
-            {
-                Shoot(false);
-                SetTargetEnemy();
-            }
-        }
-
-        private void Shoot(bool isActive)
-        {
-            var emissionModule = projectileParticle.emission;
-            emissionModule.enabled = isActive;
-        }
-        */
 }
-
-//Light charge;
-//ParticleSystem projectileParticle;
-//float towerDmg;
-//private float currentTowerDmg;
-//List<EnemyMovement> targets;
-
-//paramteres of each tower
-//SphereCollider attackAOE;
-//float attackRange;
-//float chargeTime;
-//float currentChargeTime;
-//bool isCharged = false;
-

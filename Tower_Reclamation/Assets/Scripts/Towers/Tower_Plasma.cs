@@ -66,7 +66,7 @@ public class Tower_Plasma : Tower
 
         towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
         towerUpgradeDescriptionTwo = "Upgrade tower charge speed +20%"; // overwritten in head for +1 charge?
-        towerUpgradeDescriptionThree = "Upgrade tower range +20%";
+        towerUpgradeDescriptionThree = "Upgrade tower range +15%";
     }
 
 
@@ -413,6 +413,26 @@ public class Tower_Plasma : Tower
         towerCost = towerCost * percentToPay;
 
         return towerCost;
+    }
+
+    public override void UpgradeBtnOne(ref string stats)
+    {
+        currentTowerDmg += (.2f * towerDmg);
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+    public override void UpgradeBtnTwo(ref string stats)
+    {
+        maxCharge = (.8f * maxCharge);
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+    public override void UpgradeBtnThree(ref string stats)
+    {
+        currentAttackRange += (.15f * attackRange);
+
+        GetStringStats();
+        stats = TowerStatsTxt;
     }
 
 }

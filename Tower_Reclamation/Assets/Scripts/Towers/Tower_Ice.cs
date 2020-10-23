@@ -61,7 +61,6 @@ public class Tower_Ice : Tower {
             {
                 //hitColliders[i].SendMessage("AddDamage");
                 hitColliders[i].gameObject.GetComponentInParent<EnemyMovement>().gotChilled(chillAmount);
-                print("ive got something in my sights.");
             }
             i++;
         }
@@ -141,4 +140,28 @@ public class Tower_Ice : Tower {
     {
         //Do nothing, this tower doesnt have a swivelHead so doesnt matter
     }
+
+
+        //towerUpgradeDescriptionOne = "Upgrade tower Slow percent +5%";
+        //towerUpgradeDescriptionTwo = "Upgrade tower lingering slow duration 1 second";
+        //towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
+    //public override void UpgradeBtnOne(ref string stats)
+    //{
+    //    currentTowerDmg += (.2f * towerDmg);
+    //    GetStringStats();
+    //    stats = TowerStatsTxt;
+    //}
+    //public override void UpgradeBtnTwo(ref string stats)
+    //{
+    //    chargeTime = (.8f * chargeTime);
+    //    GetStringStats();
+    //    stats = TowerStatsTxt;
+    //}
+    //public override void UpgradeBtnThree(ref string stats)
+    //{
+    //    currentAttackRange += (.15f * attackRange);
+
+    //    GetStringStats();
+    //    stats = TowerStatsTxt;
+    //}
 }

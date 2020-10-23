@@ -112,11 +112,11 @@ public sealed class Singleton : MonoBehaviour {
         int baseType = -1;
         int headType = -1;
         string towerName = "";
-        dropdown = GameObject.FindGameObjectWithTag(towerNumTag).GetComponent<Dropdown>();
+        //dropdown = GameObject.FindGameObjectWithTag(towerNumTag).GetComponent<Dropdown>();
         towerSelector = FindObjectOfType<TowerSelecter>();
         tempTower = towerSelector.PickTower(ref towerBase, ref towerHead, ref baseType, ref headType, ref towerName);
         //temp tower holds the new tower, swtich determines what button it takes over.need to convert to Tower instetad of towerDmG
-        switch (dropdown.value)
+        switch (towerSelector.towerSlotSelected)
         {
             case 1:
                 //towerOne = tempTower;

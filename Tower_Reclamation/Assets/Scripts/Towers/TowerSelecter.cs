@@ -51,6 +51,8 @@ public class TowerSelecter : MonoBehaviour
     PlayerTowerLog towerLog = null;
 
     Dictionary<string, int> knownTowerParts;
+
+    public int towerSlotSelected = 1;
     #region TowerParts
     //#TowerParts
     float turnSpeed = 6f;
@@ -360,9 +362,17 @@ public class TowerSelecter : MonoBehaviour
         TowerTwoPanel.SetActive(false);
         TowerThreePanel.SetActive(false);
 
-        changingTowerType = true;
         towerBarrel.value = 0;
         towerBase.value = 0;
+        towerSlotSelected = 1;
+
+        if (singleton.towerOneName.Equals(""))
+        {
+            ResetTowerPicture();
+            return;
+        }
+
+        changingTowerType = true;
 
         //SetTowerBaseAndHead();
         SetTowerBaseAndHead2(singleton.towerOneName);
@@ -383,9 +393,17 @@ public class TowerSelecter : MonoBehaviour
         TowerTwoPanel.SetActive(true);
         TowerThreePanel.SetActive(false);
 
-        changingTowerType = true;
         towerBarrel.value = 0;
         towerBase.value = 0;
+        towerSlotSelected = 2;
+
+        if (singleton.towerTwoName.Equals(""))
+        {
+            ResetTowerPicture();
+            return;
+        }
+
+        changingTowerType = true;
 
         //SetTowerBaseAndHead();
         SetTowerBaseAndHead2(singleton.towerTwoName);
@@ -405,9 +423,17 @@ public class TowerSelecter : MonoBehaviour
         TowerTwoPanel.SetActive(false);
         TowerThreePanel.SetActive(true);
 
-        changingTowerType = true;
         towerBarrel.value = 0;
         towerBase.value = 0;
+        towerSlotSelected = 3;
+
+        if (singleton.towerThreeName.Equals(""))
+        {
+            ResetTowerPicture();
+            return;
+        }
+
+        changingTowerType = true;
 
         //SetTowerBaseAndHead();
         SetTowerBaseAndHead2(singleton.towerThreeName);

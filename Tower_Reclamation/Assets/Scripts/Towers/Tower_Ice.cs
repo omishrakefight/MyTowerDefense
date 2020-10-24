@@ -7,6 +7,7 @@ public class Tower_Ice : Tower {
     [SerializeField] Light blueLight;
     public float range;
     protected float preFlippedChillAmount = 0f;
+    protected float slowUpgrade = 5f;
     protected float chillAmount = 0f;
     Singleton singleton;
     // Use this for initialization
@@ -145,6 +146,30 @@ public class Tower_Ice : Tower {
         //towerUpgradeDescriptionOne = "Upgrade tower Slow percent +5%";
         //towerUpgradeDescriptionTwo = "Upgrade tower lingering slow duration 1 second";
         //towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
+    public override void UpgradeBtnOne(ref string stats)
+    {
+        preFlippedChillAmount += slowUpgrade;
+        chillAmount = (1 - preFlippedChillAmount);
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+    public override void UpgradeBtnTwo(ref string stats)
+    {
+        chargeTime = (.8f * chargeTime);
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+    public override void UpgradeBtnThree(ref string stats)
+    {
+        blueLight.range += (.15f * blueLight.range);
+        range += (.15f * range);
+        GetStringStats();
+        stats = TowerStatsTxt;
+    }
+
+    //towerUpgradeDescriptionOne = "Upgrade tower Slow percent +5%";
+    //towerUpgradeDescriptionTwo = "Upgrade tower lingering slow duration 1 second";
+    //towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
     //public override void UpgradeBtnOne(ref string stats)
     //{
     //    currentTowerDmg += (.2f * towerDmg);

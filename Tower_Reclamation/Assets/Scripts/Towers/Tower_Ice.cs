@@ -6,6 +6,8 @@ public class Tower_Ice : Tower {
 
     [SerializeField] Light blueLight;
     public float range;
+    protected float chillDuration = .5f;
+    protected float chillDurationIncrease = .75f;
     protected float preFlippedChillAmount = 0f;
     protected float slowUpgrade = 5f;
     protected float chillAmount = 0f;
@@ -61,7 +63,7 @@ public class Tower_Ice : Tower {
             if (hitColliders[i].gameObject.GetComponentInParent<EnemyHealth>())
             {
                 //hitColliders[i].SendMessage("AddDamage");
-                hitColliders[i].gameObject.GetComponentInParent<EnemyMovement>().gotChilled(chillAmount);
+                hitColliders[i].gameObject.GetComponentInParent<EnemyMovement>().gotChilled(chillAmount, chillDuration);
             }
             i++;
         }
@@ -155,7 +157,7 @@ public class Tower_Ice : Tower {
     }
     public override void UpgradeBtnTwo(ref string stats)
     {
-        chargeTime = (.8f * chargeTime);
+        chillDuration += chillDurationIncrease;
         GetStringStats();
         stats = TowerStatsTxt;
     }

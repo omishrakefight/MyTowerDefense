@@ -30,6 +30,11 @@ public class SaveSerializedObject  {
     public Dictionary<string, Dictionary<string, int>> learnableTowersAndParts;
     public Dictionary<string, Dictionary<string, int>> unlearnableTowersAndParts;
 
+    public TowerObject towerOne;
+    public TowerObject towerTwo;
+    public TowerObject towerThree;
+
+
     public bool isTutorial = false;
     public bool hasExplainedComputerRoom = false;
     public bool hasExplainedEngineerRoom = false;
@@ -49,29 +54,20 @@ public class SaveSerializedObject  {
     {
     }
 
-    //public void SaveList(List<int> list)
-    //{
-    //    List = list;
-    //}
-    //public List<int> LoadList()
-    //{
-    //    return List;
-    //}
-    //public void SaveDic()
-    //{
-    //    dic = new Dictionary<string, int>();
-    //    dic.Add("f", 1);
-    //    dic.Add("z", 2);
-    //    dic.Add("a", 3);
-    //    dics = new Dictionary<string, Dictionary<string, int>>();
-    //    dics.Add("Rifled Tower", dic);
-    //    dic.Remove("z");
-    //    dics.Add("Slow Tower", dic);
-    //}
-    //public Dictionary<string, Dictionary<string, int>> LoadDic()
-    //{
-    //    return dics;
-    //}
+    public void SaveTowerPreset(int towerNum) // add more in here for passins.
+    {
+        switch(towerNum)
+        {
+            case 1:
+                //towerOne.   add aprameters in the function call.
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+        }
+    }
+    
     public void SaveTinkerRoomInfo(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasPicked)
     {
         currentUpgradeLevels = _currentUpgradeLevels;

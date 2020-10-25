@@ -169,11 +169,16 @@ public abstract class EnemyMovement : MonoBehaviour
         yield return new WaitForSeconds(1f);
     }
 
-    public void gotChilled(float chilledMultiplier)
+    public void gotChilled(float chilledMultiplier, float chillDuration)
     {
         chilled = true;
-        this.chilledMultiplier = chilledMultiplier;
         timer = 0;
+
+        if (this.chilledMultiplier > chilledMultiplier)
+        {
+            this.chilledMultiplier = chilledMultiplier;
+            chillTimer = chillDuration;
+        }
     }
 }
 

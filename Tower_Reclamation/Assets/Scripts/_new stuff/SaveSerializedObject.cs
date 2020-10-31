@@ -30,9 +30,10 @@ public class SaveSerializedObject  {
     public Dictionary<string, Dictionary<string, int>> learnableTowersAndParts;
     public Dictionary<string, Dictionary<string, int>> unlearnableTowersAndParts;
 
-    public TowerObject towerOne;
-    public TowerObject towerTwo;
-    public TowerObject towerThree;
+
+    public TowerObject towerOne = new TowerObject();
+    public TowerObject towerTwo = new TowerObject();
+    public TowerObject towerThree = new TowerObject();
 
 
     public bool isTutorial = false;
@@ -54,17 +55,41 @@ public class SaveSerializedObject  {
     {
     }
 
-    public void SaveTowerPreset(int towerNum) // add more in here for passins.
+    public void SaveTowerPreset(int towerNum, string name, int headType, int baseType) // add more in here for passins.
     {
+
+
+        
+        try
+        {
+
         switch(towerNum)
         {
             case 1:
+                towerOne = new TowerObject();
+                towerOne.SetTowerName(name);
+                towerOne.SetTowerHeadType(headType);
+                towerOne.SetTowerBaseType(baseType);
                 //towerOne.   add aprameters in the function call.
                 break;
             case 2:
+                towerTwo = new TowerObject();
+                towerTwo.SetTowerName(name);
+                towerTwo.SetTowerHeadType(headType);
+                towerTwo.SetTowerBaseType(baseType);
                 break;
             case 3:
+                towerThree = new TowerObject();
+                towerThree.SetTowerName(name);
+                towerThree.SetTowerHeadType(headType);
+                towerThree.SetTowerBaseType(baseType);
                 break;
+        }
+
+        }
+        catch (Exception e)
+        {
+            //print(e.Message.ToString());
         }
     }
     

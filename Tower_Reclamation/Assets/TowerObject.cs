@@ -32,9 +32,9 @@ public class TowerObject : MonoBehaviour {
         return towerBaseType;
     }
 
-    public void SetTowerName(string name)
+    public void SetTowerName(string _name)
     {
-        Name = name;
+        Name = _name;
     }
     public void SetTowerHeadType(int headType)
     {

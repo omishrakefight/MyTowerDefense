@@ -105,6 +105,28 @@ public sealed class Singleton : MonoBehaviour {
         }
     }
 
+    public void LoadTowerPreset(int towerNum, string name, int headType, int baseType) // add more in here for passins.
+    {
+        switch (towerNum)
+        {
+            case 1:
+                towerOneName = name;
+                towerOneHeadType = headType;
+                towerOneBaseType = baseType;
+                break;
+            case 2:
+                towerTwoName = name;
+                towerTwoHeadType = headType;
+                towerTwoBaseType = baseType;
+                break;
+            case 3:
+                towerThreeName = name;
+                towerThreeHeadType = headType;
+                towerThreeBaseType = baseType;
+                break;
+        }
+    }
+
     public void FindTower()
     {
         Tower towerBase = null;

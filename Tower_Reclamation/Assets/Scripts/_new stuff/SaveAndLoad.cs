@@ -62,7 +62,9 @@ public class SaveAndLoad : MonoBehaviour {
         saver.SaveTinkerRoomInfo(_tinkerUpgrades.SaveCurrentUpgradeLevels(), _tinkerUpgrades.SaveLearnableUpgrades(), _tinkerUpgrades.SavePossibleOptions(), _tinkerUpgrades.SaveHasPicked());
         saver.SetTutorial(_singleton.GetIsTutorial());
         // TODO add in here to save tower setups.  I needs to save all set tower peices (tower btn 1, 2, 3) name, head, base.  Maybe also set default to the rifledtower?
-
+        saver.SaveTowerPreset(1, _singleton.towerOneName, _singleton.towerOneHeadType, _singleton.towerOneBaseType);
+        saver.SaveTowerPreset(2, _singleton.towerTwoName, _singleton.towerTwoHeadType, _singleton.towerTwoBaseType);
+        saver.SaveTowerPreset(3, _singleton.towerThreeName, _singleton.towerThreeHeadType, _singleton.towerThreeBaseType);
         //TODO just save as a list instead of going to [];
         //saver.SaveList(_missionChoice.firstEnemySet);
         //saver.SaveDic();
@@ -274,6 +276,10 @@ public class SaveAndLoad : MonoBehaviour {
                 _playerTowerLog.LoadTowersAndParts(savedFile.knownTowersAndParts, savedFile.learnableTowersAndParts, savedFile.unlearnableTowersAndParts);
                 _tinkerUpgrades.AddToBackupList();
 
+                // TODO check this for new games that it doesnt load.... aka start new will this bomb.
+                _singleton.LoadTowerPreset(1, savedFile.towerOne.GetTowerName(), savedFile.towerOne.GetTowerHeadType(), savedFile.towerOne.GetTowerBaseType());
+                _singleton.LoadTowerPreset(2, savedFile.towerTwo.GetTowerName(), savedFile.towerTwo.GetTowerHeadType(), savedFile.towerTwo.GetTowerBaseType());
+                _singleton.LoadTowerPreset(3, savedFile.towerThree.GetTowerName(), savedFile.towerThree.GetTowerHeadType(), savedFile.towerThree.GetTowerBaseType());
             }
             catch (Exception e)
             {

@@ -2,22 +2,12 @@
 using System;
 
 [Serializable]
-public class TowerObject : MonoBehaviour {
+public class TowerObject {
 
     public string Name = "";
     public int towerHeadType = -1;
     public int towerBaseType = -1;
 	// Use this for initialization
-	void Start () {
-		
-	}
-
-    // MAYBE LATER add in mastery as well?
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public string GetTowerName()
     {

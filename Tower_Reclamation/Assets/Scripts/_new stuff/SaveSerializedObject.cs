@@ -58,33 +58,31 @@ public class SaveSerializedObject  {
     public void SaveTowerPreset(int towerNum, string name, int headType, int baseType) // add more in here for passins.
     {
 
-
-        
         try
         {
 
-        switch(towerNum)
-        {
-            case 1:
-                towerOne = new TowerObject();
-                towerOne.SetTowerName(name);
-                towerOne.SetTowerHeadType(headType);
-                towerOne.SetTowerBaseType(baseType);
-                //towerOne.   add aprameters in the function call.
-                break;
-            case 2:
-                towerTwo = new TowerObject();
-                towerTwo.SetTowerName(name);
-                towerTwo.SetTowerHeadType(headType);
-                towerTwo.SetTowerBaseType(baseType);
-                break;
-            case 3:
-                towerThree = new TowerObject();
-                towerThree.SetTowerName(name);
-                towerThree.SetTowerHeadType(headType);
-                towerThree.SetTowerBaseType(baseType);
-                break;
-        }
+            switch (towerNum)
+            {
+                case 1:
+                    towerOne = new TowerObject();
+                    towerOne.SetTowerName(name);
+                    towerOne.SetTowerHeadType(headType);
+                    towerOne.SetTowerBaseType(baseType);
+                    //towerOne.   add aprameters in the function call.
+                    break;
+                case 2:
+                    towerTwo = new TowerObject();
+                    towerTwo.SetTowerName(name);
+                    towerTwo.SetTowerHeadType(headType);
+                    towerTwo.SetTowerBaseType(baseType);
+                    break;
+                case 3:
+                    towerThree = new TowerObject();
+                    towerThree.SetTowerName(name);
+                    towerThree.SetTowerHeadType(headType);
+                    towerThree.SetTowerBaseType(baseType);
+                    break;
+            }
 
         }
         catch (Exception e)
@@ -92,7 +90,7 @@ public class SaveSerializedObject  {
             //print(e.Message.ToString());
         }
     }
-    
+
     public void SaveTinkerRoomInfo(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasPicked)
     {
         currentUpgradeLevels = _currentUpgradeLevels;

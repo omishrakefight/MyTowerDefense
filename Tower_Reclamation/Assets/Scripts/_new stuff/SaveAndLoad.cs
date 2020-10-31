@@ -61,13 +61,12 @@ public class SaveAndLoad : MonoBehaviour {
         saver.SaveTowersAndParts(_playerTowerLog.SaveKnownTowersAndParts(), _playerTowerLog.SaveLearnableTowersAndParts(), _playerTowerLog.SaveUnlearnableTowersAndParts());
         saver.SaveTinkerRoomInfo(_tinkerUpgrades.SaveCurrentUpgradeLevels(), _tinkerUpgrades.SaveLearnableUpgrades(), _tinkerUpgrades.SavePossibleOptions(), _tinkerUpgrades.SaveHasPicked());
         saver.SetTutorial(_singleton.GetIsTutorial());
+
         // TODO add in here to save tower setups.  I needs to save all set tower peices (tower btn 1, 2, 3) name, head, base.  Maybe also set default to the rifledtower?
         saver.SaveTowerPreset(1, _singleton.towerOneName, _singleton.towerOneHeadType, _singleton.towerOneBaseType);
         saver.SaveTowerPreset(2, _singleton.towerTwoName, _singleton.towerTwoHeadType, _singleton.towerTwoBaseType);
         saver.SaveTowerPreset(3, _singleton.towerThreeName, _singleton.towerThreeHeadType, _singleton.towerThreeBaseType);
-        //TODO just save as a list instead of going to [];
-        //saver.SaveList(_missionChoice.firstEnemySet);
-        //saver.SaveDic();
+
         if (_missionChoice.isHasChosen)
         {
             saver.IsHasChosenEnemies(true);

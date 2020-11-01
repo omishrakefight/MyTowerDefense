@@ -107,9 +107,12 @@ public class TowerUpgradeAndRangeSight : MonoBehaviour {
 
     public void ButtonOne()
     {
+        // add in here the ref tto button description....
         string proxyInfo = "";
-        _tower.UpgradeBtnOne(ref proxyInfo);
+        string buttonUpgradeInfo = "";
+        _tower.UpgradeBtnOne(ref proxyInfo, ref buttonUpgradeInfo);
         textInfo.text = proxyInfo;
+        btnInfoOne.text = buttonUpgradeInfo;
         ShowInfoPanel();
     }
     public void ButtonTwo()

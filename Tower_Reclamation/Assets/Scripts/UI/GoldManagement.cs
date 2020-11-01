@@ -3,15 +3,22 @@ using System.Collections.Generic;
 
 using UnityEngine.UI;
 using UnityEngine;
+using System;
 
 public class GoldManagement : MonoBehaviour {
 
     //inside enemy health dmg
-    [SerializeField] public int goldCount = 150;
+    [SerializeField] public float goldCount = 150f;
+    public float upgradeCount = 0f;
     private bool setGoldManually = false;
     public Text gold;
+    [SerializeField] public Text parts;
     float goldTimer = 0f;
+    float goldInterval = 5f;
+    int baseIncreaseInterval = 4;
     bool roundStarted = false;
+    [SerializeField] Slider towerAndUpgradePartsSlider;
+  
 
     // Use this for initialization
     void Start () {
@@ -30,10 +37,38 @@ public class GoldManagement : MonoBehaviour {
             goldTimer += Time.deltaTime;
         }
 
-        if (goldTimer > 2f)
+        if (goldTimer > goldInterval)
         {
-            goldTimer =- 2.0f;
-            AddGold(1);
+            goldTimer =- goldInterval;
+            //AddGold();
+            AddTowerAndUpgradeParts();
+        }
+    }
+
+    private void AddTowerAndUpgradeParts()
+    {
+        switch ((int)towerAndUpgradePartsSlider.value)
+        {
+            case 0:
+                AddGold(baseIncreaseInterval * 1.75f);
+                AddUpgradeParts(baseIncreaseInterval * 0);
+                break;
+            case 1:
+                AddGold(baseIncreaseInterval * 1.5f);
+                AddUpgradeParts(baseIncreaseInterval * .5f);
+                break;
+            case 2:
+                AddGold(baseIncreaseInterval);
+                AddUpgradeParts(baseIncreaseInterval);
+                break;
+            case 3:
+                AddGold(baseIncreaseInterval * .5f);
+                AddUpgradeParts(baseIncreaseInterval * 1.5f);
+                break;
+            case 4:
+                AddGold(baseIncreaseInterval * 0);
+                AddUpgradeParts(baseIncreaseInterval * 1.75f);
+                break;
         }
     }
 
@@ -44,13 +79,13 @@ public class GoldManagement : MonoBehaviour {
 
     public void AddExtraGoldTimer(float time)
     {
-        goldTimer += time;
+        goldTimer += time; // actually I can let it add frame by frame in update...
 
-        int divisions = (int)(goldTimer / 2f);
+        //int divisions = (int)(goldTimer / 2f);
 
-        AddGold(divisions);
+        //AddGold(divisions);
 
-        goldTimer -= (2 * divisions);
+        //goldTimer -= (2 * divisions);
     }
 
     public void SetGoldAmount(int newAmount)
@@ -63,19 +98,29 @@ public class GoldManagement : MonoBehaviour {
     public void AddGold(float money)
     {
         // maybe do this so that goldcount is float, but onyl displays int? round to 2?
-
-        goldCount = goldCount + (int)money;
+        goldCount = goldCount + money;
         GoldCounter();
+    }
+
+    public void AddUpgradeParts(float parts)
+    {
+        upgradeCount += Mathf.RoundToInt(parts);
+        PartsCounter();
+    }
+
+    private void PartsCounter()
+    {
+        parts.text = "Upgrades :  " + Mathf.RoundToInt(upgradeCount);
     }
 
     public void GoldCounter()
     {
-        gold.text = "Gold :  " + goldCount;
+        gold.text = "Gold :  " + (int)goldCount;
     }
 
     public int CurrentGold()
     {
-        return goldCount;
+        return (int)goldCount;
     }
     // change this to take in an int and minus tower cost (input int)
     public void TowerCost(int towerCost)

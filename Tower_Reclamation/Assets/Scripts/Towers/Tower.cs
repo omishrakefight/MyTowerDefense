@@ -22,7 +22,13 @@ public abstract class Tower : MonoBehaviour {
     protected string towerUpgradeDescriptionTwo = "";
     protected string towerUpgradeDescriptionThree = "";
 
-
+    protected int upgradeOneUsed = 0;
+    protected int upgradeTwoUsed = 0;
+    protected int upgradeThreeUsed = 0;
+    protected int anyUpgradeUsed = 0;
+    protected float anyUpgradeCostInc = .03f;
+    protected float thisUpgradeCostInc = .05f;
+    protected float baseUpgradePercent = .2f;
 
     [SerializeField] public float towerDmg = 30;
     [SerializeField] protected float currentTowerDmg = 30;
@@ -272,19 +278,19 @@ public abstract class Tower : MonoBehaviour {
         stats = TowerStatsTxt;
     }
 
-    public virtual void UpgradeBtnOne(ref string stats)
+    public virtual void UpgradeBtnOne(ref string stats, ref string upgradeTextOne)
     {
         print("Not Overriden in the base tower.");
         GetStringStats();
         stats = TowerStatsTxt;
     }
-    public virtual void UpgradeBtnTwo(ref string stats)
+    public virtual void UpgradeBtnTwo(ref string stats)//, ref string upgradeTextTwo)
     {
         print("Not Overriden in the base tower.");
         GetStringStats();
         stats = TowerStatsTxt;
     }
-    public virtual void UpgradeBtnThree(ref string stats)
+    public virtual void UpgradeBtnThree(ref string stats)//, ref string upgradeTextThree)
     {
         print("Not Overriden in the base tower.");
         GetStringStats();

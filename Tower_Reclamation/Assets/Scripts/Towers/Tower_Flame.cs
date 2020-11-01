@@ -306,7 +306,7 @@ public class Tower_Flame : Tower {
         //towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
         //towerUpgradeDescriptionTwo = "Upgrade reduce enemy healing +10%";
         //towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
-    public override void UpgradeBtnOne(ref string stats)
+    public override void UpgradeBtnOne(ref string stats, ref string upgradeTextOne)
     {
         head.BuffDamage(.2f);
         GetStringStats();

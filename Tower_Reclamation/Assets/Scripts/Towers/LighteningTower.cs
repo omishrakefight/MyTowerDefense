@@ -356,7 +356,7 @@ public class LighteningTower : Tower {
         zapTimer = timeOfZap;
     }
 
-    public override void UpgradeBtnOne(ref string stats)
+    public override void UpgradeBtnOne(ref string stats, ref string upgradeTextOne)
     {
         currentTowerDmg += (.2f * towerDmg);
         GetStringStats();

@@ -30,7 +30,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     protected float healTimer = 1f;
     protected float healTime = 0f;
     protected float healPercent;
-    protected float goldForMyHead = 7;
+    protected float goldForMyHead = 3.5f;
     float healPerTick = 0f;
     protected string enemyName = "";
     protected bool hasGold = true;

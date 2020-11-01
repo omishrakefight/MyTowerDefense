@@ -148,7 +148,7 @@ public class Tower_Ice : Tower {
         //towerUpgradeDescriptionOne = "Upgrade tower Slow percent +5%";
         //towerUpgradeDescriptionTwo = "Upgrade tower lingering slow duration 1 second";
         //towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
-    public override void UpgradeBtnOne(ref string stats)
+    public override void UpgradeBtnOne(ref string stats, ref string upgradeTextOne)
     {
         preFlippedChillAmount += slowUpgrade;
         chillAmount = (1 - preFlippedChillAmount);

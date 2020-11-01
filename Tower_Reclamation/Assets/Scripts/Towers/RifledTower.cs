@@ -9,7 +9,7 @@ public class RifledTower : Tower {
 
     //[SerializeField] float attackRange = 32f;
     //public new int goldCost = 50;
-
+    GoldManagement gold;
     ParticleSystem projectileParticle = null;
     ParticleSystem.EmissionModule emission;
     Singleton singleton;
@@ -22,7 +22,7 @@ public class RifledTower : Tower {
     //[SerializeField] private float currentTowerDmg = 12;
     // State of tower
 
-
+       //TODO 3* tower upgrades, 5* this upgrarade...
     // Buff info
     //bool keepBuffed = false;
     readonly new bool cantargettingModule = true;
@@ -63,6 +63,7 @@ public class RifledTower : Tower {
         projectileParticle = GetComponentInChildren<ParticleSystem>();
         emission = projectileParticle.emission;
 
+        gold = FindObjectOfType<GoldManagement>();
         towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
         towerUpgradeDescriptionTwo = "Upgrade tower attack speed +20%";
         towerUpgradeDescriptionThree = "Upgrade tower range +20%";
@@ -296,20 +297,33 @@ public class RifledTower : Tower {
     //towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
     //towerUpgradeDescriptionTwo = "Upgrade tower attack speed +20%";
     //towerUpgradeDescriptionThree = "Upgrade tower range +20%";
-    public override void UpgradeBtnOne(ref string stats)
+    public override void UpgradeBtnOne(ref string stats, ref string upgradeTextOne)
     {
+
+        upgradeOneUsed++;
+        anyUpgradeUsed++;
         currentTowerDmg += (.2f * towerDmg);
         GetStringStats();
         stats = TowerStatsTxt;
+
+        float baseCost = GetTowerCost();
+        // this shenanigins, multiplies the base cost of the tower times .03x the times its EVER been upgraded, + .05 times the specific upgrade, + the .20% starting upgrade base.
+        int currentUpgradeCost = Mathf.RoundToInt( (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc))  +  (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc))  + (baseCost * baseUpgradePercent));
+        string newExplanation = towerUpgradeDescriptionOne + "\nCost: " + currentUpgradeCost;
+        upgradeTextOne = newExplanation;
     }
     public override void UpgradeBtnTwo(ref string stats)
     {
+        upgradeTwoUsed++;
+        anyUpgradeUsed++;
         attackSpeed = (.8f * attackSpeed);
         GetStringStats();
         stats = TowerStatsTxt;
     }
     public override void UpgradeBtnThree(ref string stats)
     {
+        upgradeThreeUsed++;
+        anyUpgradeUsed++;
         currentAttackRange += (.2f * attackRange);
         if (minRange != 0)
         {

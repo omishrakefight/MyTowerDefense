@@ -415,7 +415,7 @@ public class Tower_Plasma : Tower
         return towerCost;
     }
 
-    public override void UpgradeBtnOne(ref string stats)
+    public override void UpgradeBtnOne(ref string stats, ref string upgradeTextOne)
     {
         currentTowerDmg += (.2f * towerDmg);
         GetStringStats();

@@ -82,6 +82,7 @@ public sealed class Singleton : MonoBehaviour {
     {
         if (towerOneBase == null)
         {
+            towerOneName = "Rifled Towers";
             towerOneBase = basicRifledTowerBase;
             towerOneHead = basicRifledTowerHead;
             towerOneBaseType = (int)RifledBase.Basic;

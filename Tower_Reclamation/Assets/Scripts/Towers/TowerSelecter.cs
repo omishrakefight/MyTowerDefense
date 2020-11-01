@@ -131,15 +131,27 @@ public class TowerSelecter : MonoBehaviour
         collider = tower.GetComponentInChildren<BoxCollider>();
         bound = collider.bounds;
 
-        if (!singleton.towerOneName.Equals(""))
-        {
-            LoadTowerOne();
-        }
+        //if (!singleton.towerOneName.Equals(""))
+        //{
+        IEnumerator start;
+        start = DelayedStart();
+
+        StartCoroutine(start);
+        //}
         //UpdateTowersAvailable();
     }
 
-    // Update is called once per frame
-    void Update()
+    public IEnumerator DelayedStart()
+    {
+        yield return null;
+
+        LoadTowerOne();
+
+        yield return null;
+    }
+
+        // Update is called once per frame
+        void Update()
     {
         if (Input.GetMouseButton(1))
         {

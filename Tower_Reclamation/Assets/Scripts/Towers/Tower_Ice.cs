@@ -36,6 +36,7 @@ public class Tower_Ice : Tower {
 
     public override void DelayedStart()
     {
+        base.DelayedStart();
         TowerTypeExplanation = "The Ice Tower works off the research of Jack Kvate, proving that the Xenos were cold blooded. " +
                     "The base holds compartmentalized fluids, while the propellers at the top spin to both mix and disperse the slush, chilling " +
                     "the immediate area.  This should slow the Xeno that travel too close.";
@@ -145,28 +146,104 @@ public class Tower_Ice : Tower {
     }
 
 
-        //towerUpgradeDescriptionOne = "Upgrade tower Slow percent +5%";
-        //towerUpgradeDescriptionTwo = "Upgrade tower lingering slow duration 1 second";
-        //towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
-    public override void UpgradeBtnOne(ref string stats, ref string upgradeTextOne)
+    //towerUpgradeDescriptionOne = "Upgrade tower Slow percent +5%";
+    //towerUpgradeDescriptionTwo = "Upgrade tower lingering slow duration 1 second";
+    //towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
+
+    public override void InitializeUpgradeOptionTexts(ref string description1, ref string description2, ref string description3, ref string stats)
     {
+        description1 = towerUpgradeDescriptionOne;
+        description2 = towerUpgradeDescriptionTwo;
+        description3 = towerUpgradeDescriptionThree;
+
+        GetStringStats();
+        stats = TowerStatsTxt;
+
+        GetUpgradeCosts(out description1, out description2, out description3);
+    }
+    private void GetUpgradeCosts(out string upgradeTextOne, out string upgradeTextTwo, out string upgradeTextThree)
+    {
+        float baseCost = GetTowerCost();
+        // this shenanigins, multiplies the base cost of the tower times .03x the times its EVER been upgraded, + .05 times the specific upgrade, + the .20% starting upgrade base.
+        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        string newExplanation = towerUpgradeDescriptionOne + "\nCost: " + currentUpgradeCost;
+        upgradeTextOne = newExplanation;
+
+        currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        newExplanation = towerUpgradeDescriptionTwo + "\nCost: " + currentUpgradeCost;
+        upgradeTextTwo = newExplanation;
+
+        currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        newExplanation = towerUpgradeDescriptionThree + "\nCost: " + currentUpgradeCost;
+        upgradeTextThree = newExplanation;
+    }
+
+
+    public override void UpgradeBtnOne(ref string stats, ref string upgradeTextOne, ref string upgradeTextTwo, ref string upgradeTextThree)
+    {
+        float baseCost = GetTowerCost();
+        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+
+        if (gold.upgradeCount < currentUpgradeCost)
+        {
+            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
+            //return;   Eventually this will stop it.
+        }
+
         preFlippedChillAmount += slowUpgrade;
         chillAmount = (1 - preFlippedChillAmount);
+
+        gold.UpgradeCost(currentUpgradeCost);
+        upgradeOneUsed++;
+        anyUpgradeUsed++;
         GetStringStats();
         stats = TowerStatsTxt;
+
+        GetUpgradeCosts(out upgradeTextOne, out upgradeTextTwo, out upgradeTextThree);
     }
-    public override void UpgradeBtnTwo(ref string stats)
+    public override void UpgradeBtnTwo(ref string stats, ref string upgradeTextOne, ref string upgradeTextTwo, ref string upgradeTextThree)
     {
+        float baseCost = GetTowerCost();
+        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+
+        if (gold.upgradeCount < currentUpgradeCost)
+        {
+            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
+            //return;   Eventually this will stop it.
+        }
+
         chillDuration += chillDurationIncrease;
+
+
+        gold.UpgradeCost(currentUpgradeCost);
+        upgradeTwoUsed++;
+        anyUpgradeUsed++;
         GetStringStats();
         stats = TowerStatsTxt;
+
+        GetUpgradeCosts(out upgradeTextOne, out upgradeTextTwo, out upgradeTextThree);
     }
-    public override void UpgradeBtnThree(ref string stats)
+    public override void UpgradeBtnThree(ref string stats, ref string upgradeTextOne, ref string upgradeTextTwo, ref string upgradeTextThree)
     {
+        float baseCost = GetTowerCost();
+        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+
+        if (gold.upgradeCount < currentUpgradeCost)
+        {
+            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
+            //return;   Eventually this will stop it.
+        }
+
         blueLight.range += (.15f * blueLight.range);
         range += (.15f * range);
+
+        gold.UpgradeCost(currentUpgradeCost);
+        upgradeThreeUsed++;
+        anyUpgradeUsed++;
         GetStringStats();
         stats = TowerStatsTxt;
+
+        GetUpgradeCosts(out upgradeTextOne, out upgradeTextTwo, out upgradeTextThree);
     }
 
     //towerUpgradeDescriptionOne = "Upgrade tower Slow percent +5%";

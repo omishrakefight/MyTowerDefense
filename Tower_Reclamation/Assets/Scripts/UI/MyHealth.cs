@@ -15,6 +15,7 @@ public class MyHealth : MonoBehaviour {
     [SerializeField] Text worldFalls;
     // Use this for initialization
     void Start () {
+        myNumericalHealth = 100;
         myHealth.text = "Base HP : ";// + myNumericalHealth.ToString() + " / 10";
         myHealthNumber.text = myNumericalHealth.ToString() + " / 100";
 

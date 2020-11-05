@@ -129,4 +129,10 @@ public class GoldManagement : MonoBehaviour {
         //print("i just bough a tower i am now " + goldCount);
         GoldCounter();
     }
+
+    public void UpgradeCost(int upgradeCost)
+    {
+        upgradeCount -= upgradeCost;
+        PartsCounter();
+    }
 }

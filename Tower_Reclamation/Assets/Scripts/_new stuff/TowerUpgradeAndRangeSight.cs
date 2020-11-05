@@ -109,24 +109,40 @@ public class TowerUpgradeAndRangeSight : MonoBehaviour {
     {
         // add in here the ref tto button description....
         string proxyInfo = "";
-        string buttonUpgradeInfo = "";
-        _tower.UpgradeBtnOne(ref proxyInfo, ref buttonUpgradeInfo);
+        string buttonUpgradeInfoOne = "";
+        string buttonUpgradeInfoTwo = "";
+        string buttonUpgradeInfoThree = "";
+        _tower.UpgradeBtnOne(ref proxyInfo, ref buttonUpgradeInfoOne, ref buttonUpgradeInfoTwo, ref buttonUpgradeInfoThree);
         textInfo.text = proxyInfo;
-        btnInfoOne.text = buttonUpgradeInfo;
+        btnInfoOne.text = buttonUpgradeInfoOne;
+        btnInfoTwo.text = buttonUpgradeInfoTwo;
+        btnInfoThree.text = buttonUpgradeInfoThree;
         ShowInfoPanel();
     }
     public void ButtonTwo()
     {
         string proxyInfo = "";
-        _tower.UpgradeBtnTwo(ref proxyInfo);
+        string buttonUpgradeInfoOne = "";
+        string buttonUpgradeInfoTwo = "";
+        string buttonUpgradeInfoThree = "";
+        _tower.UpgradeBtnTwo(ref proxyInfo, ref buttonUpgradeInfoOne, ref buttonUpgradeInfoTwo, ref buttonUpgradeInfoThree);
         textInfo.text = proxyInfo;
+        btnInfoOne.text = buttonUpgradeInfoOne;
+        btnInfoTwo.text = buttonUpgradeInfoTwo;
+        btnInfoThree.text = buttonUpgradeInfoThree;
         ShowInfoPanel();
     }
     public void ButtonThree()
     {
         string proxyInfo = "";
-        _tower.UpgradeBtnThree(ref proxyInfo);
+        string buttonUpgradeInfoOne = "";
+        string buttonUpgradeInfoTwo = "";
+        string buttonUpgradeInfoThree = "";
+        _tower.UpgradeBtnThree(ref proxyInfo, ref buttonUpgradeInfoOne, ref buttonUpgradeInfoTwo, ref buttonUpgradeInfoThree);
         textInfo.text = proxyInfo;
+        btnInfoOne.text = buttonUpgradeInfoOne;
+        btnInfoTwo.text = buttonUpgradeInfoTwo;
+        btnInfoThree.text = buttonUpgradeInfoThree;
         ShowInfoPanel();
     }
 }

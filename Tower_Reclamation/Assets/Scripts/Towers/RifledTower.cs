@@ -9,7 +9,6 @@ public class RifledTower : Tower {
 
     //[SerializeField] float attackRange = 32f;
     //public new int goldCost = 50;
-    GoldManagement gold;
     ParticleSystem projectileParticle = null;
     ParticleSystem.EmissionModule emission;
     Singleton singleton;
@@ -45,12 +44,12 @@ public class RifledTower : Tower {
 
     override public void DelayedStart()
     {
+        base.DelayedStart();
+
         TowerTypeExplanation = "The rifled tower is a basic tower that fires bullets at a single enemy.  ";
         TowerTypeExplanation += "The damage it causes is mediocre and has no splash, but it has decent range and rate of fire.  ";
         TowerTypeExplanation += "This basic tower gets the job done, so long as it is not firing on swarms of enemies.  ";
 
-
-        base.Start();
         minRange = 0f;
         towerDmg = 30f;
         attackRange = 20f;
@@ -63,7 +62,7 @@ public class RifledTower : Tower {
         projectileParticle = GetComponentInChildren<ParticleSystem>();
         emission = projectileParticle.emission;
 
-        gold = FindObjectOfType<GoldManagement>();
+
         towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
         towerUpgradeDescriptionTwo = "Upgrade tower attack speed +20%";
         towerUpgradeDescriptionThree = "Upgrade tower range +20%";
@@ -297,31 +296,89 @@ public class RifledTower : Tower {
     //towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
     //towerUpgradeDescriptionTwo = "Upgrade tower attack speed +20%";
     //towerUpgradeDescriptionThree = "Upgrade tower range +20%";
-    public override void UpgradeBtnOne(ref string stats, ref string upgradeTextOne)
-    {
 
-        upgradeOneUsed++;
-        anyUpgradeUsed++;
-        currentTowerDmg += (.2f * towerDmg);
+    public override void InitializeUpgradeOptionTexts(ref string description1, ref string description2, ref string description3, ref string stats)
+    {
+        description1 = towerUpgradeDescriptionOne;
+        description2 = towerUpgradeDescriptionTwo;
+        description3 = towerUpgradeDescriptionThree;
+
         GetStringStats();
         stats = TowerStatsTxt;
 
+        GetUpgradeCosts(out description1, out description2, out description3);
+    }
+    private void GetUpgradeCosts(out string upgradeTextOne, out string upgradeTextTwo, out string upgradeTextThree)
+    {
         float baseCost = GetTowerCost();
         // this shenanigins, multiplies the base cost of the tower times .03x the times its EVER been upgraded, + .05 times the specific upgrade, + the .20% starting upgrade base.
-        int currentUpgradeCost = Mathf.RoundToInt( (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc))  +  (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc))  + (baseCost * baseUpgradePercent));
+        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
         string newExplanation = towerUpgradeDescriptionOne + "\nCost: " + currentUpgradeCost;
         upgradeTextOne = newExplanation;
+
+        currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        newExplanation = towerUpgradeDescriptionTwo + "\nCost: " + currentUpgradeCost;
+        upgradeTextTwo = newExplanation;
+
+        currentUpgradeCost = Mathf.RoundToInt( costReductionForBallisticRange * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        newExplanation = towerUpgradeDescriptionThree + "\nCost: " + currentUpgradeCost;
+        upgradeTextThree = newExplanation;
     }
-    public override void UpgradeBtnTwo(ref string stats)
+
+    public override void UpgradeBtnOne(ref string stats, ref string upgradeTextOne, ref string upgradeTextTwo, ref string upgradeTextThree)
     {
+        float baseCost = GetTowerCost();
+        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+
+        if (gold.upgradeCount < currentUpgradeCost)
+        {
+            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
+            //return;   Eventually this will stop it.
+        }
+
+        currentTowerDmg += (.2f * towerDmg);
+
+        gold.UpgradeCost(currentUpgradeCost);
+        upgradeOneUsed++;
+        anyUpgradeUsed++;
+        GetStringStats();
+        stats = TowerStatsTxt;
+
+        GetUpgradeCosts(out upgradeTextOne, out upgradeTextTwo, out upgradeTextThree);
+    }
+
+    public override void UpgradeBtnTwo(ref string stats, ref string upgradeTextOne, ref string upgradeTextTwo, ref string upgradeTextThree)
+    {
+        float baseCost = GetTowerCost();
+        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+
+        if (gold.upgradeCount < currentUpgradeCost)
+        {
+            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
+            //return;   Eventually this will stop it.
+        }
+
+        gold.UpgradeCost(currentUpgradeCost);
         upgradeTwoUsed++;
         anyUpgradeUsed++;
         attackSpeed = (.8f * attackSpeed);
         GetStringStats();
         stats = TowerStatsTxt;
+
+        GetUpgradeCosts(out upgradeTextOne, out upgradeTextTwo, out upgradeTextThree);
     }
-    public override void UpgradeBtnThree(ref string stats)
+    public override void UpgradeBtnThree(ref string stats, ref string upgradeTextOne, ref string upgradeTextTwo, ref string upgradeTextThree)
     {
+        float baseCost = GetTowerCost();
+        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+
+        if (gold.upgradeCount < currentUpgradeCost)
+        {
+            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
+            //return;   Eventually this will stop it.
+        }
+
+        gold.UpgradeCost(currentUpgradeCost);
         upgradeThreeUsed++;
         anyUpgradeUsed++;
         currentAttackRange += (.2f * attackRange);
@@ -331,6 +388,8 @@ public class RifledTower : Tower {
         }
         GetStringStats();
         stats = TowerStatsTxt;
+
+        GetUpgradeCosts(out upgradeTextOne, out upgradeTextTwo, out upgradeTextThree);
     }
 
 }

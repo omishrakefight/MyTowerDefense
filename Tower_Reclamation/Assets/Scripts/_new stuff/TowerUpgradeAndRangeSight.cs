@@ -31,10 +31,14 @@ public class TowerUpgradeAndRangeSight : MonoBehaviour {
     [SerializeField] Button upgradeOne;
     [SerializeField] Button upgradeTwo;
     [SerializeField] Button upgradeThree; // I will have a function that takes in parameters like strings.  This will initialize the texts, buttons to what to do
-    // This object is generic, the towers pass in the info to initialize / tell it what can be upgraded.
+                                          // This object is generic, the towers pass in the info to initialize / tell it what can be upgraded.
+
+    float tinkerEngineeringReduction = 1f;
 
     void Start()
     {
+        // this is to reduce the cost of ramping costs.
+        tinkerEngineeringReduction = Singleton.Instance.GetPercentageModifier((int)TinkerUpgradeNumbers.towerEngineer);
         line = gameObject.GetComponent<LineRenderer>();
         line.enabled = false;
 

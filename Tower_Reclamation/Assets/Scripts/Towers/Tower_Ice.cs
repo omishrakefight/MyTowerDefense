@@ -9,7 +9,7 @@ public class Tower_Ice : Tower {
     protected float chillDuration = .5f;
     protected float chillDurationIncrease = .75f;
     protected float preFlippedChillAmount = 0f;
-    protected float slowUpgrade = 5f;
+    protected float slowUpgrade = .05f; // 5f easy for fun
     protected float chillAmount = 0f;
     Singleton singleton;
     // Use this for initialization
@@ -32,6 +32,7 @@ public class Tower_Ice : Tower {
     {
         // maybe hard code it? try wihtout the 1/2
         ChillAura(this.transform.position, range);
+        range = blueLight.range;
     }
 
     public override void DelayedStart()
@@ -42,6 +43,7 @@ public class Tower_Ice : Tower {
                     "the immediate area.  This should slow the Xeno that travel too close.";
 
         preFlippedChillAmount = .33f;
+        blueLight.range = 16;
         range = blueLight.range;
         goldCost = (int)TowerCosts.SlowTowerCost;
         base.CheckUpgradesForTankTower(ref chillAmount, ref range);
@@ -121,7 +123,7 @@ public class Tower_Ice : Tower {
             "Area Range = " + range + "\n" +
             "Attack Damage = 0 \n" +
             "Attack Speed = This Tower has a constant effect \n" +
-            "Slow Amount = " + Mathf.RoundToInt(preFlippedChillAmount).ToString() + "% \n" +
+            "Slow Amount = " + preFlippedChillAmount.ToString() + "% \n" +
             "Targetting = AOE centered on tower.";
     }
 
@@ -184,9 +186,9 @@ public class Tower_Ice : Tower {
         float baseCost = GetTowerCost();
         int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
 
-        if (gold.upgradeCount < currentUpgradeCost)
+        if (gold.upgradeCount < currentUpgradeCost || preFlippedChillAmount >= .75f) // cant add more than 
         {
-            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
+            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost + "  |||| or chilled for more than .75%");
             //return;   Eventually this will stop it.
         }
 
@@ -236,6 +238,7 @@ public class Tower_Ice : Tower {
 
         blueLight.range += (.15f * blueLight.range);
         range += (.15f * range);
+        currentAttackRange = blueLight.range;
 
         gold.UpgradeCost(currentUpgradeCost);
         upgradeThreeUsed++;

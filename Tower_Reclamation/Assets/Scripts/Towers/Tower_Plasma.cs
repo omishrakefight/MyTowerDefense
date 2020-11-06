@@ -458,6 +458,8 @@ public class Tower_Plasma : Tower
         }
 
         currentTowerDmg += (.2f * towerDmg);
+        maxTowerDmg += (.2f * towerDmg);
+        minTowerDmg += (.2f * towerDmg); 
 
         gold.UpgradeCost(currentUpgradeCost);
         upgradeOneUsed++;

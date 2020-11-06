@@ -13,6 +13,8 @@ public class GoldManagement : MonoBehaviour {
     private bool setGoldManually = false;
     public Text gold;
     [SerializeField] public Text parts;
+    [SerializeField] public Text partsPerIncrementText;
+    [SerializeField] public Text goldPerIncrementText;
     float goldTimer = 0f;
     float goldInterval = 5f;
     int baseIncreaseInterval = 4;
@@ -75,6 +77,42 @@ public class GoldManagement : MonoBehaviour {
     public void Started()
     {
         roundStarted = true;
+    }
+
+    public void SliderChangeResetValuesForGoldAndParts()
+    {
+        switch ((int)towerAndUpgradePartsSlider.value)
+        {
+            case 0:
+                ChangeGoldIncrementText((int)(baseIncreaseInterval * 1.75f));
+                ChangeUpgradeIncrementText(baseIncreaseInterval * 0);
+                break;
+            case 1:
+                ChangeGoldIncrementText((int)(baseIncreaseInterval * 1.5f));
+                ChangeUpgradeIncrementText((int)(baseIncreaseInterval * .5f));
+                break;
+            case 2:
+                ChangeGoldIncrementText((int)(baseIncreaseInterval));
+                ChangeUpgradeIncrementText((int)(baseIncreaseInterval));
+                break;
+            case 3:
+                ChangeGoldIncrementText((int)(baseIncreaseInterval * .5f));
+                ChangeUpgradeIncrementText((int)(baseIncreaseInterval * 1.5f));
+                break;
+            case 4:
+                ChangeGoldIncrementText((int)(baseIncreaseInterval * 0));
+                ChangeUpgradeIncrementText((int)(baseIncreaseInterval * 1.75f));
+                break;
+        }
+    }
+
+    public void ChangeGoldIncrementText(int newValue)
+    {
+        goldPerIncrementText.text = "+" + newValue;
+    }
+    public void ChangeUpgradeIncrementText(int newValue)
+    {
+        partsPerIncrementText.text = "+" + newValue;
     }
 
     public void AddExtraGoldTimer(float time)

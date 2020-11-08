@@ -30,7 +30,8 @@ public abstract class Tower : MonoBehaviour {
     protected float anyUpgradeCostInc = .03f;
     protected float thisUpgradeCostInc = .05f;
     protected float baseUpgradePercent = .2f;
-    protected float costReductionForBallisticRange = .6f;
+    protected float costReductionForBallisticRange = .66f;
+    protected float engineeringCostReduction = 1f;
 
     [SerializeField] public float towerDmg = 30;
     [SerializeField] protected float currentTowerDmg = 30;
@@ -187,7 +188,7 @@ public abstract class Tower : MonoBehaviour {
 	}
 
 
-    public void CheckUpgradesForTankTower(ref float towerDmg, ref float TankAOERange)
+    public void CheckUpgradesForTankTower(ref float towerDmg, ref float TankAOERange, ref float upgradeReduction)
     {
         Singleton singleton = Singleton.Instance;
         float percentModifier = 1.0f;
@@ -211,9 +212,11 @@ public abstract class Tower : MonoBehaviour {
         percentModifier = multiplyFodder - percentModifier;
         amountToAdd = (percentModifier * baseTankAOERange);
         TankAOERange += amountToAdd;
+
+        upgradeReduction = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.towerEngineer);
     }
 
-    public void CheckUpgradesForRifledTower(ref float towerDmg, ref float towerRange)
+    public void CheckUpgradesForRifledTower(ref float towerDmg, ref float towerRange, ref float upgradeReduction)
     {
         Singleton singleton = Singleton.Instance;
         float percentModifier = 1.0f;
@@ -234,6 +237,8 @@ public abstract class Tower : MonoBehaviour {
         percentModifier = multiplyFodder - percentModifier;
         amountToAdd = (percentModifier * baseTowerRange);
         towerRange += amountToAdd;
+
+        upgradeReduction = singleton.GetPercentageModifier((int)TinkerUpgradeNumbers.towerEngineer);
     }
 
     // split this into 2, one for rifled towers and one for tank towers.

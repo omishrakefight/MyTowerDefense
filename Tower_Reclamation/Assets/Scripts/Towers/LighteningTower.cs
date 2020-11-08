@@ -81,7 +81,7 @@ public class LighteningTower : Tower {
             towerDmg = towerDmg * 1.2f;
             //attackAOE.radius = attackAOE.radius * 1.4f;
         }
-        base.CheckUpgradesForTankTower(ref towerDmg, ref attackRange);
+        base.CheckUpgradesForTankTower(ref towerDmg, ref attackRange, ref engineeringCostReduction);
         currentTowerDmg = towerDmg;
         AOERange.radius = (attackRange * .60f);
         currentAttackRange = attackRange;

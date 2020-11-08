@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114845317692119150}
   - component: {fileID: 114610119479632098}
   - component: {fileID: 65727226542852236}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire_Tall_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,6 +124,7 @@ MonoBehaviour:
   attackRange: 20
   towerDmg: 30
   currentTowerDmg: 30
+  sceneEnemies: []
   targetEnemy: {fileID: 0}
   objectToPan: {fileID: 0}
   targetEnemyBody: {fileID: 0}

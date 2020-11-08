@@ -29,16 +29,18 @@ public class Tower_Flame : Tower {
     readonly new bool canTowerEngineer = true;
 
     private string attackAreaType = "Wide";
+    private float healReductionIncrement = .10f;
 
 
     // Buff info
     //bool keepBuffed = false;
-   
+
 
     override protected void Start()
     {
         base.Start();
         goldCost = (int)TowerCosts.FlameTowerCost;
+        engineeringCostReduction = Singleton.Instance.GetPercentageModifier((int)TinkerUpgradeNumbers.towerEngineer);
 
         TowerTypeName = "Flame Tower";
         // nothing if it is unbuffed 
@@ -323,15 +325,15 @@ public class Tower_Flame : Tower {
     {
         float baseCost = GetTowerCost();
         // this shenanigins, multiplies the base cost of the tower times .03x the times its EVER been upgraded, + .05 times the specific upgrade, + the .20% starting upgrade base.
-        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
         string newExplanation = towerUpgradeDescriptionOne + "\nCost: " + currentUpgradeCost;
         upgradeTextOne = newExplanation;
 
-        currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
         newExplanation = towerUpgradeDescriptionTwo + "\nCost: " + currentUpgradeCost;
         upgradeTextTwo = newExplanation;
 
-        currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
         newExplanation = towerUpgradeDescriptionThree + "\nCost: " + currentUpgradeCost;
         upgradeTextThree = newExplanation;
     }
@@ -339,7 +341,7 @@ public class Tower_Flame : Tower {
     public override void UpgradeBtnOne(ref string stats, ref string upgradeTextOne, ref string upgradeTextTwo, ref string upgradeTextThree)
     {
         float baseCost = GetTowerCost();
-        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
         if (gold.upgradeCount < currentUpgradeCost)
         {
@@ -360,7 +362,7 @@ public class Tower_Flame : Tower {
     public override void UpgradeBtnTwo(ref string stats, ref string upgradeTextOne, ref string upgradeTextTwo, ref string upgradeTextThree)
     {
         float baseCost = GetTowerCost();
-        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
         if (gold.upgradeCount < currentUpgradeCost)
         {
@@ -368,7 +370,7 @@ public class Tower_Flame : Tower {
             //return;   Eventually this will stop it.
         }
 
-        head.healReduction += 10f;
+        head.healReduction += healReductionIncrement;
 
         gold.UpgradeCost(currentUpgradeCost);
         upgradeTwoUsed++;
@@ -381,7 +383,7 @@ public class Tower_Flame : Tower {
     public override void UpgradeBtnThree(ref string stats, ref string upgradeTextOne, ref string upgradeTextTwo, ref string upgradeTextThree)
     {
         float baseCost = GetTowerCost();
-        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
         if (gold.upgradeCount < currentUpgradeCost)
         {

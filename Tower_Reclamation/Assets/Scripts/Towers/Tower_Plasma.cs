@@ -62,11 +62,12 @@ public class Tower_Plasma : Tower
         attackRange = 30;
         currentAttackRange = attackRange;
         towerDmg = 18;
-        base.CheckUpgradesForRifledTower(ref towerDmg, ref attackRange);
+        base.CheckUpgradesForRifledTower(ref towerDmg, ref attackRange, ref engineeringCostReduction);
         CheckAndApplyBuff();
 
-        towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
-        towerUpgradeDescriptionTwo = "Upgrade tower charge speed +20%"; // overwritten in head for +1 charge?
+        // make this a function and all 3 are switches with these as defaults
+        towerUpgradeDescriptionOne = "Upgrade tower Damage +20%"; // change dmg to +1 charge
+        towerUpgradeDescriptionTwo = "Upgrade tower charge speed +20%"; // overwritten in head for +1 charge?  --no leave this faster charging
         towerUpgradeDescriptionThree = "Upgrade tower range +15%";
     }
 
@@ -433,15 +434,15 @@ public class Tower_Plasma : Tower
     {
         float baseCost = GetTowerCost();
         // this shenanigins, multiplies the base cost of the tower times .03x the times its EVER been upgraded, + .05 times the specific upgrade, + the .20% starting upgrade base.
-        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
         string newExplanation = towerUpgradeDescriptionOne + "\nCost: " + currentUpgradeCost;
         upgradeTextOne = newExplanation;
 
-        currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
         newExplanation = towerUpgradeDescriptionTwo + "\nCost: " + currentUpgradeCost;
         upgradeTextTwo = newExplanation;
 
-        currentUpgradeCost = Mathf.RoundToInt(costReductionForBallisticRange * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        currentUpgradeCost = Mathf.RoundToInt(costReductionForBallisticRange * (engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
         newExplanation = towerUpgradeDescriptionThree + "\nCost: " + currentUpgradeCost;
         upgradeTextThree = newExplanation;
     }
@@ -449,7 +450,7 @@ public class Tower_Plasma : Tower
     public override void UpgradeBtnOne(ref string stats, ref string upgradeTextOne, ref string upgradeTextTwo, ref string upgradeTextThree)
     {
         float baseCost = GetTowerCost();
-        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
         if (gold.upgradeCount < currentUpgradeCost)
         {
@@ -472,7 +473,7 @@ public class Tower_Plasma : Tower
     public override void UpgradeBtnTwo(ref string stats, ref string upgradeTextOne, ref string upgradeTextTwo, ref string upgradeTextThree)
     {
         float baseCost = GetTowerCost();
-        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
         if (gold.upgradeCount < currentUpgradeCost)
         {
@@ -493,7 +494,7 @@ public class Tower_Plasma : Tower
     public override void UpgradeBtnThree(ref string stats, ref string upgradeTextOne, ref string upgradeTextTwo, ref string upgradeTextThree)
     {
         float baseCost = GetTowerCost();
-        int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
+        int currentUpgradeCost = Mathf.RoundToInt(costReductionForBallisticRange * (engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
         if (gold.upgradeCount < currentUpgradeCost)
         {

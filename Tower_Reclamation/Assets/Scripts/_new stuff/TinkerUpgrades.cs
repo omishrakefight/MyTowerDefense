@@ -411,6 +411,7 @@ public class TinkerUpgrades : MonoBehaviour {
     string sturdyTankI = "With research into more compressed tanks, we can put the product inside under more pressure, primarily increasing its effectiveness, but also slightly its range.";
     string heavyShellingI = "With study into the carpaces of the aliens, we have found out how to make the ballistics penetrate them more easily.";
     string towerEngineerI = "Through a better study of towers, the ramping cost of continuous upgrades is cheaper.";
+    //Throught
 
     string targettingModuleII = "With an updated sensor kit, the tower can now target units even further away. Mark II";
     string alloyReasearchII = "By studying the art of alloy smelting, one can produce more quantity of the metals.  Increasing supply has lowered the cost.  Mark II";

@@ -37,13 +37,15 @@ public class Flame_AOE : MonoBehaviour {
     public void DelayedStart(bool keepBuffed)
     {
         towerBase = GetComponentInParent<Tower_Flame>();
+        // this is used in the base flame class, not needed here.
+        float filler = 0.0f;
         healReduction = 0f;
         towerDmg = 12;
         currentTowerDmg = 12;
         float rangeModifier = 1.0f;
         // 1 is shelling, 2 is tank.
         print(towerDmg + "  prebuff    " + rangeModifier);
-        GetComponentInParent<Tower_Flame>().CheckUpgradesForTankTower(ref towerDmg, ref rangeModifier);
+        GetComponentInParent<Tower_Flame>().CheckUpgradesForTankTower(ref towerDmg, ref rangeModifier, ref filler);
         print(towerDmg + "  postbuff    " + rangeModifier);
 
 

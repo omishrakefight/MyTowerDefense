@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114136617961012516}
   - component: {fileID: 114488364461588706}
   - component: {fileID: 65787259388254226}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire_Alien_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +112,7 @@ MonoBehaviour:
   attackRange: 20
   towerDmg: 30
   currentTowerDmg: 30
+  sceneEnemies: []
   targetEnemy: {fileID: 0}
   objectToPan: {fileID: 4695589155867020, guid: 9b88788f1af26d945a3ec20203b67002,
     type: 2}

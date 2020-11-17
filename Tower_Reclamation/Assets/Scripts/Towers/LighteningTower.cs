@@ -86,9 +86,23 @@ public class LighteningTower : Tower {
         AOERange.radius = (attackRange * .60f);
         currentAttackRange = attackRange;
 
+        GetTowerUpgradeTexts();
+    }
+
+    public override void GetTowerUpgradeTexts()
+    {
         towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
         towerUpgradeDescriptionTwo = "Upgrade tower charge speed +20%"; // on the turret form +1 charge?
         towerUpgradeDescriptionThree = "Upgrade tower AOE +15% \nThis increases the range it will hit enemies, not the range it triggers an attack.";
+
+        switch (towerHeadType) // add this in at DetermineTowerHeadType
+        {
+            case -1:
+                print("Didn't initialize the variable towerHeadType");
+                break;
+            default:
+                break;
+        }
     }
 
     /// <summary>

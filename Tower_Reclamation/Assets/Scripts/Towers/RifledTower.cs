@@ -62,10 +62,7 @@ public class RifledTower : Tower {
         projectileParticle = GetComponentInChildren<ParticleSystem>();
         emission = projectileParticle.emission;
 
-
-        towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
-        towerUpgradeDescriptionTwo = "Upgrade tower attack speed +20%";
-        towerUpgradeDescriptionThree = "Upgrade tower range +20%";
+        GetTowerUpgradeTexts();
     }
 
     public override void DetermineTowerTypeBase(int towerInt)
@@ -223,6 +220,22 @@ public class RifledTower : Tower {
             SetTargetEnemy();
         }
 	}
+
+    public override void GetTowerUpgradeTexts()
+    {
+        towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
+        towerUpgradeDescriptionTwo = "Upgrade tower attack speed +20%";
+        towerUpgradeDescriptionThree = "Upgrade tower range +20%";
+
+        switch (towerHeadType) // add this in at DetermineTowerHeadType
+        {
+            case -1:
+                print("Didn't initialize the variable towerHeadType");
+                break;
+            default:
+                break;
+        }
+    }
 
     override protected Transform GetClosest(Transform transformA, Transform transformB)
     {

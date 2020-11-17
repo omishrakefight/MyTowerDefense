@@ -12,6 +12,8 @@ public abstract class Tower : MonoBehaviour {
     [SerializeField] public float attackRange = 9f;
     protected float currentAttackRange = 0;
 
+    protected int towerHeadType = -1;
+
     protected string TowerTypeExplanation = "";
     protected string TowerAugmentExplanation = "";
     protected string TowerBaseExplanation = "";
@@ -302,6 +304,12 @@ public abstract class Tower : MonoBehaviour {
         print("Not Overriden in the base tower.");
         GetStringStats();
         stats = TowerStatsTxt;
+    }
+
+    public virtual void GetTowerUpgradeTexts()
+    {
+        print("Not implemented yet");
+        throw new NotImplementedException();
     }
 
     public virtual void GetStringStats()

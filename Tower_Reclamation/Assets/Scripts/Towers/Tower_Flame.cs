@@ -45,28 +45,6 @@ public class Tower_Flame : Tower {
         TowerTypeName = "Flame Tower";
         // nothing if it is unbuffed 
 
-        // change this to percentage based buff.  otherwise it is an overwrite
-        //if (!keepBuffed) { }
-        //else
-        //{
-        //    //var particleLifetime = projectileParticle.main;
-        //    //particleLifetime.startLifetimeMultiplier = .5f;
-        //    //particleLifetime = projectileParticleTwo.main;
-
-        //    //particleLifetime.startLifetimeMultiplier = .5f;
-
-        //    //particleLifetime = projectileParticleThree.main;
-        //    //particleLifetime.startLifetimeMultiplier = .5f;
-
-        //    //.startLifetimeMultiplier;
-        //    //  currentParticleLifetime = particleLifetime;
-        //    // projectileParticle.main.startLifetimeMultiplier = currentParticleLifetime;
-
-        //    attackRange = attackRange * 1.3f;
-        //    GetComponentInChildren<Flame_AOE>().TowerBuff();
-
-        //    keepBuffed = true;
-        //}
     }
 
     public override void DelayedStart()
@@ -91,9 +69,7 @@ public class Tower_Flame : Tower {
 
         head.DelayedStart(keepBuffed);
 
-        towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
-        towerUpgradeDescriptionTwo = "Upgrade reduce enemy healing +10%";
-        towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
+        GetTowerUpgradeTexts();
     }
 
     public override void DetermineTowerTypeBase(int towerInt)
@@ -141,8 +117,25 @@ public class Tower_Flame : Tower {
         currentTowerDmg = towerDmg;
     }
 
+    public override void GetTowerUpgradeTexts()
+    {
+        towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
+        towerUpgradeDescriptionTwo = "Upgrade reduce enemy healing +10%";
+        towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
+
+        switch (towerHeadType) // add this in at DetermineTowerHeadType
+        {
+            case -1:
+                print("Didn't initialize the variable towerHeadType");
+                break;
+            default:
+                break;
+        }
+    }
+
     public override void DetermineTowerHeadType(int towerInt)
     {
+        towerHeadType = towerInt;
         switch (towerInt)
         {
             case (int)FlameHead.Basic:

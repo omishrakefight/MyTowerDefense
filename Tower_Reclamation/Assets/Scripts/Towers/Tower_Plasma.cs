@@ -31,6 +31,9 @@ public class Tower_Plasma : Tower
     float currentChargeTime = 0f;
     bool canFire = false;
 
+    float xIncrease = -1;
+    float yIncrease = -1;
+
     //1.25 worked well
     float laserOnTime = .25f;
     float laserCurrentTime = 0f;
@@ -66,11 +69,30 @@ public class Tower_Plasma : Tower
         CheckAndApplyBuff();
 
         // make this a function and all 3 are switches with these as defaults
-        towerUpgradeDescriptionOne = "Upgrade tower Damage +20%"; // change dmg to +1 charge
-        towerUpgradeDescriptionTwo = "Upgrade tower charge speed +20%"; // overwritten in head for +1 charge?  --no leave this faster charging
-        towerUpgradeDescriptionThree = "Upgrade tower range +15%";
+        GetTowerUpgradeTexts();
     }
 
+
+    public override void GetTowerUpgradeTexts()
+    {
+        towerUpgradeDescriptionOne = "Upgrade tower Damage +20%"; // change dmg to +1 charge
+        towerUpgradeDescriptionTwo = "Upgrade tower charge speed +20%"; // overwritten in head for +1 charge?  --no leave this faster charging
+        towerUpgradeDescriptionThree = "Upgrade laser width +15%, increase laser range 5%"; // 7 longer beam, 15% wider.
+
+        switch (towerHeadType) // add this in at DetermineTowerHeadType
+        {
+            case -1:
+                print("Didn't initialize the variable towerHeadType");
+                break;
+            case (int)PlasmaHead.Crystal:
+                towerUpgradeDescriptionOne = "Upgrade tower max charge +1"; // change dmg to +1 charge
+
+                towerUpgradeDescriptionThree = "Upgrade tower range +15%";
+                break;
+            default:
+                break;
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -223,6 +245,8 @@ public class Tower_Plasma : Tower
                 maxTowerDmg = 90;
                 laser.gameObject.SetActive(false);
                 spray = GetComponentInChildren<ParticleSystem>();
+                xIncrease = (laser.transform.localScale.x * .15f);
+                yIncrease = (laser.transform.localScale.y * .05f);
                 //nothing;
                 break;
             case (int)PlasmaHead.Crystal:
@@ -458,9 +482,17 @@ public class Tower_Plasma : Tower
             //return;   Eventually this will stop it.
         }
 
-        currentTowerDmg += (.2f * towerDmg);
-        maxTowerDmg += (.2f * towerDmg);
-        minTowerDmg += (.2f * towerDmg); 
+        switch(towerHeadType){
+            case (int)PlasmaHead.Crystal:
+                crystalMaxCharge++;
+                break;
+            default:
+                currentTowerDmg += (.2f * towerDmg);
+                maxTowerDmg += (.2f * maxTowerDmg);
+                minTowerDmg += (.2f * minTowerDmg);
+                break;
+        }
+
 
         gold.UpgradeCost(currentUpgradeCost);
         upgradeOneUsed++;
@@ -502,7 +534,18 @@ public class Tower_Plasma : Tower
             //return;   Eventually this will stop it.
         }
 
-        currentAttackRange += (.15f * attackRange);
+        switch (towerHeadType)
+        {
+            case (int)PlasmaHead.Crystal:
+                currentAttackRange += (.15f * attackRange);
+                break;
+            default:
+                //float laserY = (laser.transform.localScale.y * .05f);   //  y x
+                //float laserXbuff = (laser.transform.localScale.y * .15f);
+                laser.transform.localScale += new Vector3(xIncrease, yIncrease, 0f);//(laser.transform.localScale.y + laserY); // needs to be a vector 3
+                break;
+        }
+
 
         gold.UpgradeCost(currentUpgradeCost);
         upgradeThreeUsed++;

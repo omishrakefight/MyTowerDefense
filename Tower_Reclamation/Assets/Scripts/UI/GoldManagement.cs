@@ -20,7 +20,8 @@ public class GoldManagement : MonoBehaviour {
     int baseIncreaseInterval = 4;
     bool roundStarted = false;
     [SerializeField] Slider towerAndUpgradePartsSlider;
-  
+    [SerializeField] Slider towerAndUpgradeTimer;
+
 
     // Use this for initialization
     void Start () {
@@ -37,12 +38,14 @@ public class GoldManagement : MonoBehaviour {
         if (roundStarted) // set in tutrial and normal lvls
         {
             goldTimer += Time.deltaTime;
+            towerAndUpgradeTimer.value = (goldInterval / goldTimer);
         }
 
         if (goldTimer > goldInterval)
         {
             goldTimer =- goldInterval;
             //AddGold();
+            towerAndUpgradeTimer.value = 0f;
             AddTowerAndUpgradeParts();
         }
     }

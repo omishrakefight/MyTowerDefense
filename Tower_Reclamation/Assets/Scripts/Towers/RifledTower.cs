@@ -47,7 +47,7 @@ public class RifledTower : Tower {
         base.DelayedStart();
 
         TowerTypeExplanation = "The rifled tower is a basic tower that fires bullets at a single enemy.  ";
-        TowerTypeExplanation += "The damage it causes is mediocre and has no splash, but it has decent range and rate of fire.  ";
+        TowerTypeExplanation += "The damage it causes is mediocre and has no splash, but it has decent range and rate of fire.  ";// 
         TowerTypeExplanation += "This basic tower gets the job done, so long as it is not firing on swarms of enemies.  ";
 
         minRange = 0f;

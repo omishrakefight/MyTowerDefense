@@ -178,44 +178,34 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224198624534269562, guid: c75d683a57da05b46abfab717912e227,
+    - target: {fileID: 224342827956260594, guid: c75d683a57da05b46abfab717912e227,
         type: 2}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224198624534269562, guid: c75d683a57da05b46abfab717912e227,
+    - target: {fileID: 224342827956260594, guid: c75d683a57da05b46abfab717912e227,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224469289230981554, guid: c75d683a57da05b46abfab717912e227,
+    - target: {fileID: 224830753740582038, guid: c75d683a57da05b46abfab717912e227,
         type: 2}
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224469289230981554, guid: c75d683a57da05b46abfab717912e227,
+    - target: {fileID: 224830753740582038, guid: c75d683a57da05b46abfab717912e227,
         type: 2}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224469289230981554, guid: c75d683a57da05b46abfab717912e227,
+    - target: {fileID: 224830753740582038, guid: c75d683a57da05b46abfab717912e227,
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224302923489851782, guid: c75d683a57da05b46abfab717912e227,
+    - target: {fileID: 114426799075873036, guid: c75d683a57da05b46abfab717912e227,
         type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224445724363945336, guid: c75d683a57da05b46abfab717912e227,
-        type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 224313739467669542, guid: c75d683a57da05b46abfab717912e227,
-        type: 2}
-      propertyPath: m_LocalPosition.z
+      propertyPath: m_Value
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

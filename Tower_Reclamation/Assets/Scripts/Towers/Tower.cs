@@ -29,8 +29,8 @@ public abstract class Tower : MonoBehaviour {
     protected int upgradeTwoUsed = 0;
     protected int upgradeThreeUsed = 0;
     protected int anyUpgradeUsed = 0;
-    protected float anyUpgradeCostInc = .0375f;
-    protected float thisUpgradeCostInc = .05f;
+    protected float anyUpgradeCostInc = .045f;
+    protected float thisUpgradeCostInc = .0425f;
     protected float baseUpgradePercent = .22f;
     protected float costReductionForBallisticRange = .66f;
     protected float engineeringCostReduction = 1f;
@@ -50,6 +50,8 @@ public abstract class Tower : MonoBehaviour {
     public bool canSturdyTank = false;
     public bool canHeavyShelling = false;
     public bool canTowerEngineer = false;
+
+    protected bool testingTowerUpgrades = false;
 
     // Use this for initialization
     // Buff info
@@ -323,6 +325,21 @@ public abstract class Tower : MonoBehaviour {
         currentTowerDmg = newDamage;
         towerDmg = newDamage;
     }
+
+
+    public bool CanPurchaseUpgrade(int currentUpgradeCost)
+    {
+        if (gold.upgradeCount < currentUpgradeCost)
+        {
+            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
+            if (!testingTowerUpgrades)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     public string GetTowerStatsExplanation()
     {

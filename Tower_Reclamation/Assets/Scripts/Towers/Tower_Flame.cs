@@ -336,11 +336,15 @@ public class Tower_Flame : Tower {
         float baseCost = GetTowerCost();
         int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
-        if (gold.upgradeCount < currentUpgradeCost)
+        if (!CanPurchaseUpgrade(currentUpgradeCost))
         {
-            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
-            //return;   Eventually this will stop it.
+            return;
         }
+        //if (gold.upgradeCount < currentUpgradeCost)
+        //{
+        //    print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
+        //    //return;   Eventually this will stop it.
+        //}
 
         head.BuffDamage(.2f);
 
@@ -357,10 +361,9 @@ public class Tower_Flame : Tower {
         float baseCost = GetTowerCost();
         int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
-        if (gold.upgradeCount < currentUpgradeCost)
+        if (!CanPurchaseUpgrade(currentUpgradeCost))
         {
-            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
-            //return;   Eventually this will stop it.
+            return;
         }
 
         head.healReduction += healReductionIncrement;
@@ -378,10 +381,9 @@ public class Tower_Flame : Tower {
         float baseCost = GetTowerCost();
         int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
-        if (gold.upgradeCount < currentUpgradeCost)
+        if (!CanPurchaseUpgrade(currentUpgradeCost))
         {
-            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
-            //return;   Eventually this will stop it.
+            return;
         }
 
         currentAttackRange += (.2f * attackRange);

@@ -476,13 +476,17 @@ public class Tower_Plasma : Tower
         float baseCost = GetTowerCost();
         int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
-        if (gold.upgradeCount < currentUpgradeCost)
+        if (!CanPurchaseUpgrade(currentUpgradeCost))
         {
-            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
-            //return;   Eventually this will stop it.
+            return;
         }
+        //if (gold.upgradeCount < currentUpgradeCost)
+        //{
+        //    print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
+        //    //return;   Eventually this will stop it.
+        //}
 
-        switch(towerHeadType){
+        switch (towerHeadType){
             case (int)PlasmaHead.Crystal:
                 crystalMaxCharge++;
                 break;
@@ -507,10 +511,9 @@ public class Tower_Plasma : Tower
         float baseCost = GetTowerCost();
         int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
-        if (gold.upgradeCount < currentUpgradeCost)
+        if (!CanPurchaseUpgrade(currentUpgradeCost))
         {
-            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
-            //return;   Eventually this will stop it.
+            return;
         }
 
         maxCharge = (.8f * maxCharge);
@@ -528,10 +531,9 @@ public class Tower_Plasma : Tower
         float baseCost = GetTowerCost();
         int currentUpgradeCost = Mathf.RoundToInt(costReductionForBallisticRange * (engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
-        if (gold.upgradeCount < currentUpgradeCost)
+        if (!CanPurchaseUpgrade(currentUpgradeCost))
         {
-            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
-            //return;   Eventually this will stop it.
+            return;
         }
 
         switch (towerHeadType)

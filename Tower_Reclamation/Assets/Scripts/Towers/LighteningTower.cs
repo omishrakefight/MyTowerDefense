@@ -404,11 +404,15 @@ public class LighteningTower : Tower {
         float baseCost = GetTowerCost();
         int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
 
-        if (gold.upgradeCount < currentUpgradeCost)
+        if (!CanPurchaseUpgrade(currentUpgradeCost))
         {
-            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
-            //return;   Eventually this will stop it.
+            return;
         }
+        //if (gold.upgradeCount < currentUpgradeCost)
+        //{
+        //    print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
+        //    //return;   Eventually this will stop it.
+        //}
 
         currentTowerDmg += (.2f * towerDmg);
 
@@ -425,10 +429,9 @@ public class LighteningTower : Tower {
         float baseCost = GetTowerCost();
         int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
 
-        if (gold.upgradeCount < currentUpgradeCost)
+        if (!CanPurchaseUpgrade(currentUpgradeCost))
         {
-            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
-            //return;   Eventually this will stop it.
+            return;
         }
 
         chargeTime = (.8f * chargeTime);
@@ -446,10 +449,9 @@ public class LighteningTower : Tower {
         float baseCost = GetTowerCost();
         int currentUpgradeCost = Mathf.RoundToInt((baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc)) + (baseCost * baseUpgradePercent));
 
-        if (gold.upgradeCount < currentUpgradeCost)
+        if (!CanPurchaseUpgrade(currentUpgradeCost))
         {
-            print("Shouldnt allow, not enough parts!!! " + gold.upgradeCount + " < " + currentUpgradeCost);
-            //return;   Eventually this will stop it.
+            return;
         }
 
         currentAttackRange += (.15f * attackRange);

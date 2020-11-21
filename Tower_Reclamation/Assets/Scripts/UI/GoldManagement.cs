@@ -21,6 +21,7 @@ public class GoldManagement : MonoBehaviour {
     bool roundStarted = false;
     [SerializeField] Slider towerAndUpgradePartsSlider;
     [SerializeField] Slider towerAndUpgradeTimer;
+    [SerializeField] Image towerAndUpgradeTimerI;
 
 
     // Use this for initialization
@@ -38,14 +39,16 @@ public class GoldManagement : MonoBehaviour {
         if (roundStarted) // set in tutrial and normal lvls
         {
             goldTimer += Time.deltaTime;
-            towerAndUpgradeTimer.value = (goldInterval / goldTimer);
+            //towerAndUpgradeTimer.value = (goldTimer / goldInterval);
+            towerAndUpgradeTimerI.fillAmount = (goldTimer / goldInterval);
         }
 
         if (goldTimer > goldInterval)
         {
-            goldTimer =- goldInterval;
+            goldTimer -= goldInterval;
             //AddGold();
-            towerAndUpgradeTimer.value = 0f;
+            //towerAndUpgradeTimer.value = 0f;
+            towerAndUpgradeTimerI.fillAmount = 0f;
             AddTowerAndUpgradeParts();
         }
     }

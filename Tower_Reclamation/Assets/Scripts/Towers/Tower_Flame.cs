@@ -336,6 +336,9 @@ public class Tower_Flame : Tower {
         float baseCost = GetTowerCost();
         int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeOneUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
+        GetUpgradeCosts(out upgradeTextOne, out upgradeTextTwo, out upgradeTextThree);
+        stats = TowerStatsTxt;
+
         if (!CanPurchaseUpgrade(currentUpgradeCost))
         {
             return;
@@ -361,6 +364,9 @@ public class Tower_Flame : Tower {
         float baseCost = GetTowerCost();
         int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeTwoUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
 
+        GetUpgradeCosts(out upgradeTextOne, out upgradeTextTwo, out upgradeTextThree);
+        stats = TowerStatsTxt;
+
         if (!CanPurchaseUpgrade(currentUpgradeCost))
         {
             return;
@@ -380,6 +386,9 @@ public class Tower_Flame : Tower {
     {
         float baseCost = GetTowerCost();
         int currentUpgradeCost = Mathf.RoundToInt((engineeringCostReduction * (baseCost * ((float)anyUpgradeUsed * anyUpgradeCostInc)) + (baseCost * ((float)upgradeThreeUsed * thisUpgradeCostInc))) + (baseCost * baseUpgradePercent));
+
+        GetUpgradeCosts(out upgradeTextOne, out upgradeTextTwo, out upgradeTextThree);
+        stats = TowerStatsTxt;
 
         if (!CanPurchaseUpgrade(currentUpgradeCost))
         {

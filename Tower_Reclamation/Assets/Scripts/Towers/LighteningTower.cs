@@ -85,11 +85,9 @@ public class LighteningTower : Tower {
         currentTowerDmg = towerDmg;
         AOERange.radius = (attackRange * .60f);
         currentAttackRange = attackRange;
-
-        GetTowerUpgradeTexts();
     }
 
-    public override void GetTowerUpgradeTexts()
+    public override void GetTowerUpgradeTexts(int headType)
     {
         towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
         towerUpgradeDescriptionTwo = "Upgrade tower charge speed +20%"; // on the turret form +1 charge?
@@ -127,6 +125,7 @@ public class LighteningTower : Tower {
 
     public override void DetermineTowerHeadType(int towerInt)
     {
+        GetTowerUpgradeTexts(towerInt);
         switch (towerInt)
         {
             case (int)LightningHead.Basic:
@@ -262,6 +261,10 @@ public class LighteningTower : Tower {
             {
                 try
                 {
+                    if (target.burrowed)
+                    {
+                        continue;
+                    }
                     while (Vector3.Distance(target.transform.position, lastPoint) > 3.0f)
                     {//was the last arc not touching the target?
                         lineRend.SetVertexCount(i + 1);//then we need a new vertex in our line renderer
@@ -293,6 +296,10 @@ public class LighteningTower : Tower {
             {
                 try
                 {
+                    if (target.burrowed)
+                    {
+                        continue;
+                    }
                     while (Vector3.Distance(target.transform.position, lastPoint2) > 3.0f)
                     {//was the last arc not touching the target?
                         secondLightning.SetVertexCount(i2 + 1);//then we need a new vertex in our line renderer

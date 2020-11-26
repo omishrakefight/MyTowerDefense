@@ -5,7 +5,7 @@ using UnityEngine;
 public class BurrowerHealth : EnemyHealth {
 
     protected BurrowerMovement burrowerMove;
-    protected bool burrowed = false;
+    
     // Use this for initialization
     override protected void Start()
     {

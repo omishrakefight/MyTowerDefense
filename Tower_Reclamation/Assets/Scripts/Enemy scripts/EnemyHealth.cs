@@ -26,6 +26,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     [SerializeField] protected float time = 0;
     protected float burnDmg;
 
+    public bool burrowed = false;
     protected bool healing = false;
     protected float healTimer = 1f;
     protected float healTime = 0f;
@@ -43,6 +44,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     // Use this for initialization
     protected virtual void Start()
     {
+        burrowed = false;
     //protected PostLevelSummaryScreen damageLog;
     damageLog = FindObjectOfType<PostLevelSummaryScreen>();
         if (noSpecialHealthThings)

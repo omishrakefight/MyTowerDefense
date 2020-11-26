@@ -69,17 +69,17 @@ public class Tower_Plasma : Tower
         CheckAndApplyBuff();
 
         // make this a function and all 3 are switches with these as defaults
-        GetTowerUpgradeTexts();
+
     }
 
 
-    public override void GetTowerUpgradeTexts()
+    public override void GetTowerUpgradeTexts(int towerType)
     {
         towerUpgradeDescriptionOne = "Upgrade tower Damage +20%"; // change dmg to +1 charge
         towerUpgradeDescriptionTwo = "Upgrade tower charge speed +20%"; // overwritten in head for +1 charge?  --no leave this faster charging
         towerUpgradeDescriptionThree = "Upgrade laser width +15%, increase laser range 5%"; // 7 longer beam, 15% wider.
 
-        switch (towerHeadType) // add this in at DetermineTowerHeadType
+        switch (towerType) // add this in at DetermineTowerHeadType
         {
             case -1:
                 print("Didn't initialize the variable towerHeadType");
@@ -235,6 +235,7 @@ public class Tower_Plasma : Tower
     public override void DetermineTowerHeadType(int towerInt)
     {
         towerType = towerInt;
+        GetTowerUpgradeTexts(towerInt);
         switch (towerInt)
         {
             case (int)PlasmaHead.Basic:

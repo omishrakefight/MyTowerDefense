@@ -287,6 +287,7 @@ public class TowerSelecter : MonoBehaviour
 
         // use this for the placement
         var tHead = Instantiate(towerHead, (position + new Vector3(0, headHeight, 0)), Quaternion.identity); //new Vector3(0, headHeight, 0)
+        tHead.transform.Rotate(0, 180f, 0);
         tBase.transform.parent = container.transform;
         tHead.transform.parent = tBase.transform;
         try

@@ -234,7 +234,7 @@ public class Tower_Plasma : Tower
 
     public override void DetermineTowerHeadType(int towerInt)
     {
-        towerType = towerInt;
+        towerHeadType = towerInt;
         GetTowerUpgradeTexts(towerInt);
         switch (towerInt)
         {
@@ -255,6 +255,7 @@ public class Tower_Plasma : Tower
                 //Sounds balanced, avg is 12 DPS. but considering the ramp-up time and randomness, i think its good.
                 // maybe make these a co-routine for stacks falling off.
                 headType = (int)PlasmaHead.Crystal;
+                maxCharge = 1.0f;
                 crystalDmgInterval = .25f;
                 lineRenderer = GetComponentInChildren<LineRenderer>();
                 lineRenderer.SetPosition(0, (gameObject.transform.position + new Vector3(0, 5.5f, 0)));
@@ -357,8 +358,9 @@ public class Tower_Plasma : Tower
 
                 // this is a cheap way to have it upgrade beam level every second (the (int) truncates the int) so every second it goes up a rank and if rank doesnt match
                 // previous rank then it upgrades the beam.
-                if ((int)crystalCurrentChargeTime != crystalBeamLevel)
+                if (crystalCurrentChargeTime > maxCharge)
                 {
+                    crystalCurrentChargeTime = 0f;
                     crystalBeamLevel++;
                     maxTowerDmg += crystalDMGPerStage;
                     lineRenderer.widthMultiplier = (baseBeamWith + (.25f * crystalBeamLevel));
@@ -490,7 +492,8 @@ public class Tower_Plasma : Tower
         //    //return;   Eventually this will stop it.
         //}
 
-        switch (towerHeadType){
+        switch (towerHeadType)
+        {
             case (int)PlasmaHead.Crystal:
                 crystalMaxCharge++;
                 break;

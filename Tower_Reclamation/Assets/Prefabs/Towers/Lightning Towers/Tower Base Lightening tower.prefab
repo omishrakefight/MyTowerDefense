@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 33338009499843724}
   - component: {fileID: 23714764081718178}
   - component: {fileID: 65347493371075786}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -263,6 +263,7 @@ MonoBehaviour:
   attackRange: 10
   towerDmg: 30
   currentTowerDmg: 30
+  sceneEnemies: []
   targetEnemy: {fileID: 0}
   objectToPan: {fileID: 0}
   targetEnemyBody: {fileID: 0}
@@ -275,6 +276,8 @@ MonoBehaviour:
   keepBuffed: 0
   chargeTime: 7
   currentChargeTime: 0
+  damagePercent: 1
+  damageReductionNumber: 0.05
   isCharged: 0
   charge: {fileID: 108430681405918574}
   projectileParticle: {fileID: 0}

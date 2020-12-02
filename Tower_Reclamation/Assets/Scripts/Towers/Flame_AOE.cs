@@ -29,6 +29,8 @@ public class Flame_AOE : MonoBehaviour {
 
     bool keepBuffed = false;
 
+    private int headType = -1;
+
     void Start()
     {
         TowerTypeName = "Flame Tower";
@@ -96,6 +98,11 @@ public class Flame_AOE : MonoBehaviour {
         currentTowerDmg += (towerDmg * dmgPercent);
     }
 
+    public void SetHeadType(int type)
+    {
+        headType = type;
+    }
+
     public void BuffRange(float rangeBuff)
     {
         Vector3 NewCapsulCenter;
@@ -148,7 +155,8 @@ public class Flame_AOE : MonoBehaviour {
         NewCapsulCenter.z = (currentAttackRange / 2);
         flameAOE.center = NewCapsulCenter;
 
-        return (currentAttackRange / 2); // Divide by 2 because the scale is .5
+        float halfedRange = (currentAttackRange / 2);
+        return halfedRange; // Divide by 2 because the scale is .5
     }
     // i need to add a switch for the head toype, the flamethrower needs to flip range with width since its lengthwise
 
@@ -187,7 +195,16 @@ public class Flame_AOE : MonoBehaviour {
 
     public float GetTowerRange()
     {
-        return currentAttackRange;
+        switch (headType)
+        {
+            case (int)FlameHead.Basic:
+                return currentAttackRange;
+
+            case (int)FlameHead.FlameThrower:
+                return (currentAttackRange / 2);
+            default:
+                return currentAttackRange;
+        }
     }
 
 }

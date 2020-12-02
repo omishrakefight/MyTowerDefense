@@ -93,7 +93,7 @@ public class LighteningTower : Tower {
         towerUpgradeDescriptionTwo = "Upgrade tower charge speed +20%"; // on the turret form +1 charge?
         towerUpgradeDescriptionThree = "Upgrade tower AOE +15% \nThis increases the range it will hit enemies, not the range it triggers an attack.";
 
-        switch (towerHeadType) // add this in at DetermineTowerHeadType
+        switch (headType) // add this in at DetermineTowerHeadType
         {
             case -1:
                 print("Didn't initialize the variable towerHeadType");
@@ -125,6 +125,7 @@ public class LighteningTower : Tower {
 
     public override void DetermineTowerHeadType(int towerInt)
     {
+        towerHeadType = towerInt;
         GetTowerUpgradeTexts(towerInt);
         switch (towerInt)
         {
@@ -447,6 +448,7 @@ public class LighteningTower : Tower {
             return;
         }
 
+        // TODO this doesnt work with crystal tower.
         chargeTime = (.8f * chargeTime);
 
         gold.UpgradeCost(currentUpgradeCost);

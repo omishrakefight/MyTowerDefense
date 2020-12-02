@@ -50,17 +50,15 @@ public class Tower_Ice : Tower {
 
         chillAmount = 1f - preFlippedChillAmount;
         currentAttackRange = range;
-
-        GetTowerUpgradeTexts();
     }
 
-    public override void GetTowerUpgradeTexts()
+    public override void GetTowerUpgradeTexts(int headType)
     {
         towerUpgradeDescriptionOne = "Upgrade tower Slow percent +5%";
         towerUpgradeDescriptionTwo = "Upgrade tower lingering slow duration 1 second";
         towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
 
-        switch (towerHeadType) // add this in at DetermineTowerHeadType
+        switch (headType) // add this in at DetermineTowerHeadType
         {
             case -1:
                 print("Didn't initialize the variable towerHeadType");
@@ -113,6 +111,8 @@ public class Tower_Ice : Tower {
     public override void DetermineTowerHeadType(int towerInt)
     {
         towerHeadType = towerInt;
+        GetTowerUpgradeTexts(towerInt);
+
         switch (towerInt)
         {
             case (int)IceHead.Basic:

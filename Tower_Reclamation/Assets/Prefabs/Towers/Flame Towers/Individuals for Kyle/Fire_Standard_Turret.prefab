@@ -190,6 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towerDmg: 5
   currentTowerDmg: 5
+  healReduction: 0
   currentAttackRange: 0
   baseAttackRange: 0
   currentAttackWidth: 0

@@ -68,8 +68,6 @@ public class Tower_Flame : Tower {
         }
 
         head.DelayedStart(keepBuffed);
-
-        GetTowerUpgradeTexts();
     }
 
     public override void DetermineTowerTypeBase(int towerInt)
@@ -117,13 +115,13 @@ public class Tower_Flame : Tower {
         currentTowerDmg = towerDmg;
     }
 
-    public override void GetTowerUpgradeTexts()
+    public override void GetTowerUpgradeTexts(int headType)
     {
         towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
         towerUpgradeDescriptionTwo = "Upgrade reduce enemy healing +10%";
         towerUpgradeDescriptionThree = "Upgrade tower AOE +15%";
 
-        switch (towerHeadType) // add this in at DetermineTowerHeadType
+        switch (headType) // add this in at DetermineTowerHeadType
         {
             case -1:
                 print("Didn't initialize the variable towerHeadType");
@@ -136,6 +134,9 @@ public class Tower_Flame : Tower {
     public override void DetermineTowerHeadType(int towerInt)
     {
         towerHeadType = towerInt;
+        head.SetHeadType(towerInt);
+        GetTowerUpgradeTexts(towerInt);
+
         switch (towerInt)
         {
             case (int)FlameHead.Basic:
@@ -151,7 +152,7 @@ public class Tower_Flame : Tower {
                 attackRange = head.SetTowerTypeFlameThrower();
                 break;
         }
-        currentAttackRange = head.GetTowerRange();
+        currentAttackRange = head.GetTowerRange();// the above gets me the half attackrange, this, though, is not halved.  need to move / change this
         attackRange = currentAttackRange;
     }
 

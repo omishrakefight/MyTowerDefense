@@ -62,7 +62,7 @@ public class RifledTower : Tower {
         projectileParticle = GetComponentInChildren<ParticleSystem>();
         emission = projectileParticle.emission;
 
-        GetTowerUpgradeTexts();
+        //GetTowerUpgradeTexts();
     }
 
     public override void DetermineTowerTypeBase(int towerInt)
@@ -109,6 +109,9 @@ public class RifledTower : Tower {
 
     public override void DetermineTowerHeadType(int towerInt)
     {
+        towerHeadType = towerInt;
+        GetTowerUpgradeTexts(towerInt);
+
         float towerDmgModifierPercent;
         float towerAttackRangeModifierPercent;
         float towerAttackSpeedModifierPercent;
@@ -221,13 +224,13 @@ public class RifledTower : Tower {
         }
 	}
 
-    public override void GetTowerUpgradeTexts()
+    public override void GetTowerUpgradeTexts(int towerHead)
     {
         towerUpgradeDescriptionOne = "Upgrade tower Damage +20%";
         towerUpgradeDescriptionTwo = "Upgrade tower attack speed +20%";
         towerUpgradeDescriptionThree = "Upgrade tower range +20%";
 
-        switch (towerHeadType) // add this in at DetermineTowerHeadType
+        switch (towerHead) // add this in at DetermineTowerHeadType
         {
             case -1:
                 print("Didn't initialize the variable towerHeadType");

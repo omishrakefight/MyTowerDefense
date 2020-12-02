@@ -12,7 +12,7 @@ public abstract class Tower : MonoBehaviour {
     [SerializeField] public float attackRange = 9f;
     protected float currentAttackRange = 0;
 
-    //protected int towerHeadType = -1;
+    protected int towerHeadType = -1;
 
     protected string TowerTypeExplanation = "";
     protected string TowerAugmentExplanation = "";
@@ -51,7 +51,7 @@ public abstract class Tower : MonoBehaviour {
     public bool canHeavyShelling = false;
     public bool canTowerEngineer = false;
 
-    protected bool testingTowerUpgrades = false;
+    protected bool testingTowerUpgrades = true;
 
     // Use this for initialization
     // Buff info

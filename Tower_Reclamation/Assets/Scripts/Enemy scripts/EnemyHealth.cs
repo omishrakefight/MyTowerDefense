@@ -177,7 +177,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     //    }
     //}
 
-    private void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         print("im trigger!");
         if (other.gameObject.GetComponent<RifledBullet>())

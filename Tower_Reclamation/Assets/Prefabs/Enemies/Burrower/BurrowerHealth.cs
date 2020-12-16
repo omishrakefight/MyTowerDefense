@@ -66,6 +66,39 @@ public class BurrowerHealth : EnemyHealth {
         }
     }
 
+    protected override void OnTriggerEnter(Collider other)
+    {
+        print("im trigger!");
+        if (other.gameObject.GetComponent<RifledBullet>())
+        {
+            RifledBullet bullet = other.gameObject.GetComponent<RifledBullet>();
+            string towerName = "";
+            float dmg = 0;
+            dmg = bullet.damage;
+            bullet.SetDamageToZero();
+            towerName = bullet.towerName;
+            ProcessHit(dmg, towerName);
+
+            TellMovementToStartBurrow();
+
+            if (hitPoints <= 0)
+            {
+                if (!hasGold) // debate this.  NOt sure if ishould use thi or try to find WHY more. l THis should fix it but its a meh fix.
+                {
+                    return;
+                }
+                hasGold = false;
+                //Adds gold upon death, then deletes the enemy.
+                damageLog.UpdateKills(towerName, enemyName);
+                KillsEnemyandAddsGold();
+            }
+            else
+            {
+                GetComponent<AudioSource>().PlayOneShot(enemyHitAudio);
+            }
+        }
+    }
+
     override protected void OnParticleCollision(GameObject other)
     {
         if (burrowed) // cant shoot me im underground bitch.

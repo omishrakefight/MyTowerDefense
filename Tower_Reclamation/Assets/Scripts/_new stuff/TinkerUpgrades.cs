@@ -50,7 +50,7 @@ public class TinkerUpgrades : MonoBehaviour {
             // not completely true, but to make sure it doesnt loop
             loadMeOnce = false;
             hasPicked = false;
-            Hint.text = hintPickMore;
+            Hint.text = hintPickMore + (maxPickNum - currentPickNum) + " more."; ;
 
             // since i stop this from happening twice, loop all immediately.
             Transform parent = transform.parent;

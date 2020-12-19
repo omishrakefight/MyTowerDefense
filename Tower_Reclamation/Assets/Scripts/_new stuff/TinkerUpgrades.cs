@@ -16,8 +16,8 @@ public class TinkerUpgrades : MonoBehaviour {
 
     protected static List<int> pickedUpgrades = new List<int>();
     public static bool hasPicked;
-    public int currentPickNum = 0;
-    public int maxPickNum = 2;
+    public static int currentPickNum = 0;
+    public static int maxPickNum = 2;
 
     public bool isSelected = false;
     public static int numSelected;
@@ -48,6 +48,7 @@ public class TinkerUpgrades : MonoBehaviour {
             learnableUpgrades = new List<int>() { 0, 1, 2, 3, 4 };
             currentUpgradeLevels = new List<int>() { 0, 0, 0, 0, 0 };
             // not completely true, but to make sure it doesnt loop
+            numSelected = 0;
             loadMeOnce = false;
             hasPicked = false;
             Hint.text = hintPickMore + (maxPickNum - currentPickNum) + " more."; ;
@@ -130,6 +131,11 @@ public class TinkerUpgrades : MonoBehaviour {
                 Hint.text = outOfResearch;
                 Singleton.Instance.SendUpdateTinkerUpgrades(currentUpgradeLevels);
                 Singleton.Instance.ishasLearnedTinker = true;
+            }
+            else
+            {
+                Hint.text = hintPickMore + (maxPickNum - currentPickNum) + " more."; 
+                // add in button disable and remove lightup.
             }
         }
     }

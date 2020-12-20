@@ -15,7 +15,7 @@ public class TinkerUpgrades : MonoBehaviour {
 
 
     protected static List<int> pickedUpgrades = new List<int>();
-    public static bool hasPicked;
+    //public static bool hasPicked;
     public static int currentPickNum = 0;
     public static int maxPickNum = 2;
 
@@ -50,7 +50,7 @@ public class TinkerUpgrades : MonoBehaviour {
             // not completely true, but to make sure it doesnt loop
             numSelected = 0;
             loadMeOnce = false;
-            hasPicked = false;
+            //hasPicked = false;
             Hint.text = hintPickMore + (maxPickNum - currentPickNum) + " more."; ;
 
             // since i stop this from happening twice, loop all immediately.
@@ -89,7 +89,7 @@ public class TinkerUpgrades : MonoBehaviour {
             //    isSelected = true;
             //    pickedUpgrades.Add(chosenNumber);
             //}
-            if (numSelected < (maxPickNum - currentPickNum) && !hasPicked) // if (numSelected < upgradesLeft)
+            if (numSelected < (maxPickNum - currentPickNum)) // && !hasPicked) // if (numSelected < upgradesLeft)
             {
                 numSelected++;
                 buttonName.GetComponentInParent<Button>().GetComponent<Image>().color = Color.cyan;
@@ -103,7 +103,7 @@ public class TinkerUpgrades : MonoBehaviour {
     //It also ups the upgrade level.
     public void Selected()
     {
-        if (!hasPicked) // tODO change this to if has 0 count upgrades, and fitler that way
+        if (maxPickNum > currentPickNum) // tODO change this to if has 0 count upgrades, and fitler that way
         {
             Transform parent = transform.parent;
 
@@ -113,10 +113,13 @@ public class TinkerUpgrades : MonoBehaviour {
             {
                 if (upgrades.isSelected)
                 {
+                    numSelected--;
                     currentPickNum++;
-                    print("select saved");
+                    isSelected = false;
                     currentUpgradeLevels[upgrades.chosenNumber]++;
                     DetermineIfHasAnotherUpgrade(upgrades.chosenNumber);
+                    upgrades.buttonName.GetComponentInParent<Button>().GetComponent<Image>().color = baseColor;
+                    upgrades.buttonName.GetComponentInParent<Button>().interactable = false;//.IsInteractable();// = false;
                 }
                 else
                 {
@@ -125,9 +128,9 @@ public class TinkerUpgrades : MonoBehaviour {
                 }
             }
 
-            if (currentPickNum == maxPickNum) {
+            if (currentPickNum >= maxPickNum) {
 
-                hasPicked = true;
+                //hasPicked = true;
                 Hint.text = outOfResearch;
                 Singleton.Instance.SendUpdateTinkerUpgrades(currentUpgradeLevels);
                 Singleton.Instance.ishasLearnedTinker = true;
@@ -360,10 +363,10 @@ public class TinkerUpgrades : MonoBehaviour {
     {
         return possibleOptions.ToArray();
     }
-    public bool SaveHasPicked()
-    {
-        return hasPicked;
-    }
+    //public bool SaveHasPicked()
+    //{
+    //    return hasPicked;
+    //}
     public int SaveMaxPickNum()
     {
         return maxPickNum;
@@ -381,10 +384,10 @@ public class TinkerUpgrades : MonoBehaviour {
     /// <param name="_possibleOptions"></param>
     /// <param name="_hasPicked"></param>
     /// <param name="_hasAlreadyRolledForUpgrades"></param>
-    public void LoadInfoAndSavedOptions(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasPicked, bool _hasAlreadyRolledForUpgrades, int _currentPickNum, int _maxPickNum)
-    {
+    public void LoadInfoAndSavedOptions(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasAlreadyRolledForUpgrades, int _currentPickNum, int _maxPickNum)
+    { //bool _hasPicked
         isLoaded = true;// _hasAlreadyRolledForUpgrades;
-        hasPicked = _hasPicked;
+        //hasPicked = _hasPicked;
         currentPickNum = _currentPickNum;
         maxPickNum = _maxPickNum;
         currentUpgradeLevels.Clear();
@@ -394,8 +397,10 @@ public class TinkerUpgrades : MonoBehaviour {
 
         numSelected =  0;
 
-        if (hasPicked)
+        //        if (hasPicked)
+        if (maxPickNum <= currentPickNum)
         {
+            Singleton.Instance.ishasLearnedTinker = true;
             Hint.text = outOfResearch;
         }
         else

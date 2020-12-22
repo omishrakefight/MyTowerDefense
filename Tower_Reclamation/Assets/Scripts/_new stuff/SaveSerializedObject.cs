@@ -22,6 +22,7 @@ public class SaveSerializedObject  {
     public int[] currentUpgradeLevels;
     public int[] learnableUpgrades;
     public int[] possibleOptions;
+    public List<int> upgradedThisRound;
     public bool hasPicked;
     public int currentPickNum;
     public int maxPickNum;
@@ -93,12 +94,13 @@ public class SaveSerializedObject  {
         }
     }
 
-    public void SaveTinkerRoomInfo(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions,  int _currentPickNum, int _maxPickNum)//bool _hasPicked,
+    public void SaveTinkerRoomInfo(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions,  int _currentPickNum, int _maxPickNum, List<int> _upgradedAlready)//bool _hasPicked,
     {
         currentUpgradeLevels = _currentUpgradeLevels;
         learnableUpgrades = _learnableUpgrades;
         possibleOptions = _possibleOptions;
         //hasPicked = _hasPicked;
+        upgradedThisRound = _upgradedAlready;
         maxPickNum = _maxPickNum;
         currentPickNum = _currentPickNum;
     }

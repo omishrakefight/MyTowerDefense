@@ -9,9 +9,10 @@ public class TinkerUpgrades : MonoBehaviour {
     //TODO make sure that this flips the bool in singleton such that the button stops glowing.  Make sure singleton is updated to this bool on loading a saved game.
     public static List<int> currentUpgradeLevels = new List<int>();
     public static List<int> learnableUpgrades = new List<int>();
-    public static List<int> possibleOptions = new List<int>();
     public static List<int> possibleOptionsFromSave = new List<int>();
+    public static List<int> possibleOptions = new List<int>();
     public static List<int> possibleOptionsFromNewBase = new List<int>();
+    public static List<int> learnedUpgrades = new List<int>();
 
 
     protected static List<int> pickedUpgrades = new List<int>();
@@ -118,6 +119,7 @@ public class TinkerUpgrades : MonoBehaviour {
                     isSelected = false;
                     currentUpgradeLevels[upgrades.chosenNumber]++;
                     DetermineIfHasAnotherUpgrade(upgrades.chosenNumber);
+                    learnedUpgrades.Add(upgrades.chosenNumber);
                     upgrades.buttonName.GetComponentInParent<Button>().GetComponent<Image>().color = baseColor;
                     upgrades.buttonName.GetComponentInParent<Button>().interactable = false;//.IsInteractable();// = false;
                 }
@@ -164,9 +166,9 @@ public class TinkerUpgrades : MonoBehaviour {
 
     public void AddToBackupList()
     {
-        foreach(int x in possibleOptions)
+        foreach(int x in possibleOptionsFromSave)
         {
-            possibleOptionsFromSave.Add(x);
+            possibleOptions.Add(x);
         }
     }
 
@@ -185,12 +187,12 @@ public class TinkerUpgrades : MonoBehaviour {
             }
 
             // if it is a loaded base, special load.
-            if (possibleOptionsFromSave.Count > 0)
+            if (possibleOptions.Count > 0)
             {
                 // if first loop after instantiation changes false, need a 2nd round reset
                 GetComponent<Button>().interactable = true;
 
-                if (possibleOptionsFromSave.Count == 0)
+                if (possibleOptions.Count == 0)
                 {
                     buttonName.text = "Nothing New";
                     selectedDescription = "Nothing new could be found.";
@@ -199,8 +201,8 @@ public class TinkerUpgrades : MonoBehaviour {
                     GetComponent<Button>().interactable = false;
                     return;
                 }
-                chosenNumber = possibleOptionsFromSave[0];
-                possibleOptionsFromSave.RemoveAt(0);
+                chosenNumber = possibleOptions[0];
+                possibleOptions.RemoveAt(0);
 
             } // else do a normal new load.
             else
@@ -209,7 +211,7 @@ public class TinkerUpgrades : MonoBehaviour {
                 //Problem here, is riddled with.  If I dont select, or other crap they dont get removed.  I think it would be easier to instead
                 // use the second list like when I load.  Then who cares if that list gets botched.
                 possibleOptionsFromNewBase.Clear();
-                possibleOptionsFromSave.Clear();
+                possibleOptions.Clear();
 
                 foreach (int possibleOption in learnableUpgrades)
                 {
@@ -220,19 +222,15 @@ public class TinkerUpgrades : MonoBehaviour {
                 {
                     randomPick = UnityEngine.Random.Range(0, possibleOptionsFromNewBase.Count);
                     chosenNumber = possibleOptionsFromNewBase[randomPick];
+                    possibleOptions.Add(chosenNumber);
                     possibleOptionsFromSave.Add(chosenNumber);
                     //print("Rando pick is " + randomPick + "   And learnable count is: " + (learnableUpgrades.Count));
                     possibleOptionsFromNewBase.RemoveAt(randomPick);
                 }
 
+                // this is only hit if !possibleOptions.Count > 0) which means it needs initialization and a re-try.
                 this.PickTower();
                 return;
-                //GetComponent<Button>().interactable = true;
-                //randomPick = UnityEngine.Random.Range(0, learnableUpgrades.Count);
-                //chosenNumber = learnableUpgrades[randomPick];
-                //possibleOptions.Add(chosenNumber);
-                ////print("Rando pick is " + randomPick + "   And learnable count is: " + (learnableUpgrades.Count));
-                //learnableUpgrades.RemoveAt(randomPick);
             }
 
             version = currentUpgradeLevels[chosenNumber] + 1;
@@ -246,6 +244,16 @@ public class TinkerUpgrades : MonoBehaviour {
             selectedDescription = "Nothing new could be found.";
             gameObject.SetActive(false);
         }
+    }
+
+    private void DowngradeAndTurnButtonInactive()
+    {
+        version = currentUpgradeLevels[chosenNumber];
+
+        DetermineButtonNameAndDescription(version);
+
+        buttonName.GetComponentInParent<Button>().GetComponent<Image>().color = baseColor;
+        buttonName.GetComponentInParent<Button>().interactable = false;//.IsInteractable();// = false;
     }
 
     private void DetermineButtonNameAndDescription(int version)
@@ -361,7 +369,7 @@ public class TinkerUpgrades : MonoBehaviour {
     }
     public int[] SavePossibleOptions()
     {
-        return possibleOptions.ToArray();
+        return possibleOptionsFromSave.ToArray();
     }
     //public bool SaveHasPicked()
     //{
@@ -375,6 +383,10 @@ public class TinkerUpgrades : MonoBehaviour {
     {
         return currentPickNum;
     }
+    public List<int> SaveLearnedUpgrades()
+    {
+        return learnedUpgrades;
+    }
 
     /// <summary>
     /// This loads the upgrades saved information (whats learned / can be leared ect...  This excludes if one has already learned something.
@@ -384,7 +396,7 @@ public class TinkerUpgrades : MonoBehaviour {
     /// <param name="_possibleOptions"></param>
     /// <param name="_hasPicked"></param>
     /// <param name="_hasAlreadyRolledForUpgrades"></param>
-    public void LoadInfoAndSavedOptions(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasAlreadyRolledForUpgrades, int _currentPickNum, int _maxPickNum)
+    public void LoadInfoAndSavedOptions(int[] _currentUpgradeLevels, int[] _learnableUpgrades, int[] _possibleOptions, bool _hasAlreadyRolledForUpgrades, int _currentPickNum, int _maxPickNum, List<int> _learnedUpgrades)
     { //bool _hasPicked
         isLoaded = true;// _hasAlreadyRolledForUpgrades;
         //hasPicked = _hasPicked;
@@ -392,11 +404,13 @@ public class TinkerUpgrades : MonoBehaviour {
         maxPickNum = _maxPickNum;
         currentUpgradeLevels.Clear();
         learnableUpgrades.Clear();
-        possibleOptions.Clear();
         possibleOptionsFromSave.Clear();
+        possibleOptions.Clear();
+        learnedUpgrades.Clear();
 
         numSelected =  0;
 
+        learnedUpgrades = _learnedUpgrades;
         //        if (hasPicked)
         if (maxPickNum <= currentPickNum)
         {
@@ -418,15 +432,24 @@ public class TinkerUpgrades : MonoBehaviour {
         }
         foreach (int x in _possibleOptions)
         {
-            possibleOptions.Add(x);
             possibleOptionsFromSave.Add(x);
+            possibleOptions.Add(x);
         }
 
         Transform parent = transform.parent;
         TinkerUpgrades[] tinkerBtns = parent.GetComponentsInChildren<TinkerUpgrades>();
         foreach (TinkerUpgrades upgrades in tinkerBtns) {
             upgrades.PickTower();
+
+            foreach (int AlreadyUpgraded in learnedUpgrades)
+            {
+                if (upgrades.chosenNumber == AlreadyUpgraded)
+                {
+                    upgrades.DowngradeAndTurnButtonInactive();
+                }
+            }
         }
+
 
         //give singleton the upgrades
         Singleton.Instance.SendUpdateTinkerUpgrades(currentUpgradeLevels);

@@ -59,7 +59,7 @@ public class SaveAndLoad : MonoBehaviour {
         // ERROR IS BEACAUSE THE SCRIPT IS DISABLED IN SAVE WINDOW, THE CANVASSES ARE ALL DISABLED EXCEPT USED ONE.
         saver.SaveEnemyOptions(_missionChoice.firstEnemySet.ToArray(), _missionChoice.secondEnemySet.ToArray());
         saver.SaveTowersAndParts(_playerTowerLog.SaveKnownTowersAndParts(), _playerTowerLog.SaveLearnableTowersAndParts(), _playerTowerLog.SaveUnlearnableTowersAndParts());
-        saver.SaveTinkerRoomInfo(_tinkerUpgrades.SaveCurrentUpgradeLevels(), _tinkerUpgrades.SaveLearnableUpgrades(), _tinkerUpgrades.SavePossibleOptions(), _tinkerUpgrades.SaveCurrentPickNum(), _tinkerUpgrades.SaveMaxPickNum());//_tinkerUpgrades.SaveHasPicked(), 
+        saver.SaveTinkerRoomInfo(_tinkerUpgrades.SaveCurrentUpgradeLevels(), _tinkerUpgrades.SaveLearnableUpgrades(), _tinkerUpgrades.SavePossibleOptions(), _tinkerUpgrades.SaveCurrentPickNum(), _tinkerUpgrades.SaveMaxPickNum(), _tinkerUpgrades.SaveLearnedUpgrades());//_tinkerUpgrades.SaveHasPicked(), 
         saver.SetTutorial(_singleton.GetIsTutorial());
 
         // TODO add in here to save tower setups.  I needs to save all set tower peices (tower btn 1, 2, 3) name, head, base.  Maybe also set default to the rifledtower?
@@ -263,12 +263,12 @@ public class SaveAndLoad : MonoBehaviour {
                     //List<int> test = savedFile.LoadList();
                     List<int> l = new List<int>(savedFile.enemyOption1List);
                     _missionChoice.LoadPathChoices(savedFile.enemyOption1List, savedFile.enemyOption2List);
-                    _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, true, savedFile.currentPickNum, savedFile.maxPickNum); //savedFile.hasPicked,
+                    _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, savedFile.possibleOptions, true, savedFile.currentPickNum, savedFile.maxPickNum, savedFile.upgradedThisRound); //savedFile.hasPicked,
                     //_singleton.ishasLearnedTinker = savedFile.hasPicked;
                 }  else
                 {
                     // this function is the 'reset' of the above.  It sets false to 'has picked' and 'hasRolled', while setting empty to the sotred options.
-                    _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, new int[] { }, false, 0, 2);//false,
+                    _tinkerUpgrades.LoadInfoAndSavedOptions(savedFile.currentUpgradeLevels, savedFile.learnableUpgrades, new int[] { }, false, 0, 2, new List<int>() { });//false,
                 }
                 // LOAD REGARDLESS we load what towers we know regardless of loading saved or new base.  The IF a tower is learned is checked above with singleton
                 _singleton.SetIsTutorial(savedFile.isTutorial);

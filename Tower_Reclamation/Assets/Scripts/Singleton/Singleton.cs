@@ -215,6 +215,7 @@ public sealed class Singleton : MonoBehaviour {
         hasExplainedMeetingRoom = explained;
     }
 
+    // THESE ARE HIDDEN IN THE BUTTONS.  When room swapping it triggers a check to see fi it needs to explain it.
     public bool GetIsComputerExplained()
     {
         return hasExplainedComputerRoom;

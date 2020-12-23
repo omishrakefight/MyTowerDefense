@@ -38,7 +38,12 @@ public class TowerSelecter : MonoBehaviour
 
     #endregion
 
+    [Header("Room Items")]
     [SerializeField] GameObject TowerOnePanel;
+    [SerializeField] Text tower1Type;
+    [SerializeField] Text tower1Augment;
+    [SerializeField] Text tower1Base;
+
     [SerializeField] GameObject TowerTwoPanel;
     [SerializeField] GameObject TowerThreePanel;
 
@@ -364,6 +369,22 @@ public class TowerSelecter : MonoBehaviour
         return decidedTower;
     }
 
+    public void TurnPanelInvisible(GameObject obj)
+    {
+        Color color = obj.GetComponent<Image>().color;
+        color.a = 0f;
+        obj.GetComponent<Image>().color = color;
+    }
+
+    public void TurnPanelVisible(GameObject obj)
+    {
+        Image i = obj.GetComponent<Image>();
+        Color c = i.color;
+        c.a = .25f;
+        i.color = c;
+    }
+
+
     public void LoadTowerOne()
     {
         if (singleton == null)
@@ -371,9 +392,60 @@ public class TowerSelecter : MonoBehaviour
             singleton = FindObjectOfType<Singleton>();
         }
 
-        TowerOnePanel.SetActive(true);
+        TurnPanelVisible(TowerOnePanel);
+        //TowerOnePanel.SetActive(true);
         TowerTwoPanel.SetActive(false);
         TowerThreePanel.SetActive(false);
+
+
+
+
+        if (towerLog == null)
+        {
+            towerLog = FindObjectOfType<PlayerTowerLog>();
+        }
+        knownTowerParts = new Dictionary<string, int>();
+
+        knownTowerParts = towerLog.GetTowerParts(singleton.towerOneName);
+        List<string> towerPartsList = new List<string>(knownTowerParts.Keys);
+        Dictionary<string, int> augments = new Dictionary<string, int>(); //{ "Basic Barrel", "Sniper Barrel" };
+        Dictionary<string, int> bases = new Dictionary<string, int>(); //{ "Basic Base", "Rapid Base" };// we removed some of the supports inside the turret, it allows for easier bullet managment, but comes at the cost of resistance.  We increase rate of fire but lower impact.
+
+        foreach (string s in towerPartsList)
+        {
+            if (s.ToLower().Contains("base"))
+            {
+                bases.Add(s, knownTowerParts[s]);
+            }
+            else
+            {
+                augments.Add(s, knownTowerParts[s]);
+            }
+        }
+
+        foreach (KeyValuePair<string, int> x in bases)
+        {
+            if (x.Value == singleton.towerOneBaseType)
+            {
+                tower1Base.text = x.Key.ToString();
+            }
+        }
+
+        foreach (KeyValuePair<string, int> x in augments)
+        {
+            if (x.Value == singleton.towerOneHeadType)
+            {
+                tower1Augment.text = x.Key.ToString();
+            }
+        }
+        tower1Type.text = singleton.towerOneName;
+        //tower1Augment.text = singleton.towerOneHeadType.ToString();
+        //tower1Base.text = singleton.towerOneBaseType.ToString();
+
+
+
+
+
 
         towerBarrel.value = 0;
         towerBase.value = 0;
@@ -402,7 +474,8 @@ public class TowerSelecter : MonoBehaviour
             singleton = FindObjectOfType<Singleton>();
         }
 
-        TowerOnePanel.SetActive(false);
+        //TowerOnePanel.SetActive(false);
+        TurnPanelInvisible(TowerOnePanel);
         TowerTwoPanel.SetActive(true);
         TowerThreePanel.SetActive(false);
 
@@ -432,7 +505,8 @@ public class TowerSelecter : MonoBehaviour
         {
             singleton = FindObjectOfType<Singleton>();
         }
-        TowerOnePanel.SetActive(false);
+        //TowerOnePanel.SetActive(false);
+        TurnPanelInvisible(TowerOnePanel);
         TowerTwoPanel.SetActive(false);
         TowerThreePanel.SetActive(true);
 

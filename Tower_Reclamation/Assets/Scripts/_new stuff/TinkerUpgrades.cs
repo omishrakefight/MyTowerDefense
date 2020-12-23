@@ -116,7 +116,7 @@ public class TinkerUpgrades : MonoBehaviour {
                 {
                     numSelected--;
                     currentPickNum++;
-                    isSelected = false;
+                    upgrades.isSelected = false;
                     currentUpgradeLevels[upgrades.chosenNumber]++;
                     DetermineIfHasAnotherUpgrade(upgrades.chosenNumber);
                     learnedUpgrades.Add(upgrades.chosenNumber);

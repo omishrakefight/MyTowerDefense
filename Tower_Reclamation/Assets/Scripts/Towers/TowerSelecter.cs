@@ -494,7 +494,8 @@ public class TowerSelecter : MonoBehaviour
         //TowerOnePanel.SetActive(false);
         TurnPanelInvisible(TowerOnePanel);
         TowerTwoPanel.SetActive(true);
-        TowerThreePanel.SetActive(false);
+        //TowerThreePanel.SetActive(false);
+        TurnPanelInvisible(Tower3Panel);
 
         towerBarrel.value = 0;
         towerBase.value = 0;
@@ -523,6 +524,7 @@ public class TowerSelecter : MonoBehaviour
             singleton = FindObjectOfType<Singleton>();
         }
         //TowerOnePanel.SetActive(false);
+        TurnPanelInvisible(TowerOnePanel);
         TurnPanelInvisible(TowerOnePanel);
         TowerTwoPanel.SetActive(false);
         TowerThreePanel.SetActive(true);

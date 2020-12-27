@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class TowerSelecter : MonoBehaviour
 {
-    #region obsolete
+    //#region obsolete
     [Header("Tower Blueprint")]
     [SerializeField] Dropdown towerBarrel;
     [SerializeField] Dropdown towerTurret;
@@ -15,34 +15,51 @@ public class TowerSelecter : MonoBehaviour
     Tower newTower;
     Tower decidedTower;
 
-    [Header("Rifle Towers")]
-    [SerializeField] Tower basicRifledTower;
-
-
-    [Header("Flame Towers")]
-    [SerializeField] Tower basicFlameTower;
-    [SerializeField] Tower tallFlameTower;
-    [SerializeField] Tower heavyFlameTower;
-    [SerializeField] Tower lightFlameTower;
-    [SerializeField] Tower alienFlameTower;
-
-
-    [Header("Lightening Towers")]
-    [SerializeField] Tower basicLightTower;
-
-    [Header("Plasma Towers")]
-    [SerializeField] Tower basicPlasmaTower;
-
-    [Header("Ice Towers")]
-    [SerializeField] Tower basicIceTower;
-
-    #endregion
-
-    [Header("Room Items")]
+    [Header("Tower 1 saved")]
     [SerializeField] GameObject TowerOnePanel;
     [SerializeField] Text tower1Type;
     [SerializeField] Text tower1Augment;
     [SerializeField] Text tower1Base;
+
+    [Header("Tower 2 saved")]
+    [SerializeField] GameObject Tower2Panel;
+    [SerializeField] Text tower2Type;
+    [SerializeField] Text tower2Augment;
+    [SerializeField] Text tower2Base;
+
+    [Header("Tower 3 saved")]
+    [SerializeField] GameObject Tower3Panel;
+    [SerializeField] Text tower3Type;
+    [SerializeField] Text tower3Augment;
+    [SerializeField] Text tower3Base;
+    //[Header("Rifle Towers")]
+    //[SerializeField] Tower basicRifledTower;
+
+
+    //[Header("Flame Towers")]
+    //[SerializeField] Tower basicFlameTower;
+    //[SerializeField] Tower tallFlameTower;
+    //[SerializeField] Tower heavyFlameTower;
+    //[SerializeField] Tower lightFlameTower;
+    //[SerializeField] Tower alienFlameTower;
+
+
+    //[Header("Lightening Towers")]
+    //[SerializeField] Tower basicLightTower;
+
+    //[Header("Plasma Towers")]
+    //[SerializeField] Tower basicPlasmaTower;
+
+    //[Header("Ice Towers")]
+    //[SerializeField] Tower basicIceTower;
+
+    //#endregion
+
+    [Header("Room Items")]
+    //[SerializeField] GameObject TowerOnePanel;
+    //[SerializeField] Text tower1Type;
+    //[SerializeField] Text tower1Augment;
+    //[SerializeField] Text tower1Base;
 
     [SerializeField] GameObject TowerTwoPanel;
     [SerializeField] GameObject TowerThreePanel;
@@ -667,8 +684,30 @@ public class TowerSelecter : MonoBehaviour
     {
         singleton = Singleton.Instance;
         singleton.FindTower();
+        UpdateSavedTowerSetups();
     }
 
+    public void UpdateSavedTowerSetups()
+    {
+        switch (towerSlotSelected)
+        {
+            case 1:
+                tower1Type.text = towerTurret.options[towerTurret.value].text;
+                tower1Augment.text = towerBarrel.options[towerBarrel.value].text;
+                tower1Base.text = towerBase.options[towerBase.value].text;
+                break;
+            case 2:
+                tower2Type.text = towerTurret.options[towerTurret.value].text;
+                tower2Augment.text = towerBarrel.options[towerBarrel.value].text;
+                tower2Base.text = towerBase.options[towerBase.value].text;
+                break;
+            case 3:
+                tower3Type.text = towerTurret.options[towerTurret.value].text;
+                tower3Augment.text = towerBarrel.options[towerBarrel.value].text;
+                tower3Base.text = towerBase.options[towerBase.value].text;
+                break;
+        }
+    }
 
     public Tower PickTower(ref Tower turretBase, ref GameObject towerHead, ref int baseType, ref int towerBarrelType, ref string tower)
     {

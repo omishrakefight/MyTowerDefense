@@ -137,6 +137,7 @@ public class TutorialMissionStart : MonoBehaviour {
         conversationTracker = 0;
 
         //GM.GoldCounter();
+        GM = FindObjectOfType<GoldManagement>();
 
         StartCoroutine(LateInitialization());
         StartCoroutine(SlowMessageTyping());
@@ -219,8 +220,6 @@ public class TutorialMissionStart : MonoBehaviour {
                 // To make the character run in scene
                 timeToRun = true;
                 SpawnTheEnemiesAtScreem();
-
-                GM = FindObjectOfType<GoldManagement>();
                 
                 GM.Started();
 
@@ -238,6 +237,7 @@ public class TutorialMissionStart : MonoBehaviour {
                 personTalking.texture = generalShouting;
                 talking = conversations[conversationTracker];
                 conversationTracker++;
+                GM.SetGoldAmount(65);
                 Time.timeScale = 0f;
                 break;
             case 7:
@@ -301,6 +301,7 @@ public class TutorialMissionStart : MonoBehaviour {
                 personTalking.texture = general;
                 talking = conversations[conversationTracker];
                 conversationTracker++;
+                GM.SetGoldAmount(65);
                 Time.timeScale = 0f;
                 isLastChatSegment = true;
 

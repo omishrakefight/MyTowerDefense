@@ -410,9 +410,11 @@ public class TowerSelecter : MonoBehaviour
         }
 
         TurnPanelVisible(TowerOnePanel);
+        TurnPanelInvisible(Tower2Panel);
+        TurnPanelInvisible(Tower3Panel);
         //TowerOnePanel.SetActive(true);
-        TowerTwoPanel.SetActive(false);
-        TowerThreePanel.SetActive(false);
+        //TowerTwoPanel.SetActive(false);
+        //TowerThreePanel.SetActive(false);
 
 
 
@@ -493,7 +495,8 @@ public class TowerSelecter : MonoBehaviour
 
         //TowerOnePanel.SetActive(false);
         TurnPanelInvisible(TowerOnePanel);
-        TowerTwoPanel.SetActive(true);
+        TurnPanelVisible(Tower2Panel);
+        //TowerTwoPanel.SetActive(true);
         //TowerThreePanel.SetActive(false);
         TurnPanelInvisible(Tower3Panel);
 
@@ -525,9 +528,10 @@ public class TowerSelecter : MonoBehaviour
         }
         //TowerOnePanel.SetActive(false);
         TurnPanelInvisible(TowerOnePanel);
-        TurnPanelInvisible(TowerOnePanel);
-        TowerTwoPanel.SetActive(false);
-        TowerThreePanel.SetActive(true);
+        TurnPanelInvisible(Tower2Panel);
+        TurnPanelVisible(Tower3Panel);
+        //TowerTwoPanel.SetActive(false);
+        //TowerThreePanel.SetActive(true);
 
         towerBarrel.value = 0;
         towerBase.value = 0;

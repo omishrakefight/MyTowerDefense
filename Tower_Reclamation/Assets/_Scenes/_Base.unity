@@ -1582,6 +1582,20 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1043953480}
+    - target: {fileID: 114002835538553500, guid: 6b999b48bd85ccd48b7eac91d6fb89e1,
+        type: 2}
+      propertyPath: m_Text
+      value: Tower One
+      objectReference: {fileID: 0}
+    - target: {fileID: 1998725536616102, guid: 6b999b48bd85ccd48b7eac91d6fb89e1, type: 2}
+      propertyPath: m_Name
+      value: Tower One
+      objectReference: {fileID: 0}
+    - target: {fileID: 114868906936035398, guid: 6b999b48bd85ccd48b7eac91d6fb89e1,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadTowerOne
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b999b48bd85ccd48b7eac91d6fb89e1, type: 2}
   m_IsPrefabParent: 0
@@ -1695,6 +1709,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadTowerThree
+      objectReference: {fileID: 0}
+    - target: {fileID: 114002835538553500, guid: 6b999b48bd85ccd48b7eac91d6fb89e1,
+        type: 2}
+      propertyPath: m_Text
+      value: Tower Three
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b999b48bd85ccd48b7eac91d6fb89e1, type: 2}
@@ -3570,7 +3589,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1307239322}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.9999999
+  m_Size: 0.99999976
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4637,7 +4656,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1425359924}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999999
+  m_Size: 0.99999976
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5278,7 +5297,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 647282109}
   m_HandleRect: {fileID: 647282108}
   m_Direction: 2
-  m_Value: 0.9999997
+  m_Value: 0.9999994
   m_Size: 0.31096667
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8089,23 +8108,14 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1107016791845092, guid: 6b999b48bd85ccd48b7eac91d6fb89e1, type: 2}
-      propertyPath: m_Name
-      value: Tower Two Obj
-      objectReference: {fileID: 0}
-    - target: {fileID: 1998725536616102, guid: 6b999b48bd85ccd48b7eac91d6fb89e1, type: 2}
-      propertyPath: m_Name
-      value: Tower Two
-      objectReference: {fileID: 0}
     - target: {fileID: 114868906936035398, guid: 6b999b48bd85ccd48b7eac91d6fb89e1,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1043953480}
-    - target: {fileID: 114868906936035398, guid: 6b999b48bd85ccd48b7eac91d6fb89e1,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadTowerTwo
+    - target: {fileID: 1107016791845092, guid: 6b999b48bd85ccd48b7eac91d6fb89e1, type: 2}
+      propertyPath: m_Name
+      value: Tower Two Obj
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6b999b48bd85ccd48b7eac91d6fb89e1, type: 2}
@@ -9923,7 +9933,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2063815141}
   m_HandleRect: {fileID: 2063815140}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0.9999997
   m_Size: 0.3109667
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -11403,7 +11413,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1213960408}
   m_Direction: 0
   m_Value: 1
-  m_Size: 0.9999999
+  m_Size: 0.99999976
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12502,8 +12512,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 741647877}
   m_HandleRect: {fileID: 741647876}
   m_Direction: 2
-  m_Value: 0.9999998
-  m_Size: 0.36763334
+  m_Value: 0.9999997
+  m_Size: 0.36763337
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

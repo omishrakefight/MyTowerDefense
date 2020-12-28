@@ -159,6 +159,7 @@ public class TowerSelecter : MonoBehaviour
         start = DelayedStart();
 
         StartCoroutine(start);
+
         //}
         //UpdateTowersAvailable();
     }
@@ -168,6 +169,39 @@ public class TowerSelecter : MonoBehaviour
         yield return null;
 
         LoadTowerOne();
+
+        if (singleton.towerOneName == "")
+        {
+            tower1Type.text = "None";
+            tower1Augment.text = "None";
+            tower1Base.text = "None";
+        }
+        else
+        {
+            LoadSavedTowers(singleton.towerOneName, tower1Type, tower1Augment, tower1Base, singleton.towerOneHeadType, singleton.towerOneBaseType);
+        }
+
+        if (singleton.towerTwoName == "")
+        {
+            tower2Type.text = "None";
+            tower2Augment.text = "None";
+            tower2Base.text = "None";
+        }
+        else
+        {
+            LoadSavedTowers(singleton.towerTwoName, tower2Type, tower2Augment, tower2Base, singleton.towerTwoHeadType, singleton.towerTwoBaseType);
+        }
+
+        if (singleton.towerThreeName == "")
+        {
+            tower3Type.text = "None";
+            tower3Augment.text = "None";
+            tower3Base.text = "None";
+        }
+        else
+        {
+            LoadSavedTowers(singleton.towerThreeName, tower3Type, tower3Augment, tower3Base, singleton.towerThreeHeadType, singleton.towerThreeBaseType);
+        }
 
         yield return null;
     }
@@ -211,8 +245,49 @@ public class TowerSelecter : MonoBehaviour
         changingTowerType = false;
     }
 
-    public void loadSavedTower()
+    public void LoadSavedTowers(string towerName, Text towerType, Text towerBase, Text towerModifier, int augmentInt, int baseInt)
     {
+        if (towerLog == null)
+        {
+            towerLog = FindObjectOfType<PlayerTowerLog>();
+        }
+        knownTowerParts = new Dictionary<string, int>();
+
+        knownTowerParts = towerLog.GetTowerParts(towerName);//singleton.towerOneName
+        List<string> towerPartsList = new List<string>(knownTowerParts.Keys);
+        Dictionary<string, int> augments = new Dictionary<string, int>(); //{ "Basic Barrel", "Sniper Barrel" };
+        Dictionary<string, int> bases = new Dictionary<string, int>(); //{ "Basic Base", "Rapid Base" };// we removed some of the supports inside the turret, it allows for easier bullet managment, but comes at the cost of resistance.  We increase rate of fire but lower impact.
+
+        foreach (string s in towerPartsList)
+        {
+            if (s.ToLower().Contains("base"))
+            {
+                bases.Add(s, knownTowerParts[s]);
+            }
+            else
+            {
+                augments.Add(s, knownTowerParts[s]);
+            }
+        }
+
+        foreach (KeyValuePair<string, int> x in bases)
+        {
+            if (x.Value == baseInt)
+            {
+                towerBase.text = x.Key.ToString(); //tower1Base.text
+            }
+        }
+
+        foreach (KeyValuePair<string, int> x in augments)
+        {
+            if (x.Value == augmentInt)
+            {
+                towerModifier.text = x.Key.ToString(); //tower1Augment.text
+            }
+        }
+        towerType.text = towerName; //tower1type
+        //tower1Augment.text = singleton.towerOneHeadType.ToString();
+        //tower1Base.text = singleton.towerOneBaseType.ToString();
 
     }
 
@@ -412,59 +487,6 @@ public class TowerSelecter : MonoBehaviour
         TurnPanelVisible(TowerOnePanel);
         TurnPanelInvisible(Tower2Panel);
         TurnPanelInvisible(Tower3Panel);
-        //TowerOnePanel.SetActive(true);
-        //TowerTwoPanel.SetActive(false);
-        //TowerThreePanel.SetActive(false);
-
-
-
-
-        if (towerLog == null)
-        {
-            towerLog = FindObjectOfType<PlayerTowerLog>();
-        }
-        knownTowerParts = new Dictionary<string, int>();
-
-        knownTowerParts = towerLog.GetTowerParts(singleton.towerOneName);
-        List<string> towerPartsList = new List<string>(knownTowerParts.Keys);
-        Dictionary<string, int> augments = new Dictionary<string, int>(); //{ "Basic Barrel", "Sniper Barrel" };
-        Dictionary<string, int> bases = new Dictionary<string, int>(); //{ "Basic Base", "Rapid Base" };// we removed some of the supports inside the turret, it allows for easier bullet managment, but comes at the cost of resistance.  We increase rate of fire but lower impact.
-
-        foreach (string s in towerPartsList)
-        {
-            if (s.ToLower().Contains("base"))
-            {
-                bases.Add(s, knownTowerParts[s]);
-            }
-            else
-            {
-                augments.Add(s, knownTowerParts[s]);
-            }
-        }
-
-        foreach (KeyValuePair<string, int> x in bases)
-        {
-            if (x.Value == singleton.towerOneBaseType)
-            {
-                tower1Base.text = x.Key.ToString();
-            }
-        }
-
-        foreach (KeyValuePair<string, int> x in augments)
-        {
-            if (x.Value == singleton.towerOneHeadType)
-            {
-                tower1Augment.text = x.Key.ToString();
-            }
-        }
-        tower1Type.text = singleton.towerOneName;
-        //tower1Augment.text = singleton.towerOneHeadType.ToString();
-        //tower1Base.text = singleton.towerOneBaseType.ToString();
-
-
-
-
-
 
         towerBarrel.value = 0;
         towerBase.value = 0;
@@ -478,7 +500,6 @@ public class TowerSelecter : MonoBehaviour
 
         changingTowerType = true;
 
-        //SetTowerBaseAndHead();
         SetTowerBaseAndHead2(singleton.towerOneName);
         changingTowerType = false;
 
@@ -493,11 +514,8 @@ public class TowerSelecter : MonoBehaviour
             singleton = FindObjectOfType<Singleton>();
         }
 
-        //TowerOnePanel.SetActive(false);
         TurnPanelInvisible(TowerOnePanel);
         TurnPanelVisible(Tower2Panel);
-        //TowerTwoPanel.SetActive(true);
-        //TowerThreePanel.SetActive(false);
         TurnPanelInvisible(Tower3Panel);
 
         towerBarrel.value = 0;
@@ -512,7 +530,6 @@ public class TowerSelecter : MonoBehaviour
 
         changingTowerType = true;
 
-        //SetTowerBaseAndHead();
         SetTowerBaseAndHead2(singleton.towerTwoName);
         changingTowerType = false;
 
@@ -526,12 +543,9 @@ public class TowerSelecter : MonoBehaviour
         {
             singleton = FindObjectOfType<Singleton>();
         }
-        //TowerOnePanel.SetActive(false);
         TurnPanelInvisible(TowerOnePanel);
         TurnPanelInvisible(Tower2Panel);
         TurnPanelVisible(Tower3Panel);
-        //TowerTwoPanel.SetActive(false);
-        //TowerThreePanel.SetActive(true);
 
         towerBarrel.value = 0;
         towerBase.value = 0;
@@ -545,7 +559,6 @@ public class TowerSelecter : MonoBehaviour
 
         changingTowerType = true;
 
-        //SetTowerBaseAndHead();
         SetTowerBaseAndHead2(singleton.towerThreeName);
         changingTowerType = false;
 

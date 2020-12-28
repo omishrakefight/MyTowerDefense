@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 114556037679828880}
   - component: {fileID: 114868906936035398}
   m_Layer: 5
-  m_Name: Tower One
+  m_Name: Tower Two
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -214,7 +214,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Tower One
+  m_Text: Tower Two
 --- !u!114 &114028744588348926
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -435,7 +435,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_MethodName: LoadTowerOne
+        m_MethodName: LoadTowerTwo
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -756,7 +756,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 26.900024, y: -82}
+  m_AnchoredPosition: {x: 26.900024, y: -258}
   m_SizeDelta: {x: 287.89, y: 175}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &224926248223548094

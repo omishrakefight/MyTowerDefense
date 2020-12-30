@@ -33,6 +33,7 @@ public class Tower_Plasma : Tower
 
     float xIncrease = -1;
     float yIncrease = -1;
+    float zLaserPullout = -1;
 
     //1.25 worked well
     float laserOnTime = .25f;
@@ -248,6 +249,7 @@ public class Tower_Plasma : Tower
                 spray = GetComponentInChildren<ParticleSystem>();
                 xIncrease = (laser.transform.localScale.x * .15f);
                 yIncrease = (laser.transform.localScale.y * .05f);
+                zLaserPullout = (laser.transform.position.z * .05f);
                 //nothing;
                 break;
             case (int)PlasmaHead.Crystal:
@@ -558,6 +560,7 @@ public class Tower_Plasma : Tower
                 //float laserY = (laser.transform.localScale.y * .05f);   //  y x
                 //float laserXbuff = (laser.transform.localScale.y * .15f);
                 laser.transform.localScale += new Vector3(xIncrease, yIncrease, 0f);//(laser.transform.localScale.y + laserY); // needs to be a vector 3
+                laser.transform.localPosition += new Vector3(0, 0, zLaserPullout);
                 break;
         }
 

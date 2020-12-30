@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Flame_AOE : MonoBehaviour {
 
-
+    public float mortarExplosionDmg = 15f;
     public float towerDmg = 4;
     public float currentTowerDmg = 4;
     public float healReduction = 0f;
@@ -17,6 +17,7 @@ public class Flame_AOE : MonoBehaviour {
     [SerializeField] float baseAttackWidth;
     [SerializeField] CapsuleCollider flameAOE;
 
+    [SerializeField] Object projectile;
     [SerializeField] ParticleSystem projectileParticle;
     [SerializeField] ParticleSystem projectileParticleTwo;
     [SerializeField] ParticleSystem projectileParticleThree;
@@ -175,12 +176,22 @@ public class Flame_AOE : MonoBehaviour {
 
     public void Shoot(bool isActive)
     {
-        var emissionModule = projectileParticle.emission;
-        emissionModule.enabled = isActive;
-        var emissionModuleTwo = projectileParticleTwo.emission;
-        emissionModuleTwo.enabled = isActive;
-        var emissionModuleThree = projectileParticleThree.emission;
-        emissionModuleThree.enabled = isActive;
+        switch (headType)
+        {
+            case (int)FlameHead.Mortar:
+                Instantiate(projectile, this.transform.position, Quaternion.identity);
+                break;
+
+            default:
+                var emissionModule = projectileParticle.emission;
+                emissionModule.enabled = isActive;
+                var emissionModuleTwo = projectileParticleTwo.emission;
+                emissionModuleTwo.enabled = isActive;
+                var emissionModuleThree = projectileParticleThree.emission;
+                emissionModuleThree.enabled = isActive;
+                break;
+        }
+
     }
 
 
@@ -202,6 +213,10 @@ public class Flame_AOE : MonoBehaviour {
 
             case (int)FlameHead.FlameThrower:
                 return (currentAttackRange / 2);
+
+            case (int)FlameHead.Mortar:
+                return currentAttackRange;
+
             default:
                 return currentAttackRange;
         }

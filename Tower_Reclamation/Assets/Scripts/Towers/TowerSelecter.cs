@@ -97,6 +97,7 @@ public class TowerSelecter : MonoBehaviour
     [Header("Flame Head")]
     [SerializeField] GameObject basicFlameTowerHead;
     [SerializeField] GameObject flameThrowerFlameTowerHead;
+    [SerializeField] GameObject mortarFlameTowerHead;
 
     [Header("Rifle Tower Base")]
     [SerializeField] Tower basicRifledTowerBase;
@@ -207,7 +208,7 @@ public class TowerSelecter : MonoBehaviour
     }
 
         // Update is called once per frame
-        void Update()
+    void Update()
     {
         if (Input.GetMouseButton(1))
         {
@@ -221,10 +222,16 @@ public class TowerSelecter : MonoBehaviour
                 tower.transform.RotateAround(pivot, Vector3.up, dtx);
             } else
             {
+                print("used newtiower");
                 newTower.transform.RotateAround(pivot, Vector3.up, dtx);
             }
-
+        } else
+        {
+            var pivot = bound.center;
+            //newTower.transform.RotateAround(pivot, Vector3.up, 10f);
+            tower.transform.RotateAround(pivot, Vector3.up, .1175f);
         }
+
     }
 
     /// <summary>

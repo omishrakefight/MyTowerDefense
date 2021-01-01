@@ -205,7 +205,7 @@ public abstract class EnemyHealth : MonoBehaviour {
                 GetComponent<AudioSource>().PlayOneShot(enemyHitAudio);
             }
         }
-        else if {
+        else if () {
 
         }
 

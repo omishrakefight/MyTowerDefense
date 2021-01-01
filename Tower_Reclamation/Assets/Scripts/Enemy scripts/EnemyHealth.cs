@@ -205,6 +205,10 @@ public abstract class EnemyHealth : MonoBehaviour {
                 GetComponent<AudioSource>().PlayOneShot(enemyHitAudio);
             }
         }
+        else if {
+
+        }
+
     }
 
     protected virtual void OnParticleCollision(GameObject other)
@@ -214,7 +218,7 @@ public abstract class EnemyHealth : MonoBehaviour {
             print("im treated like a particle!");
         }
 
-            string towerName = "";
+        string towerName = "";
         float dmg = 0;
         dmg = other.GetComponentInParent<Tower>().Damage(ref towerName);
         ProcessHit(dmg, towerName);

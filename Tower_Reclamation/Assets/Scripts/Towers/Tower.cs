@@ -375,7 +375,7 @@ public abstract class Tower : MonoBehaviour {
     public virtual void DetermineTowerHeadType(int towerInt)
     {
     }
-    public virtual void DelayedStart()
+    public virtual void DelayedStart(int baseType, int modificationType)
     {
         gold = FindObjectOfType<GoldManagement>();
     }

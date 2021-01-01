@@ -22,6 +22,9 @@ public class Tower_Ice : Tower {
 
     protected float notAProjectileTurret = 0f;
 
+    private int baseType = -1;
+    private int modificationType = -1;
+
     override protected void Start()
     {
 
@@ -35,9 +38,13 @@ public class Tower_Ice : Tower {
         range = blueLight.range;
     }
 
-    public override void DelayedStart()
+    public override void DelayedStart(int _baseType, int _modificationType)
     {
-        base.DelayedStart();
+        base.DelayedStart(_baseType, _modificationType);
+
+        baseType = _baseType;
+        modificationType = _modificationType;
+
         TowerTypeExplanation = "The Ice Tower works off the research of Jack Kvate, proving that the Xenos were cold blooded. " +
                     "The base holds compartmentalized fluids, while the propellers at the top spin to both mix and disperse the slush, chilling " +
                     "the immediate area.  This should slow the Xeno that travel too close.";

@@ -61,6 +61,7 @@ public class PlayerTowerLog : MonoBehaviour {
             towerParts = new Dictionary<string, int>() {
                 { "Basic Augment", (int)FlameHead.Basic },
                 { "FlameThrower Augment", (int)FlameHead.FlameThrower },
+                { "Mortar Augment", (int)FlameHead.Mortar },
                 { "Basic Base", (int)FlameBase.Basic },
                 { "Tall Base", (int)FlameBase.Tall }
             };

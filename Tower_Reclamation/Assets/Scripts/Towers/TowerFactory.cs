@@ -90,7 +90,7 @@ public class TowerFactory : MonoBehaviour {
         {
             tBase.TowerBuff();
         }
-        tBase.DelayedStart();
+        tBase.DelayedStart(baseType, headType);
         tBase.DetermineTowerTypeBase(baseType);
         tBase.DetermineTowerHeadType(headType);
 

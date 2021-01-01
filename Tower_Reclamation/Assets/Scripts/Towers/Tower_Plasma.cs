@@ -44,6 +44,9 @@ public class Tower_Plasma : Tower
 
     Singleton singleton;
 
+    private int baseType = -1;
+    private int modificationType = -1;
+
     // Use this for initialization
     override protected void Start()
     {
@@ -54,9 +57,13 @@ public class Tower_Plasma : Tower
     }
 
 
-    public override void DelayedStart()
+    public override void DelayedStart(int _baseType, int _modificationType)
     {
-        base.DelayedStart();
+        base.DelayedStart(_baseType, _modificationType);
+
+        baseType = _baseType;
+        modificationType = _modificationType;
+
         TowerTypeExplanation = "The plasma tower is the only turret that has a strong enough hit to pierce the target completely.  " +
             "This heavy shot comes at a slight cost to accuracy: not enough to entirely miss the target, but it does make it a gamble on where you hit them, " +
             "and in direct correlation, how much damage the shot causes.";

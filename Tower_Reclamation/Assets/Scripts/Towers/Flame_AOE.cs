@@ -17,7 +17,7 @@ public class Flame_AOE : MonoBehaviour {
     [SerializeField] float baseAttackWidth;
     [SerializeField] CapsuleCollider flameAOE;
 
-    [SerializeField] Object projectile;
+    [SerializeField] MortarShell projectile;
     [SerializeField] ParticleSystem projectileParticle;
     [SerializeField] ParticleSystem projectileParticleTwo;
     [SerializeField] ParticleSystem projectileParticleThree;
@@ -37,9 +37,11 @@ public class Flame_AOE : MonoBehaviour {
         TowerTypeName = "Flame Tower";
     }
 
-    public void DelayedStart(bool keepBuffed)
+    public void DelayedStart(bool keepBuffed, int _baseType, int _headType)
     {
         towerBase = GetComponentInParent<Tower_Flame>();
+        headType = _headType;
+
         // this is used in the base flame class, not needed here.
         float filler = 0.0f;
         healReduction = 0f;
@@ -51,22 +53,32 @@ public class Flame_AOE : MonoBehaviour {
         GetComponentInParent<Tower_Flame>().CheckUpgradesForTankTower(ref towerDmg, ref rangeModifier, ref filler);
         print(towerDmg + "  postbuff    " + rangeModifier);
 
+        // this is defaulting values PRE tinker room buffs
+        switch (headType)
+        {
+            case (int)FlameHead.Mortar:
+                currentAttackRange = 30;
+                baseAttackRange = 30;
+                break;
+            default:
+                // this needs to happen
+                currentAttackRange = flameAOE.radius;
+                baseAttackRange = flameAOE.radius;
+                currentAttackWidth = flameAOE.height;
+                baseAttackWidth = flameAOE.height;
 
-        currentAttackRange = flameAOE.radius;
-        baseAttackRange = flameAOE.radius;
-        currentAttackWidth = flameAOE.height;
-        baseAttackWidth = flameAOE.height;
+                var particleLifetime = projectileParticle.main;
+                particleLifetime.startLifetimeMultiplier = .5f;
+                particleLifetime = projectileParticleTwo.main;
 
-        var particleLifetime = projectileParticle.main;
-        particleLifetime.startLifetimeMultiplier = .5f;
-        particleLifetime = projectileParticleTwo.main;
+                particleLifetime.startLifetimeMultiplier = .5f;
+                particleLifetime = projectileParticleThree.main;
+                particleLifetime.startLifetimeMultiplier = .5f;
+                break;
+        }
 
-        particleLifetime.startLifetimeMultiplier = .5f;
 
-        particleLifetime = projectileParticleThree.main;
-        particleLifetime.startLifetimeMultiplier = .5f;
-
-        //logic test
+        //This is tinker room buffs.
         print("_F The base range is " + currentAttackRange + " and the modifier bonus is " + rangeModifier);
         currentAttackRange = (currentAttackRange * rangeModifier);
         print("_F After buff the range is " + currentAttackRange);
@@ -80,13 +92,25 @@ public class Flame_AOE : MonoBehaviour {
         {
 //  This needs to be moved to tower buff, might need to re-set the variables.  The problem here is that this does not get set to buffed until too late.
             //30% bonus to range
-            currentAttackRange += baseAttackRange * .3f;
-            currentAttackWidth += baseAttackWidth * .3f;
+            currentAttackRange += baseAttackRange * .25f;
+            currentAttackWidth += baseAttackWidth * .25f;
             currentTowerDmg = currentTowerDmg * 1.2f;
         }
 
-        flameAOE.height = currentAttackWidth;
-        flameAOE.radius = currentAttackRange;
+        switch (headType)
+        {
+            case (int)FlameHead.Mortar:
+                currentAttackRange = 30;
+                baseAttackRange = 30;
+                break;
+            default:
+                // increase the range based off tinker room / special tile buffs.
+                flameAOE.height = currentAttackWidth;
+                flameAOE.radius = currentAttackRange;
+                break;
+        }
+
+
 
         //after initial setup bonuses, set them equal at a 'base value' this way ingame values and resets work easily.
         baseAttackRange = currentAttackRange;
@@ -178,22 +202,40 @@ public class Flame_AOE : MonoBehaviour {
     {
         switch (headType)
         {
+            case (int)FlameHead.Basic:
+                TurnFlameSprayActive(isActive);
+                break;
+
+            case (int)FlameHead.FlameThrower:
+                TurnFlameSprayActive(isActive);
+                break;
+
             case (int)FlameHead.Mortar:
-                Instantiate(projectile, this.transform.position, Quaternion.identity);
+                // using shoootmortar
+                //Instantiate(projectile, this.transform.position, Quaternion.identity);
+                //projectile.Instantiate(enemyTransform);
                 break;
 
             default:
-                var emissionModule = projectileParticle.emission;
-                emissionModule.enabled = isActive;
-                var emissionModuleTwo = projectileParticleTwo.emission;
-                emissionModuleTwo.enabled = isActive;
-                var emissionModuleThree = projectileParticleThree.emission;
-                emissionModuleThree.enabled = isActive;
                 break;
         }
-
     }
 
+    public void ShootMortar(Transform enemyTransform)
+    {
+        MortarShell Projectile = Instantiate(projectile, this.transform.position, Quaternion.identity);
+        Projectile.Instantiate(enemyTransform, 45, currentTowerDmg, TowerTypeName, 10);
+    }
+
+    public void TurnFlameSprayActive(bool isActive)
+    {
+        var emissionModule = projectileParticle.emission;
+        emissionModule.enabled = isActive;
+        var emissionModuleTwo = projectileParticleTwo.emission;
+        emissionModuleTwo.enabled = isActive;
+        var emissionModuleThree = projectileParticleThree.emission;
+        emissionModuleThree.enabled = isActive;
+    }
 
 
     private void OnTriggerStay(Collider other)

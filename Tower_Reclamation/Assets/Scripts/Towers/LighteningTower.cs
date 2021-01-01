@@ -38,6 +38,9 @@ public class LighteningTower : Tower {
     private float delayBetweenTargetJump = .10f;
     private float zapTimer;
 
+    private int baseType = -1;
+    private int modificationType = -1;
+
     //List<EnemyMovement> sceneEnemies;
     List<EnemyHealth> targets;
 
@@ -55,9 +58,12 @@ public class LighteningTower : Tower {
         TowerTypeName = "Lightning Tower";
     }
 
-    public override void DelayedStart()
+    public override void DelayedStart(int _baseType, int _modificationType)
     {
-        base.DelayedStart();
+        base.DelayedStart(_baseType, _modificationType);
+
+        baseType = _baseType;
+        modificationType = _modificationType;
         TowerTypeExplanation = "The Lightning tower takes time storing ions.  When it is completely full, it starts sensing for nearby enemies. " +
             "Upon trigger, it releases the energy which arcs between all nearby enemies (which are oppositely charged) for massvie damage";
 

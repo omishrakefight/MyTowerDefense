@@ -34,6 +34,9 @@ public class RifledTower : Tower {
     protected float minRange = 0f;
     float towerMinRangeModifier = .33f;
 
+    private int baseType = -1;
+    private int modificationType = -1;
+
     // minrange = 0, set it if sniper?
     override protected void Start () {
         base.Start();
@@ -42,9 +45,12 @@ public class RifledTower : Tower {
         TowerTypeName = "Rifled Tower";
     }
 
-    override public void DelayedStart()
+    override public void DelayedStart(int _baseType, int _modificationType)
     {
-        base.DelayedStart();
+        base.DelayedStart(_baseType, _modificationType);
+
+        baseType = _baseType;
+        modificationType = _modificationType;
 
         TowerTypeExplanation = "The rifled tower is a basic tower that fires bullets at a single enemy.  ";
         TowerTypeExplanation += "The damage it causes is mediocre and has no splash, but it has decent range and rate of fire.  ";// 

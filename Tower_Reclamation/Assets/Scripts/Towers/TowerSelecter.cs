@@ -351,7 +351,7 @@ public class TowerSelecter : MonoBehaviour
         SpawnTowerForViewing(towerPosition, towerBase, towerHead);
 
         // delayed start and determine types pass in the enum for its TYPE and it initiallizes it specially. ** this is needed in base so it can display its stats.
-        tower.GetComponentInChildren<Tower>().DelayedStart();
+        tower.GetComponentInChildren<Tower>().DelayedStart(baseInt, AugmentInt);
         tower.GetComponentInChildren<Tower>().DetermineTowerTypeBase(baseInt);
         tower.GetComponentInChildren<Tower>().DetermineTowerHeadType(AugmentInt);
         // it never goes in and fetches the type....
@@ -801,6 +801,9 @@ public class TowerSelecter : MonoBehaviour
                 break;
             case (int)FlameHead.FlameThrower:
                 turretHead = flameThrowerFlameTowerHead;
+                break;
+            case (int)FlameHead.Mortar:
+                turretHead = mortarFlameTowerHead;
                 break;
             default:
                 print("Error with selecting fire Barrel, value is appearing as : " + towerBarrel.value);

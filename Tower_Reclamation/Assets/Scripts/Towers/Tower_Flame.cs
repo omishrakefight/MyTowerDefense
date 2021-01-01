@@ -30,7 +30,10 @@ public class Tower_Flame : Tower {
 
     private string attackAreaType = "Wide";
     private float healReductionIncrement = .10f;
-
+    private float attackSpeed = 0f;
+    private float currentAttackTimer = 0f;
+    private int baseType = -1;
+    private int modificationType = -1;
 
     // Buff info
     //bool keepBuffed = false;
@@ -47,14 +50,16 @@ public class Tower_Flame : Tower {
 
     }
 
-    public override void DelayedStart()
+    public override void DelayedStart(int _baseType, int _modificationType)
     {
-        base.DelayedStart();
+        base.DelayedStart(_baseType, modificationType);
+
+        baseType = _baseType;
+        modificationType = _modificationType;
 
         TowerTypeExplanation = "The flame tower spews and ignites flammable material.  ";
         TowerTypeExplanation += "This causes burning damage over time, with both the severity and duration dependent on the material burning.  ";
         TowerTypeExplanation += "Unfortunately, something is either on fire or it is not, and stacking these debuffs can be wasteful.  ";
-
 
 
         head = GetComponentInChildren<Flame_AOE>();
@@ -67,7 +72,7 @@ public class Tower_Flame : Tower {
             keepBuffed = true;
         }
 
-        head.DelayedStart(keepBuffed);
+        head.DelayedStart(keepBuffed, _baseType, _modificationType);
     }
 
     public override void DetermineTowerTypeBase(int towerInt)
@@ -151,6 +156,13 @@ public class Tower_Flame : Tower {
                 head.ChangeParticleTime(1.5f);
                 attackRange = head.SetTowerTypeFlameThrower();
                 break;
+            case (int)FlameHead.Mortar:
+                attackAreaType = "Projectile, ranged";
+                TowerAugmentExplanation = "The Mortar head, changes the attack area.  This version makes it lob mortars from the barrel, exploding on contact with the enemy.  " +
+                    "This leaves behind flaming ground for a few seconds.  This tower burns less strongly, and over a smaller area.  It does, however, have longer range and impact damage.";
+                attackRange += (float)(.5 * currentAttackRange);
+                attackSpeed = 5f;
+                break;
         }
         currentAttackRange = head.GetTowerRange();// the above gets me the half attackrange, this, though, is not halved.  need to move / change this
         attackRange = currentAttackRange;
@@ -185,6 +197,16 @@ public class Tower_Flame : Tower {
         if(head == null)
         {
             return;
+        }
+
+        switch (towerHeadType)
+        {
+            case (int)FlameHead.Mortar:
+                if (currentAttackTimer < attackSpeed)
+                {
+                    currentAttackTimer += Time.deltaTime;
+                }
+                break;
         }
 
         //first check if prefered enemy isin range, if so he beomes the target enemy.
@@ -258,7 +280,20 @@ public class Tower_Flame : Tower {
 
     private void Shoot(bool isActive)
     {
-        head.Shoot(isActive);
+        switch (towerHeadType)
+        {
+            case (int)FlameHead.Mortar:
+                if (currentAttackTimer >= attackSpeed)
+                {
+                    head.ShootMortar(targetEnemy);
+                    currentAttackTimer -= attackSpeed;
+                }
+                break;
+            default:
+                head.Shoot(isActive);
+                break;
+        }
+        
         //var emissionModule = projectileParticle.emission;
         //emissionModule.enabled = isActive;
         //var emissionModuleTwo = projectileParticleTwo.emission;

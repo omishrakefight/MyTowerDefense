@@ -99,6 +99,7 @@ public class Flame_AOE : MonoBehaviour {
 
         switch (headType)
         {
+            // TODO make this fluctuate size
             case (int)FlameHead.Mortar:
                 currentAttackRange = 30;
                 baseAttackRange = 30;
@@ -257,7 +258,7 @@ public class Flame_AOE : MonoBehaviour {
                 return (currentAttackRange / 2);
 
             case (int)FlameHead.Mortar:
-                return currentAttackRange;
+                return (currentAttackRange);
 
             default:
                 return currentAttackRange;

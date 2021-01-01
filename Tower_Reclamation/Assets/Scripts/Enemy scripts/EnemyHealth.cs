@@ -177,6 +177,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     //    }
     //}
 
+        // maybe make this go from a single projectile?  it has aan enmum for its type? orr refactor some of this?
     protected virtual void OnTriggerEnter(Collider other)
     {
         print("im trigger!");
@@ -205,8 +206,30 @@ public abstract class EnemyHealth : MonoBehaviour {
                 GetComponent<AudioSource>().PlayOneShot(enemyHitAudio);
             }
         }
-        else if () {
-
+        else if (other.gameObject.GetComponent<MortarShell>())
+        {
+            MortarShell bullet = other.gameObject.GetComponent<MortarShell>();
+            string towerName = "";
+            float dmg = 0;
+            dmg = bullet.damage;
+            bullet.SetDamageToZero();
+            towerName = bullet.towerName;
+            ProcessHit(dmg, towerName);
+            if (hitPoints <= 0)
+            {
+                if (!hasGold) // debate this.  NOt sure if ishould use thi or try to find WHY more. l THis should fix it but its a meh fix.
+                {
+                    return;
+                }
+                hasGold = false;
+                //Adds gold upon death, then deletes the enemy.
+                damageLog.UpdateKills(towerName, enemyName);
+                KillsEnemyandAddsGold();
+            }
+            else
+            {
+                GetComponent<AudioSource>().PlayOneShot(enemyHitAudio);
+            }
         }
 
     }

@@ -10,8 +10,12 @@ public class MortarShell : MonoBehaviour {
     public float lifeTimer = 0f;
     public float moveSpeed;
     public float damage = 0f;
+    public float burnDmg = 0f;
     public bool instantiated = false;
     Transform target = null;
+
+    [SerializeField] FireBombBurnAOE fireAOE;
+    private bool alreadyExploded = false;
 
     public string towerName = "";
 
@@ -22,6 +26,7 @@ public class MortarShell : MonoBehaviour {
     private float currentTime = 0f;
 	// Use this for initialization
 	void Start () {
+        alreadyExploded = false;
         moveSpeed = 42f;
         maxLifetime = 8f;
         lifeTimer = 0f;
@@ -88,7 +93,7 @@ public class MortarShell : MonoBehaviour {
         }
     }
 
-    public void Instantiate(Transform enemyTransform, float towerDamage, float burnDmg, string _towerName, float heightOffset)
+    public void Instantiate(Transform enemyTransform, float towerDamage, float _burnDmg, string _towerName, float heightOffset)
     {
         instantiated = true;
         try
@@ -96,6 +101,7 @@ public class MortarShell : MonoBehaviour {
             target = enemyTransform;
             damage = towerDamage;
             towerName = _towerName;
+            burnDmg = _burnDmg;
             this.transform.position += new Vector3(0f, heightOffset, 0f);
         }
         catch (Exception e)
@@ -103,5 +109,22 @@ public class MortarShell : MonoBehaviour {
             //dont need to do anything.  If it errored it will kill itself prolly.
         }
 
+    }
+
+
+    public void SetDamageToZero()
+    {
+        if (!alreadyExploded) {
+            alreadyExploded = true;
+            damage = 0;
+            SpawnFireAOE();
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void SpawnFireAOE()
+    {
+        FireBombBurnAOE flames = Instantiate(fireAOE, transform.position, Quaternion.identity);
+        flames.Initialize(burnDmg, 0f);
     }
 }

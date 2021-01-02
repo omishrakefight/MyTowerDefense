@@ -26,7 +26,11 @@ public class FireBombBurnAOE : MonoBehaviour {
     public void Initialize(float _burnDmg, float sizeIncrease)
     {
         burnDmg = _burnDmg;
-        
+
+        Vector3 currentSize = this.transform.localScale;// += new Vector3(0f, heightOffset, 0f);
+        currentSize.x = currentSize.x * sizeIncrease;
+        currentSize.z = currentSize.z * sizeIncrease;// need to move this to the fire spawned instead of here.
+        this.transform.localScale = currentSize;
     }
 
     private void OnTriggerStay(Collider other)

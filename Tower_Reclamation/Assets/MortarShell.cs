@@ -24,6 +24,8 @@ public class MortarShell : MonoBehaviour {
     private float falloffTime = 1f;
     private float totalRisingTime = -1f;
     private float currentTime = 0f;
+
+    private float scaledFireSize;
 	// Use this for initialization
 	void Start () {
         alreadyExploded = false;
@@ -93,7 +95,7 @@ public class MortarShell : MonoBehaviour {
         }
     }
 
-    public void Instantiate(Transform enemyTransform, float towerDamage, float _burnDmg, string _towerName, float heightOffset)
+    public void Instantiate(Transform enemyTransform, float towerDamage, float _burnDmg, string _towerName, float scaledSizeIncrease, float heightOffset)
     {
         instantiated = true;
         try
@@ -102,7 +104,7 @@ public class MortarShell : MonoBehaviour {
             damage = towerDamage;
             towerName = _towerName;
             burnDmg = _burnDmg;
-            this.transform.position += new Vector3(0f, heightOffset, 0f);
+            scaledFireSize = scaledSizeIncrease;
         }
         catch (Exception e)
         {
@@ -125,6 +127,6 @@ public class MortarShell : MonoBehaviour {
     private void SpawnFireAOE()
     {
         FireBombBurnAOE flames = Instantiate(fireAOE, transform.position, Quaternion.identity);
-        flames.Initialize(burnDmg, 0f);
+        flames.Initialize(burnDmg, scaledFireSize);
     }
 }

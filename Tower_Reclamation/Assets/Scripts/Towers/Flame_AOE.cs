@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class Flame_AOE : MonoBehaviour {
 
-    public float mortarExplosionDmg = 15f;
-    public float towerDmg = 4;
-    public float currentTowerDmg = 4;
+    public float mortarExplosionDmg = 45f;
+    public float currentMortarExplosion = 45;
+    public float mortarFlameSizeFromUpgradeNode = 0f;
+
+    public float towerDmg = 12;
+    public float currentTowerDmg = 12;
     public float healReduction = 0f;
+    public float rangeModifier = 1.0f;
     protected Tower_Flame towerBase;
     string TowerTypeName;
 
@@ -47,11 +51,15 @@ public class Flame_AOE : MonoBehaviour {
         healReduction = 0f;
         towerDmg = 12;
         currentTowerDmg = 12;
-        float rangeModifier = 1.0f;
+        mortarExplosionDmg = 45;
+        currentMortarExplosion = 45;
+        mortarFlameSizeFromUpgradeNode = 0f;
+        rangeModifier = 1.0f;
+        float towerDmgModifier = 1.0f;
         // 1 is shelling, 2 is tank.
-        print(towerDmg + "  prebuff    " + rangeModifier);
-        GetComponentInParent<Tower_Flame>().CheckUpgradesForTankTower(ref towerDmg, ref rangeModifier, ref filler);
-        print(towerDmg + "  postbuff    " + rangeModifier);
+        print(towerDmgModifier + "  prebuff    " + rangeModifier);
+        GetComponentInParent<Tower_Flame>().CheckUpgradesForTankTower(ref towerDmgModifier, ref rangeModifier, ref filler); //towerDmg
+        print(towerDmgModifier + "  postbuff    " + rangeModifier);
 
         // this is defaulting values PRE tinker room buffs
         switch (headType)
@@ -59,6 +67,7 @@ public class Flame_AOE : MonoBehaviour {
             case (int)FlameHead.Mortar:
                 currentAttackRange = 30;
                 baseAttackRange = 30;
+                mortarExplosionDmg = 45;
                 break;
             default:
                 // this needs to happen
@@ -92,17 +101,18 @@ public class Flame_AOE : MonoBehaviour {
         {
 //  This needs to be moved to tower buff, might need to re-set the variables.  The problem here is that this does not get set to buffed until too late.
             //30% bonus to range
-            currentAttackRange += baseAttackRange * .25f;
-            currentAttackWidth += baseAttackWidth * .25f;
+            currentAttackRange += baseAttackRange * .20f;
+            currentAttackWidth += baseAttackWidth * .20f;
             currentTowerDmg = currentTowerDmg * 1.2f;
+            currentMortarExplosion = mortarExplosionDmg * 1.2f;
+            mortarFlameSizeFromUpgradeNode = .2f; 
         }
 
         switch (headType)
         {
             // TODO make this fluctuate size
             case (int)FlameHead.Mortar:
-                currentAttackRange = 30;
-                baseAttackRange = 30;
+
                 break;
             default:
                 // increase the range based off tinker room / special tile buffs.
@@ -115,6 +125,7 @@ public class Flame_AOE : MonoBehaviour {
 
         //after initial setup bonuses, set them equal at a 'base value' this way ingame values and resets work easily.
         baseAttackRange = currentAttackRange;
+        mortarExplosionDmg = currentMortarExplosion;
         baseAttackWidth = currentAttackWidth;
         towerBase.SetNewTowerDmg(currentTowerDmg);
     }
@@ -225,7 +236,8 @@ public class Flame_AOE : MonoBehaviour {
     public void ShootMortar(Transform enemyTransform)
     {
         MortarShell Projectile = Instantiate(projectile, this.transform.position, Quaternion.identity);
-        Projectile.Instantiate(enemyTransform, 45, currentTowerDmg, TowerTypeName, 10);
+        float flameSizeIncrease = rangeModifier + mortarFlameSizeFromUpgradeNode; // + upgrade new stat thing for mortar aoe range.  aka + sizeFromUpgrades.
+        Projectile.Instantiate(enemyTransform, currentMortarExplosion, currentTowerDmg, TowerTypeName, flameSizeIncrease, 10);
     }
 
     public void TurnFlameSprayActive(bool isActive)

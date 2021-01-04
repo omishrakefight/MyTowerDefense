@@ -13,6 +13,7 @@ public class MortarShell : MonoBehaviour {
     public float burnDmg = 0f;
     public bool instantiated = false;
     Transform target = null;
+    Vector3 targetsLastPosition = new Vector3(0, 0, 0);
 
     [SerializeField] FireBombBurnAOE fireAOE;
     private bool alreadyExploded = false;
@@ -70,14 +71,35 @@ public class MortarShell : MonoBehaviour {
             //    transform.position = Vector3.MoveTowards(this.transform.position, target.position, movementPerFrame);
             //}
             float percent = currentTime / arcTime;
-            if (currentTime < arcTime)
+            if (target != null)
             {
-                transform.Translate(Vector3.up * movementPerFrame * (1 - percent));
-                transform.position = Vector3.MoveTowards(this.transform.position, target.position, movementPerFrame * (percent));
+                targetsLastPosition = target.position;
+                if (currentTime < arcTime)
+                {
+                    transform.Translate(Vector3.up * movementPerFrame * (1 - percent));
+                    transform.position = Vector3.MoveTowards(this.transform.position, target.position, movementPerFrame * (percent));
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(this.transform.position, target.position, movementPerFrame);
+                }
             } else
             {
-                transform.position = Vector3.MoveTowards(this.transform.position, target.position, movementPerFrame);
+                if (currentTime < arcTime)
+                {
+                    transform.Translate(Vector3.up * movementPerFrame * (1 - percent));
+                    transform.position = Vector3.MoveTowards(this.transform.position, targetsLastPosition, movementPerFrame * (percent));
+                }
+                else
+                {
+                    transform.position = Vector3.MoveTowards(this.transform.position, targetsLastPosition, movementPerFrame);
+                }
+                if(Vector3.Distance(this.transform.position, targetsLastPosition) < 1)
+                {
+                    SetDamageToZero();
+                }
             }
+
 
         }
         catch (MissingReferenceException ms)

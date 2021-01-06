@@ -6,7 +6,7 @@ public class FireBombBurnAOE : MonoBehaviour {
 
     float burnDmg = 0f;
     float healReduction = 0f;
-    float lifeCycle = 2f;
+    float lifeCycle = 2.75f;
     float currentTime = 0f;
     
 	// Use this for initialization

@@ -23,13 +23,17 @@ public class FireBombBurnAOE : MonoBehaviour {
         }
 	}
 
-    public void Initialize(float _burnDmg, float sizeIncrease)
+    public void Initialize(float _burnDmg, float sizeIncrease, float durationIncrease)
     {
+        lifeCycle += durationIncrease;
+
         burnDmg = _burnDmg;
 
         Vector3 currentSize = this.transform.localScale;// += new Vector3(0f, heightOffset, 0f);
+
+        // This math is OK, because I handle it in Mortarshell / flametower.  It handles multiple increases and will always (normally) be over 1.
         currentSize.x = currentSize.x * sizeIncrease;
-        currentSize.z = currentSize.z * sizeIncrease;// need to move this to the fire spawned instead of here.
+        currentSize.z = currentSize.z * sizeIncrease;
         this.transform.localScale = currentSize;
     }
 

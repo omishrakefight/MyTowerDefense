@@ -103,8 +103,7 @@ public class Tower_Flame : Tower {
                 towerDmgModifierPercent = .30f;
                 towerAttackRangeModifierPercent = .50f;
                 head.BuffRange(towerAttackRangeModifierPercent);
-                head.currentTowerDmg -= (head.currentTowerDmg * towerDmgModifierPercent);
-                head.towerDmg -= (head.currentTowerDmg * towerDmgModifierPercent);
+                head.towerHeadDMGReduction(towerDmgModifierPercent);
 
                 TowerBaseExplanation = "Tower damage -" + (int)(towerDmgModifierPercent * 100f) + '%';
                 TowerBaseExplanation += "\nTower Area of Effect +" + (int)(towerAttackRangeModifierPercent * 100f) + '%';
@@ -130,6 +129,10 @@ public class Tower_Flame : Tower {
         {
             case -1:
                 print("Didn't initialize the variable towerHeadType");
+                break;
+            case (int)FlameHead.Mortar:
+                towerUpgradeDescriptionTwo = "Upgrade fire burn duartion +1 second";
+                towerUpgradeDescriptionThree = "Upgrade tower fire rate +20%";
                 break;
             default:
                 break;
@@ -283,7 +286,7 @@ public class Tower_Flame : Tower {
         switch (towerHeadType)
         {
             case (int)FlameHead.Mortar:
-                if (currentAttackTimer >= attackSpeed)
+                if (currentAttackTimer >= attackSpeed && targetEnemy != null)
                 {
                     head.ShootMortar(targetEnemy);
                     currentAttackTimer -= attackSpeed;
@@ -408,7 +411,17 @@ public class Tower_Flame : Tower {
             return;
         }
 
-        head.healReduction += healReductionIncrement;
+        
+        switch (towerHeadType)
+        {
+            case (int)FlameHead.Mortar:
+                head.UpgradeMortarDuration();
+                break;
+            default:
+                head.healReduction += healReductionIncrement;
+                break;
+        }
+
 
         gold.UpgradeCost(currentUpgradeCost);
         upgradeTwoUsed++;
@@ -431,8 +444,17 @@ public class Tower_Flame : Tower {
             return;
         }
 
-        currentAttackRange += (.2f * attackRange);
-        head.BuffRange(.15f);
+        // actual upgrade is here.
+        switch (towerHeadType)
+        {
+            case (int)FlameHead.Mortar:
+                UpgradeMortarFireRate();
+                break;
+            default:
+                currentAttackRange += (.2f * attackRange);
+                head.BuffRange(.15f);
+                break;
+        }
 
         gold.UpgradeCost(currentUpgradeCost);
         upgradeThreeUsed++;
@@ -441,6 +463,11 @@ public class Tower_Flame : Tower {
         stats = TowerStatsTxt;
 
         GetUpgradeCosts(out upgradeTextOne, out upgradeTextTwo, out upgradeTextThree);
+    }
+
+    public void UpgradeMortarFireRate()
+    {
+        attackSpeed = attackSpeed * .8f;
     }
 
 }

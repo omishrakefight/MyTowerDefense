@@ -16,8 +16,9 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     [SerializeField] public float hitPoints = 35;
     [SerializeField] public float hitPointsMax;
+    [SerializeField] public EnemyHealthBars healthBars;
     [SerializeField] public Canvas enemyHealthBar;
-    protected Image healthImage;
+    //protected Image healthImage;
     protected PostLevelSummaryScreen damageLog;
 
     protected float burnTime = 3f;
@@ -60,8 +61,9 @@ public abstract class EnemyHealth : MonoBehaviour {
             hitPoints += healthModifier;
             healthModifier = (hitPoints * (1 + ( .05f * (float)wavecount)));
             hitPointsMax = hitPoints;
-            healthImage = enemyHealthBar.gameObject.GetComponentInChildren<Image>();
-            healthImage.fillAmount = 1.0f;
+            healthBars.SetHealthBarPercent(1.0f);
+            //healthImage = enemyHealthBar.gameObject.GetComponentInChildren<Image>();
+            //healthImage.fillAmount = 1.0f;
         }
 
         //only need to calculate once.  And if enemy is boss, reduce healing so its fair.
@@ -88,7 +90,7 @@ public abstract class EnemyHealth : MonoBehaviour {
      
     public float getHPPercent()
     {
-        return healthImage.fillAmount;
+        return healthBars.GetHPPercent();
     }
 
     public void DontResethealthPlease()
@@ -110,7 +112,7 @@ public abstract class EnemyHealth : MonoBehaviour {
 
     public void RefreshHealthBar()
     {
-        healthImage.fillAmount = (hitPoints / hitPointsMax);
+        healthBars.SetHealthBarPercent(hitPoints / hitPointsMax);
     }
 
     public virtual IEnumerator Burning(float fireDmg)
@@ -121,13 +123,15 @@ public abstract class EnemyHealth : MonoBehaviour {
             burn = burnDmg * Time.deltaTime;
             time -= 1 * Time.deltaTime;
             hitPoints -= burn;
-            healthImage.fillAmount = (hitPoints / hitPointsMax);
+            healthBars.SetHealthBarPercent(hitPoints / hitPointsMax);
+            healthBars.SetBurnBarPercent(time / burnTime);
 
             damageLog.UpdateDamage("Flame Tower", burn);
             Singleton.AddTowerDamage("Flame Tower", burn);
         }
         else
         {
+            healthBars.SetBurnBarPercent(0f);
             onFire = false;
         }
 
@@ -280,7 +284,7 @@ public abstract class EnemyHealth : MonoBehaviour {
         //dmg = other.GetComponentInParent<Tower>().Damage(ref towerName);        
         hitPoints = hitPoints - dmg;
         hitparticleprefab.Play();
-        healthImage.fillAmount = (hitPoints / hitPointsMax);
+        healthBars.SetHealthBarPercent(hitPoints / hitPointsMax);
 
         damageLog.UpdateDamage(towerName, dmg);
         Singleton.AddTowerDamage(towerName, dmg);
@@ -290,7 +294,7 @@ public abstract class EnemyHealth : MonoBehaviour {
     {
         float dmg = damage;
         hitPoints = hitPoints - dmg;
-        healthImage.fillAmount = (hitPoints / hitPointsMax);
+        healthBars.SetHealthBarPercent(hitPoints / hitPointsMax);
 
         
         Singleton.AddTowerDamage(towerName, damage);
@@ -357,7 +361,7 @@ public abstract class EnemyHealth : MonoBehaviour {
             {
                 hitPoints += (healPerTick * Time.deltaTime);
             }
-            healthImage.fillAmount = (hitPoints / hitPointsMax);
+            healthBars.SetHealthBarPercent(hitPoints / hitPointsMax);
             //print("I healed " + healPerTick + " HP!" + "   | healPercent: " + healPercent);
         }
         else

@@ -46,7 +46,7 @@ public class BurrowerHealth : EnemyHealth {
 
         float dmg = damage;
         hitPoints = hitPoints - dmg;
-        healthImage.fillAmount = (hitPoints / hitPointsMax);
+        healthBars.SetHealthBarPercent(hitPoints / hitPointsMax);
         TellMovementToStartBurrow();
         hitparticleprefab.Play();
         Singleton.AddTowerDamage(towerName, damage);
@@ -136,7 +136,7 @@ public class BurrowerHealth : EnemyHealth {
         dmg = other.GetComponentInParent<Tower>().Damage(ref towerName);
         ProcessHit(dmg, towerName);
 
-        healthImage.fillAmount = (hitPoints / hitPointsMax);
+        healthBars.SetHealthBarPercent(hitPoints / hitPointsMax);
         TellMovementToStartBurrow();
         if (hitPoints <= 0)
         {
@@ -165,7 +165,7 @@ public class BurrowerHealth : EnemyHealth {
             time -= 1 * Time.deltaTime;
             hitPoints -= burnDmg * Time.deltaTime;
             TellMovementToStartBurrow();
-            healthImage.fillAmount = (hitPoints / hitPointsMax);
+            healthBars.SetHealthBarPercent(hitPoints / hitPointsMax);
         }
         else
         {

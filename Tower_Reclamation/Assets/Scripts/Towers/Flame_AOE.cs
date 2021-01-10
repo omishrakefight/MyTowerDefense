@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Flame_AOE : MonoBehaviour {
 
+    // for mortar tower upgrades, duration, dmg, fire rate? -- the usual would have AOE, and heal reduction.
     public float mortarExplosionDmg = 45f;
     public float currentMortarExplosion = 45;
     public float mortarFlameSizeFromUpgradeNode = 0f;
+    public float mortarFlameDurationBonusSeconds = 0f;
+    public float tallBaseBonusRange = 0f;
 
     public float towerDmg = 12;
     public float currentTowerDmg = 12;
@@ -55,6 +58,7 @@ public class Flame_AOE : MonoBehaviour {
         currentMortarExplosion = 45;
         mortarFlameSizeFromUpgradeNode = 0f;
         rangeModifier = 1.0f;
+        mortarFlameDurationBonusSeconds = 0f;
         float towerDmgModifier = 1.0f;
         // 1 is shelling, 2 is tank.
         print(towerDmgModifier + "  prebuff    " + rangeModifier);
@@ -68,6 +72,7 @@ public class Flame_AOE : MonoBehaviour {
                 currentAttackRange = 30;
                 baseAttackRange = 30;
                 mortarExplosionDmg = 45;
+                tallBaseBonusRange = 0f;
                 break;
             default:
                 // this needs to happen
@@ -92,6 +97,9 @@ public class Flame_AOE : MonoBehaviour {
         currentAttackRange = (currentAttackRange * rangeModifier);
         print("_F After buff the range is " + currentAttackRange);
         currentAttackWidth = (currentAttackWidth * rangeModifier);
+
+        currentTowerDmg = currentTowerDmg * towerDmgModifier;
+        currentMortarExplosion = mortarExplosionDmg * towerDmgModifier;
 
         if (!keepBuffed)
         {
@@ -142,26 +150,38 @@ public class Flame_AOE : MonoBehaviour {
 
     public void BuffRange(float rangeBuff)
     {
-        Vector3 NewCapsulCenter;
+        switch (headType)
+        {
+            case (int)FlameHead.Mortar:
+                currentAttackRange += (currentAttackRange * rangeBuff);
+                baseAttackRange = currentAttackRange;
+                tallBaseBonusRange += rangeBuff;
+                break;
 
-        currentAttackRange = flameAOE.radius;
-        baseAttackRange = flameAOE.radius;
-        currentAttackWidth = flameAOE.height;
-        baseAttackWidth = flameAOE.height;
-        // CHANGE THIS TO +=? that way .30 works instead of = *x.  then the others is more consistent.
-        //logic test
-        print("buff Range: The base range is " + currentAttackRange + " and the modifier bonus is " + rangeBuff);
-        currentAttackRange += (currentAttackRange * rangeBuff);
-        print("buff Range: After buff the range is " + currentAttackRange);
-        currentAttackWidth += (currentAttackWidth * rangeBuff);
-        flameAOE.height = currentAttackWidth;
-        flameAOE.radius = currentAttackRange;
+            default:
+                Vector3 NewCapsulCenter;
 
-        baseAttackRange = currentAttackRange;
-        baseAttackWidth = currentAttackWidth;
-        NewCapsulCenter = flameAOE.center;  //= (currentAttackWidth / 2);
-        NewCapsulCenter.z = (currentAttackWidth / 2);
-        flameAOE.center = NewCapsulCenter;
+                currentAttackRange = flameAOE.radius;
+                baseAttackRange = flameAOE.radius;
+                currentAttackWidth = flameAOE.height;
+                baseAttackWidth = flameAOE.height;
+                // CHANGE THIS TO +=? that way .30 works instead of = *x.  then the others is more consistent.
+                //logic test
+                print("buff Range: The base range is " + currentAttackRange + " and the modifier bonus is " + rangeBuff);
+                currentAttackRange += (currentAttackRange * rangeBuff);
+                print("buff Range: After buff the range is " + currentAttackRange);
+                currentAttackWidth += (currentAttackWidth * rangeBuff);
+                flameAOE.height = currentAttackWidth;
+                flameAOE.radius = currentAttackRange;
+
+                baseAttackRange = currentAttackRange;
+                baseAttackWidth = currentAttackWidth;
+                NewCapsulCenter = flameAOE.center;  //= (currentAttackWidth / 2);
+                NewCapsulCenter.z = (currentAttackWidth / 2);
+                flameAOE.center = NewCapsulCenter;
+                break;
+        }
+
         towerBase.SetNewTowerDmg(currentTowerDmg);
     }
 
@@ -224,8 +244,7 @@ public class Flame_AOE : MonoBehaviour {
 
             case (int)FlameHead.Mortar:
                 // using shoootmortar
-                //Instantiate(projectile, this.transform.position, Quaternion.identity);
-                //projectile.Instantiate(enemyTransform);
+                //seperate Function
                 break;
 
             default:
@@ -236,8 +255,25 @@ public class Flame_AOE : MonoBehaviour {
     public void ShootMortar(Transform enemyTransform)
     {
         MortarShell Projectile = Instantiate(projectile, this.transform.position, Quaternion.identity);
-        float flameSizeIncrease = rangeModifier + mortarFlameSizeFromUpgradeNode; // + upgrade new stat thing for mortar aoe range.  aka + sizeFromUpgrades.
-        Projectile.Instantiate(enemyTransform, currentMortarExplosion, currentTowerDmg, TowerTypeName, flameSizeIncrease, 10);
+        float flameSizeIncrease = rangeModifier + mortarFlameSizeFromUpgradeNode + tallBaseBonusRange; // + upgrade new stat thing for mortar aoe range.  aka + sizeFromUpgrades.
+        Projectile.Instantiate(enemyTransform, currentMortarExplosion, currentTowerDmg, TowerTypeName, flameSizeIncrease, mortarFlameDurationBonusSeconds, 10);
+    }
+
+    public void towerHeadDMGReduction(float percentReduced)
+    {
+        switch (headType)
+        {
+            case (int)FlameHead.Mortar:
+                currentTowerDmg -= (currentTowerDmg * percentReduced);
+                currentMortarExplosion -= (currentMortarExplosion * percentReduced);
+                towerDmg = currentTowerDmg;
+                mortarExplosionDmg = currentTowerDmg;
+                break;
+            default:
+                currentTowerDmg -= (currentTowerDmg * percentReduced);
+                towerDmg -= (currentTowerDmg * percentReduced);
+                break;
+        }
     }
 
     public void TurnFlameSprayActive(bool isActive)
@@ -276,5 +312,17 @@ public class Flame_AOE : MonoBehaviour {
                 return currentAttackRange;
         }
     }
+
+    //duration, dmg, fire rate
+    public void UpgradeMortarDuration()
+    {
+        mortarFlameDurationBonusSeconds += 1;
+    }
+
+    // i actually do this in the base class, I stop it before even coming here.
+    //public void UpgradeMortarFireRate()
+    //{
+    //    speed
+    //}
 
 }

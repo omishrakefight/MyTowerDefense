@@ -11,6 +11,7 @@ public class MortarShell : MonoBehaviour {
     public float moveSpeed;
     public float damage = 0f;
     public float burnDmg = 0f;
+    public float flameDurationIncrease = 0f;
     public bool instantiated = false;
     Transform target = null;
     Vector3 targetsLastPosition = new Vector3(0, 0, 0);
@@ -58,18 +59,6 @@ public class MortarShell : MonoBehaviour {
         {
             float movementPerFrame = moveSpeed * Time.deltaTime;
 
-            //if (currentTime < straightUpTime)
-            //{
-            //    transform.Translate(Vector3.up * movementPerFrame);
-            //} else if(currentTime < totalRisingTime)
-            //{
-            //    // this double calculation is supposed to go hyperbolic.
-            //    transform.Translate(Vector3.forward * movementPerFrame * ((currentTime - straightUpTime) / falloffTime));
-            //    transform.position = Vector3.MoveTowards(this.transform.position, target.position, movementPerFrame);
-            //} else
-            //{
-            //    transform.position = Vector3.MoveTowards(this.transform.position, target.position, movementPerFrame);
-            //}
             float percent = currentTime / arcTime;
             if (target != null)
             {
@@ -117,7 +106,7 @@ public class MortarShell : MonoBehaviour {
         }
     }
 
-    public void Instantiate(Transform enemyTransform, float towerDamage, float _burnDmg, string _towerName, float scaledSizeIncrease, float heightOffset)
+    public void Instantiate(Transform enemyTransform, float towerDamage, float _burnDmg, string _towerName, float scaledSizeIncrease, float _flameDurationIncrease, float heightOffset)
     {
         instantiated = true;
         try
@@ -127,6 +116,7 @@ public class MortarShell : MonoBehaviour {
             towerName = _towerName;
             burnDmg = _burnDmg;
             scaledFireSize = scaledSizeIncrease;
+            flameDurationIncrease = _flameDurationIncrease;
         }
         catch (Exception e)
         {
@@ -149,6 +139,6 @@ public class MortarShell : MonoBehaviour {
     private void SpawnFireAOE()
     {
         FireBombBurnAOE flames = Instantiate(fireAOE, transform.position, Quaternion.identity);
-        flames.Initialize(burnDmg, scaledFireSize);
+        flames.Initialize(burnDmg, scaledFireSize, flameDurationIncrease);
     }
 }

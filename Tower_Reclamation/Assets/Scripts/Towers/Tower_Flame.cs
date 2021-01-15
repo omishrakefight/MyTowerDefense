@@ -286,7 +286,7 @@ public class Tower_Flame : Tower {
         switch (towerHeadType)
         {
             case (int)FlameHead.Mortar:
-                if (currentAttackTimer >= attackSpeed && targetEnemy != null)
+                if (currentAttackTimer >= attackSpeed && targetEnemy != null && isActive)
                 {
                     head.ShootMortar(targetEnemy);
                     currentAttackTimer -= attackSpeed;

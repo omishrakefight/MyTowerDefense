@@ -52,8 +52,8 @@ public class Flame_AOE : MonoBehaviour {
         // this is used in the base flame class, not needed here.
         float filler = 0.0f;
         healReduction = 0f;
-        towerDmg = 12;
-        currentTowerDmg = 12;
+        towerDmg = 10.5f;
+        currentTowerDmg = 10.5f;
         mortarExplosionDmg = 45;
         currentMortarExplosion = 45;
         mortarFlameSizeFromUpgradeNode = 0f;
@@ -73,6 +73,7 @@ public class Flame_AOE : MonoBehaviour {
                 baseAttackRange = 30;
                 mortarExplosionDmg = 45;
                 tallBaseBonusRange = 0f;
+                currentTowerDmg += .20f * towerDmg;
                 break;
             default:
                 // this needs to happen

@@ -35,8 +35,8 @@ public class BossEnemy : MonoBehaviour {
 
         var enemyhealth = boss.GetComponent<EnemyHealth>();
         print(enemyhealth);
-        enemyhealth.hitPointsMax = (enemyhealth.hitPoints * 8);
-        enemyhealth.hitPoints = (enemyhealth.hitPoints * 8);
+        enemyhealth.hitPointsMax = (enemyhealth.hitPoints * 11);
+        enemyhealth.hitPoints = (enemyhealth.hitPoints * 10);
         print("boss HP: " + enemyhealth.hitPointsMax);
 
         enemyhealth.DontResethealthPlease();

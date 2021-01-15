@@ -29,8 +29,8 @@ public abstract class Tower : MonoBehaviour {
     protected int upgradeTwoUsed = 0;
     protected int upgradeThreeUsed = 0;
     protected int anyUpgradeUsed = 0;
-    protected float anyUpgradeCostInc = .045f;
-    protected float thisUpgradeCostInc = .0425f;
+    protected float anyUpgradeCostInc = .06f;
+    protected float thisUpgradeCostInc = .04f;
     protected float baseUpgradePercent = .22f;
     protected float costReductionForBallisticRange = .66f;
     protected float engineeringCostReduction = 1f;

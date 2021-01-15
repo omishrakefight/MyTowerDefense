@@ -40,6 +40,7 @@ public class RollerHealth : EnemyHealth {
         }
         else
         {
+            dodgeTimer += .5f;
             //string towerName = "";
             //dmg = other.GetComponentInParent<Tower>().Damage(ref towerName);
             hitPoints = hitPoints - dmg;

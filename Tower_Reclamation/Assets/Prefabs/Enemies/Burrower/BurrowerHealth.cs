@@ -165,7 +165,10 @@ public class BurrowerHealth : EnemyHealth {
             time -= 1 * Time.deltaTime;
             hitPoints -= burnDmg * Time.deltaTime;
             TellMovementToStartBurrow();
+
+
             healthBars.SetHealthBarPercent(hitPoints / hitPointsMax);
+            healthBars.SetBurnBarPercent(time / burnTime);
         }
         else
         {
